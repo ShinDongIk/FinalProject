@@ -1,0 +1,96 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box !important;
+}
+#ratePlan-table{
+	margin:auto;
+	text-align:center;
+	align : center;
+	width:70%;
+}
+#ratePlan-table>thead>tr>th{
+	text-align:center;
+
+}
+img{
+	width:100px;
+	height:100px;
+}
+        
+.tab-lists {
+    width: 70%;
+    padding: 50px;
+    margin: 0 auto;
+  	background: #efefef;
+}
+
+/*라디오버튼 숨김*/
+input {display: none;}
+
+.ratePlan-tab-label {
+     display: inline-block;
+     margin: 0 0 -1px;
+     padding: 15px 25px;
+     font-weight: 600;
+     text-align: center;
+     color: #bbb;
+     border: 1px solid transparent;
+}
+
+.ratePlan-tab-label:hover {
+	 background-color: #A8B0FF;
+     cursor: pointer;
+}
+
+/*input 클릭시, label 스타일*/
+input:checked + label {
+     background-color: #A8B0FF;
+     border-bottom: 1px solid #ffffff;
+}
+              
+#ratePlan-tab1{
+	margin-right: 20px;
+} 
+
+.ratePlan-tab-label{
+	margin-left: 45px;
+	margin-right: 45px;
+}
+
+#ratePlan-tab5{
+	margin-left: 20px;
+}
+
+.tab-lists span{
+	color:black;
+}
+
+#ratePlan-insertBtn-area{
+	padding : 50px;
+	margin-left: 160px;
+	margin-right: 160px;
+	margin-bottom : 20px;
+}
+#ratePlan-insertBtn-area>button{
+	margin-right: 90px;
+	float: right;
+}
+
+#ratePlan-table>tbody>tr>td>button{
+	width: 100%;
+}
+
+#ratePlan-area{
+	height:100%;
+}
+.rt-button-color{
+	font-size: 12px;
+	border-radius: 12px;
+	background-color: #A8B0FF;
+	color : white !important;
+}
+
+.ratePlan-tab-label>img{
+	border-radius: 70%;
+}
+  
