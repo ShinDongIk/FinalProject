@@ -12,5 +12,6 @@
 	
 	<mappers>
 		<mapper resource="/mappers/chat/chat-mapper.xml"/>
+		<mapper resource="/mappers/ratePlan/rateplan-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -11,12 +11,18 @@
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 	</head>
 	<body class="is-preload">
+		<c:if test="${not empty alertMsg}">
+			<script>
+				alert("${alertMsg}");
+			</script>
+			<c:remove var="alertMsg"/>
+		</c:if>
 		<!-- Wrapper -->
 			<div id="wrapper">
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="index.html">ENJOY OTT</a></h1>
+						<h1><a href="${pageContext.request.contextPath}">ENJOY OTT</a></h1>
 						<nav class="links">
 							<ul>
 								<li><a href="#">로그인/로그아웃</a></li>
