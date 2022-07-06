@@ -14,7 +14,7 @@
 	<jsp:include page="../common/menubar.jsp"/>
 	<div id="rp-enroll-area">
 		<h1>요금제 정보 입력</h1>
-		<form action="insert.ra" method="post" >
+		<form action="insert.ra" onsubmit="return checkInfo(event);" method="post" >
 			<table id="rp-enroll-table">
 					<tr>
 						<th>OTT 선택</th>
@@ -64,7 +64,7 @@
 					</tr>
 			</table>
 			<div id="rp-enroll-submit">
-				<button class="rt-en-button-color" type="submit" onClick="submitChick();">등록</button>
+				<button class="rt-en-button-color" type="submit">등록</button>
 			</div>
 		</form>
 	</div>

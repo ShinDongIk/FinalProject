@@ -66,7 +66,7 @@
 			</tbody>
 		</table>
 	</div>
-	<!-- js파일 분리작업 하기 -->
+	<script src="${pageContext.request.contextPath}/js/ratePlanTab.js"></script>
 	<jsp:include page="../chat/chat.jsp"/>
 </body>
 </html>

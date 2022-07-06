@@ -17,4 +17,7 @@ public interface RatePlanService {
 	
 	//ajax를 통해 ott별 가격정보 가져오는 메소드
 	public abstract ArrayList<RatePlan> searchData(String ottName);
+	
+	//ott 가격정보 가져오는 메소드
+	public abstract RatePlan searchRatePlan(int priceInfoNo);
 }

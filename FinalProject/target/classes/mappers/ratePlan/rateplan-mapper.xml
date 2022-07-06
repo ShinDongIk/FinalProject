@@ -45,4 +45,38 @@
 		AND OTT_NAME = #{ottName}
 		ORDER BY PRICE_INFORMATION_NO DESC
 	</select>
+	
+	<update id="deleteRatePlan" parameterType="_int">
+		UPDATE OTT_PRICE_LIST
+		SET PRICE_INFORMATIONT_STATUS = 'N'
+		WHERE PRICE_INFORMATION_NO = #{priceInfoNo}
+	</update>
+	
+	<select id="searchRatePlan" parameterType="_int" resultMap="ratePlanResultSet">
+		SELECT PRICE_INFORMATION_NO
+				,OTT_NAME
+				,MONTH_PRICE
+				,YEAR_PRICE
+				,CONCURRENT_USERS
+				,PROFILES_NUM
+				,IMAGE_QUALITY
+				,PRICE_INFORMATIONT_STATUS
+				,PRICE_INFORMATIONT_ENTER
+		FROM OTT_PRICE_LIST
+		WHERE PRICE_INFORMATIONT_STATUS = 'Y'
+		AND PRICE_INFORMATION_NO = #{priceInfoNo}
+		ORDER BY PRICE_INFORMATION_NO DESC 
+	</select>
+	
+	<update id="updateRatePlan" parameterType="ratePlan">
+		UPDATE OTT_PRICE_LIST
+		SET OTT_NAME = #{ottName}
+			,MONTH_PRICE = #{monthPrice}
+			,YEAR_PRICE = #{yearPrice}
+			,CONCURRENT_USERS = #{concurrentUsers}
+			,PROFILES_NUM = #{profilesNum}
+			,IMAGE_QUALITY = #{imageQuality}
+			,PRICE_INFORMATIONT_ENTER = SYSDATE
+		WHERE PRICE_INFORMATION_NO = #{priceInfoNo} 
+	</update>
 </mapper>

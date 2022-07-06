@@ -1,9 +1,8 @@
-//시작시 가격정보 불러오는 ajax
-$(function(){
+$(".tab-lists>input").on("click",function(){
 			$.ajax({
 				url : "searchOtt.ra",
 				type : "post",
-				data : {ottName : $("#ratePlan-tab1").val()},
+				data : {ottName : $(this).val()},
 				success : function(result){
 					var str = "";
 					
@@ -34,16 +33,3 @@ $(function(){
 			})
 		});
 		
-	
-	$(document).on("click",".ratePlan-delBtn",function(){
-		var result = confirm("정말 삭제하시겠습니까?");
-
-		if(result){
-			location.href="delete.ra?priceInfoNo="+$(this).parent().prev().prev().val();
-		}
-	});
-	
-	$(document).on("click",".ratePlan-upBtn",function(){
-		console.log($(this).parent().prev().val());
-		location.href="updateEnroll.ra?priceInfoNo="+$(this).parent().prev().val();
-	});

@@ -7,8 +7,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.payalot.enjoyforott.ratePlan.modal.service.RatePlanService;
@@ -34,7 +36,7 @@ public class RatePlanController {
 	
 	//ott 가격정보 등록 메소드
 	@RequestMapping(value="insert.ra")
-	public String insertRatePlan(RatePlan rp,String quality,HttpSession session) {
+	public String insertRatePlan(RatePlan rp,HttpSession session) {
 		
 		int result = ratePlanService.insertRatePlan(rp);
 		if(result>0) {
@@ -53,4 +55,42 @@ public class RatePlanController {
 		return new Gson().toJson(list);
 	}
 	
+	//ott 가격정보 삭제 메소드
+	@RequestMapping(value="delete.ra")
+	public String deleteRatePlan(int priceInfoNo,HttpSession session) {
+		int result = ratePlanService.deleteRatePlan(priceInfoNo);
+		
+		if(result>0) {
+			session.setAttribute("alertMsg", "OTT 가격정보가 삭제 완료 되었습니다!");
+		}else {
+			session.setAttribute("alertMsg", "OTT 가격정보 삭제하는데 실패하였습니다!");
+		}
+		
+		return "redirect:watch.ra";
+	}
+	
+	//ott 가격정보 수정 페이지 이동 메소드
+	@RequestMapping(value="updateEnroll.ra")
+	public ModelAndView goToUpdateEnroll(int priceInfoNo,ModelAndView mv) {
+		RatePlan rp = ratePlanService.searchRatePlan(priceInfoNo);
+				
+		mv.addObject("rp", rp);
+		mv.setViewName("ratePlan/ratePlanUpdateForm");
+				
+		return mv;
+	}
+	
+	//ott 가격정보 수정 메소드
+	@RequestMapping(value="update.ra")
+	public String updateRatePlan(RatePlan rp,HttpSession session) {
+		int result = ratePlanService.updateRatePlan(rp);
+			
+		if(result>0) {
+			session.setAttribute("alertMsg", "OTT 가격정보가 수정 완료 되었습니다!");
+		}else {
+			session.setAttribute("alertMsg", "OTT 가격정보 수정이 실패하였습니다!");
+		}
+			
+		return "redirect:watch.ra";
+	}
 }
