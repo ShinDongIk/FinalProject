@@ -9,16 +9,20 @@ $(function(){
 					
 					if(result.length > 0){
 						for(var i in result){
-							str += "<tr>"
-								+"<td>"+result[i].monthPrice+"</td>"
-								+"<td>"+result[i].yearPrice+"</td>"
-								+"<td>"+result[i].concurrentUsers+"</td>"
+							str += "<tr>"+"<td>"+result[i].monthPrice+"</td>";
+								
+								if(result[i].yearPrice == undefined){
+									str += "<td></td>";
+								}else{
+									str += "<td>"+result[i].yearPrice+"</td>";
+								}
+							str +=	"<td>"+result[i].concurrentUsers+"</td>"
 								+"<td>"+result[i].profilesNum+"</td>"
 								+"<td>"+result[i].imageQuality+"</td>"
 								+"<input type='hidden' value='"+result[i].priceInfoNo+"'>"
 								+"<td><button class='ratePlan-upBtn rt-button-color'>수정</button></td>"
 								+"<td><button class='ratePlan-delBtn rt-button-color'>삭제</button></td>"
-								+"</tr>"
+								+"</tr>";
 						}
 					}else{
 						str = "<tr>"

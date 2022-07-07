@@ -44,28 +44,28 @@ function checkInfo(event){
 				const regex = /\d/;
 				var str = $("#rp-enroll-table input[type=text]").eq(index).val();
 				var info = "";
-					console.log($("#rp-enroll-table input[type=text]").eq(4).val());
-					switch(index){
-						case 0:info="월 요금"; break;
-						case 1:info="연 요금"; break;
-						case 2:info="동시 접속자"; break;
-						case 3:info="프로필 수"; break;
-						case 4:info="최대 화질"; break;
-					}
-					if(index!=1 && str.length==0){
-						alert(info+" 정보를 입력해주세요!");
-						$("#rp-enroll-table input[type=text]").eq(index).focus()
-						event.preventDefault();
-						return false;
-					}else if(str.length>0&&regex.test(str)==false){
-						alert(info+"에 숫자만 입력해주세요!");
-						$("#rp-enroll-table input[type=text]").eq(index).val("").focus();
-						event.preventDefault();
-						return false;
-					}else if(index==4 && str.length!=0 && regex.test(str)!=false){
-						console.log("실행됨");
-						submitChick();
-					}
+					
+				switch(index){
+					case 0:info="월 요금"; break;
+					case 1:info="연 요금"; break;
+					case 2:info="동시 접속자"; break;
+					case 3:info="프로필 수"; break;
+					case 4:info="최대 화질"; break;
+				}
+				if(index!=1 && str.length==0){
+					alert(info+" 정보를 입력해주세요!");
+					$("#rp-enroll-table input[type=text]").eq(index).focus()
+					event.preventDefault();
+					return false;
+				}else if(str.length>0&&regex.test(str)==false){
+					alert(info+"에 숫자만 입력해주세요!");
+					$("#rp-enroll-table input[type=text]").eq(index).val("").focus();
+					event.preventDefault();
+					return false;
+				}else if(index==4 && str.length!=0 && regex.test(str)!=false){
+					console.log("실행됨");
+					submitChick();
+				}
 				
 	});
 }
