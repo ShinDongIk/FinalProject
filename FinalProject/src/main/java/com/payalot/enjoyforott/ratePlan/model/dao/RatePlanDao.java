@@ -1,11 +1,11 @@
-package com.payalot.enjoyforott.ratePlan.modal.dao;
+package com.payalot.enjoyforott.ratePlan.model.dao;
 
 import java.util.ArrayList;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.payalot.enjoyforott.ratePlan.modal.vo.RatePlan;
+import com.payalot.enjoyforott.ratePlan.model.vo.RatePlan;
 
 @Repository
 public class RatePlanDao {

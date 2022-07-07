@@ -1,4 +1,4 @@
-package com.payalot.enjoyforott.ratePlan.modal.service;
+package com.payalot.enjoyforott.ratePlan.model.service;
 
 import java.util.ArrayList;
 
@@ -6,8 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.payalot.enjoyforott.ratePlan.modal.dao.RatePlanDao;
-import com.payalot.enjoyforott.ratePlan.modal.vo.RatePlan;
+import com.payalot.enjoyforott.ratePlan.model.dao.RatePlanDao;
+import com.payalot.enjoyforott.ratePlan.model.vo.RatePlan;
 
 @Service
 public class RatePlanServiceImpl implements RatePlanService{

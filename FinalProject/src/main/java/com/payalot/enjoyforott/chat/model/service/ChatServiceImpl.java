@@ -1,4 +1,4 @@
-package com.payalot.enjoyforott.chat.modal.service;
+package com.payalot.enjoyforott.chat.model.service;
 
 public class ChatServiceImpl implements ChatService{
 

@@ -1,8 +1,8 @@
-package com.payalot.enjoyforott.ratePlan.modal.service;
+package com.payalot.enjoyforott.ratePlan.model.service;
 
 import java.util.ArrayList;
 
-import com.payalot.enjoyforott.ratePlan.modal.vo.RatePlan;
+import com.payalot.enjoyforott.ratePlan.model.vo.RatePlan;
 
 public interface RatePlanService {
 

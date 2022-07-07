@@ -1,4 +1,4 @@
-package com.payalot.enjoyforott.chat.modal.vo;
+package com.payalot.enjoyforott.chat.model.vo;
 
 import java.sql.Date;
 

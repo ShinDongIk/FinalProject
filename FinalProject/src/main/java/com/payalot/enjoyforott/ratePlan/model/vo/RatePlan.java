@@ -1,4 +1,4 @@
-package com.payalot.enjoyforott.ratePlan.modal.vo;
+package com.payalot.enjoyforott.ratePlan.model.vo;
 
 import java.sql.Date;
 

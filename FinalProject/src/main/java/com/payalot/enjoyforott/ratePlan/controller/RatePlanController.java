@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.payalot.enjoyforott.ratePlan.modal.service.RatePlanService;
-import com.payalot.enjoyforott.ratePlan.modal.vo.RatePlan;
+import com.payalot.enjoyforott.ratePlan.model.service.RatePlanService;
+import com.payalot.enjoyforott.ratePlan.model.vo.RatePlan;
 
 @Controller
 public class RatePlanController {
