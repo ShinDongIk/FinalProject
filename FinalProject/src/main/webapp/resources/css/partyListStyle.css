@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
+
+body{
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 14px;
+    background-color: #efefef;
+}
+.outer {
+    text-align: center;
+}
+.items{
+    /* border: 1px solid red; */
+    display: inline-block;
+    width: 80%;
+    padding: 1%;
+    margin-top: 5%
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #3c3b3b;
+    font-family: "Raleway", Helvetica, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    line-height: 1.65;
+    margin: 0 0 1em 0;
+    text-transform: uppercase;
+}
+strong, b {
+    color: #3c3b3b;
+    font-weight: 700;
+}
+
+.itemRow{
+    width: 310px;
+    height: 150px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 0.5%;
+    padding: 1%;
+    text-align: left;
+}
+.itemRow>div{
+    margin: 2%;
+    float: left;
+}
+.itemMember>img{
+    width: 6%;
+    height: 6%;
+}
+.itemType{
+    width: 60%;
+    height: 30%;
+    font-weight: 700;
+    font-size: 17px;
+    align-items: center;
+    line-height: 40px;
+}
+.itemSeller{
+    width: 30%;
+    height: 30%;
+    font-size: 12px;
+    text-align: right;
+}
+.itemDate{
+    width: 50%;
+    height: 20%;
+}
+.itemPrice{
+    width: 30%;
+    height: 25px;
+    font-size: large;
+    text-align: right;
+}
+.itemMembers{
+    width: 50%;
+    height: 35px;
+    line-height: 50px;
+}
+.itemJoin{
+    width: 40%;
+    height: 35px;
+    float: right;
+}
+.itemMembers>span{
+    margin: 0;
+    padding:0;
+}
+
+/* 버튼영역 */
+.button-gray{
+    width: 45%;
+    height: 50px;
+    background-color: gray;
+    color: white;
+    font-weight: 500;
+}
+.button-purple{
+    width: 100px;
+    height: 40px;
+    background-color: #a8b0ff;
+    color: white;
+    font-weight: 500;
+    border: none;
+}
+.button-deepPurple{
+    width: 90px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #838fff;
+    color: white;
+    font-weight: 500;
+    border: none;
+    float: right;
+}
+
+/* 글씨관련 */
+.font-purple{
+    color: #a8b0ff;
+}
+
+/* nav 영역*/
+.menu{
+
+    text-align: center;
+}
+.menu * {
+    display: inline-block;
+    text-align: center;
+}
+.navbar{
+    border-bottom: 1px solid gray;
+}
+.nav-item *{
+    width: 100%;
+    color: gray;
+    font-size: medium;
+    font-weight: bold;
+    /* width: 5%; */
+}
+ul{
+    width: 100%;
+}
+li{
+    width: 8%;
+}
+li>a:hover{
+    background-color: #dfeff1;
+    color: #2391ab;
+}

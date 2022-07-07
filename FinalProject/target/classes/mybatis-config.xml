@@ -8,9 +8,11 @@
 	<typeAliases>
 		<typeAlias type="com.payalot.enjoyforott.chat.modal.vo.Chat" alias="chat"/>
 		<typeAlias type="com.payalot.enjoyforott.ratePlan.modal.vo.RatePlan" alias="ratePlan"/>
+		<typeAlias type="com.payalot.enjoyforott.user.model.vo.User" alias="user"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/chat/chat-mapper.xml"/>
+		<mapper resource="/mappers/user/user-mapper.xml"/>
 	</mappers>
 </configuration>
