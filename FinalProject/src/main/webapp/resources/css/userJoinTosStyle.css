@@ -34,7 +34,8 @@ strong, b {
     /* border: 1px solid blueviolet; */
     width: 60%;
     display: inline-block;
-    text-align: left;
+	float: left;
+	text-align: left;
     margin: 3px;
 }
 .buttonArea{

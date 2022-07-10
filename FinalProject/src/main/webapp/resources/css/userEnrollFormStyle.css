@@ -84,9 +84,6 @@ input{
 .quarterInput{
     width: 21%;
 }
-.harfUpInput{
-    width: 70%;
-}
 
 /* 버튼영역 */
 .button-gray{
@@ -105,9 +102,12 @@ input{
 }
 .button-clear{
     color: #a8b0ff !important;
-    border: none !important;
+    border: #a8b0ff !important;
     font-weight: bold !important;
     font-size: 12px;
+    height: 45px;
+/*     border-radius: 5px; */
+    line-height: 1.65;
 }
 .button-clear:hover{
     cursor: pointer;

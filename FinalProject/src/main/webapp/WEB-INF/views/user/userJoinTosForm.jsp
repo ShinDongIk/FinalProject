@@ -49,7 +49,7 @@
 	            </div>
 		        
 		        <div>    
-	            <textarea class="content" readonly>
+	            <textarea class="content" readonly style="text-align: left;">
 제1조 목적  
 이 약관은 ENJOY FOR OTT 회사(전자상거래 사업자로 이하 "회사"라 한다)가 운영하는 ENJOY FOR OTT 쇼핑몰(이하 "몰"이라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
 ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
@@ -226,7 +226,7 @@
 		        </div>
 			    
 			    <div>
-		        <textarea class="content" readonly>
+		        <textarea class="content" readonly style="text-align: left;">
 제1조 총칙
 본 사이트는 귀하의 개인정보보호를 매우 중요시하며, 『정보통신망이용촉진등에관한법률』상의 개인정보보호 규정 및 정보통신부가 제정한 『개인정보보호지침』을 준수하고 있습니다.
 본 사이트는 개인정보보호방침을 통하여 귀하께서 제공하시는 개인정보가 어떠한 용도와 방식으로 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 알려드립니다.
@@ -321,7 +321,7 @@
 
 			    <div class="buttonArea">    
 			        <button type="button" class="btn button-gray">취소</button>
-			        <button type="button" class="btn button-purple" id="joinBtn">회원가입</button>
+			        <button type="button" class="btn button-purple" id="enrollFormBtn">회원가입</button>
    				</div>
    			</form>
    			</div>	
@@ -349,7 +349,7 @@
    				
    				//동의 필수 체크 후 회원가입폼 이동
    				$(document).ready(function(){
-   					$("#joinBtn").click(function(){
+   					$("#enrollFormBtn").click(function(){
    						if($("#check1").is(":checked")==false){
    							alert("이용 약관에 동의하셔야 가입 가능합니다.");
    							$("#check1").focus();

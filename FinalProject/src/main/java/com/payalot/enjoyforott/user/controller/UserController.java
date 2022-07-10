@@ -85,27 +85,38 @@ public class UserController {
 	
 	@RequestMapping("joinComplete.me")
 	public String joinComplete(User u) {
-		
-		System.out.println(u);
 		return "user/userJoinComplete";
 	}
 	
 	@RequestMapping("idCheck.me")
 	@ResponseBody
-	public String idCheck(String checkId, Model model) {
-				
+	public String idCheck(String checkId) {
+		
 		int count = userService.idCheck(checkId);
 		return (count>0) ? "NNNNN" : "NNNNY";
 	}
 	
 	@RequestMapping("nicknameCheck.me")
 	@ResponseBody
-	public String nicknameCheck(String checkNickname, Model model) {
-		System.out.println(checkNickname);
+	public String nicknameCheck(String checkNickname) {
+
 		int count = userService.nicknameCheck(checkNickname);
 		return (count>0) ? "NNNNN" : "NNNNY";
 	}
 	
+	@RequestMapping("pwdCheck.me")
+	@ResponseBody
+	public String pwdCheck(String userPwd, String userPwdChk) {
+
+		String result = "";
+		
+		if(userPwd.equals(userPwdChk)) {
+			result = "NNNNY";
+		}else {
+			result = "NNNNN";
+		}
+		return result;
+	}
 	
 
 }
