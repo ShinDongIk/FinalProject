@@ -46,4 +46,9 @@ public class UserServiceImpl implements UserService{
 		return userDao.nicknameCheck(sqlSession, checkNickname);
 	}
 
+	@Override
+	public int findPwd(String pwdUserId, String pwdUserEmail) {
+		return userDao.findPwd(sqlSession, pwdUserId, pwdUserEmail);
+	}
+
 }

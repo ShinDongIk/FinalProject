@@ -21,4 +21,7 @@ public interface UserService {
 	
 	//닉네임 중복체크
 	int nicknameCheck(String checkNickname);
+	
+	//임시비밀번호 발급
+	int findPwd(String pwdUserId, String pwdUserEmail);
 }

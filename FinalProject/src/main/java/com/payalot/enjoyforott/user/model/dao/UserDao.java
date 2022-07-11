@@ -24,4 +24,8 @@ public class UserDao {
 		return sqlSession.selectOne("userMapper.nicknameCheck", checkNickname);
 	}
 
+	public int findPwd(SqlSessionTemplate sqlSession, String pwdUserId, String pwdUserEmail) {
+		return 0;
+	}
+
 }

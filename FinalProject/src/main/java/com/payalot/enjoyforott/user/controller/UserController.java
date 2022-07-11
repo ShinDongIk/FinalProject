@@ -1,12 +1,20 @@
 package com.payalot.enjoyforott.user.controller;
 
+import java.util.Random;
+
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,6 +29,12 @@ public class UserController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+	private JavaMailSender mailSender;
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	private static final String String = null;
 	
 	//로그인
 	@RequestMapping("loginForm.me")
@@ -117,6 +131,74 @@ public class UserController {
 		}
 		return result;
 	}
+	
+	@RequestMapping("emailCodeCheck.me")
+	@ResponseBody
+	public String emailCodeCheck(String code, String inputCode) {
+		
+		String result = "";
+		
+		if(inputCode.equals(code)) {
+			result = "NNNNY";
+		}else {
+			result = "NNNNN";
+		}
+		return result;
+	}
+	
+	@RequestMapping(value="/mailCheck", method=RequestMethod.GET)
+	@ResponseBody
+	public String mailCheck(String email) throws Exception{
+		
+		//인증번호용 난수
+		Random random = new Random();
+        int checkNum = random.nextInt(888888) + 111111;
+        
+        //이메일 발송
+        String setFrom = "enjoyforott@gmail.com";
+        String toMail = email;
+        String title = "[ENJOY FOR OTT] 회원가입 인증 이메일 입니다.";
+        String content = 
+                "본 메일은 고객님의 본인 여부를 확인하기 위해 자동으로 발송되었습니다." +
+                "<br><br>" + 
+                "인증 번호는 <b>" + checkNum + "</b>입니다." + 
+                "<br>" + 
+                "인증번호 입력창에 위 번호를 입력해 주세요.";
+
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender.send(message);
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        String num = Integer.toString(checkNum);
+        
+        return num;
+
+	}
+	
+	//아이디, 비밀번호 찾기
+	@RequestMapping("findUserForm.me")
+	public String findUserForm() {
+		return "user/userFindUserForm";
+	}
+	
+	//임시비밀번호 발급
+	@RequestMapping("findPwd.me")
+	public String findPwd(String pwdUserId, String pwdUserEmail) {
+		System.out.println(pwdUserId+pwdUserEmail);
+//		System.out.println(pwdUserEmail);
+		
+		return "user/userFindPwd";
+	}
+	
 	
 
 }

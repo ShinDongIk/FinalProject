@@ -90,12 +90,24 @@
                             <input type="email" class="form-control" name="userEmail" id="userEmail" required>
                         </td>
                         <td>
-                            <button type="button" class="button-clear">인증코드 발송</button>
+                            <button type="button" class="button-clear" id="btnSendMailCode">인증코드 발송</button>
                         </td>
                     </tr>
                     <tr>
                         <th>*인증코드</th>
-                        <td><input type="text" class="form-control"></td>
+                        <td>
+                        	<div id="emailCodeBox">
+	                        	<input type="text" class="form-control" id="emailCode" disabled="disabled" maxlength="6">
+                        	</div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th></th>
+                        <td colspan="2" class="font-info">
+                        	<div id="emailCodeCheck">
+                        		발송된 인증번호를 입력해주세요.
+                        	</div>
+                        </td>
                     </tr>
                     <tr>
                         <!-- 하이픈형식 000-0000-0000 -->
@@ -159,6 +171,7 @@
          
          
          <script>
+
          
          //아이디 중복 및 유효성 검사
          function idCheck() {
@@ -300,7 +313,7 @@
          
         //회원가입버튼 클릭시 유효성검사(아이디, 비밀번호, 닉네임)
    		$(document).ready(function(){
-   			//이메일용이니까 나중에 옮길거!!!!!!!!!!
+   			//이메일용 유효성
    			var regExp = /^([0-9a-zA-Z_-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
    			$("#btnJoin").click(function(){
 				//필수입력
@@ -339,7 +352,11 @@
    				}else if($("#userPwd").hasClass("chked")==false){
    					alert("비밀번호가 일치하지 않습니다.");
    					$("#userPwd").focus();
-				//이메일 형식 유효성 ==> 메일인증 기능추가시 버튼으로 옮기기!!!!!!!!!!
+   	   			//메일인증번호일치
+   				}else if($("#userEmail").hasClass("chked")==false){
+   					alert("메일 인증번호가 일치하지 않습니다.");
+   					$("#userEmail").focus();
+				//이메일 형식 유효성
    				}else if(!regExp.test($("#userEmail").val())){
    					alert("이메일 형식을 확인해주세요");
    					$("#userEmail").focus();
@@ -349,6 +366,59 @@
    			});
    		});
          
+	     var code = ""; //이메일 인증번호 변수
+         //이메일 인증
+         $('#btnSendMailCode').click(function() {
+			var email = $('#userEmail').val();
+		    var cehckBox = $("#emailCode");
+		    var boxWrap = $("#emailCodeBox");
+		
+			$.ajax({
+		        type:"GET",
+		        url:"mailCheck?email=" + email,
+		        success:function(data){
+		        	cehckBox.attr("disabled",false);
+		        	code = data;
+ 		        	console.log(code); //테스트시 메일확인 번거로울때 콘솔 확인용
+		        }
+			});
+		});
+	     
+	     //이메일 인증번호 비교
+	     $(function(){
+	        	var $inputCode = $("#emailCode");
+	        	var $checkResult = $("#emailCodeCheck");
+	        	
+		        	$inputCode.keyup(function(){
+			        	if($inputCode.val().length>=1){
+		        			$.ajax({
+							url : "emailCodeCheck.me",
+							data : {
+								code : code,
+								inputCode : $inputCode.val()
+							},
+							success : function(result){
+								console.log(result);
+								if(result=='NNNNY'){
+									$("#emailCodeCheck").show();
+									$("#emailCodeCheck").css("color","yellowgreen").text("인증번호가 일치합니다.");
+					                $("#userEmail").addClass('chked');
+								}else{
+									$("#emailCodeCheck").show();
+									$("#emailCodeCheck").css("color","red").text("인증번호가 일치하지 않습니다");
+					                $("#userEmail").removeClass('chked');
+								}
+							},
+							error : function(){
+								console.log("ajax 통신 실패");
+							}
+						})
+			        	}else{
+							$("#emailCodeCheck").css("color","red").text("발송된 인증번호를 입력해주세요.");
+			                $("#userEmail").removeClass('chked');
+			        	}
+		        	})
+	        	})     
 			</script>
          
          </div>

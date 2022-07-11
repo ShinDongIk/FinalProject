@@ -8,6 +8,7 @@ body{
 .outer {
     text-align: center;
 }
+
 h1, h2, h3, h4, h5, h6 {
     color: #3c3b3b;
     font-family: "Raleway", Helvetica, sans-serif;
@@ -22,46 +23,61 @@ strong, b {
     font-weight: 700;
 }
 
+a{
+    color: black;
+    font-size: small;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.inputLogin{
+    /* border: 1px solid red; */
+    width: 60%;
+    height: 150px;
+    display: inline-block;
+    text-align: center;
+}
+#inputTable {
+    width: 100%;
+    text-align: center;
+    height: 100px;
+}
 .subTitle{
     /* border: 1px solid blueviolet; */
-    width: 40%;
+    width: 50%;
+    display: inline-block;
+    text-align: left;
+    margin: 1%;
+    font-size: x-large;
+}
+.contentTitle{
+    /* border: 1px solid blueviolet; */
+    width: 60%;
     display: inline-block;
     text-align: left;
     margin: 1%;
     font-size: large;
 }
-.check{
-    /* border: 1px solid blueviolet; */
-    width: 40%;
+.content2 {
+    /* border: 1px solid #a8b0ff; */
     display: inline-block;
-    text-align: left;
+    width: 70%;
+    border-radius: 10px;
+    padding: 1%;
+    
 }
-.buttonArea{
-    /* border: 1px solid blueviolet; */
-    width: 40%;
-    display: inline-block;
-    text-align: center;
-}
-.content{
-    width: 40%;
-    border: 1px solid #a8b0ff;
-    border-radius: 5px;
-    font-size: small;
-    height: 200px;
-    resize: none;
-    background-color: rgb(255, 251, 245);
+.content2-1{
+    width: 50%;
+    float: left;
 }
 
+
 /* 버튼영역 */
-.button-gray{
-    width: 45%;
-    height: 50px;
-    background-color: gray;
-    color: white;
-    font-weight: 500;
-}
 .button-purple{
-    width: 45%;
+    width: 200px;
     height: 50px;
     background-color: #a8b0ff;
     color: white !important;
