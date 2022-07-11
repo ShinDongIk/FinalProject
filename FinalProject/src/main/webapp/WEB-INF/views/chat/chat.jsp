@@ -13,7 +13,7 @@
 </head>
 <body>
   
-	<div id="chat-circle" class="btn btn-raised">
+	<div id="chat-circle" class="btn btn-raised" onClick="chatCircleClick('${ loginUser.userNickname }');">
         <div id="chat-overlay"></div>
 		    <i id="chatIcon" class="material-icons">chat</i>
 	</div>
@@ -47,7 +47,7 @@
 	    </div>
 	    <div class="chat-input">      
 	        <input type="text" id="chat-input" placeholder="보내실 메시지를 입력하세요!"/>
-	      	<button class="chat-submit" id="chat-content-submit"><i class="material-icons">send</i></button> 
+	      	<button class="chat-submit" id="chat-content-submit" onClick="contentSubClick('${ loginUser.userNickname }');"><i class="material-icons">send</i></button> 
 	    </div>
 	  </div>
 	  <div id="chatRoom">

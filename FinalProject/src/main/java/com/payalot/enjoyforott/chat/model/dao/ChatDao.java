@@ -27,4 +27,8 @@ public class ChatDao {
 		return sqlSession.insert("chatMapper.insertChatContent", chatContent);
 	}
 
+	public ArrayList<Chat> chatRoomSearch(SqlSessionTemplate sqlSession, Chat ch) {
+		return (ArrayList)sqlSession.selectList("chatMapper.chatRoomSearch",ch);
+	}
+
 }

@@ -8,6 +8,7 @@
 clearInterval(interval);
 var chatscreen = 'false';
 var tab2On = 'false';
+var loginUser = "";
 
  
   function generate_message(msg, type) {
@@ -30,12 +31,13 @@ var tab2On = 'false';
     generate_message(name, 'self');
   })
   
-  $("#chat-circle").click(function() {    
-    $("#chat-circle").toggle('scale');
+ function chatCircleClick(userNickname){
+ 	$("#chat-circle").toggle('scale');
     $(".chat-box").toggle('scale');
     chatscreen = 'true';
+    loginUser = userNickname;
     chatRoomLoad();
-  })
+ }
   
   $(".chat-box-toggle").click(function() {
     $("#chat-circle").toggle('scale');
@@ -45,10 +47,13 @@ var tab2On = 'false';
   })
 
 function contentSubClick(userNickname){
+	loginUser = userNickname;
 	chatContentEnter(userNickname);
 }
 
 function chatClick(userNickname){
+	loginUser = userNickname;
+	console.log("쳇클릭 : "+userNickname);
 	if($("#modal-nickName").val() != userNickname){
 		if(chatscreen == 'false' && tab2On == 'false'){
 			$("#chat-circle").trigger("click");
@@ -62,8 +67,6 @@ function chatClick(userNickname){
 					secondUserId : $("#modal-nickName").val() //모달창의 회원 닉네임 넣기
 				},
 				success : function(result){
-					console.log(result);
-					console.log("챗클릭 : "+result[0].chatNo);
 					nowChatNo = result[0].chatNo;
 					$("#tab2").trigger("click");
 					chatContentLoad();
@@ -94,11 +97,12 @@ function chatClick(userNickname){
 		}else if(chatscreen == 'true' && tab2On == 'true'){
 			alert("이미 채팅중 입니다!");
 		}
+		$(".close-area").trigger("click");
 	}else{
 		alert("자기 자신에게 채팅을 걸 순 없습니다!");
 	}
 	
-	$(".close-area").trigger("click");
+
 }
 
 function chatContentLoad(){
@@ -114,7 +118,7 @@ function chatContentLoad(){
 			if(result.length != 0){
 				var str= "";
 				for(var i=msgLenght; i<result.length;i++){
-					if("admin" == result[i].nickName){
+					if(loginUser == result[i].nickName){
 						msgType="self";
 					}
 					else{
@@ -138,7 +142,8 @@ function chatContentLoad(){
 }
 
 
-function chatContentEnter(){
+function chatContentEnter(userNickname){
+	loginUser = userNickname;
 	if($("#chat-input").val().replace(/\n$/g,"").trim()!="" && $("#chat-input").val().trim()!=""){
 		$.ajax({
 			url : "chatContEnt.ch",
@@ -146,7 +151,7 @@ function chatContentEnter(){
 			data : {
 				chatNo : nowChatNo,
 				chatContent : $("#chat-input").val().replace(/\n$/g,"").trim(),
-				nickName : "admin" //현재 로그인한 유저
+				nickName : loginUser //현재 로그인한 유저
 			},
 			success : function(result){
 			   $("#chat-input").val('');   
@@ -162,19 +167,19 @@ function chatContentEnter(){
 }
 
 function chatRoomLoad(){
+console.log(loginUser);
 	var str = "";
 	$.ajax({
-		url : "mkChat.ch",
+		url : "chatRoomLoad.ch",
 		type : "post",
 		type : "post",
 		data : {
-			firstUserId : "admin", //로그인 유저 닉네임 넣기
-			secondUserId : "유저원" //모달창의 회원 닉네임 넣기
+			firstUserId : loginUser, //로그인 유저 닉네임 넣기
 		},
 		success : function(result){
 			var userNick="";
 			for(var i in result){
-				if("admin"==result[i].firstUserId){
+				if(loginUser==result[i].firstUserId){
 					userNick=result[i].secondUserId;
 				}else{
 					userNick=result[i].firstUserId;
@@ -204,7 +209,7 @@ $(document).on("click",".chat-list",function(){
 
 $("#chat-input").on("keyup",function(key){         
 	if(key.keyCode==13) {            
-	   chatContentEnter();
+	   chatContentEnter(loginUser);
 	}     
 });
 

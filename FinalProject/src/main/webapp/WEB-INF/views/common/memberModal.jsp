@@ -22,7 +22,7 @@
             <div class="content">
                 <button id="dec-btn" class="md-button1-color" onClick="decBtnClick('${ loginUser.userNickname }');">신고하기</button>
                 <!-- onClick="location.href='mkChat.ch'" -->
-                <button class="md-button2-color" onClick="chatClick('${loginUser.userNickname}');">채팅하기</button>
+                <button class="md-button2-color" onClick="chatClick('${ loginUser.userNickname }');">채팅하기</button>
             </div>
             <br>
             <div class="declaration">

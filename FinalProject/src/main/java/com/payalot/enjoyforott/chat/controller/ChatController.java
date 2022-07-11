@@ -23,13 +23,21 @@ public class ChatController {
 	@RequestMapping(value="mkChat.ch",  produces="application/json; charset=UTF-8")
 	public String makeChatRoom(Chat ch) {
 		ArrayList<Chat> chatRoom = cs.searchChatRoom(ch);
-		System.out.println(chatRoom);
+		
 		if(chatRoom == null) {
 			int result = cs.makeChatRoom(ch);
 			if(result>0) {
 				chatRoom = cs.searchChatRoom(ch);
 			}
 		}
+		
+		return new Gson().toJson(chatRoom);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="chatRoomLoad.ch",  produces="application/json; charset=UTF-8")
+	public String chatRoomSearch(Chat ch) {
+		ArrayList<Chat> chatRoom = cs.chatRoomSearch(ch);
 		
 		return new Gson().toJson(chatRoom);
 	}

@@ -39,4 +39,9 @@ public class ChatServiceImpl implements ChatService{
 	public int insertChatContent(ChatContent chatContent) {
 		return cd.insertChatContent(sqlSession,chatContent);
 	}
+
+	@Override
+	public ArrayList<Chat> chatRoomSearch(Chat ch) {
+		return cd.chatRoomSearch(sqlSession,ch);
+	}
 }
