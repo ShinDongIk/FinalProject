@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
+
+body{
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 14px;
+    background-color: #efefef;
+}
+.outer {
+    text-align: center;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #3c3b3b;
+    font-family: "Raleway", Helvetica, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    line-height: 1.65;
+    margin: 0 0 1em 0;
+    text-transform: uppercase;
+}
+strong, b {
+    color: #3c3b3b;
+    font-weight: 700;
+}
+
+.joimForm {
+    /* border: 1px solid #a8b0ff; */
+    display: inline-block;
+    width: 50%;
+    border-radius: 10px;
+    padding: 1%;
+}
+.subTitle{
+    /* border: 1px solid blueviolet; */
+    width: 50%;
+    display: inline-block;
+    text-align: left;
+    margin: 1%;
+    font-size: x-large;
+}
+
+.notice{
+    border: 1px solid #a8b0ff;
+    border-radius: 5px;
+    color: gray;
+    padding: 2%;
+}
+
+/* 테이블영역 */
+th, td{
+    text-align: left;
+    vertical-align: top;
+    height: 50px;
+}
+th{
+    width: 30%;
+}
+p{
+    font-size: 12px;
+    color: gray;
+    margin: 0;
+}
+input::file-selector-button{
+    display: none; /* 가상요소선택자 file-selector-button로 file버튼 가리기*/
+}
+input{
+    border: 1px solid lightgray;
+}
+select option[value=""][disabled] {
+	display: none;
+    
+}
+.form-control{
+    float: left;
+    height: 30px;
+    font-size: 14px;
+}
+.fullInput{
+    width: 90%;
+}
+.harfInput{
+    width: 45%;
+}
+.quarterInput{
+    width: 21%;
+}
+.etc{
+    float: left;
+}
+.logoArea{
+    float: left;
+    margin: 0 4%;
+}
+.logoImg{
+    width: 50px;
+    margin: 0 2%;
+    margin-bottom: 7px;
+}
+.priceInfo{
+    font-size: x-large;
+    font-weight: 600;
+}
+.operator{
+    font-size: medium;
+    font-weight: 600;
+}
+
+/* 버튼영역 */
+.button-gray{
+    width: 200px;
+    height: 50px;
+    background-color: gray;
+    color: white;
+    font-weight: 500;
+}
+.button-purple{
+    width: 200px;
+    height: 50px;
+    background-color: #a8b0ff;
+    color: white;
+    font-weight: 500;
+}
+.button-clear{
+    color: #a8b0ff;
+    border: none;
+    font-weight: bold;
+}
+.button-clear:hover{
+    cursor: pointer;
+}
+
+/* 글씨관련 */
+.font-purple{
+    color: #a8b0ff;
+}

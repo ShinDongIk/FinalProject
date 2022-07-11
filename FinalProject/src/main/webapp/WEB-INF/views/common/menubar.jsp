@@ -25,12 +25,24 @@
 					<header id="header">
 						<h1><a href="${pageContext.request.contextPath}">ENJOY OTT</a></h1>
 						<nav class="links">
-							<ul>
-								<li><a href="#">로그인/로그아웃</a></li>
-								<li><a id="nickName" onClick="memModalOpen();">xxx님 !</a><a id="nickNeText">환영합니다!</a></li>
-								<li><a href="#">등급: 골드</a></li>
-								<li><a href="#">마이페이지</a></li>
-							</ul>
+							<c:choose>
+	                			<c:when test="${ empty loginUser }">
+		               			 <!-- 로그인 전 -->
+								<ul>
+									<li><a href="loginForm.me">로그인</a></li>
+									<li><a href="joinTosForm.me">회원가입</a></li>
+								</ul>
+								</c:when>
+								<c:otherwise>
+									<!-- 로그인 후 -->
+									<ul>
+										<li><a href="logout.me">로그아웃</a></li>
+										<li><a id="nickName" onClick="memModalOpen();">${ loginUser.userName }님 !</a><a id="nickNeText">환영합니다!</a></li>
+										<li><a href="#">등급: ${ loginUser.levelName }</a></li>
+										<li><a href="#">마이페이지</a></li>
+									</ul>
+								</c:otherwise>                
+                			</c:choose>
 						</nav>
 						<nav class="main">
 							<ul>
