@@ -44,56 +44,58 @@ var tab2On = 'false';
     chatscreen = 'false';
   })
 
+function contentSubClick(userNickname){
+	chatContentEnter(userNickname);
+}
 
- $("#chat-content-submit").click(function() {
-     chatContentEnter();
- });
-
-
-function chatClick(){
-	if(chatscreen == 'false' && tab2On == 'false'){
-		$("#chat-circle").trigger("click");
-		chatscreen = 'true';
-		
-		$.ajax({
-			url : "mkChat.ch",
-			type : "post",
-			data : {
-				firstUserId : "admin", //로그인 유저 닉네임 넣기
-				secondUserId : "유저원" //모달창의 회원 닉네임 넣기
-			},
-			success : function(result){
-				console.log(result);
-				console.log("챗클릭 : "+result[0].chatNo);
-				nowChatNo = result[0].chatNo;
-				$("#tab2").trigger("click");
-				chatContentLoad();
-			},
-			error : function(){
-				console.log("통신 오류");
-			}
-		});
-	}else if(chatscreen == 'true' && tab2On == 'false'){
-		$.ajax({
-			url : "mkChat.ch",
-			type : "post",
-			data : {
-				firstUserId : "admin", //로그인 유저 닉네임 넣기
-				secondUserId : "유저원" //모달창의 회원 닉네임 넣기
-			},
-			success : function(result){
-				console.log(result);
-				console.log("챗클릭 : "+result[0].chatNo);
-				nowChatNo = result[0].chatNo;
-				$("#tab2").trigger("click");
-				chatContentLoad();
-			},
-			error : function(){
-				console.log("통신 오류");
-			}
-		});
-	}else if(chatscreen == 'true' && tab2On == 'true'){
-		alert("이미 채팅중 입니다!");
+function chatClick(userNickname){
+	if($("#modal-nickName").val() != userNickname){
+		if(chatscreen == 'false' && tab2On == 'false'){
+			$("#chat-circle").trigger("click");
+			chatscreen = 'true';
+			
+			$.ajax({
+				url : "mkChat.ch",
+				type : "post",
+				data : {
+					firstUserId : userNickname, //로그인 유저 닉네임 넣기
+					secondUserId : $("#modal-nickName").val() //모달창의 회원 닉네임 넣기
+				},
+				success : function(result){
+					console.log(result);
+					console.log("챗클릭 : "+result[0].chatNo);
+					nowChatNo = result[0].chatNo;
+					$("#tab2").trigger("click");
+					chatContentLoad();
+				},
+				error : function(){
+					console.log("통신 오류");
+				}
+			});
+		}else if(chatscreen == 'true' && tab2On == 'false'){
+			$.ajax({
+				url : "mkChat.ch",
+				type : "post",
+				data : {
+					firstUserId : userNickname, //로그인 유저 닉네임 넣기
+					secondUserId : $("#modal-nickName").val() //모달창의 회원 닉네임 넣기
+				},
+				success : function(result){
+					console.log(result);
+					console.log("챗클릭 : "+result[0].chatNo);
+					nowChatNo = result[0].chatNo;
+					$("#tab2").trigger("click");
+					chatContentLoad();
+				},
+				error : function(){
+					console.log("통신 오류");
+				}
+			});
+		}else if(chatscreen == 'true' && tab2On == 'true'){
+			alert("이미 채팅중 입니다!");
+		}
+	}else{
+		alert("자기 자신에게 채팅을 걸 순 없습니다!");
 	}
 	
 	$(".close-area").trigger("click");
