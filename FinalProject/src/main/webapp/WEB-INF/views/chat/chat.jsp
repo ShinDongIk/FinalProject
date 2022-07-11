@@ -41,22 +41,19 @@
 	    <div class="chat-box-body">
 	      <div class="chat-box-overlay">   
 	      </div>
-	      <div class="chat-logs">
+	      <div id="chat-content-area" class="chat-logs">
 	       
 	      </div><!--chat-log -->
 	    </div>
 	    <div class="chat-input">      
-	      <form>
 	        <input type="text" id="chat-input" placeholder="보내실 메시지를 입력하세요!"/>
-	      	<button type="submit" class="chat-submit" id="chat-submit"><i class="material-icons">send</i></button>
-	      </form>      
+	      	<button class="chat-submit" id="chat-content-submit"><i class="material-icons">send</i></button> 
 	    </div>
 	  </div>
 	  <div id="chatRoom">
 	      <div id="chat-room">
 	       		<div class="chat-list">
-	       			<span>채팅 상대 : admin</span><br>
-	       			<button id="exit-chat"><i class="material-icons">exit_to_app</i></button>
+	       			<span align="center">채팅중인 채팅방이 존재하지 않습니다!</span><br>
 	       		</div>
 	      </div>
 	    </div>
