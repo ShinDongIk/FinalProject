@@ -53,8 +53,8 @@ function declInsert(){
 			url : "deInsert.mo",
 			type : "post",
 			data : {
-				reporter : "admin",
-				reported : "유저원",
+				reporter : "admin", //로그인한 유저 닉네임 넣기
+				reported : "유저원", ////모달창의 회원 닉네임 넣기
 				reportContent : $("#dec-textarea").val().replace(/\n$/g,"").trim()
 			},
 			success : function(result){

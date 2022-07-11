@@ -7,6 +7,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.payalot.enjoyforott.chat.model.vo.Chat" alias="chat"/>
+		<typeAlias type="com.payalot.enjoyforott.chat.model.vo.ChatContent" alias="chatContent"/>
 		<typeAlias type="com.payalot.enjoyforott.ratePlan.model.vo.RatePlan" alias="ratePlan"/>
 		<typeAlias type="com.payalot.enjoyforott.memberModal.model.vo.MemberModal" alias="memberModal"/>
 	</typeAliases>
