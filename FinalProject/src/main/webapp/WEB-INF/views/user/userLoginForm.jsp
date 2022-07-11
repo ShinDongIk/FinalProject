@@ -29,7 +29,7 @@
 	        <form action="login.me" method="post">
                 <table id="inputTable">
                     <tr style="height: 20%;">
-                        <td width="50%"><a href="joinTosForm.me">회원가입</a></td>
+                        <td width="50%"><a href="joinTosForm.me">회원---가입</a></td>
                         <td width="50%"><a href="findUserInfo.me">아이디/비밀번호찾기</a></td>
                     </tr>
                     <tr>
