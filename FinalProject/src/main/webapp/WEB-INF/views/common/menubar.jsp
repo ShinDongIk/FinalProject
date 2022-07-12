@@ -39,7 +39,14 @@
 										<li><a href="logout.me">로그아웃</a></li>
 										<li><a id="nickName" onClick="memModalOpen();">${ loginUser.userName }님 !</a><a id="nickNeText">환영합니다!</a></li>
 										<li><a href="#">등급: ${ loginUser.levelName }</a></li>
-										<li><a href="#">마이페이지</a></li>
+										<c:choose>
+											<c:when test="${loginUser.userId=='admin' }">
+												<li><a href="adminMypage.ad">마이페이지</a></li>
+											</c:when>
+											<c:otherwise>
+												<li><a href="#">마이페이지</a></li>
+											</c:otherwise>
+										</c:choose>
 									</ul>
 								</c:otherwise>                
                 			</c:choose>
@@ -82,8 +89,8 @@
 										<span class="opener">여기는 고객센터!</span>
 										<br><br>
 										<ul>
-											<li class="list-Style-None"><a href="#">공지 합니다!</a></li>
-											<li class="list-Style-None"><a href="#">자주 묻는 질문들이에요!</a></li>
+											<li class="list-Style-None"><a href="adminNoticeListView.ad">공지 합니다!</a></li>
+											<li class="list-Style-None"><a href="faqList.ad">자주 묻는 질문들이에요!</a></li>
 											<li class="list-Style-None"><a href="#">문의 하고 싶어요!!</a></li>
 										</ul>
 									</li>

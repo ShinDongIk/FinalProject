@@ -11,12 +11,21 @@
 		<typeAlias type="com.payalot.enjoyforott.ratePlan.model.vo.RatePlan" alias="ratePlan"/>
 		<typeAlias type="com.payalot.enjoyforott.memberModal.model.vo.MemberModal" alias="memberModal"/>
 		<typeAlias type="com.payalot.enjoyforott.user.model.vo.User" alias="user"/>
+		<typeAlias type="com.payalot.enjoyforott.inquiry.model.vo.Inquiry" alias="inquiry"/>
+		<typeAlias type="com.payalot.enjoyforott.inquiry.model.vo.Reply" alias="reply"/>
+		<typeAlias type="com.payalot.enjoyforott.notice.model.vo.Board" alias="board"/>
+		<typeAlias type="com.payalot.enjoyforott.notice.model.vo.Member" alias="member"/>
 	</typeAliases>
+	
 	
 	<mappers>
 		<mapper resource="/mappers/chat/chat-mapper.xml"/>
 		<mapper resource="/mappers/ratePlan/rateplan-mapper.xml"/>
 		<mapper resource="/mappers/memberModal/memberModal-mapper.xml"/>
 		<mapper resource="/mappers/user/user-mapper.xml"/>
+		<mapper resource="/mappers/board/board-mapper.xml"/>
+		<mapper resource="/mappers/inquiry/inquiry-mapper.xml"/>
+		<mapper resource="/mappers/reply/reply-mapper.xml"/>
+		<mapper resource="/mappers/memManage/memManage-mapper.xml"/>
 	</mappers>
 </configuration>

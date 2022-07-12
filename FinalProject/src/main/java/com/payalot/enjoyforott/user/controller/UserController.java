@@ -22,7 +22,7 @@ public class UserController {
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
 	
-	//로그인
+	//濡쒓렇�씤
 	@RequestMapping("loginForm.me")
 	public String loginForm() {
 		return "user/userLoginForm";
@@ -38,7 +38,7 @@ public class UserController {
 		session.setAttribute("loginUser", loginUser);
 		mv.setViewName("redirect:/");
 		} else {
-		mv.addObject("errorMsg", "로그인 실패");
+		mv.addObject("errorMsg", "濡쒓렇�씤 �떎�뙣");
 		mv.setViewName("common/errorPage");
 		}
 		
@@ -53,7 +53,7 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	//회원가입
+	//�쉶�썝媛��엯
 	@RequestMapping("joinTosForm.me")
 	public String joinTosForm() {
 		return "user/userJoinTosForm";
@@ -77,7 +77,7 @@ public class UserController {
 			session.setAttribute("loginUser", u); 
 			return "redirect:/joinComplete.me";
 		} else {
-			model.addAttribute("errorMsg","회원가입에 실패하였습니다.");
+			model.addAttribute("errorMsg","�쉶�썝媛��엯�뿉 �떎�뙣�븯���뒿�땲�떎.");
 			return "common/errorPage";
 		}
 		
