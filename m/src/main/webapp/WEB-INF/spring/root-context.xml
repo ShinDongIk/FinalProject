@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		
+	<!-- 
+		*root-context.xml
+		서버 구동과 동시에 web.xml파일을 거쳐서 바로 로딩되는 문서
+		-서버구동과 동시에 세팅해야하는 내용들을 작성한다. 주로 DB연결,트랜잭션처리 등등
+	 -->	
+	 
+	 <!-- DB연결 설정 3단계 -->
+	 <!-- 1단계 DB연결을 위한 도구 설정 -->
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+		<!-- 어느 DB에 접속할것인지 지정 -->
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="final"/>
+		<property name="password" value="final"/>
+	</bean>	
+	
+	<!-- 
+		객체가 필요할때 실행되는 코드 
+		
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
+		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+		...
+	 -->
+	 
+	 <!-- 2단계 Mybatis Spring에서 제공하는 SQL 명령어실행을 위한 도구 등록 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+		<!-- mybatis 설정파일 위치를 지정한다. (src/main/resources) -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"/> <!-- classpath : resources를 의미 -->
+		<!-- 연결을 위한 도구 참조 -->
+		<property name="dataSource" ref="dataSource"/>
+	</bean> 
+	
+	
+	<!-- 
+		내부적으로 객체를 필요로할때 실행되는 코드
+		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
+		sqlSessionFactory.setConfigLocation("classpath:mybatis-config.xml");
+		sqlSessionFactory.dataSource(dataSource);
+	 -->
+	
+	<!-- 3단계 SQL 구문 실행을 위한 템플릿을 제공하는 도구 등록 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+		<!-- SQL 명령어 실행을 위한 도구에 대한 참조 설정 -->
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- 
+		SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactory);
+	 -->
+	 
+	 <!-- 
+	 	property : setter 주입
+	 	constructor-arg : 생성자 주입
+	  -->
+	  
+	  <!-- 파일업로드 빈 등록 -->
+	  <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+	  	
+	  	<!-- defaultEncoding: 업로드 되는 파일에 대한 인코딩 처리를 어떻게 할것인지 지정 -->
+	  	<property name="defaultEncoding" value="UTF-8"/>
+	  	
+	  	<!-- 
+	  		maxUploadSize : 한번에 전체 업로드 되는 파일의 총 용량 설정
+	  		
+	  		maxInMemorySize(maxUploadSizePerFile) : 디스크에 임시 파일을 생성하기전에 메모리에 보관할수있는 최대 바이트 크기
+	  	
+	  	 -->
+	  	
+	  	<property name="maxUploadSize" value="10000000"/>
+	    <property name="maxInMemorySize" value="10000000"/>
+	  
+	  </bean>
+	  
+	  
+	
+		
+</beans>

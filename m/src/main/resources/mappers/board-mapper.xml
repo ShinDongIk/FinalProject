@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+
+	<resultMap type="board" id="boardResultSet">
+		<result column="BOARD_NO" property="boardNo"/>
+		<result column="BOARD_TYPE" property="boardType"/>
+		<result column="BOARD_TITLE" property="boardTitle"/>
+		<result column="BOARD_WRITER" property="boardWriter"/>
+		<result column="BOARD_CONTENT" property="boardContent"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="VIEW_COUNT" property="count"/>
+		<result column="BOARD_IMP" property="boardImp"/>
+	</resultMap>
+
+	<insert id="insertNotice">
+		INSERT INTO BOARD
+						(BOARD_NO,
+						BOARD_TYPE,
+						BOARD_TITLE,
+						BOARD_WRITER,
+						BOARD_CONTENT,
+						BOARD_IMP) 
+		VALUES(SEQ_BNO.NEXTVAL,
+				1,
+				#{boardTitle},
+				#{boardWriter},
+				#{boardContent},
+				#{boardImp})
+	</insert>
+	
+	<select id="selectNoticeListCount" resultType="int">
+	SELECT COUNT(*) 
+	FROM BOARD 
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=1
+	</select>
+
+	<select id="selectNoticeList" resultMap="boardResultSet">
+	SELECT BOARD_NO,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			CREATE_DATE,
+			VIEW_COUNT 
+	FROM BOARD
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=1
+	ORDER BY BOARD_NO DESC
+	</select>
+
+	<update id="increaseCount" parameterType="int">
+	UPDATE BOARD 
+	SET VIEW_COUNT=VIEW_COUNT+1 
+	WHERE BOARD_NO=#{boardNo}
+	</update>
+
+	<select id="noticeDetailView" resultMap="boardResultSet">
+	SELECT  BOARD_NO,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			CREATE_DATE,
+			BOARD_IMP
+	FROM BOARD 
+	WHERE BOARD_NO=#{boardNo}
+	</select>
+
+	<update id="updateNotice" parameterType="board">
+	UPDATE BOARD
+	SET BOARD_TITLE=#{boardTitle},
+	    CREATE_DATE=SYSDATE,
+	    BOARD_CONTENT=#{boardContent},
+	    BOARD_IMP=#{boardImp}
+	WHERE BOARD_NO=#{boardNo}
+	</update>
+	
+	<delete id="deleteNotice">
+	DELETE FROM BOARD 
+	WHERE BOARD_NO=#{boardNo}
+	</delete>
+	
+	<select id="searchNoticeTitleList" resultType="int">
+	SELECT COUNT(*) 
+	FROM BOARD 
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=1
+	AND INSTR(BOARD_TITLE,#{search})>0
+	</select>
+	
+	<select id="searchNoticeContentList" resultType="int">
+	SELECT COUNT(*) 
+	FROM BOARD 
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=1
+	AND INSTR(BOARD_CONTENT,#{search})>0
+	</select>
+	
+	<select id="selectSearchTitle" resultMap="boardResultSet">
+	SELECT BOARD_NO,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			CREATE_DATE,
+			VIEW_COUNT 
+	FROM BOARD
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=1
+    AND INSTR(BOARD_TITLE,#{search})>0
+	ORDER BY BOARD_NO DESC
+	</select>
+	
+	<select id="selectSearchContent" resultMap="boardResultSet">
+	SELECT BOARD_NO,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			CREATE_DATE,
+			VIEW_COUNT 
+	FROM BOARD
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=1
+    AND INSTR(BOARD_CONTENT,#{search})>0
+	ORDER BY BOARD_NO DESC
+	</select>
+	
+	<select id="selectFaqListCount" resultType="int">
+	SELECT COUNT(*) 
+	FROM BOARD 
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=2
+	</select>
+	
+	<select id="selectFaqList" resultMap="boardResultSet">
+	SELECT BOARD_NO,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			CREATE_DATE,
+			VIEW_COUNT 
+	FROM BOARD
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=2
+	ORDER BY BOARD_NO DESC
+	</select>
+
+	<insert id="insertFaq">
+	INSERT INTO BOARD
+					(BOARD_NO,
+					BOARD_TYPE,
+					BOARD_TITLE,
+					BOARD_WRITER,
+					BOARD_CONTENT,
+					BOARD_IMP) 
+	VALUES(SEQ_BNO.NEXTVAL,
+			2,
+			#{boardTitle},
+			#{boardWriter},
+			#{boardContent},
+			#{boardImp})
+	</insert>
+	
+	<select id="searchFaqTitleList" resultType="int">
+	SELECT COUNT(*) 
+	FROM BOARD 
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=2
+	AND INSTR(BOARD_TITLE,#{search})>0
+	</select>
+	
+	<select id="searchFaqContentList" resultType="int">
+	SELECT COUNT(*) 
+	FROM BOARD 
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=2
+	AND INSTR(BOARD_Content,#{search})>0
+	</select>
+	
+	<select id="selectFaqSearchTitle" resultMap="boardResultSet">
+	SELECT BOARD_NO,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			CREATE_DATE,
+			VIEW_COUNT 
+	FROM BOARD
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=2
+    AND INSTR(BOARD_TITLE,#{search})>0
+	ORDER BY BOARD_NO DESC
+	</select>
+	
+	<select id="selectFaqSearchContent" resultMap="boardResultSet">
+	SELECT BOARD_NO,
+			BOARD_TITLE,
+			BOARD_WRITER,
+			BOARD_CONTENT,
+			CREATE_DATE,
+			VIEW_COUNT 
+	FROM BOARD
+	WHERE STATUS='Y'
+	AND BOARD_TYPE=2
+    AND INSTR(BOARD_Content,#{search})>0
+	ORDER BY BOARD_NO DESC
+	</select>
+
+
+</mapper>
