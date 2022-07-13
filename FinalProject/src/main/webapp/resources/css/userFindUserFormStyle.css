@@ -33,7 +33,7 @@ a:hover{
     color: black;
 }
 
-.inputLogin{
+.inputArea{
     /* border: 1px solid red; */
     width: 60%;
     height: 150px;
@@ -61,7 +61,10 @@ a:hover{
     margin: 1%;
     font-size: large;
 }
-.content2 {
+.content2{
+	
+}
+.content3 {
     /* border: 1px solid #a8b0ff; */
     display: inline-block;
     width: 70%;
@@ -69,11 +72,6 @@ a:hover{
     padding: 1%;
     
 }
-.content2-1{
-    width: 50%;
-    float: left;
-}
-
 
 /* 버튼영역 */
 .button-purple{

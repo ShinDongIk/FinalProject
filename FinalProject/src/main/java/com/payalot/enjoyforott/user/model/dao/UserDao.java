@@ -23,6 +23,10 @@ public class UserDao {
 	public int nicknameCheck(SqlSessionTemplate sqlSession, String checkNickname) {
 		return sqlSession.selectOne("userMapper.nicknameCheck", checkNickname);
 	}
+	
+	public User findId(SqlSessionTemplate sqlSession, User u) {
+		return sqlSession.selectOne("userMapper.findId", u);
+	}
 
 	public int findPwd(SqlSessionTemplate sqlSession, String pwdUserId, String pwdUserEmail) {
 		return 0;

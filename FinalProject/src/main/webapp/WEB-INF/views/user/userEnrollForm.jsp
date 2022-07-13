@@ -23,13 +23,13 @@
             <b class="font-purple">신규회원 </b><b>가입</b>
         </span>
         <hr>
-        <div class="joimForm">
+        <div class="joinForm">
             <form action="join.me" method="post" id="joinUser">
                 <table class="joinTable" align="center">
                     <tr>
                         <th width="20%">*아이디</th>
                         <td width="60%">
-                            <input type="text" class="form-control" name="userId" id="userId" required>
+                            <input type="text" class="form-control" name="userId" id="userId" placeholder="ID">
                         </td>
                         <td>
                             <button type="button" class="button-clear" id="btnId" onclick="idCheck();">중복확인</button>
@@ -46,13 +46,13 @@
                     <tr>
                         <th>*비밀번호</th>
                         <td>
-                            <input type="password" class="form-control" name="userPwd" id="userPwd" required>
+                            <input type="password" class="form-control" name="userPwd" id="userPwd" placeholder="Password">
                         </td>
                     </tr>
                     <tr>
                         <th>*비밀번호 확인</th>
                         <td>
-                            <input type="password" class="form-control" name="userPwdChk" id="userPwdChk" required>
+                            <input type="password" class="form-control" name="userPwdChk" id="userPwdChk" placeholder="Password Check">
                         </td>
                     </tr>
                     <tr>
@@ -65,12 +65,12 @@
                     </tr>
                     <tr>
                         <th>*이름</th>
-                        <td><input type="text" class="form-control" name="userName" id="userName" required></td>
+                        <td><input type="text" class="form-control" name="userName" id="userName" placeholder="Name"></td>
                     </tr>
                     <tr>
                         <th>*닉네임</th>
                         <td>
-                            <input type="text" class="form-control" name="userNickname" id="userNickname" required>
+                            <input type="text" class="form-control" name="userNickname" id="userNickname" placeholder="Nickname">
                         </td>
                         <td>
                             <button type="button" class="button-clear" id="btnNickname" onclick="nicknameCheck();">중복확인</button>
@@ -87,7 +87,7 @@
                     <tr>
                         <th>*이메일</th>
                         <td>
-                            <input type="email" class="form-control" name="userEmail" id="userEmail" required>
+                            <input type="email" class="form-control" name="userEmail" id="userEmail" placeholder="email@email.com">
                         </td>
                         <td>
                             <button type="button" class="button-clear" id="btnSendMailCode">인증코드 발송</button>
@@ -112,7 +112,7 @@
                     <tr>
                         <!-- 하이픈형식 000-0000-0000 -->
                         <th>*휴대폰 번호</th>
-                    <td><input type="text" class="form-control" name="userPhone" id="userPhone" required></td>
+                    <td><input type="text" class="form-control" name="userPhone" id="userPhone" maxlength="11" placeholder="01012345678 (하이픈제외)"></td>
                     </tr>
                     <!--
                         <tr>
@@ -239,7 +239,7 @@
 					 },
 					 error : function(){
 						 console.log("ajax 통신 실패");
-						 }
+					}
 				 })
              }
          }
@@ -377,6 +377,7 @@
 		        type:"GET",
 		        url:"mailCheck?email=" + email,
 		        success:function(data){
+   					alert("인증코드가 발송되었습니다.");
 		        	cehckBox.attr("disabled",false);
 		        	code = data;
  		        	console.log(code); //테스트시 메일확인 번거로울때 콘솔 확인용

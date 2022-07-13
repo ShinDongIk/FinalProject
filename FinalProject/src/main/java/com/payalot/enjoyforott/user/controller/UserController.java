@@ -1,8 +1,13 @@
 package com.payalot.enjoyforott.user.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.logging.Logger;
@@ -36,12 +41,13 @@ public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	private static final String String = null;
 	
-	//로그인
+	//로그인 폼 이동
 	@RequestMapping("loginForm.me")
 	public String loginForm() {
 		return "user/userLoginForm";
 	}
 	
+	//로그인
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(User u,HttpSession session,ModelAndView mv) {
 
@@ -59,6 +65,7 @@ public class UserController {
 		return mv;
 	}
 	
+	//로그아웃
 	@RequestMapping("logout.me")
 	public String logoutMember(HttpSession session) {
 		
@@ -67,17 +74,19 @@ public class UserController {
 		return "redirect:/";
 	}
 	
-	//회원가입
+	//회원가입 약관페이지 폼 이동
 	@RequestMapping("joinTosForm.me")
 	public String joinTosForm() {
 		return "user/userJoinTosForm";
 	}
 	
+	//회원가입 정보입력 폼 이동
 	@RequestMapping("joinForm.me")
 	public String joinForm() {
 		return "user/userEnrollForm";
 	}
 	
+	//회원가입
 	@RequestMapping("join.me")
 	public String joinUser(User u, HttpSession session, Model model) {
 		
@@ -87,6 +96,8 @@ public class UserController {
 
 		int result = userService.joinUser(u);
 		
+		System.out.println(u);
+		
 		if(result>0) {
 			session.setAttribute("loginUser", u); 
 			return "redirect:/joinComplete.me";
@@ -94,14 +105,15 @@ public class UserController {
 			model.addAttribute("errorMsg","회원가입에 실패하였습니다.");
 			return "common/errorPage";
 		}
-		
 	}
 	
+	//회원가입 완료페이지 이동
 	@RequestMapping("joinComplete.me")
 	public String joinComplete(User u) {
 		return "user/userJoinComplete";
 	}
 	
+	//아이디 중복여부 확인
 	@RequestMapping("idCheck.me")
 	@ResponseBody
 	public String idCheck(String checkId) {
@@ -110,6 +122,7 @@ public class UserController {
 		return (count>0) ? "NNNNN" : "NNNNY";
 	}
 	
+	//닉네임 중복여부 확인
 	@RequestMapping("nicknameCheck.me")
 	@ResponseBody
 	public String nicknameCheck(String checkNickname) {
@@ -118,6 +131,7 @@ public class UserController {
 		return (count>0) ? "NNNNN" : "NNNNY";
 	}
 	
+	//비밀번호 일치 확인
 	@RequestMapping("pwdCheck.me")
 	@ResponseBody
 	public String pwdCheck(String userPwd, String userPwdChk) {
@@ -132,6 +146,7 @@ public class UserController {
 		return result;
 	}
 	
+	//이메일 인증코드 체크
 	@RequestMapping("emailCodeCheck.me")
 	@ResponseBody
 	public String emailCodeCheck(String code, String inputCode) {
@@ -146,6 +161,7 @@ public class UserController {
 		return result;
 	}
 	
+	//이메일 인증코드 발송
 	@RequestMapping(value="/mailCheck", method=RequestMethod.GET)
 	@ResponseBody
 	public String mailCheck(String email) throws Exception{
@@ -190,15 +206,105 @@ public class UserController {
 		return "user/userFindUserForm";
 	}
 	
-	//임시비밀번호 발급
+//	@RequestMapping("findId.me")
+//	public String findId(String idUserName, String idUserEmail, User u, Model model, HttpSession session) {
+//		
+//		System.out.println("컨트롤러 호출 됨");
+//		System.out.println(u);
+//		
+//		
+//		System.out.println(idUserName);
+//		System.out.println(idUserEmail);
+//		
+//		u.setUserName(idUserName);
+//		u.setUserEmail(idUserEmail);
+//		
+//		System.out.println(u);
+//		
+//		User u2 = userService.findId(u);
+//		System.out.println(u2);
+//		
+//		if(u2 != null) {
+//			model.addAttribute("userInfo", u); 
+//			return "redirect:/findedId.me";
+//		} else {
+//			session.setAttribute("alertMsg","일치하는 정보가 없습니다.");
+//			return "user/userFindUserForm";
+//		}
+//	}
+	
+	@RequestMapping("findedId.me")
+	public String findedId(User u) {
+		return "user/userFindedId";
+	}
+
+	
 	@RequestMapping("findPwd.me")
-	public String findPwd(String pwdUserId, String pwdUserEmail) {
+	public String findPwd(String pwdUserId, String pwdUserEmail, Model model) {
 		System.out.println(pwdUserId+pwdUserEmail);
 //		System.out.println(pwdUserEmail);
 		
 		return "user/userFindPwd";
 	}
 	
+	//네이버
 	
+	@RequestMapping("naverlogincallback.me")
+	public String naverLogin() {
+		return "user/userNaverLoginAPICallback";		
+	}
+	
+	@RequestMapping("naverenrollcallback.me")
+	public String naverEnroll() {
+		return "user/userNaverEnrollAPICallback";		
+	}
+	
+	@RequestMapping(value="naverjoin")
+	@ResponseBody
+	public String naverjoin(User u, HttpSession session, Model model) {
+		
+		//닉네임 재설정
+		String newNickname="";
+		if(u.getUserNickname().length()>4) {
+			newNickname = "n_"+u.getUserNickname().substring(0,4);
+		}else {
+			newNickname = "n_"+u.getUserNickname();
+		}
+		
+		u.setUserNickname(newNickname);
+		
+		//아이디 중복체크
+		int idChk = userService.idCheck(u.getUserId());
+		
+		if(idChk>0) {
+			return "joined";
+		} else {
+			//가입진행
+			int result = userService.joinUser(u);
+			
+			System.out.println(u);
 
+			if(result>0) {
+				session.setAttribute("loginUser", u); 
+				return "ok";
+			} else {
+				return "no";
+			}
+		}		
+	}
+	
+	@RequestMapping(value="naverlogin")
+	@ResponseBody
+	public String naverlogin(User u, HttpSession session, Model model) {
+		
+		User loginUser = userService.loginUser(u);
+				
+		if(loginUser != null) {
+			session.setAttribute("loginUser", loginUser); 
+			return "ok";
+		} else {
+			return "no";
+		}		
+	}
 }
+	
