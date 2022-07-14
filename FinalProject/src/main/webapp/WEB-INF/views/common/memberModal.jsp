@@ -21,23 +21,23 @@
             </div>
             <div class="content">
                 <button id="dec-btn" class="md-button1-color">신고하기</button>
-                <button class="md-button2-color">채팅하기</button>
+                <!-- onClick="location.href='mkChat.ch'" -->
+                <button class="md-button2-color" onClick="chatClick();">채팅하기</button>
             </div>
             <br>
             <div class="declaration">
 	            <form action="" onsubmit="return false;" method="post">
 	            	<ul style="padding-left: 0px">
-	            		<li class="ul-padding"><p>신고 아이디 : admin</p></li>
-	            		<li class="ul-padding"><p>신고 내용</p></li>
-	            		<li class="ul-padding">
-	            			<textarea id="dec-textarea" rows="10" cols="45"></textarea>
-	            		</li>
-	            		<li style="text-align: center;">
-	            			<button id="dec-close" class="md-button1-color">닫기</button>
-	            			<button type="submit" class="md-button2-color">신고접수</button>
-	            		</li>
-	            	</ul>
-	            </form>
+	            	<li id="decl-id" class="ul-padding"><p>신고 아이디 : admin</p></li>
+	            	<li class="ul-padding"><p>신고 내용</p></li>
+	            	<li class="ul-padding">
+	            		<textarea id="dec-textarea" rows="10" cols="45"></textarea>
+	            	</li>
+	            	<li style="text-align: center;">
+	            		<button id="dec-close" class="md-button1-color">닫기</button>
+	            		<button class="md-button2-color" onClick="return declInsert();">신고접수</button>
+	            	</li>
+	            </ul>
             </div>
         </div>
         <script src="${pageContext.request.contextPath}/js/memberModal.js"></script>

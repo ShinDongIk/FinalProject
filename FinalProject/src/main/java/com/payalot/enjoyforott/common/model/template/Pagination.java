@@ -1,4 +1,4 @@
-package com.payalot.enjoyforott.common.template;
+package com.payalot.enjoyforott.common.model.template;
 
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
 

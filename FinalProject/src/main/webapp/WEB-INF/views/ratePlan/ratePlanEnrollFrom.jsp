@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page isELIgnored="false" language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,27 +12,26 @@
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
-	
 	<div id="rp-enroll-area">
 		<h1>요금제 정보 입력</h1>
-		<form action="" onsubmit="return false;" method="post" >
+		<form action="insert.ra" onsubmit="return checkInfo(event);" method="post" >
 			<table id="rp-enroll-table">
 					<tr>
 						<th>OTT 선택</th>
 						<td style="padding:0px">
-							<select name="OTT">
-								<option value="1">넷플릭스</option>
-								<option value="2">디즈니 플러스</option>
-								<option value="3">왓챠</option>
-								<option value="4">티빙</option>
-								<option value="5">웨이브</option>
+							<select name="ottName">
+								<option value="넷플릭스">넷플릭스</option>
+								<option value="디즈니+">디즈니+</option>
+								<option value="왓챠">왓챠</option>
+								<option value="티빙">티빙</option>
+								<option value="웨이브">웨이브</option>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<th>월 요금</th>
 						<td style="padding:0px">
-							<input type="text" name="mothPrice" value="" placeholder="숫자만 입력해주세요!">
+							<input type="text" name="monthPrice" value="" placeholder="숫자만 입력해주세요!">
 						</td>
 					</tr>
 					<tr>
@@ -43,7 +43,7 @@
 					<tr>
 						<th>동시 접속자</th>
 						<td style="padding:0px">
-							<input type="text" name="ConcurrentUsers" value="" placeholder="숫자만 입력해주세요!">
+							<input type="text" name="concurrentUsers" value="" placeholder="숫자만 입력해주세요!">
 						</td>
 					</tr>
 					<tr>
@@ -55,22 +55,19 @@
 					<tr>
 						<th rowspan="2" >최대 화질</th>
 						<td style="padding:0px">
-							<input id="quality-id" type="text" name="quality" value="" placeholder="해상도를 입력해주세요!">
-							<select id="quality-select" name="qualityNum">
-								<option value="1">K</option>
-								<option value="2">P</option>
+							<input id="quality-id" type="text" name="imageQuality" value="" placeholder="해상도를 입력해주세요!">
+							<select id="quality-select" name="quality">
+								<option value="K">K</option>
+								<option value="P">P</option>
 							</select>
 						</td>
 					</tr>
 			</table>
 			<div id="rp-enroll-submit">
-				<button class="rt-en-button-color" type="submit" onClick="submitChick();">등록</button>
+				<button class="rt-en-button-color" type="submit">등록</button>
 			</div>
 		</form>
 	</div>
-	<script>
-		
-	</script>
 	
 	<jsp:include page="../chat/chat.jsp"/>
 </body>

@@ -6,13 +6,17 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias type="com.payalot.enjoyforott.chat.modal.vo.Chat" alias="chat"/>
-		<typeAlias type="com.payalot.enjoyforott.ratePlan.modal.vo.RatePlan" alias="ratePlan"/>
+		<typeAlias type="com.payalot.enjoyforott.chat.model.vo.Chat" alias="chat"/>
+		<typeAlias type="com.payalot.enjoyforott.chat.model.vo.ChatContent" alias="chatContent"/>
+		<typeAlias type="com.payalot.enjoyforott.ratePlan.model.vo.RatePlan" alias="ratePlan"/>
+		<typeAlias type="com.payalot.enjoyforott.memberModal.model.vo.MemberModal" alias="memberModal"/>
 		<typeAlias type="com.payalot.enjoyforott.user.model.vo.User" alias="user"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/mappers/chat/chat-mapper.xml"/>
+		<mapper resource="/mappers/ratePlan/rateplan-mapper.xml"/>
+		<mapper resource="/mappers/memberModal/memberModal-mapper.xml"/>
 		<mapper resource="/mappers/user/user-mapper.xml"/>
 	</mappers>
 </configuration>
