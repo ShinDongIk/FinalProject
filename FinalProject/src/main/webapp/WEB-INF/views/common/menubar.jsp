@@ -73,7 +73,7 @@
 							<section>
 								<ul class="links">
 									<li><a href="${page.contextPath}">홈으로</li>
-									<li><a href="">파티원 모여라!</a></li>
+									<li><a href="partylist.pa">파티원 모여라!</a></li>
 									<li><a href="">테마별 작품 정보</a></li>
 									<li><a href="watch.ra">OTT별 가격정보</a></li>
 									<li><a href="#">OTT별 인기순위</a></li>

@@ -11,25 +11,24 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-<link rel="stylesheet" href="../../resources/css/partyListStyle.css">
+<link rel="stylesheet" href="./resources/css/partyListStyle.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
 
 </head>
 <body>
+	<jsp:include page="../common/menubar.jsp"/>
+	
     <div class="outer">
-        <div class="menu">
-            <nav class="navbar navbar-expand-sm fixed-top" style="background-color: #efefef;">
+        <div class="partyMenuArea">
+            <nav class="navbar navbar-expand-sm fixed-top" id="partyMenu">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <img src="" alt="">
                         <a class="nav-link" href="#">통합</a>
                     </li>
                     <li class="nav-item">
-                        <!-- <img src="../../resources/images/logo_netflix.jpg" alt="" width="20px"> -->
                         <a class="nav-link" href="#">넷플릭스</a>
                     </li>
                     <li class="nav-item">
-                        <!-- <img src="../../resources/images/logo_wavve.jpg" alt=""> -->
                         <a class="nav-link" href="#">웨이브</a>
                     </li>
                     <li class="nav-item">
@@ -45,6 +44,10 @@
             </nav>
         </div>
         
+        <div class="newParty">
+        	<a href="partyenrollForm.pa" style="float:right">신규파티등록</a>
+        </div>
+        
         <div class="items">
             <div class="itemRow">
                 <div class="itemType">
@@ -55,7 +58,7 @@
                     <span>몬주쳐돌이</span> 
                 </div>
                     <div class="itemDate">
-                        22.09.22까지(<strong>91</strong>일)
+                        22.09.22까지(<b>11</b>일)
                     </div>
                     <div class="itemPrice" style="float: right;">
                         <span>9,100</span>원
@@ -123,75 +126,79 @@
                 </div>
             </div>
             
-	        <div class="itemRow">
-	            <div class="itemType">
-	                티빙 무제한 플러스	
-	            </div>
-	            <div class="itemSeller">
-	                <span class="userLevel" style="color:rgb(202, 185, 4)">골드</span><br>
-	                <span>OTT셔틀러</span> 
-	            </div>
-	                <div class="itemDate">
-	                    22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
-	                </div>
-	                <div class="itemPrice" style="float: right;">
-	                    <span>9,100</span>원
-	                </div>
-	            <div class="itemMembers">
-	                <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-	                <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-	                <span class="material-symbols-outlined" style="color: gray;">person</span>
-	            </div>
-	            <div class="itemJoin" style="float: right;">
-	                <button type="button" class="button-deepPurple">파티가입</button>
-	            </div>
-	        </div>
-	        
-	        <div class="itemRow">
-	            <div class="itemType">
-	                WAVVE 프리미엄	
-	            </div>
-	            <div class="itemSeller">
-	                <span class="userLevel" style="color:rgb(202, 185, 4)">골드</span><br>
-	                <span>OTT셔틀러</span> 
-	            </div> 
-	            <div class="itemDate">
-	                22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
-	            </div>
-	            <div class="itemPrice" style="float: right;">
-	                <span>9,100</span>원
-	            </div>
-	            <div class="itemMembers">
-	                <span class="material-symbols-outlined" style="color: gray;">person</span>
-	                <span class="material-symbols-outlined" style="color: gray;">person</span>
-	            </div>
-	            <div class="itemJoin" style="float: right;">
-	                <button type="button" class="button-deepPurple">파티가입</button>
-	            </div>
-	        </div>
-	        
-	        <div class="itemRow">
-	            <div class="itemType">
-	                왓챠 프리미엄
-	            </div>
-	            <div class="itemSeller">
-	                <span class="userLevel" style="color:rgb(195, 120, 0)">브론즈</span><br>
-	                <span>티끌모아파산</span> 
-	            </div> 
-	            <div class="itemDate">
-	                22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
-	            </div>
-	            <div class="itemPrice" style="float: right;">
-	                <span>9,100</span>원
-	            </div>
-	            <div class="itemMembers">
-	                <span class="material-symbols-outlined" style="color: gray;">person</span>
-	            </div>
-	            <div class="itemJoin" style="float: right;">
-	                <button type="button" class="button-deepPurple">파티가입</button>
-	            </div>
-	        </div>
-	    </div>
+        <div class="itemRow">
+            <div class="itemType">
+                티빙 무제한 플러스	
+            </div>
+            <div class="itemSeller">
+                <span class="userLevel" style="color:rgb(202, 185, 4)">골드</span><br>
+                <span>OTT셔틀러</span> 
+            </div>
+                <div class="itemDate">
+                    22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
+                </div>
+                <div class="itemPrice" style="float: right;">
+                    <span>9,100</span>원
+                </div>
+            <div class="itemMembers">
+                <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
+                <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
+                <span class="material-symbols-outlined" style="color: gray;">person</span>
+            </div>
+            <div class="itemJoin" style="float: right;">
+                <button type="button" class="button-deepPurple">파티가입</button>
+            </div>
+        </div>
+        
+        <div class="itemRow">
+            <div class="itemType">
+                WAVVE 프리미엄	
+            </div>
+            <div class="itemSeller">
+                <span class="userLevel" style="color:rgb(202, 185, 4)">골드</span><br>
+                <span>OTT셔틀러</span> 
+            </div> 
+            <div class="itemDate">
+                22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
+            </div>
+            <div class="itemPrice" style="float: right;">
+                <span>9,100</span>원
+            </div>
+            <div class="itemMembers">
+                <span class="material-symbols-outlined" style="color: gray;">person</span>
+                <span class="material-symbols-outlined" style="color: gray;">person</span>
+            </div>
+            <div class="itemJoin" style="float: right;">
+                <button type="button" class="button-deepPurple">파티가입</button>
+            </div>
+        </div>
+        
+        <div class="itemRow">
+            <div class="itemType">
+                왓챠 프리미엄
+            </div>
+            <div class="itemSeller">
+                <span class="userLevel" style="color:rgb(195, 120, 0)">브론즈</span><br>
+                <span>티끌모아파산</span> 
+            </div> 
+            <div class="itemDate">
+                22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
+            </div>
+            <div class="itemPrice" style="float: right;">
+                <span>9,100</span>원
+            </div>
+            <div class="itemMembers">
+                <span class="material-symbols-outlined" style="color: gray;">person</span>
+            </div>
+            <div class="itemJoin" style="float: right;">
+                <button type="button" class="button-deepPurple">파티가입</button>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+        
     </div>
 </body>
 </html>
