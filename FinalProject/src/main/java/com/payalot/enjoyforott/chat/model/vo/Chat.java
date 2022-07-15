@@ -11,4 +11,5 @@ public class Chat {
 	private String secondUserId;	//	SECOND_USER_ID	VARCHAR2(20 BYTE)
 	private Date chatEnter;			//	CHAT_ENTER	DATE
 	private String chatStatus;		//	CHAT_STATUS	VARCHAR2(100 BYTE)
+	private int notRead;
 }

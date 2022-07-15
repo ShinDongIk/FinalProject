@@ -8,6 +8,7 @@
 		<result column="SECOND_USER_ID" property="secondUserId"/>
 		<result column="CHAT_ENTER" property="chatEnter"/>
 		<result column="CHAT_STATUS" property="chatStatus"/>
+		<result column="NOT_READ" property="notRead"/>
 	</resultMap>
 	
 	<resultMap type="chatContent" id="chatContentResultSet">
@@ -58,4 +59,46 @@
 		INSERT INTO CHAT_CONTENT_LIST(CHAT_NO,USER_ID,CHAT_CONTENT)
 		VALUES(#{chatNo},(SELECT USER_ID FROM USERINFO WHERE USER_NICKNAME=#{nickName}),#{chatContent})
 	</insert>
+	
+	<select id="chatRoomSearch" parameterType="chat" resultMap="chatRoomResultSet">
+		SELECT CHAT_NO
+				,(SELECT USER_NICKNAME FROM USERINFO WHERE USER_ID=FIRST_USER_ID) FIRST_USER_ID
+				,(SELECT USER_NICKNAME FROM USERINFO WHERE USER_ID=SECOND_USER_ID) SECOND_USER_ID
+				,CHAT_ENTER
+				,CHAT_STATUS
+				,(SELECT COUNT(*) FROM CHAT_CONTENT_LIST 
+					WHERE CHAT_NO = C.CHAT_NO 
+					AND USER_ID != (SELECT USER_ID FROM USERINFO WHERE USER_NICKNAME=#{firstUserId})
+					AND CHECK_CHAT_CONTENT = 'N') NOT_READ
+		FROM CHAT_LIST C 
+		WHERE CHAT_STATUS ='Y'
+		AND (FIRST_USER_ID LIKE (SELECT USER_ID FROM USERINFO WHERE USER_NICKNAME=#{firstUserId}) 
+        OR SECOND_USER_ID LIKE (SELECT USER_ID FROM USERINFO WHERE USER_NICKNAME=#{firstUserId}))
+	</select>
+	
+	<update id="updateReadContent" parameterType="chat">
+		UPDATE CHAT_CONTENT_LIST
+		SET CHECK_CHAT_CONTENT = 'Y'
+		WHERE CHAT_NO = #{chatNo}
+		AND USER_ID != (SELECT USER_ID FROM USERINFO WHERE USER_NICKNAME=#{firstUserId}) 
+	</update>
+	
+	<update id="chatRoomDelete" parameterType="_int">
+		UPDATE CHAT_LIST
+		SET CHAT_STATUS = 'N'
+		WHERE CHAT_NO = #{chatNo}
+		AND CHAT_STATUS = 'Y'
+	</update>
+	
+	<select id="findUserId" parameterType="string" resultType="string">
+		SELECT USER_ID
+		FROM USERINFO
+		WHERE USER_NICKNAME = #{userNick}
+	</select>
+	
+	<select id="roomState" parameterType="_int" resultType="string">
+		SELECT CHAT_STATUS
+		FROM CHAT_LIST
+		WHERE CHAT_NO = #{chatNo}
+	</select>
 </mapper>
