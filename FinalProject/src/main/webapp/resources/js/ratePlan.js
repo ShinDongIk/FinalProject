@@ -19,10 +19,12 @@ $(function(){
 							str +=	"<td>"+result[i].concurrentUsers+"</td>"
 								+"<td>"+result[i].profilesNum+"</td>"
 								+"<td>"+result[i].imageQuality+"</td>"
-								+"<input type='hidden' value='"+result[i].priceInfoNo+"'>"
-								+"<td><button class='ratePlan-upBtn rt-button-color'>수정</button></td>"
-								+"<td><button class='ratePlan-delBtn rt-button-color'>삭제</button></td>"
-								+"</tr>";
+								+"<input type='hidden' value='"+result[i].priceInfoNo+"'>";
+							if(loginUserId == "admin"){
+								str +="<td><button class='ratePlan-upBtn rt-button-color'>수정</button></td>"
+								str +="<td><button class='ratePlan-delBtn rt-button-color'>삭제</button></td>"
+							}
+							str +="</tr>";
 						}
 					}else{
 						str = "<tr>"

@@ -23,7 +23,7 @@ public class ChatController {
 	@RequestMapping(value="mkChat.ch",  produces="application/json; charset=UTF-8")
 	public String makeChatRoom(Chat ch) {
 		ArrayList<Chat> chatRoom = cs.searchChatRoom(ch);
-		System.out.println(chatRoom);
+		
 		if(chatRoom == null) {
 			int result = cs.makeChatRoom(ch);
 			if(result>0) {
@@ -35,18 +35,58 @@ public class ChatController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value="chatRoomLoad.ch",  produces="application/json; charset=UTF-8")
+	public String chatRoomSearch(Chat ch) {
+		ArrayList<Chat> chatRoom = cs.chatRoomSearch(ch);
+		return new Gson().toJson(chatRoom);
+	}
+	
+	@ResponseBody
 	@RequestMapping(value="loadChatCont.ch",  produces="application/json; charset=UTF-8")
-	public String loadChatContent(int chatNo) {
+	public String loadChatContent(int chatNo, String loginUser) {
 		ArrayList<ChatContent> list = cs.loadChatContent(chatNo);
+		String roomState = cs.roomState(chatNo);
 		
-		return new Gson().toJson(list);
+		Chat c = new Chat();
+		c.setChatNo(chatNo);
+		c.setFirstUserId(loginUser);
+		
+		if(!list.isEmpty()) {
+			cs.updateReadContent(c);
+		}
+		if(roomState.equals("N")) {
+			return new Gson().toJson("NNNNN");
+		}else {
+			return new Gson().toJson(list);
+		}
+		
+		
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="chatContEnt.ch",  produces="application/json; charset=UTF-8")
-	public String insertChatContent(ChatContent chatContent) {
+	public String insertChatContent(ChatContent chatContent,String toUser) {
 		int result = cs.insertChatContent(chatContent);
+		String userId = cs.findUserId(toUser);
 		
-		return new Gson().toJson(result);
+		return new Gson().toJson(userId);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="chatRoomDelete.ch",  produces="application/json; charset=UTF-8")
+	public String chatRoomDelete(int chatNo,String userNick) {
+		int result = cs.chatRoomDelete(chatNo);
+		String userId = cs.findUserId(userNick);
+		
+		String result2[] = new String[2]; 
+		
+		if(result>0) {
+			result2[0]="NNNNY";
+			result2[1]=userId;
+		}else {
+			result2[0]="NNNNN";
+		}
+		
+		return new Gson().toJson(result2);
 	}
 }
