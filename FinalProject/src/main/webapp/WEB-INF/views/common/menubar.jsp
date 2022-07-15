@@ -29,11 +29,7 @@
 				
 				<!-- Header -->
 					<header id="header">
-<<<<<<< HEAD
-						<h1><a href="./">ENJOY OTT</a></h1>
-=======
 						<h1><a href="${pageContext.request.contextPath}">ENJOY OTT</a></h1>
->>>>>>> refs/remotes/origin/main
 						<nav class="links">
 							<c:choose>
 	                			<c:when test="${ empty loginUser }">
