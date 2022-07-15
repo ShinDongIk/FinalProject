@@ -21,4 +21,16 @@ public interface ChatService {
 	
 	//채팅 접속시 원으로 클릭 후 접속시
 	public abstract ArrayList<Chat> chatRoomSearch(Chat ch);
+	
+	//채팅방 접속시 메세지 확인 업데이트 메소드
+	public abstract int updateReadContent(Chat c);
+	
+	//채팅방 삭제 메소드
+	public abstract int chatRoomDelete(int chatNo);
+	
+	//유저 아이디 찾아오는 메소드
+	public abstract String findUserId(String userNick);
+	
+	//채팅방 상태 알아오는 메소드
+	public abstract String roomState(int chatNo);
 }

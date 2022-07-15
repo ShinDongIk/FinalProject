@@ -12,15 +12,20 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/chatTap.css" />
 </head>
 <body>
-  
+<!--   	<script> -->
+<%--    		var loginUser = "${loginUser.userNickname}"; --%>
+<%--    		var loginUserId = "${loginUser.userId}"; --%>
+<!--   	</script> -->
+  	
 	<div id="chat-circle" class="btn btn-raised" onClick="chatCircleClick('${ loginUser.userNickname }');">
         <div id="chat-overlay"></div>
-		    <i id="chatIcon" class="material-icons">chat</i>
+		<i id="chatIcon" class="material-icons">chat</i>
+		<div class='main-read-num'></div>
 	</div>
   
   <div class="chat-box">
     <div class="chat-box-header">
-      	채팅
+      <span id="chat-title">채팅</span>
       <span class="chat-box-toggle"><i class="material-icons">close</i></span>
       
      </div>
@@ -52,9 +57,7 @@
 	  </div>
 	  <div id="chatRoom">
 	      <div id="chat-room">
-	       		<div class="chat-list">
-	       			<span align="center">채팅중인 채팅방이 존재하지 않습니다!</span><br>
-	       		</div>
+	       		<span align="center">채팅중인 채팅방이 존재하지 않습니다!</span><br>
 	      </div>
 	    </div>
 	  </div>

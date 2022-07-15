@@ -10,6 +10,8 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+		 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 	</head>
 	<body class="is-preload">
 		<c:if test="${not empty alertMsg}">
@@ -18,9 +20,13 @@
 			</script>
 			<c:remove var="alertMsg"/>
 		</c:if>
+		<script>
+  			var loginUser = "${loginUser.userNickname}";
+  			var loginUserId = "${loginUser.userId}";
+  		</script>
 		<!-- Wrapper -->
 			<div id="wrapper">
-
+				
 				<!-- Header -->
 					<header id="header">
 						<h1><a href="${pageContext.request.contextPath}">ENJOY OTT</a></h1>
@@ -77,7 +83,7 @@
 									<li><a href="">파티원 모여라!</a></li>
 									<li><a href="">테마별 작품 정보</a></li>
 									<li><a href="watch.ra">OTT별 가격정보</a></li>
-									<li><a href="#">OTT별 인기순위</a></li>
+									<li><a href="test.do">OTT별 인기순위</a></li>
 									<li>
 										<span class="opener">여기는 고객센터!</span>
 										<br><br>
@@ -91,8 +97,54 @@
 							</section>
 
 					</section>
-
+			
 			</div>
+			
+			<div id="alrim">
+				<span class="material-symbols-outlined" style="font-size: 20px">notifications</span><span> 알림</span>
+				<hr>
+				<span id="alrim-content"></span>
+			</div>
+			
+			
+			<script type="text/javascript">
+				var socket = null;
+				$(document).ready(function(){
+					if(${loginUser != null}){
+						connectWs();
+					}
+				});
+				
+				function connectWs(){
+					console.log("tttttt")
+					var ws = new SockJS("/enjoyforott/alram");
+					socket = ws;
+					
+					ws.onopen = function() {
+					 	console.log('open');
+				 	};
+				
+					ws.onmessage = function(event) {
+						console.log("onmessage"+event.data);
+						$("#alrim").css('display', 'none');
+						$("#alrim-content").html(event.data);
+						//$("#alrim").css('overflow', 'none');
+						//$("#alrim").css('text-overflow', 'none');
+						//$("#alrim").css('white-space', 'none');
+						$("#alrim").css('display', 'inline-block');
+						setTimeout(function(){
+							$("#alrim").css('display', 'none');
+							//$("#alrim").css('overflow', 'hidden');
+							//$("#alrim").css('text-overflow', 'ellipsis');
+							//$("#alrim").css('white-space', 'nowrap');
+						}, 5000);
+					};
+				
+					ws.onclose = function() {
+					    console.log('close');
+				 	};
+				};
+				</script>
 			
 			<jsp:include page="memberModal.jsp"/>
 			

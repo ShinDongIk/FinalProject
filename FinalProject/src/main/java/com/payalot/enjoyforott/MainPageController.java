@@ -14,4 +14,5 @@ public class MainPageController {
 	public String goToStartPage() {
 		return "redirect:start";
 	}
+	
 }
