@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="partyMapper">
+
+	<resultMap type="party" id="partyResultSet">
+		<result column="PARTY_NO" property="partyNo"/>
+		<result column="PARTY_MASTER" property="partyMaster"/>
+		<result column="PARTY_COUNT" property="partyCount"/>
+		<result column="PARTY_OTTENG" property="partyOttEng"/>
+		<result column="PARTY_STARTDATE" property="partyStartDate"/>
+		<result column="PARTY_ENDDATE" property="partyEndDate"/>
+		<result column="PARTY_ACCOUNTBANK" property="partyAccountBank"/>
+		<result column="PARTY_ACCOUNTNUM" property="partyAccountNum"/>
+		<result column="PARTY_RULE" property="partyRule"/>
+		<result column="PARTY_OTTID" property="partyOttId"/>
+		<result column="PARTY_OTTPWD" property="partyOttPwd"/>
+		<result column="PARTY_STATUS" property="partyStatus"/>
+		
+		
+		<result column="OTT_KOR" property="ottKor"/>
+		<result column="LEVEL_NAME" property="levelName"/>
+		<result column="USER_NICKNAME" property="userNickname"/>
+		
+				
+		<result column="MONTH_PRICE" property="monthPrice"/>		
+		<result column="PROFILES_NUM" property="profilesNum"/>
+			
+	</resultMap>
+	
+	<select id="selectList" resultMap="partyResultSet">
+		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE
+		FROM PARTY
+		JOIN OTT_TYPE ON(PARTY_OTTENG=OTT_ENG)
+		JOIN USERINFO ON(PARTY_MASTER=USER_ID)
+		JOIN USERLEVEL ON(USER_LEVEL=LEVEL_CODE)
+		WHERE PARTY_STATUS='Y'
+		ORDER BY PARTY_NO DESC
+	</select>
+
+</mapper>

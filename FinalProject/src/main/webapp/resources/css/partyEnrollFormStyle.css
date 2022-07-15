@@ -75,25 +75,42 @@ select option[value=""][disabled] {
     font-size: 14px;
 }
 .fullInput{
-    width: 90%;
+    width: 90% !important;
 }
 .harfInput{
-    width: 45%;
+    width: 45% !important;
 }
 .quarterInput{
-    width: 21%;
+    width: 21% !important;
+}
+.quarterupInput{
+	width: 70% !important;
 }
 .etc{
     float: left;
 }
 .logoArea{
+/* 	border: 1px solid red; */
     float: left;
-    margin: 0 4%;
+    margin: 1% 4%;
+	text-align: center;
+}
+.logoArea :hover {
+	cursor: pointer;
 }
 .logoImg{
     width: 50px;
+    height: 50px;
     margin: 0 2%;
     margin-bottom: 7px;
+    border-radius: 70%;
+    display: inline-block;
+}
+.ottname {
+	font-size: 13px;
+}
+.ottChked{
+	border: 7px solid #a8b0ff;
 }
 .priceInfo{
     font-size: x-large;
@@ -109,14 +126,14 @@ select option[value=""][disabled] {
     width: 200px;
     height: 50px;
     background-color: gray;
-    color: white;
+    color: white !important;
     font-weight: 500;
 }
 .button-purple{
     width: 200px;
     height: 50px;
     background-color: #a8b0ff;
-    color: white;
+    color: white !important;
     font-weight: 500;
 }
 .button-clear{

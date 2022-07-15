@@ -13,8 +13,7 @@
 
 <link rel="stylesheet" href="./resources/css/userLoginFormStyle.css">
 
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
 </head>
 <body>
     <jsp:include page="../common/menubar.jsp" />
@@ -28,7 +27,7 @@
             <h6>ENJOY OTT</h6>
         </div>
         <div class="inputLogin">
-	        <form action="login.me" method="post">
+	        <form action="login.me" method="post" >
                 <table id="inputTable">
                     <tr style="height: 20%;">
                         <td width="50%"><a href="joinTosForm.me">회원가입</a></td>
@@ -36,13 +35,13 @@
                     </tr>
                     <tr>
                         <td colspan="2" style="width: 100%;">
-                            <input type="text" name="userId" placeholder="아이디를 입력하세요" style="width: 100%;" class="form-control">
+                            <input type="text" name="userId" id="userId" placeholder="아이디를 입력하세요" style="width: 100%;" class="form-control">
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td colspan="2" >
-                            <input type="password" name="userPwd" placeholder="비밀번호를 입력하세요" style="width: 100%;" class="form-control">
+                            <input type="password" name="userPwd" id="userPwd" placeholder="비밀번호를 입력하세요" style="width: 100%;" class="form-control">
                         </td>
                         <td></td>
                     </tr>
@@ -53,30 +52,16 @@
 <!--                     </tr> -->
                 </table>
 	            <br>
-			    <button type="submit" class="btn button-purple">로그인</button> <br><br>    	
+	            
+			    <button type="submit" class="btn button-purple" >로그인</button> <br><br>    	
 	        </form>
         </div>
-        
         <div class="subTitle">
             <h6>SNS</h6>
         </div>
         <br>
         <div>
-        	<!-- 네이버 로그인 버튼 노출 영역 -->
-			<div id="naver_id_login">
-				<img src="./resources/images/naver_enroll.png" alt="" width="50px">
-			</div>
-			<!-- //네이버 로그인 버튼 노출 영역 -->
-			<script type="text/javascript">
-				var naver_id_login = new naver_id_login("NCz5WpwISNnKiY_jFa8I", "http://localhost:8886/enjoyforott/naverlogincallback.me");
-				var state = naver_id_login.getUniqState();
-				naver_id_login.setButton("white", 3, 50);
-				naver_id_login.setDomain("http://localhost:8886/enjoyforott/joinTosForm.me");
-				naver_id_login.setState(state);
-// 				naver_id_login.setPopup();
-				naver_id_login.init_naver_id_login();
-			</script>
-        </div>
+
         <br><br><br>
         
     </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,6 @@
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
-	
     <div class="outer">
         <div class="partyMenuArea">
             <nav class="navbar navbar-expand-sm fixed-top" id="partyMenu">
@@ -49,153 +49,40 @@
         </div>
         
         <div class="items">
-            <div class="itemRow">
-                <div class="itemType">
-                    디즈니
-                </div>
-                <div class="itemSeller" style="float: right;">
-                    <span class="userLevel" style="color:rgb(64, 179, 192)">플래티넘</span><br>
-                    <span>몬주쳐돌이</span> 
-                </div>
-                    <div class="itemDate">
-                        22.09.22까지(<b>11</b>일)
-                    </div>
-                    <div class="itemPrice" style="float: right;">
-                        <span>9,100</span>원
-                    </div>
-                <div class="itemMembers">
-                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                    <span class="material-symbols-outlined" style="color: gray;">person</span>
-                    <span class="material-symbols-outlined" style="color: gray;">person</span>
-                    <span class="material-symbols-outlined" style="color: gray;">person</span>
-                </div>
-                <div class="itemJoin" style="float: right;">
-                    <button type="button" class="button-deepPurple">파티가입</button>
-                </div>
-            </div>
-
-            <div class="itemRow">
-                <div class="itemType">
-                    넷플릭스 프리미엄	
-                </div>
-                <div class="itemSeller">
-                    <span class="userLevel" style="color:rgb(113, 113, 113)">실버</span><br>
-                    <span>닉네임여섯자</span> 
-                </div>
-                    <div class="itemDate">
-                        22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
-                    </div>
-                    <div class="itemPrice" style="float: right;">
-                        <span>9,100</span>원
-                    </div>
-                <div class="itemMembers">
-                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                    <span class="material-symbols-outlined" style="color: gray;">person</span>            
-                </div>
-                <div class="itemJoin" style="float: right;">
-                    <button type="button" class="button-deepPurple">파티가입</button>
-                </div>
-            </div>
-            
-            <div class="itemRow">
-                <div class="itemType">
-                    왓챠 프리미엄	
-                </div>
-                <div class="itemSeller">
-                    <span class="userLevel" style="color:rgb(202, 185, 4)">골드</span><br>
-                    <span>OTT셔틀러</span> 
-                </div> 
-                    <div class="itemDate">
-                        22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
-                    </div>
-                    <div class="itemPrice" style="float: right;">
-                        <span>9,100</span>원
-                    </div>
-                <div class="itemMembers">
-                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                    <span class="material-symbols-outlined" style="color: gray;">person</span>
-                    <span class="material-symbols-outlined" style="color: gray;">person</span>
-                </div>
-                <div class="itemJoin" style="float: right;">
-                    <button type="button" class="button-deepPurple">파티가입</button>
-                </div>
-            </div>
-            
-        <div class="itemRow">
-            <div class="itemType">
-                티빙 무제한 플러스	
-            </div>
-            <div class="itemSeller">
-                <span class="userLevel" style="color:rgb(202, 185, 4)">골드</span><br>
-                <span>OTT셔틀러</span> 
-            </div>
-                <div class="itemDate">
-                    22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
-                </div>
-                <div class="itemPrice" style="float: right;">
-                    <span>9,100</span>원
-                </div>
-            <div class="itemMembers">
-                <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                <span class="material-symbols-outlined" style="color: gray;">person</span>
-            </div>
-            <div class="itemJoin" style="float: right;">
-                <button type="button" class="button-deepPurple">파티가입</button>
-            </div>
-        </div>
-        
-        <div class="itemRow">
-            <div class="itemType">
-                WAVVE 프리미엄	
-            </div>
-            <div class="itemSeller">
-                <span class="userLevel" style="color:rgb(202, 185, 4)">골드</span><br>
-                <span>OTT셔틀러</span> 
-            </div> 
-            <div class="itemDate">
-                22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
-            </div>
-            <div class="itemPrice" style="float: right;">
-                <span>9,100</span>원
-            </div>
-            <div class="itemMembers">
-                <span class="material-symbols-outlined" style="color: gray;">person</span>
-                <span class="material-symbols-outlined" style="color: gray;">person</span>
-            </div>
-            <div class="itemJoin" style="float: right;">
-                <button type="button" class="button-deepPurple">파티가입</button>
-            </div>
-        </div>
-        
-        <div class="itemRow">
-            <div class="itemType">
-                왓챠 프리미엄
-            </div>
-            <div class="itemSeller">
-                <span class="userLevel" style="color:rgb(195, 120, 0)">브론즈</span><br>
-                <span>티끌모아파산</span> 
-            </div> 
-            <div class="itemDate">
-                22.09.22<span class="pc-inline">까지</span>(<strong>91</strong>일)
-            </div>
-            <div class="itemPrice" style="float: right;">
-                <span>9,100</span>원
-            </div>
-            <div class="itemMembers">
-                <span class="material-symbols-outlined" style="color: gray;">person</span>
-            </div>
-            <div class="itemJoin" style="float: right;">
-                <button type="button" class="button-deepPurple">파티가입</button>
-            </div>
-        </div>
-        
-        
+        	<c:choose>
+        		<c:when test="${empty list}">
+        			등록된 파티가 없습니다.
+        		</c:when>
+        		<c:otherwise>
+		            <c:forEach var="p" items="${list}">
+			            <div class="itemRow">
+			                <div class="itemType">
+			                    ${ p.ottKor }
+			                </div>
+			                <div class="itemSeller" style="float: right;">
+			                    <span class="userLevel" style="color:rgb(64, 179, 192)">${ p.levelName }</span><br>
+			                    <span>${ p.userNickname }</span> 
+			                </div>
+			                    <div class="itemDate">
+			                        ${ p.partyEndDate }까지(<b>11</b>일)
+			                    </div>
+			                    <div class="itemPrice" style="float: right;">
+			                        <span>9,100</span>원
+			                    </div>
+			                <div class="itemMembers">
+			                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
+			                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
+			                    <span class="material-symbols-outlined" style="color: gray;">person</span>
+			                    <span class="material-symbols-outlined" style="color: gray;">person</span>
+			                    <span class="material-symbols-outlined" style="color: gray;">person</span>
+			                </div>
+			                <div class="itemJoin" style="float: right;">
+			                    <button type="button" class="button-deepPurple">파티가입</button>
+			                </div>
+			            </div>
+		            </c:forEach>
+        		</c:otherwise>
+            </c:choose>
         
     </div>
         

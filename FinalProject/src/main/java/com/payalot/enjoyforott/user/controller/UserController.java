@@ -33,8 +33,8 @@ public class UserController {
 	@Autowired
 	private JavaMailSender mailSender;
 	
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	private static final String String = null;
+//	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+//	private static final String String = null;
 	
 	//로그인 폼 이동
 	@RequestMapping("loginForm.me")
@@ -45,7 +45,7 @@ public class UserController {
 	//로그인
 	@RequestMapping("login.me")
 	public ModelAndView loginMember(User u,HttpSession session,ModelAndView mv) {
-
+		System.out.println("로그인 실행됨");
 		User loginUser = userService.loginUser(u);
 		
 		if(loginUser != null && bcryptPasswordEncoder.matches(u.getUserPwd(), loginUser.getUserPwd())) {

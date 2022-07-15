@@ -341,7 +341,7 @@
 			    </div><br><br>
 
 			    <div class="buttonArea">    
-			        <button type="button" class="btn button-gray">취소</button>
+			        <button type="button" class="btn button-gray" onclick="location.href='./'">취소</button>
 			        <button type="button" class="btn button-purple" id="enrollFormBtn">회원가입</button>
    				</div>
    			</form>
@@ -378,6 +378,7 @@
    							alert("개인정보 처리방침에 동의하셔야 가입 가능합니다.");
    							$("#check2").focus();
    						}else{
+   							console.log("왜안돼");
    							$("#joinForm").submit();
    						}
    					});

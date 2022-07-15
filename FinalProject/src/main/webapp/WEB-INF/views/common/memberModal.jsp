@@ -38,6 +38,7 @@
 	            		<button class="md-button2-color" onClick="return declInsert();">신고접수</button>
 	            	</li>
 	            </ul>
+	            </form>
             </div>
         </div>
         <script src="${pageContext.request.contextPath}/js/memberModal.js"></script>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ottTypeMapper">
+
+	<resultMap type="ottType" id="ottTypeResultSet">
+		<result column="OTT_ENG" property="ottEng"/>
+		<result column="OTT_KOR" property="ottKor"/>
+		
+		<result column="MONTH_PRICE" property="monthPrice"/>		
+		<result column="PROFILES_NUM" property="profilesNum"/>		
+	</resultMap>
+	
+	<!-- OTT정보 -->
+	<select id="ottInfo" resultMap="ottTypeResultSet">	
+		SELECT OTT_ENG, OTT_KOR, MONTH_PRICE, PROFILES_NUM
+		FROM OTT_TYPE
+		JOIN OTT_PRICE_LIST ON(OTT_KOR=OTT_NAME)
+		WHERE OTT_ENG = #{ottEng}
+		AND IMAGE_QUALITY = '4K'
+	</select>
+
+</mapper>

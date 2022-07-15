@@ -29,33 +29,40 @@
                 🔔 <b> 파티 등록 전 꼭 확인해주세요!</b> <br><br>
                 * 개인 연락처 또는 카카오톡, 개인간 거래 유도 행위는 불법으로 간주하며, 적발시 사전동의 없이 파티장 권한이 중지 됩니다. <br>
                 * 작성된 정보는 당사에 수집되며 진행 중인 파티에 문제가 발생한 경우에 확인 및 해결을 위해 활용 될 수 있습니다. <br>
-                * 파티 금액 정산가능 소요일은 <span>등급별</span>로 상이합니다.
+                * 파티 금액 정산가능 소요일은 <u>등급별</u>로 상이합니다.<br>
+                * 4K 화질의 계정만 공유 가능합니다.
             </div>
             <br><br>
             <form action="">
+            	${ottInfo }
                 <table class="joinTable table" align="center">
                     <tr>
-                        <th>OTT 선택</th>
+                        <th>
+                        	<span>OTT 선택</span> <br>
+                        	<span>월 ${ottInfo.perOneMonthPrice }원/(1인)</span>
+                        </th>
                         <td>
                             <div class="logoArea">
-                                <img src="./resources/images/netflix.png" alt="" class="rounded-circle logoImg"><br>
-                                <span>일/100원</span>
+                            	<div class="logoImgArea">
+	                                <img src="./resources/images/netflix.png" alt="" class="logoImg" id="netflix"><br>
+                            	    <span class="ottname">넷플릭스</span>
+                            	</div>
                             </div>
                             <div class="logoArea">
-                                <img src="./resources/images/wave.png" alt="" class="rounded-circle logoImg"><br>
-                                <span>일/100원</span>
+                                <img src="./resources/images/wave.png" alt="" class="logoImg" id="wavve"><br>
+                                <span class="ottname">웨이브</span>
                             </div>
                             <div class="logoArea">
-                                <img src="./resources/images/tving.png" alt="" class="rounded-circle logoImg"><br>
-                                <span>일/100원</span>
+                                <img src="./resources/images/tving.png" alt="" class="logoImg" id="tving"><br>
+                                <span class="ottname">티빙</span>
                             </div>
                             <div class="logoArea">
-                                <img src="./resources/images/Disney.png" alt="" class="rounded-circle logoImg"><br>
-                                <span>일/100원</span>
+                                <img src="./resources/images/Disney.png" alt="" class="logoImg" id="disneyplus"><br>
+                                <span class="ottname">디즈니+</span>
                             </div>
                             <div class="logoArea">
-                                <img src="./resources/images/watcha.png" alt="" class="rounded-circle logoImg"><br>
-                                <span>일/100원</span>
+                                <img src="./resources/images/watcha.png" alt="" class="logoImg" id="watcha"><br>
+                                <span class="ottname">왓챠</span>
                             </div>
                         </td>
                     </tr>
@@ -86,26 +93,28 @@
                     <tr>
                         <th>예상수령금액</th> 
                         <td>
-                            <p><span class="priceInfo">100</span> 원
+                            <div class="quarterupInput">
+                            	<span class="priceInfo">100</span> 원
                                 <span class="operator">&ensp;*&ensp;</span>
                                 <span class="priceInfo">3</span> 명
                                 <span class="operator">&ensp;*&ensp;</span>
                                 <span class="priceInfo">60</span> 일
                                 <span class="operator">&ensp;=&ensp;</span>
                                 <span class="priceInfo" style="color: #a8b0ff;"> 18,000</span>원
-                            </p>
+                            </div>
+                            <button type="button" style="float:left;">조회</button>
                         </td>
                     </tr>
                     <tr>
                         <th>수령계좌정보</th>
                         <td>
                             <select name="" id="" class="form-control quarterInput" >
-                                <option value="">카카오</option>
-                                <option value="">국민</option>
-                                <option value="">우리</option>
-                                <option value="">신한</option>
-                                <option value="">하나</option>
-                                <option value="">SC</option>
+                                <option value="카카오">카카오</option>
+                                <option value="국민">국민</option>
+                                <option value="우리">우리</option>
+                                <option value="신한">신한</option>
+                                <option value="하나">하나</option>
+                                <option value="SC">SC</option>
                             </select>
                             <p class="etc">　</p>
                             <input type="text" class="form-control harfInput" placeholder="계좌번호" required>
@@ -134,6 +143,29 @@
             <button type="button" class="btn button-gray">취소</button>
             <button type="submit" class="btn button-purple">등록</button>
          </form>
+         
+         <script>
+         	$(".logoArea").click(function(){
+         		var ottchked = $(this).find('img').attr("id");
+        	 
+           	 	console.log(ottchked); 
+           	 	$(".logoImg").removeClass('ottChked');
+           	 	$(this).find('img').addClass('ottChked');
+           	 	
+	       		$.ajax({
+	    			url : "ottInfo.pa",
+					data : {
+						ottEng : ottchked
+						},
+					success : function(result){
+			 			console.log("성공");
+					},
+					error : function(){
+						console.log("ajax 통신 실패");
+						}
+				});	
+         	});
+         </script>
        </div>        
     </div>
 </body>
