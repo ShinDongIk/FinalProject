@@ -1,0 +1,142 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<jsp:include page="../common/menubar.jsp"/>
+
+<link rel="stylesheet" href="./resources/css/partyJoinFormStyle.css">
+</head>
+<body>
+    <div class="outer">
+        <br><br>
+        <form action="" id="joinForm">
+            <div class="content1">
+                <div class="content2">
+                    <span class="subTitle"><b class="font-purple">파티 </b><b>규칙</b></span><br><br>
+                    <textarea class="agreement" readonly>
+- 프로필은 생성(선택) 후 닉네임을 변경하여 사용해 주세요.
+- 반드시 본인의 프로필으로 컨텐츠를 이용해 주세요.
+- 1인 1회선 사용 원칙으로 합니다.
+- 다양한 디바이스에서 접속은 가능하지만 본인이  여러대의 기기에서 동시접속은 불가합니다.
+- 다수가 사용하는 계정인만큼 불쾌감을 줄 수 있는 프로필 이미지나 닉네임은 피해주세요.
+- 계정정보는 본인만 이용하며 절대 타인에게 노출하지 않습니다.
+
+- 이메일로그인 해주세요.
+
+- 들어오는 순서로 프로필 쓰시면 됩니다.
+
+- 5인파티, 최대 4인동시시청 가능입니다. 5명 동시시청 극히 드뭅니다.
+
+- 변심에 의한 환불은 불가하니 잘 생각해주시고 파티 가입해주세요.
+                    </textarea>
+                    <br>
+                    <div class="agreechk">    
+                        <input type="checkbox" id="rule"> <label for="rule"> 파티규칙 동의</label><br>
+                    </div>
+                </div>
+
+                <div class="content2">
+                    <span class="subTitle">
+                        <b class="font-purple">환불 </b><b>정책</b>
+                    </span><br><br>
+                <textarea class="agreement" readonly>
+▶ 환불 진행 절차
+판매자의 귀책사유로 서비스 이용이 제한되는 직 후, 파티장(판매자)에게 문제해결 요청을 반드시 진행 해야하며, 요청 진행 후 24시간 내에 조치가 진행되지 않을 경우 환불이 진행 됩니다.
+참여자(구매자)가 문제해결 요청한 내용은 분쟁해결 및 환불내용에 자료로 사용 될 수 있습니다.
+환불신청은 [결제내역조회] 페이지에서 가능하며, 환불 비용은 환불신청을 진행한 날짜의 +1일로 계산되어 환불이 진행 됩니다.
+위 사항에 해당하는 경우 파티장 의사와 상관없이 벗츠에서 환불비용을 부담하여 제공하고 있으며, 포인트 환불로 진행됩니다.
+
+▶ 환불 불가
+구매자의 필요 사항에 의한 요구일 경우 환불이 반려 될 수 있습니다.
+예) 성인인증 및 핀번호 설정 등 불편하지만 구매자가 직접 설정할 수 있는 영역
+환불신청은 [결제내역조회] 페이지에서 가능하며, 환불 비용은 환불신청을 진행한 날짜의 +1일로 계산되어 환불이 진행 됩니다.
+예) 프로그램 오류, 네트워크 환경 불안으로 인한 오류 등
+위 사항에 해당하는 경우 파티장 의사와 상관없이 벗츠에서 환불비용을 부담하여 제공하고 있으며, 포인트 환불로 진행됩니다.
+                </textarea><br>
+            <div class="agreechk">
+                <input type="checkbox" id="refund"> <label for="refund">환불정책 동의</label><br>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <div class="content1">
+    <span class="subTitle">
+        <b class="font-purple">결제 </b><b>정보</b>
+    </span><br><br>
+        <table class="table">
+            <thead class="table-active">
+                <tr>
+                    <th>서비스명</th>
+                    <th>일수</th>
+                    <th>일일요금</th>
+                    <th>합계</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td width="30%">${ p.ottKor }</td>
+                    <td>91일</td>
+                    <td>100원</td>
+                    <td><b style="font-size: large;">9,100원</b></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br><br><br>
+
+    <div class="content1">
+        <div class="content2">
+            <span class="subTitle">
+                <b class="font-purple">결제자 </b><b>정보</b>
+            </span><br><br>
+            <table class="table">
+                <tr>
+                    <td>
+                        <b>아이디</b>
+                    </td>
+                    <td>${ loginUser.userId }</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>이름</b>
+                    </td>
+                    <td>${ loginUser.userName }</td>
+                </tr>
+            </table>
+        </div>
+        <div class="content2">
+            <span class="subTitle">
+                <b class="font-purple">결제 </b><b>방법</b>
+            </span><br><br><br>
+            <div width="80%">
+                    <input type="radio" name="" id="remit">계좌이체
+                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                    <input type="radio" name="" id="creditCard">신용카드
+            </div>
+        </div>
+    </div>
+
+    <div class="content1">
+        <p id="notice" style="text-align: left;">
+            <b>유의사항</b><br> 
+            1.‘ENJOY OTT’는 사용자간의 컨텐츠 비용을 나눔을 할 수 있도록 지원해 드리고 있으며, 참여하신 서비스의 주체가 아닙니다. <br>
+            2. 개별 공급자가 등록한 나눔 내용 및 거래에 대한 책임은 공급자가 부담하며, 이에 따라서 공급자가 진행하는 서비스에 대해서 ‘벗츠’는 어떠한 책임과 의무를 지지 않습니다. <br>
+            3. 파티장 연락두절 및 이용불가능한 상태 방치 등에 의한 환불인 경우 벗츠에서 남은 기간에 대한 환불을 보장하며, 포인트로 환불 진행됩니다. (단 참여 후 3일이 경과되지 않았을 경우 지불했던 수단으로 100% 환불) <br>
+            ※ 서비스 참여 중에 판매자의 실수를 비롯 하여 네트워크, 서비스 제공업체, 다른 파티원 등의 문제로 의도치 않는 문제가 발생 할 수 있습니다. 문제 발생 시 상호간 매너있는 대화 부탁드리며, 부적절한 언어 선택 시 이용제한 등의 조치가 진행 될 수 있습니다.
+        </p>
+    </div>
+    <br><br><br>
+
+    <div class="buttonArea">    
+        <button type="button" class="btn button-gray" onclick="history.back(-1);">취소</button>
+        <button type="submit" class="btn button-purple">결제</button>
+    </div>
+    </form>
+</div>
+<br><br>
+</body>
+</html>

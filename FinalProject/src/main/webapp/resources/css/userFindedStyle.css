@@ -24,18 +24,18 @@ strong, b {
 }
 
 a{
-    color: black !important;
-    font-size: small !important;
-    border-bottom: none !important;
+    color: black;
+    font-size: small;
+    text-decoration: none;
 }
 a:hover{
     text-decoration: none;
-    color: #a8b0ff !important;
+    color: black;
 }
 
 .inputLogin{
     /* border: 1px solid red; */
-    width: 50%;
+    width: 60%;
     height: 150px;
     display: inline-block;
     text-align: center;
@@ -45,15 +45,11 @@ a:hover{
     text-align: center;
     height: 100px;
 }
-#inputTable *{
-	background-color: #efefef !important;
-	border: none !impertant;
-}
 .subTitle{
     /* border: 1px solid blueviolet; */
     width: 50%;
     display: inline-block;
-    text-align: left;
+    text-align: center;
     margin: 1%;
     font-size: x-large;
 }
@@ -61,7 +57,7 @@ a:hover{
     /* border: 1px solid blueviolet; */
     width: 60%;
     display: inline-block;
-    text-align: left;
+    text-align: center;
     margin: 1%;
     font-size: large;
 }
@@ -73,28 +69,21 @@ a:hover{
     padding: 1%;
     
 }
-.content2-1{
-    width: 50%;
-    float: left;
-}
-
 
 /* 버튼영역 */
 .button-purple{
-    width: 30% !important;
-    height: 70px !important;
-    background-color: #a8b0ff !important;
-    color: white !important;
-}
-.button-clear{
-	width: 200px;
+    width: 200px;
     height: 50px;
-    color: #a8b0ff !important;
-    border: none;
-    font-weight: bold;
+    background-color: #a8b0ff;
+    color: white;
+    font-weight: 500;
 }
-.button-clear:hover{
-    cursor: pointer;
+.button-gray{
+    width: 30%;
+    height: 50px;
+    background-color: gray;
+    color: white;
+    font-weight: 500;
 }
 
 /* 글씨관련 */
