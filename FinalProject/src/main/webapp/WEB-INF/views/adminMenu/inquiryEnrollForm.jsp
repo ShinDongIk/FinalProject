@@ -45,9 +45,12 @@
                 </tr>
                 <tr id="word">
                     <th id="head">사진</th>
-                    <td id="imgtd" colspan="4"><input type="file" name="upfile" id="">
+                    <td id="imgtd" colspan="4">
                     </td>
-                    <td><button type="button" onclick="addImg();">추가</button></td>
+                    <td>
+                    	<button type="button" onclick="addImg();">추가</button>
+                    	<button type="button" onclick="deleteImg();">삭제</button>
+                    </td>
                 </tr>
                 <tr align="center">
                     <td colspan="6">
@@ -62,15 +65,24 @@
     <script>
         //추가 버튼 클릭 시 이미지 개수 추가
         var count=0;
+        
         function addImg(){
-            if(count<5){
-                var img ="<input type='file' name='upfile' id=''>";
-                $("#imgtd").append(img);
-                    count++;
-            }else{
-                alert("이미지는 6개까지 첨부할 수 있습니다.")
-            }
-
+	    	if(count<5){
+		        var img ="<input type='file' name='upfile' id='img"+count+"'accept='image/*'>";
+			    $("#imgtd").append(img);
+		        $("#img"+count).click();
+				count++;
+	        }else{
+	        	alert("이미지는 5개까지 첨부할 수 있습니다.")
+	        }
+        }
+        function deleteImg(){
+        	if(count==0){
+        		alert("이미지가 없습니다.")
+        	}else{
+        		count--;
+        		$("#img"+count).remove();
+        	}
         }
     </script>
 

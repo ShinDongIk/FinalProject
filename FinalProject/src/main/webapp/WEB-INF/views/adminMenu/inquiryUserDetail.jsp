@@ -33,11 +33,13 @@
                 	</tr>
                     <tr>
                         <td></td>
-	                    	<c:forEach var="i" items="${imgList }">
-	                    <td>
-		                    	<a href="${i.changeName }" download>${i.originName }</a>
-	                    </td>
-	                    	</c:forEach>
+	                   		<c:forEach var="i" items="${imgList }">
+		                        <c:if test="${i.originName ne 'null'}">
+				                    <td>
+					                	<a href="${i.changeName }" download>${i.originName }</a>
+				                    </td>
+		                        </c:if>
+		                	</c:forEach>
                     </tr>
                     <tr>
                         <th>답변 내용</th>

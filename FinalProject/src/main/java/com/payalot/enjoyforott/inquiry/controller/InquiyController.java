@@ -78,14 +78,15 @@ public class InquiyController {
 								MultipartFile[] upfile,
 								HttpSession session,
 								ModelAndView mv) {
-		if(!upfile[0].getOriginalFilename().equals("")) {
-			String[] changeName = new String[upfile.length];
-			String[] originName = new String[upfile.length];
+		
+		if(upfile!=null) {
+			String[] changeName = new String[4];
+			String[] originName = new String[4];
 			for(int i=0;i<upfile.length;i++) {
-				
-				changeName[i] = "resources/uploadFiles/"+saveFile(upfile,session,iq.getInquiryWriter())[i];
-				originName[i] = upfile[i].getOriginalFilename();
-				
+				if(upfile[i].getSize()>1) {
+					changeName[i] = "resources/uploadFiles/"+saveFile(upfile,session,iq.getInquiryWriter())[i];
+					originName[i] = upfile[i].getOriginalFilename();
+				}
 			}
 			String oName = Arrays.toString(originName).replace("[", "").replace("]", "");
 			String cName = Arrays.toString(changeName).replace("[", "").replace("]", "");
@@ -96,11 +97,11 @@ public class InquiyController {
 		int result = inquiryService.insertInquiry(iq);
 		
 		if(result>0) {
-			session.setAttribute("alertMsg", "¹®ÀÇ ÀÛ¼º ¿Ï·á");
+			session.setAttribute("alertMsg", "ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½Ï·ï¿½");
 			mv.addObject("userId", iq.getInquiryWriter());
 			mv.setViewName("redirect:/inquiryUserList.in");
 		}else {
-			mv.addObject("errorMsg","ÀÛ¼º ½ÇÆÐ");
+			mv.addObject("errorMsg","ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
@@ -127,8 +128,9 @@ public class InquiyController {
 			currentTime = new SimpleDateFormat("yyMMdd").format(new Date());
 			
 			ranNum=(int)(Math.random()*10000);
-			
-			ext = originName.substring(originName.lastIndexOf("."));
+			if(upfile[i].getSize()>0) {
+				ext = originName.substring(originName.lastIndexOf("."));
+			}
 			
 			changeName[i] = currentTime+ranNum+inquiryWriter+ext;
 			
@@ -149,18 +151,19 @@ public class InquiyController {
 	@RequestMapping("inquiryDetail.in")
 	public ModelAndView inquiryDetail(int ino, ModelAndView mv) {
 		Inquiry iq = inquiryService.inquiryUserDetailView(ino);
-		String[] changeName=iq.getChangeName().split(", ");
-		String[] originName=iq.getOriginName().split(", ");
-		ArrayList<FileName> imgList = new ArrayList<FileName>();
-		for(int i=0;i<changeName.length;i++) {
-			imgList.add(new FileName(
-									changeName[i],
-									originName[i]
-									));
+		if(iq.getChangeName()!=null) {
+			String[] changeName=iq.getChangeName().split(", ");
+			String[] originName=iq.getOriginName().split(", ");
+			ArrayList<FileName> imgList = new ArrayList<FileName>();
+			for(int i=0;i<changeName.length;i++) {
+				imgList.add(new FileName(
+						changeName[i],
+						originName[i]
+						));
+			}
+			mv.addObject("imgList",imgList);
 		}
-		
 		mv.addObject("iq",iq);
-		mv.addObject("imgList",imgList);
 		mv.setViewName("adminMenu/inquiryUserDetail");
 		return mv;
 	}
@@ -173,7 +176,7 @@ public class InquiyController {
 		if(result>0) {
 			mv.setViewName("redirect:inquiryUserList.in");
 		}else {
-			mv.addObject("errorMsg","»èÁ¦½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½").setViewName("common/errorPage");
 		}
 		
 		return mv;
