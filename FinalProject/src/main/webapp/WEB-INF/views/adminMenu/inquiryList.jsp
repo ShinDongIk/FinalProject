@@ -31,7 +31,7 @@
 </head>
 
 <body>
-	<jsp:include page="../common/adminMypage.jsp"/>
+	<jsp:include page="../common/menubar.jsp"/>
     <div id="content" align="center">
         <p>1:1 문의</p>
             <select name="" id="" style="display: inline; width: 150px;">
@@ -43,7 +43,7 @@
         <table class="table table-bordered" style="width: 60%;">
             <thead>
                 <tr>
-                	<td align="center"><input type="checkbox" name="" id="allck"></td>
+                	<td align="center"><input type="checkbox" name="allck" id="allck"></td>
                     <th width="10%">번호</th>
                     <th width="10%">유형</th>
                     <th width="35%">내용</th>
@@ -55,7 +55,7 @@
             <tbody id="tbody">
             	<c:forEach var="i" items="${list }">
 	                <tr class="title${i }">
-	                	<td align="center" class="ck"><input type="checkbox" name="" class="ckbox"></td>
+	                	<td align="center" class="ck"><input type="checkbox" name="ckbox" class="ckbox"></td>
 	                    <td>${i.inquiryNo }</td>
 	                    <td>${i.inquiryType }</td>
 	                    <td>${i.inquiryContent }</td>
@@ -67,7 +67,8 @@
             </tbody>
         </table>
         <div style="width: 60%;" align="right">
-        <button>삭제</button>
+        <button onclick="location.href='inquiryEnrollForm.in'">작성</button>
+        <button  type="button" data-toggle="modal" data-target="#myModal" id="openmd">삭제</button>
         </div>
     </div>
 	<br><br>
@@ -77,7 +78,7 @@
     			<button disabled><</button>
     		</c:when>
     		<c:otherwise>
-    			<button onclick="location.href='inquiryList.in?cPage=${pi.currentPage - 1}'"><</button>
+    			<button onclick="location.href='inquiryAdminList.in?cPage=${pi.currentPage - 1}'"><</button>
     		</c:otherwise>
     	</c:choose>
     	
@@ -87,7 +88,7 @@
 	    			<button disabled>${p }</button>
 	    		</c:when>
 	    		<c:otherwise>
-	    			<button onclick="location.href='inquiryList.in?cPage=${p}'" >${p }</button>
+	    			<button onclick="location.href='inquiryAdminList.in?cPage=${p}'" >${p }</button>
 	    		</c:otherwise>
 	    	</c:choose>
     	</c:forEach>
@@ -97,16 +98,42 @@
     			<button disabled>></button>
     		</c:when>
     		<c:otherwise>
-    			<button onclick="location.href='inquiryList.in?cPage=${pi.currentPage + 1}'">></button>
+    			<button onclick="location.href='inquiryAdminList.in?cPage=${pi.currentPage + 1}'">></button>
     		</c:otherwise>
     	</c:choose>
     </div>
   <br>
   
+            <!-- The Modal -->
+		  <div class="modal fade" id="myModal">
+		    <div class="modal-dialog modal-dialog-centered">
+		      <div class="modal-content">
+		  
+		        <!-- Modal Header -->
+		        <div class="modal-header" style="height:50px;">
+		          <h4 class="modal-title">신고 내역</h4>
+		          <button type="button" class="close" data-dismiss="modal" style="height:50px;">&times;</button>
+		        </div>
+		  
+		        <!-- Modal body -->
+		        <div class="modal-body">
+		        </div>
+		  
+		        <!-- Modal footer -->
+		        <div class="modal-footer" align="center" style="height: 100px;">
+		            <button id="del">삭제</button>
+		            <button data-dismiss="modal">취소</button>
+		            <button data-dismiss="modal" style="display:none;" id="cancel"></button>
+		        </div>
+		  
+		      </div>
+		    </div>
+		  </div>
+  
   <script>
   		$("tbody td").not($(".ck")).click(function(){
 			var ino=$(this).parent().children().eq(1).text();
-			location.href="inquiryDetail.in?ino="+ino;
+			location.href="inquiryDetail.in?ino="+ino+"&";
 	  	})
 	  
 	  	$("#allck").click(function(){
@@ -116,6 +143,36 @@
               	$(".ckbox").prop("checked",false);
           	}
       	})
+      	
+	        $("#openmd").click(function(){
+	        	var bno=[];
+	            var count=0;
+	            var boxNum=$(":input[name=ckbox]")
+		        for(var i=0;i<boxNum.length;i++){
+		            if(boxNum[i].checked==true){
+		                bno[count]=boxNum[i].value;
+		                count++;
+		            }
+		        }
+	            if(count==0){
+	            	alert("게시글을 선택하십시오");
+					return false;
+	            }else{
+					$(".modal-body").html("<h3>"+count+"개 게시물을 삭제하시겠습니까?");
+			        $("#del").click(function(){
+			            $.ajax({
+			                url : "deleteInquiry.in",
+			                data : {
+			                	bno : bno
+			                },
+			                traditional : true,
+			                success : function(){
+			                	window.location.reload(true);
+			                }
+			            })
+			        })
+	            }
+	        })
   
   </script>
   

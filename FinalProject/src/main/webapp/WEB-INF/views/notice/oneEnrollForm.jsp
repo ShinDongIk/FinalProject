@@ -16,11 +16,6 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-    input[type="file"]{
-        /* display: none; */
-    }
-</style>
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
@@ -30,24 +25,26 @@
             <tr>
                 <th>유형</th>
                 <td colspan="4">
-                    <select name="" id="">
-                        <option value="">결제</option>
-                        <option value="">계정</option>
-                        <option value="">기타</option>
+                    <select name="boradType" id="">
+                        <option value="10">결제</option>
+                        <option value="20">계정</option>
+                        <option value="30">파티</option>
+                        <option value="40">기타</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <th>제목</th>
-                <td><input type="text"></td>
+                <td colspan="5"><input type="text"></td>
             </tr>
             <tr>
                 <th>문의 내용</th>
-                <td><textarea name="" id="" cols="30" rows="10" style="resize: none;"></textarea></td>
+                <td colspan="5"><textarea name="" id="" cols="30" rows="10" style="resize: none;"></textarea></td>
             </tr>
             <tr id="word">
                 <th id="head">사진</th>
-                <td><button type="button" onclick="addImg();">추가</button></td>
+                <td id="imgtd"><input type="file" name="" id="">
+                    <button type="button" onclick="addImg();">추가</button></td>
             </tr>
             <tr align="center">
                 <td colspan="2">
@@ -63,11 +60,15 @@
         var count=0;
         function addImg(){
             if(count<5){
-                var img="<tr>"
-                    +"<td></td>"
-                    +"<td><input type='file' name='upfile' id=''></td>" 
-                    +"</tr>"
-                    $("#word").after(img);
+                var img ="<input type='file' name='upfile' id=''>";
+                        
+
+                $("#imgtd").after(img);
+                // var img="<tr>"
+                //     +"<td></td>"
+                //     +"<td><input type='file' name='upfile' id=''></td>" 
+                //     +"</tr>"
+                //     $("#word").after(img);
                     count++;
             }else{
                 alert("이미지는 5개까지 첨부할 수 있습니다.")

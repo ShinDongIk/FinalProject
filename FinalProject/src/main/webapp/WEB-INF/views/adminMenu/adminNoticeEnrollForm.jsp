@@ -17,7 +17,7 @@
                     <th width="20%">제목</th>
                     <td width="50%"><input type="text" name="boardTitle" id="" required></td>
                     <th width="10%">작성자</th>
-                    <td width="20%"><input type="text" name="boardWriter" id="" value="admin" required readonly></td>
+                    <td width="20%"><input type="text" name="boardWriter" id="" value="${loginUser.userId }" required readonly></td>
                 </tr>
                 <tr>
                     <th>내용</th>

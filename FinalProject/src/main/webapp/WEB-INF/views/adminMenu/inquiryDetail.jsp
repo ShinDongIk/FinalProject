@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,19 +16,19 @@
             <thead>
                 <tr>
                     <th width="10%">유형</th>
-                    <td width="15%">결제</td>
+                    <td width="15%"><input type="text" name="inquiryType" value="${iq.inquiryType }"></td>
                     <th width="10%">작성자</th>
-                    <td width="15%">누구</td>
+                    <td width="15%">${iq.inquiryWriter }</td>
                     <th width="10%">날짜</th>
-                    <td width="15%">어제</td>
+                    <td width="15%">${iq.createDate }</td>
                     <th width="10%">처리 결과</th>
-                    <td width="15%">완료</td>
+                    <td width="15%">${iq.status }</td>
                 </tr>
             </thead>
                 <tbody id="tbody">
                 	<tr>
                 		<th>문의 내용</th>
-                		<td colspan="7"><textarea name="" id="" cols="30" rows="10" style="resize: none; width: 100%; height: 100%;"readonly>내용입니다 </textarea></td>
+                		<td colspan="7"><textarea name="" id="" cols="30" rows="10" style="resize: none; width: 100%; height: 100%;"readonly>${iq.inquiryContent } </textarea></td>
                 	</tr>
                     <tr>
                         <th>답변 내용</th>
@@ -37,10 +38,14 @@
                 <tfoot>
                         <tr align="right">
                             <td colspan="8">
-                            <button id="add">등 록</button>
-                            <button id="complete">완 료</button>
-                            <button id="update">수 정</button>
-                            <button id="cancel" onclick="can();">취 소</button>
+                            <c:if test="${loginUser.userId=='admin' }">
+	                            <button id="add">등 록</button>
+	                            <button id="complete">완 료</button>
+	                            <button id="cancel" onclick="can();">취 소</button>
+                            </c:if>
+							<c:if test="${loginUser.userId == iq.inquiryWriter }">
+	                            <button id="update">수 정</button>
+							</c:if>
                             <button onclick="history.back();" id="goBack">뒤로가기</button>
                         </td>
                     </tr>

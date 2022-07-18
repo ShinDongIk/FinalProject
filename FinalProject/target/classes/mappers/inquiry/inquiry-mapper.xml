@@ -39,12 +39,48 @@
 	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS
 	FROM INQUIRY 
     JOIN BOARD_TYPE ON(INQUIRY_TYPE = BOARD_TYPE)
-	WHERE MOD(INQUIRY_TYPE,10)=0
-	AND INQUIRY_WRITER=#{userId}
-	ORDER BY STATUS ASC
+	WHERE INQUIRY_WRITER=#{userId}
+	
+	</select>
+	
+	<insert id="insertInquiry">
+	INSERT INTO INQUIRY(
+						INQUIRY_NO,
+						INQUIRY_TITLE,
+						INQUIRY_WRITER,
+						INQUIRY_CONTENT,
+						INQUIRY_TYPE,
+						ORIGIN_NAME,
+						CHANGE_NAME
+						)
+	VALUES(
+			SEQ_INO.NEXTVAL,
+			#{inquiryTitle},
+			#{inquiryWriter},
+			#{inquiryContent},
+			#{inquiryType},
+			#{originName},
+			#{changeName}
+			)
+	</insert>
+	
+	<select id="inquiryUserDetail" resultMap="inquiryResultSet">
+	SELECT TYPE_NAME,
+		   INQUIRY_WRITER,
+		   CREATE_DATE,
+		   STATUS,
+		   INQUIRY_CONTENT,
+		   ORIGIN_NAME,
+		   CHANGE_NAME
+	FROM INQUIRY
+	JOIN BOARD_TYPE ON(BOARD_TYPE=INQUIRY_TYPE)
+	WHERE INQUIRY_NO=#{inquiryNo}
 	</select>
 
-
+	<delete id="deleteInquiry">
+	DELETE FROM INQUIRY
+	WHERE INQUIRY_NO=#{inquiryNo}
+	</delete>
 
 
 

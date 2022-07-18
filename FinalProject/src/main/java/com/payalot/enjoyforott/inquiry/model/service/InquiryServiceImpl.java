@@ -41,7 +41,7 @@ public class InquiryServiceImpl implements InquiryService{
 
 	@Override
 	public int insertInquiry(Inquiry iq) {
-		return 0;
+		return inquiryDao.insertInquiry(sqlSession,iq);
 	}
 
 	@Override
@@ -50,8 +50,13 @@ public class InquiryServiceImpl implements InquiryService{
 	}
 
 	@Override
-	public Inquiry inquiryUserDetailView(String userId) {
-		return null;
+	public Inquiry inquiryUserDetailView(int inquiryNo) {
+		return inquiryDao.inquiryUserDetailView(sqlSession,inquiryNo);
+	}
+
+	@Override
+	public int deleteInquiry(int[] inquiryNo) {
+		return inquiryDao.deleteInquiry(sqlSession,inquiryNo);
 	}
 
 	@Override
@@ -59,10 +64,6 @@ public class InquiryServiceImpl implements InquiryService{
 		return 0;
 	}
 
-	@Override
-	public int deleteInquiry(int inquiryNo) {
-		return 0;
-	}
 
 
 

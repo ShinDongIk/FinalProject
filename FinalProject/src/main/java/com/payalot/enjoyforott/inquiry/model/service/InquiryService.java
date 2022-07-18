@@ -29,13 +29,14 @@ public interface InquiryService {
 	Inquiry inquiryAdminDetailView(int inquiryNo);
 	
 	//1:1문의 사용자 상세보기
-	Inquiry inquiryUserDetailView(String userId);
+	Inquiry inquiryUserDetailView(int inquiryNo);
 	
+	//1:1문의 삭제
+	int deleteInquiry(int[] inquiryNo);
+
 	//1:1문의 수정
 	int updateInquiry(int inquiryNo);
 	
-	//1:1문의 삭제
-	int deleteInquiry(int inquiryNo);
 	
 	
 	

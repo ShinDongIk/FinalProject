@@ -91,7 +91,14 @@
 										<ul>
 											<li class="list-Style-None"><a href="adminNoticeListView.ad">공지 합니다!</a></li>
 											<li class="list-Style-None"><a href="faqList.ad">자주 묻는 질문들이에요!</a></li>
-											<li class="list-Style-None"><a href="#">문의 하고 싶어요!!</a></li>
+											<c:choose>
+												<c:when test="${loginUser.userId=='admin' }">
+													<li class="list-Style-None"><a href="inquiryAdminList.in">문의 하고 싶어요!!</a></li>
+												</c:when>
+												<c:otherwise>
+													<li class="list-Style-None"><a href="inquiryUserList.in?userId=${loginUser.userId }">문의 하고 싶어요!!</a></li>
+												</c:otherwise>
+											</c:choose>
 										</ul>
 									</li>
 								</ul>

@@ -49,7 +49,7 @@
 	                </td>
 	            </tr>
 	                <td colspan="6" align="right">
-	                	<c:if test="${loginUser=='admin' }">
+	                	<c:if test="${loginUser.userId=='admin' }">
 		                    <button type="button" id="update">수정</button>
 		                    <button type="button" id="complete">완료</button>
 		                    <button type="button" id="cancel" onclick="can();">취소</button>

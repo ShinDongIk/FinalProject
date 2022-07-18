@@ -37,6 +37,25 @@ public class InquiryDao {
 		return (ArrayList)sqlSession.selectList("inquiryMapper.inquiryUserList",userId,rowBounds);
 	}
 
+	public int insertInquiry(SqlSessionTemplate sqlSession, Inquiry iq) {
+		return sqlSession.insert("inquiryMapper.insertInquiry",iq);
+	}
+
+	public Inquiry inquiryUserDetailView(SqlSessionTemplate sqlSession, int inquiryNo) {
+		return sqlSession.selectOne("inquiryMapper.inquiryUserDetail",inquiryNo);
+	}
+
+	public int deleteInquiry(SqlSessionTemplate sqlSession, int[] inquiryNo) {
+		
+		int result=0;
+		
+		for(int i=0;i<inquiryNo.length;i++) {
+			result=sqlSession.delete("inquiryMapper.deleteInquiry",inquiryNo[i]);
+		}
+		
+		return result;
+	}
+
 
 
 
