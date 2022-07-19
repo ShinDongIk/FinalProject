@@ -113,8 +113,6 @@
                 <b class="font-purple">결제 </b><b>방법</b>
             </span><br><br><br>
             <div width="80%">
-                    <input type="radio" name="" id="remit">계좌이체
-                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
                     <input type="radio" name="" id="creditCard">신용카드
             </div>
         </div>

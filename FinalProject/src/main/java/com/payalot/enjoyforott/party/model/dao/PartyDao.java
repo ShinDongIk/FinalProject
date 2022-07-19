@@ -27,4 +27,8 @@ public class PartyDao {
 		return sqlSession.selectOne("partyMapper.selectParty",partyNo);
 	}
 
+	public int enrollParty(SqlSessionTemplate sqlSession, Party p) {
+		return sqlSession.insert("partyMapper.enrollParty",p);
+	}
+
 }

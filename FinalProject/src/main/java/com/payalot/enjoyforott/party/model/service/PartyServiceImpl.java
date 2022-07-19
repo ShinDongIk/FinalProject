@@ -39,5 +39,10 @@ public class PartyServiceImpl implements PartyService{
 		return partyDao.selectParty(sqlSession, partyNo);
 	}
 
+	@Override
+	public int enrollParty(Party p) {
+		return partyDao.enrollParty(sqlSession, p);
+	}
+
 
 }

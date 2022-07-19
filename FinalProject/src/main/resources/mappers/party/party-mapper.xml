@@ -53,5 +53,32 @@
 		JOIN USERLEVEL ON(USER_LEVEL=LEVEL_CODE)
 		WHERE PARTY_NO = #{partyNo}
 	</select>
+	
+	<insert id="enrollParty" parameterType="party">
+		INSERT INTO PARTY (
+						PARTY_NO
+					   ,PARTY_MASTER
+					   ,PARTY_COUNT
+					   ,PARTY_OTTENG
+					   ,PARTY_ENDDATE
+					   ,PARTY_ACCOUNTBANK
+					   ,PARTY_ACCOUNTNUM
+					   ,PARTY_RULE
+					   ,PARTY_OTTID
+					   ,PARTY_OTTPWD
+					   ) 
+		VALUES (
+				 SEQ_PNO.NEXTVAL
+				,#{partyMaster}
+				,#{partyCount}
+				,#{partyOttEng}
+				,#{partyEndDate}
+				,#{partyAccountBank}
+				,#{partyAccountNum}
+				,#{partyRule}
+				,#{partyOttId}
+				,#{partyOttPwd}
+				)
+	</insert>
 
 </mapper>

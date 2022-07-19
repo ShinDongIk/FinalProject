@@ -12,13 +12,13 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
+
 <link rel="stylesheet" href="./resources/css/partyEnrollFormStyle.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
 
 </head>
 <body>
-    <jsp:include page="../common/menubar.jsp" />
-    
+<jsp:include page="../common/menubar.jsp" />    
     <div class="outer">
         <br>
         <span class="subTitle">
@@ -34,38 +34,43 @@
                 * 4K 화질의 계정만 공유 가능합니다.
             </div>
             <br><br>
-            <form action="">
-            	${ottInfo }
+            <form action="enrollparty.pa" id="enrollParty">
+               	<input type="hidden" value="${ loginUser.userId }" name="partyMaster">
                 <table class="joinTable table" align="center">
                     <tr>
                         <th>
                         	<span>OTT 선택</span> <br>
                         	<span>
-                        		일 <span class="font-purple" id="perOneDayPriceResult" style="font-size:14px"></span>원/(1인)
+                        		일 <span class="font-purple amountVal" id="perOneDayPriceResult"></span>원/(1인)
                        		</span>
                         </th>
                         <td>
                             <div class="logoArea">
                             	<div class="logoImgArea">
-	                                <img src="./resources/images/netflix.png" alt="" class="logoImg" id="netflix"><br>
-                            	    <span class="ottname">넷플릭스</span>
+	                                <img src="./resources/images/netflix.png" alt="" class="logoImg" id="netflix" ><br>
+                            	    <span>넷플릭스</span>
+                            	    <input type="hidden" class="ottname" value="netflix">
                             	</div>
                             </div>
                             <div class="logoArea">
                                 <img src="./resources/images/wave.png" alt="" class="logoImg" id="wavve"><br>
-                                <span class="ottname">웨이브</span>
+                                <span>웨이브</span>
+                                <input type="hidden" class="ottname" value="wavve">
                             </div>
                             <div class="logoArea">
                                 <img src="./resources/images/tving.png" alt="" class="logoImg" id="tving"><br>
-                                <span class="ottname">티빙</span>
+                                <span>티빙</span>
+                                <input type="hidden" class="ottname" value="tving">
                             </div>
                             <div class="logoArea">
                                 <img src="./resources/images/Disney.png" alt="" class="logoImg" id="disneyplus"><br>
-                                <span class="ottname">디즈니+</span>
+                                <span>디즈니+</span>
+                                <input type="hidden" class="ottname" value="disneyplus">
                             </div>
                             <div class="logoArea">
                                 <img src="./resources/images/watcha.png" alt="" class="logoImg" id="watcha"><br>
-                                <span class="ottname">왓챠</span>
+                                <span>왓챠</span>
+                                <input type="hidden" class="ottname" value="watcha">
                             </div>
                         </td>
                     </tr>
@@ -77,43 +82,54 @@
                         </th>
                         <td>
                             <div class="partyMemberNum">
-                            	
-                                <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                                <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                                <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span>
-                                <span class="material-symbols-outlined" style="color: gray;">person</span>
-                                <span class="material-symbols-outlined" style="color: gray;">person</span>
+
+<!--                                 <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span> -->
+<!--                                 <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span> -->
+<!--                                 <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span> -->
+<!--                                 <span class="material-symbols-outlined" style="color: gray;">person</span> -->
+<!--                                 <span class="material-symbols-outlined chooseMemNum" style="color: gray;">person</span> -->
+
                                 &ensp;
                                 <span class="font-medium">
-                                    <b>3 명</b>
+                            		<input type="text" name="partyCount" id="partyCount" min="1" maxlength="2" class="form-control harfInput" required>
+                                    / 최대인원 <b class="font-purple amountVal" id="concurrentUsersResult"></b>명
                                 </span>
                             </div>
-                            <!-- <input type="range" min="1" max="5" class="form-control fullInput" required placeholder="1 ~ 5"> -->
                         </td>
                     </tr>
                     <tr>
                         <th>진행기간</th> 
-                        <td><input type="date" class="form-control harfInput" required><p class="etc">～</p><input type="date" class="form-control harfInput" id="endDate" required></td>
+                        <td>
+	                        <input type="date" class="form-control" id="partyStartDate" name="partyStartDate" style="width:35%" required readonly>
+	                        <p class="etc">～</p>
+	                        <input type="date" class="form-control" id="partyEndDate" name="partyEndDate" style="width:35%" required>
+                        </td>
                     </tr>
                     <tr>
                         <th>예상수령금액</th> 
                         <td>
-                            <div class="quarterupInput">
-                            	<span class="priceInfo">100</span> 원
-                                <span class="operator">&ensp;*&ensp;</span>
-                                <span class="priceInfo">3</span> 명
-                                <span class="operator">&ensp;*&ensp;</span>
-                                <span class="priceInfo">60</span> 일
-                                <span class="operator">&ensp;=&ensp;</span>
-                                <span class="priceInfo" style="color: #a8b0ff;"> 18,000</span>원
-                            </div>
-                            <button type="button" style="float:left;">조회</button>
+                        	<div id="amountArea">
+	                            <div class="quarterupInput" style="float:left;">
+	                            	<span class="priceInfo" id="perDay"></span> 원
+	                                <span class="operator">&ensp;*&ensp;</span>
+	                                <span class="priceInfo" id="memNum"></span> 명
+	                                <span class="operator">&ensp;*&ensp;</span>
+	                                <span class="priceInfo" id="diffDay"></span> 일
+	                                <span class="operator">&ensp;=&ensp;</span>
+	                                <span class="priceInfo font-purple" id="totalAmount"></span>원
+	                            </div>
+                                <button type="button" class="button-clear" id="btnAmount" style="float:right; height:40px">조회</button>
+                        	</div>
+                            
                         </td>
                     </tr>
                     <tr>
-                        <th>수령계좌정보</th>
+                        <th>
+	                        수령계좌정보<br>
+	                       	<span style="font-size: 9px"> (본인 계좌만 가능합니다)</span>
+                        </th>
                         <td>
-                            <select name="" id="" class="form-control quarterInput" >
+                            <select class="form-control quarterInput" name="partyAccountBank">
                                 <option value="카카오">카카오</option>
                                 <option value="국민">국민</option>
                                 <option value="우리">우리</option>
@@ -122,17 +138,17 @@
                                 <option value="SC">SC</option>
                             </select>
                             <p class="etc">　</p>
-                            <input type="text" class="form-control harfInput" placeholder="계좌번호" required>
+                            <input type="text" class="form-control harfInput" name="partyAccountNum" id="partyAccountNum" placeholder="계좌번호" required>
                             <p class="etc">　</p>
-                            <input type="text"class=" form-control quarterInput" placeholder="예금주">
+                            <input type="text"class="form-control quarterInput" value="${loginUser.userName }" readonly>
                         </td>
                     </tr>
                     <tr>
                         <th>공유계정정보</th>
                         <td>
-                            <input type="text" class="form-control harfInput" placeholder="아이디" required>
+                            <input type="text" class="form-control harfInput" id="partyOttId" name="partyOttId" placeholder="아이디" required>
                             <p class="etc">　</p>
-                            <input type="text"class=" form-control harfInput" placeholder="비밀번호">
+                            <input type="text"class="form-control harfInput" id="partyOttPwd" name="partyOttPwd" placeholder="비밀번호">
                         </td>
                     </tr>
 
@@ -140,25 +156,41 @@
                         <!-- 하이픈형식 000-0000-0000 -->
                         <th>파티규칙</th>
                     <td>
-                        <textarea name="" id="" cols="30" rows="10" class=" form-control" style="resize: none;"></textarea>
+                        <textarea class="form-control" id="partyRule" name="partyRule" cols="30" rows="10" style="resize: none;"></textarea>
                     </td>
                 </tr>
             </table>
             <br>
             <button type="button" class="btn button-gray">취소</button>
-            <button type="submit" class="btn button-purple">등록</button>
+            <button type="button" class="btn button-purple" id="btnEnrollParty">등록</button>
          </form>
          
          <script>
+         	//시작일 오늘 고정, 종료일 오늘 이후
+         	let today = new Date();
+			let day = today.getDate();
+			let month = today.getMonth() + 1; // 1월이 0부터 시작되므로 +1
+			let year = today.getFullYear();
+			if (day < 10) day = '0' + day;
+			if (month < 10) month = '0' + month;
+			today = year + '-' + month + '-' + day;
+			
+			document.getElementById("partyStartDate").setAttribute("value", today);
+			document.getElementById("partyEndDate").setAttribute("min", today);
+			
+			         	
          	//팝오버
          	
          	//OTT 선택시 일단가 출력
          	$(".logoArea").click(function(){
          		var ottchked = $(this).find('img').attr("id");
         	 
-           	 	console.log(ottchked); 
+//            	 	console.log(ottchked); 
            	 	$(".logoImg").removeClass('ottChked');
+           	 	$(".ottname").removeAttr('name');
            	 	$(this).find('img').addClass('ottChked');
+           	 	$(this).find('input').attr('name','partyOttEng');
+        	 	
            	 	
 	       		$.ajax({
 	    			url : "ottInfo.pa",
@@ -167,14 +199,131 @@
 						},
 					success : function(result){
 // 			 			console.log(result);
+			 			//일단가 출력
 			 			$("#perOneDayPriceResult").html(result.perOneDayPrice);
+			 			//최대인원 출력
 			 			$("#concurrentUsersResult").html(result.concurrentUsers);
 					},
 					error : function(){
 						console.log("ajax 통신 실패");
-						}
+					}
 				});	
          	});
+         	
+         	//예상수령금액 조회
+         	$("#btnAmount").click(function(){
+         		//일수 계산
+         		var now = new Date();
+         		var chkDate = $("#partyEndDate").val();
+         		var chkDateArr = chkDate.split("-");
+
+         		var sYear = now.getFullYear();
+         		var sMonth = now.getMonth()+1;  
+         		var sDay = now.getDate();
+
+         		var startDate = new Date(sYear, sMonth, sDay);
+         		var endDate = new Date(chkDateArr[0],chkDateArr[1],chkDateArr[2]);
+         		
+         		var diffMs = endDate.getTime() - startDate.getTime() ; //getTime 밀리초로 변환(1000밀리초=1초)
+         		var diffDay = diffMs / (1000*60*60*24) + 1 ; //당일포함
+         		
+         		//ott일단가, 모집인원 값
+	     		var perDay = ($("#perOneDayPriceResult").text()).toLocaleString('ko-KR');
+	     		var memNum = ($("#partyCount").val()).toLocaleString('ko-KR');
+	     		
+	     		//금액 계산식
+	     		var totalAmount = (diffDay * perDay * memNum).toLocaleString('ko-KR');
+// 	     		console.log(totalAmount);
+	     		
+	     		//출력
+   				if($(".logoImg").hasClass('ottChked')==false){
+					alert("공유할 OTT를 선택해주세요.");
+					$(".logoArea").focus();
+   				}else if($("#partyCount").val()==""){
+   					alert("모집인원을 입력해주세요.");
+   					$("#partyCount").focus();
+   				}else if($("#partyEndDate").val()==""){
+   					alert("종료일을 선택해주세요.");
+   					$("#partyEndDate").focus();
+   				}else{
+   	         		$("#diffDay").html(diffDay);
+   	         		$("#perDay").html(perDay);
+   	         		$("#memNum").html(memNum);
+   	         		$("#totalAmount").html(totalAmount);	
+   				}
+         	});
+         	
+         	//유효성검사
+	        $(function(){
+	        	var regExp = /^[0-9]/;
+	        	var $pCount = $("#enrollParty input[name=partyCount]");
+	        	
+		        $pCount.keyup(function(){
+	   				if($pCount.val()==""){
+						alert("모집 할 인원수를 입력해주세요.");
+						$("#partyCount").focus();
+	   				}else if(!regExp.test($pCount.val())){
+	//    					console.log($pCount.val());
+						$("#partyCount").val("");
+						$("#partyCount").focus;
+						alert("숫자만 입력 가능합니다.");
+						return false;
+				    }
+		       	})
+	        })
+	        $(function(){
+	        	var regExp = /^[0-9]/;
+		        var $pAccountNum = $("#enrollParty input[name=partyAccountNum]");
+	        	
+		        $pAccountNum.keyup(function(){
+	   				if($pAccountNum.val()==""){
+						alert("정산금액을 수령할 계좌번호를 입력해주세요.");
+						$("#partyAccountNum").focus();
+	   				}else if(!regExp.test($pAccountNum.val())){
+	//    					console.log($pAccountNum.val());
+						$("#partyAccountNum").val("");
+						$("#partyAccountNum").focus;
+						alert("숫자만 입력 가능합니다.");
+						return false;
+				    }
+		       	})
+	        })
+         	
+         	//등록버튼 클릭시 필수입력 확인
+	   		$(document).ready(function(){
+	   			$("#btnEnrollParty").click(function(){
+		     		var maxMemNum = $("#concurrentUsersResult").text();
+		     		console.log(maxMemNum);
+	   				if($(".logoImg").hasClass('ottChked')==false){
+						alert("공유할 OTT를 선택해주세요.");
+						$(".logoArea").focus();
+	   				}else if($("#partyCount").val()==""){
+	   					alert("모집인원을 입력해주세요.");
+	   					$("#partyCount").focus();
+	   				}else if($("#partyCount").val()>maxMemNum){
+	   					alert("모집 가능인원을 초과하였습니다.");
+	   					$("#partyCount").focus();
+	   				}else if($("#partyEndDate").val()==""){
+	   					alert("종료일을 선택해주세요.");
+	   					$("#partyEndDate").focus();
+	   				}else if($("#partyAccountNum").val()==""){
+	   					alert("정산금액을 수령할 계좌번호를 입력해주세요.");
+	   					$("#partyAccountNum").focus();
+	   				}else if($("#partyOttId").val()==""){
+	   					alert("공유계정 아이디를 입력해주세요.");
+	   					$("#partyOttId").focus();
+	   				}else if($("#partyOttPwd").val()==""){
+	   					alert("공유계정 비밀번호를 입력해주세요.");
+	   					$("#partyOttPwd").focus();
+	   				}else if($("#partyRule").val()==""){
+	   					alert("파티규칙을 입력해주세요.");
+	   					$("#partyRule").focus();
+	   				}else{
+	   					$("#enrollParty").submit();
+	   				}
+	   			});
+	   		});
+         	
          </script>
        </div>        
     </div>

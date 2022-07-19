@@ -46,7 +46,7 @@
         </div>
         
         <div class="newParty">
-        	<a href="partyenrollForm.pa" style="float:right">신규파티등록</a>
+        	<a id="btnPartyEnroll" style="float:right">신규파티등록</a>
         </div>
         
         <div class="items">
@@ -89,11 +89,21 @@
     	<script>
 	    	$(function(){
 	    		var loginUserId = "${ loginUser.userId }";
-	    		var partyNo = $(this).previousElement
 	    		$("#btnJoin").click(function(){
 	    			if(loginUserId == ""){
 	    				alert("로그인 후 이용 하실수 있습니다.");
 	    				location.href="loginForm.me";
+	    			}
+	    		})
+	    	})
+	    	$(function(){
+	    		var loginUserId = "${ loginUser.userId }";
+	    		$("#btnPartyEnroll").click(function(){
+	    			if(loginUserId == ""){
+	    				alert("로그인 후 이용 하실수 있습니다.");
+	    				location.href="loginForm.me";
+	    			}else{
+	    				location.href="partyenrollForm.pa";
 	    			}
 	    		})
 	    	})

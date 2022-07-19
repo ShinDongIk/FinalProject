@@ -18,5 +18,8 @@ public interface PartyService {
 	
 	//파티정보
 	Party selectParty(int partyNo);
+	
+	//신규파티등록
+	int enrollParty(Party p);
 
 }

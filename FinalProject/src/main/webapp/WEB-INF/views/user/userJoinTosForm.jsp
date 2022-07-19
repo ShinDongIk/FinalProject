@@ -378,7 +378,6 @@
    							alert("개인정보 처리방침에 동의하셔야 가입 가능합니다.");
    							$("#check2").focus();
    						}else{
-   							console.log("왜안돼");
    							$("#joinForm").submit();
    						}
    					});

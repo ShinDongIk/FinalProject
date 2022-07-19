@@ -109,24 +109,29 @@ select option[value=""][disabled] {
 .logoImg:hover {
 	opacity:0.7;
 }
-.logoImg:active {
-	opacity:0.7;
-}
 .ottname {
 	font-size: 13px;
 }
-.ottChked{
+.ottChked {
 /* 	border: 7px solid #a8b0ff; */
 /* 	opacity:0.7; */
 }
-.priceInfo{
+.priceInfo {
     font-size: x-large;
     font-weight: 600;
 }
-.operator{
+.amountVal {
+	font-size: large;
+    font-weight: 600;
+}
+.operator {
     font-size: medium;
     font-weight: 600;
 }
+.chooseMemNum {
+	
+}
+
 
 /* 버튼영역 */
 .button-gray{
@@ -144,9 +149,11 @@ select option[value=""][disabled] {
     font-weight: 500;
 }
 .button-clear{
-    color: #a8b0ff;
-    border: none;
-    font-weight: bold;
+    color: #a8b0ff !important;
+    border: none !important;
+    font-weight: bold !important;
+    line-height: 1.65;
+    font-size: 14px;
 }
 .button-clear:hover{
     cursor: pointer;
@@ -159,3 +166,4 @@ select option[value=""][disabled] {
 .font-medium {
 	font-size: 16px;
 }
+

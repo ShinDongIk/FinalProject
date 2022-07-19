@@ -103,8 +103,20 @@ public class PartyController {
 		ottInfoList.put("concurrentUsers", newConcurrentUsers);
 		
 		return ottInfoList.toJSONString();
-		
+	}
+	
+	@RequestMapping("enrollparty.pa")
+	public String enrollParty(Party p, Model model) {
 
+		System.out.println(p);
+		int result = partyService.enrollParty(p);
+		
+		if(result>0) {
+			return "redirect:/partylist.pa";
+		}else {
+			model.addAttribute("errorMsg","파티등록에 실패하였습니다.");
+			return "common/errorPage";
+		}
 	}
 	
 
