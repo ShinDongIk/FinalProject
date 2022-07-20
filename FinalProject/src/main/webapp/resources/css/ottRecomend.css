@@ -1,0 +1,91 @@
+footer{
+  font-family: 'nbg', '맑은 고딕', HelveticaNeue, DroidSans, Sans-serif, Helvetica;
+  font-size: 1em;
+  line-height: 1;
+  min-width: 320px;
+  overflow-x: hidden;
+  position: relative;
+  height: 1000px;
+}
+ul,li{
+  list-style-type: none;
+}
+footer div{
+  display: block;
+}
+.wrapper{
+  height: 100%;
+  width: 100%;
+}
+.rank{
+  
+  height: inherit;
+  width: 70%;
+  margin: auto;
+}
+.header{
+  
+  height: 15%;
+  width: 100%;
+  position: relative;
+}
+.header-choice-area{
+  
+  height: 60%;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.header-choice-area>button{
+  left: 350px;
+  
+  margin: 20px 30px;
+  position: relative;
+  width: 100px;
+  height: 50px;
+}
+.rank-bottom{
+  height: 100%;
+  width: 80%;
+  background-color: cornsilk;
+  border-radius: 4ch;
+  margin: auto;
+}
+.rank-bottom>ul{
+  height: 100%;
+  width: 80%;
+  margin-left: 30px;
+  top: 20px;
+  position: relative;
+}
+.rank-bottom>ul>li{
+  height: 8%;
+  width: 100%;
+}
+.rank-bottom>ul>li>a{
+  height: 100%;
+  width: 100%;
+}
+
+.rank-bottom>ul>li img{
+  height: inherit;
+  width: 70px;
+}
+#rank-num,#rank-name{
+  position: relative;
+  margin-left: 30px;
+  top: 9px;
+  font-size: 22px;
+  font-style: italic;
+  color: darkolivegreen;
+}
+.moongu1{
+  margin: auto;  
+  width: 450px;
+}
+.moongu2{
+  margin-left: 200px;
+  border-radius: 8ch;
+  width: 270px;
+  
+}

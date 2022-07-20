@@ -1,7 +1,14 @@
-$("#dec-btn").on("click",function(){
+function decBtnClick(userNickname){
+ 	console.log($("#modal-nickName").val());
+	if($("#modal-nickName").val() != userNickname){
        $(".declaration").css("display","block");
        $("#modal .modal-window").css("height","530px");
-});
+    }else{
+    	alert("회원님을 신고를 할 수 없습니다!");
+    }
+}
+
+
         	
 $("#dec-close").on("click",function(){
        $(".declaration").css("display","none");
@@ -27,15 +34,17 @@ $(document).mouseup(function (e){
 	}
 });
 
-function memModalOpen(){
+function memModalOpen(userNickname){
+	console.log(userNickname);
 	$.ajax({
 		url : "find.mo",
 		type : "post",
 		data : {
-			clickNickName : "유저원"
+			clickNickName : userNickname
 		},
 		success : function(result){
 			$("#modal-nickName").html("회원 닉네임 : "+result.userNickName);
+			$("#modal-nickName").val(result.userNickName);
 			$("#modal-level").html("회원 등급 : "+result.userLevel);
 			$("#decl-id").html("신고할 회원 닉네임 : "+result.userNickName);
 		},

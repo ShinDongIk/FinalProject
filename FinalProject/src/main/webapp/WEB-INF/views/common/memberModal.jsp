@@ -39,7 +39,7 @@
 	            </ul>
             </div>
         </div>
-        <script src="${pageContext.request.contextPath}/js/memberModal.js"></script>
+        <script src="./resources/js/memberModal.js"></script>
     </div>
 </body>
 </html>

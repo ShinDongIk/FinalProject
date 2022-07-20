@@ -1,7 +1,5 @@
 package com.payalot.enjoyforott.memberModal.model.service;
 
-import java.sql.Date;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
