@@ -26,14 +26,22 @@ public class UserServiceImpl implements UserService{
 		return userDao.joinUser(sqlSession, u);
 	}
 
+	//회원정보 수정
 	@Override
 	public int updateUser(User u) {
-		return 0;
+		
+		int result = userDao.updateUser(sqlSession,u);
+		
+		return result;
 	}
 
+	//회원정보 삭제
 	@Override
 	public int deleteUser(String userId) {
-		return 0;
+		
+		int result = userDao.deleteUser(sqlSession,userId);
+		
+		return result;
 	}
 
 	@Override

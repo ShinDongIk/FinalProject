@@ -45,7 +45,7 @@
 										<li><a href="logout.me">로그아웃</a></li>
 										<li><a id="nickName" onClick="memModalOpen('${ loginUser.userNickname }');">${ loginUser.userName }님 !</a><a id="nickNeText">환영합니다!</a></li>
 										<li><a href="#">등급: ${ loginUser.levelName }</a></li>
-										<li><a href="#">마이페이지</a></li>
+										<li><a href="mypage.me">마이페이지</a></li>
 									</ul>
 								</c:otherwise>                
                 			</c:choose>

@@ -24,4 +24,15 @@ public class UserDao {
 		return sqlSession.selectOne("userMapper.nicknameCheck", checkNickname);
 	}
 
+	//회원정보 수정
+	public int updateUser(SqlSessionTemplate sqlSession, User u) {
+			
+		return sqlSession.update("userMapper.updateUser",u);
+	}
+
+	//회원정보 삭제
+	public int deleteUser(SqlSessionTemplate sqlSession, String userId) {
+			
+		return sqlSession.update("userMapper.deleteUser",userId);
+	}
 }

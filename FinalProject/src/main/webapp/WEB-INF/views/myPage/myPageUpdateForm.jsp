@@ -90,14 +90,14 @@
                         <td>
                             <input type="email" class="form-control" name="userEmail" id="userEmail" value="${loginUser.userEmail }" required>
                         </td>
-                        <td>
+                        <!-- <td>
                             <button type="button" class="button-clear">인증코드 발송</button>
                         </td>
                     </tr>
                     <tr>
                         <th>*인증코드</th>
                         <td><input type="text" class="form-control"></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <!-- 하이픈형식 000-0000-0000 -->
                         <th>*휴대폰 번호</th>
@@ -164,7 +164,7 @@
                 </table>
             <br><br>
             <button type="button" class="btn button-gray" data-toggle="modal" data-target="#deleteForm">탈퇴</button>
-            <button type="submit" class="btn button-purple" id="btnJoin">수정</button>
+            <button type="button" class="btn button-purple" id="btnJoin">수정</button>
          </form>         
          
           <!-- 회원탈퇴 버튼 클릭 시 보여질 Modal -->
@@ -241,35 +241,37 @@
          function nicknameCheck() {
         	 
         	 var $nicknamechk = $("#updateUser input[name=userNickname]");
+        	 
+        	 console.log($nicknamechk.val());
         	 var regExp = /^[가-힣a-zA-Z0-9]{2,6}$/;
         	 
-           	 console.log($nicknamechk.val());
-             if(!regExp.test($nicknamechk.val())){
-				 $("#nicknamecheck").css("color","red").text("유효하지 않는 닉네임입니다. 영문자, 한글, 숫자 입력가능, 최소 2글자 최대 6글자 입력해주세요");
-				 $("#nicknamecheck").focus();
-                 $("#userNickname").removeClass('chked');
-                 return false;
-             }else{
-        		 $.ajax({
-        			 url : "nicknameCheck.me",
-					 data : {
-						 checkNickname : $nicknamechk.val()
-						 },
-					 success : function(result){
-			 			 console.log(result);
-						 if(result=='NNNNY'){
-							 $("#nicknamecheck").css("color","yellowgreen").text("사용가능한 닉네임입니다.");
-			                 $("#userNickname").addClass('chked');
-						 }else{
-							 $("#nicknamecheck").css("color","red").text("사용할수 없는 닉네임입니다.");
-			                 $("#userNickname").removeClass('chked');
-						 }
-					 },
-					 error : function(){
-						 console.log("ajax 통신 실패");
-						 }
-				 })
-             }
+//            	 console.log($nicknamechk.val());
+//              if(!regExp.test($nicknamechk.val())){
+// 				 $("#nicknamecheck").css("color","red").text("유효하지 않는 닉네임입니다. 영문자, 한글, 숫자 입력가능, 최소 2글자 최대 6글자 입력해주세요");
+// 				 $("#nicknamecheck").focus();
+//                  $("#userNickname").removeClass('chked');
+//                  return false;
+//              }else{
+//         		 $.ajax({
+//         			 url : "nicknameCheck.me",
+// 					 data : {
+// 						 checkNickname : $nicknamechk.val()
+// 						 },
+// 					 success : function(result){
+// 			 			 console.log(result);
+// 						 if(result=='NNNNY'){
+// 							 $("#nicknamecheck").css("color","yellowgreen").text("사용가능한 닉네임입니다.");
+// 			                 $("#userNickname").addClass('chked');
+// 						 }else{
+// 							 $("#nicknamecheck").css("color","red").text("사용할수 없는 닉네임입니다.");
+// 			                 $("#userNickname").removeClass('chked');
+// 						 }
+// 					 },
+// 					 error : function(){
+// 						 console.log("ajax 통신 실패");
+// 						 }
+// 				 })
+//              }
          }
          
          
@@ -370,9 +372,9 @@
    					alert("관심있는 장르 적어도 하나를 선택해주세요.");
    					$("#genre1").focus();
    				//중복체크
-   				<!--}else if($("#userId").hasClass("chked")==false){
-   					alert("아이디 중복체크 해주세요.");
-   					$("#userId").focus();-->
+//    				}else if($("#userId").hasClass("chked")==false){
+//    					alert("아이디 중복체크 해주세요.");
+//    					$("#userId").focus();
    				}else if($("#userNickname").hasClass("chked")==false){
    					alert("닉네임 중복체크 해주세요.");
    					$("#userNickname").focus();

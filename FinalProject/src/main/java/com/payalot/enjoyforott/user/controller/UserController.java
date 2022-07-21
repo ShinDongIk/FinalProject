@@ -118,5 +118,64 @@ public class UserController {
 		return result;
 	}
 	
+	
+	//회원정보수정 
+	@RequestMapping("update.me")
+	public String updateUser(User u,Model model,HttpSession session) {
+		
+		String encPwd = bcryptPasswordEncoder.encode(u.getUserPwd());
+		
+		u.setUserPwd(encPwd);
+		
+		System.out.println(u);
+		int result = userService.updateUser(u);
+		System.out.println(result);
+		
+		if(result>0) { //성공
+			//성공했으니 디비에 등록된 변경정보를 다시 조회해와서 세션에 담아야한다.
+			User updateMem = userService.loginUser(u);
+			session.setAttribute("loginUser", updateMem);
+			
+			session.setAttribute("alertMsg", "정보수정성공");
+			return "redirect:mypage.me";
+			
+		}else { //실패
+			model.addAttribute("errorMsg", "회원정보수정실패");
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("delete.me")
+	public String deleteUser(String userPwd, HttpSession session, Model model) {
+		
+		String encPwd = ((User)session.getAttribute("loginUser")).getUserPwd();
+		String userId = ((User)session.getAttribute("loginUser")).getUserId();
+		
+		if(bcryptPasswordEncoder.matches(userPwd, encPwd)) {
+			//탈퇴
+			int result = userService.deleteUser(userId);
+			
+			if(result>0) {
+				session.removeAttribute("loginUser");
+				session.setAttribute("alert", "탈퇴 되었습니다.");
+				return "redirect:/";
+			}else {
+				//탈퇴실패
+				model.addAttribute("errorMsg", "탈퇴 실패");
+				return "common/errorPage";
+				
+			}
+			//비밀번호틀렸
+		}else {
+			session.setAttribute("alertMsg", "잘못된 비밀번호입니다.");
+			return "myPage/mypageUpdate.me";
+			
+		}
+		
+	}
+	
+	
+	
 
 }
+

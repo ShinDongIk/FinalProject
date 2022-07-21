@@ -175,6 +175,7 @@
 	            <div>이메일: ${ loginUser.userEmail }</div><br>
 	            <div>휴대폰번호: ${ loginUser.userPhone }</div><br>
 	            <div>관심장르: ${loginUser.userGenre }</div><br>
+	            ${loginUser }
             </div>
             
         </div>
