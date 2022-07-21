@@ -217,7 +217,7 @@
 	    	<artifactId>spring-websocket</artifactId>
 	    	<version>5.0.7.RELEASE</version>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
@@ -230,6 +230,29 @@
 		    <artifactId>selenium-java</artifactId>
 		    <version>3.141.59</version>
 		</dependency>
+		
+		
+        <!-- mail library -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		
+		<!-- mail 서포트 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+	
 	</dependencies>
     <build>
         <plugins>

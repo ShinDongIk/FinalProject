@@ -34,7 +34,7 @@ public class autoCr {
 	  ChromeOptions options = new ChromeOptions();
 	  options.addArguments(
 	   "--verbose",
-//	   "--headless", //창 안뜨게 하는구문
+	   "--headless", //창 안뜨게 하는구문
 	   "--disable-web-security",
 	   "--ignore-certificate-errors",
 	   "--allow-running-insecure-content",
