@@ -11,6 +11,9 @@
 		<typeAlias type="com.payalot.enjoyforott.ratePlan.model.vo.RatePlan" alias="ratePlan"/>
 		<typeAlias type="com.payalot.enjoyforott.memberModal.model.vo.MemberModal" alias="memberModal"/>
 		<typeAlias type="com.payalot.enjoyforott.user.model.vo.User" alias="user"/>
+		<typeAlias type="com.payalot.enjoyforott.party.model.vo.Party" alias="party"/>
+		<typeAlias type="com.payalot.enjoyforott.party.model.vo.OttType" alias="ottType"/>
+		<typeAlias type="com.payalot.enjoyforott.party.model.vo.PartyMember" alias="partyMember"/>
 	</typeAliases>
 	
 	<mappers>
@@ -18,5 +21,7 @@
 		<mapper resource="/mappers/ratePlan/rateplan-mapper.xml"/>
 		<mapper resource="/mappers/memberModal/memberModal-mapper.xml"/>
 		<mapper resource="/mappers/user/user-mapper.xml"/>
+		<mapper resource="/mappers/party/party-mapper.xml"/>
+		<mapper resource="/mappers/party/ottType-mapper.xml"/>
 	</mappers>
 </configuration>
