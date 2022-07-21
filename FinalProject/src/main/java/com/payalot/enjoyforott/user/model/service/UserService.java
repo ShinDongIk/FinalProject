@@ -11,6 +11,12 @@ public interface UserService {
 	//회원가입
 	int joinUser(User u);
 	
+	//회원 정보수정
+	int updateUser(User u);
+		
+	//회원 탈퇴
+	int deleteUser(String userId);
+	
 	//아이디 중복체크
 	int idCheck(String checkId);
 	

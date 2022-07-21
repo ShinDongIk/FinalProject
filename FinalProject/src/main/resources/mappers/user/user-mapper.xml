@@ -94,4 +94,27 @@
 		WHERE USER_ID = #{userId}
 	</update>
 
+	<!-- 회원정보 수정 -->
+	<update id="updateUser" parameterType="user">
+		UPDATE USERINFO
+		SET USER_PWD = #{userPwd},
+			USER_NAME = #{userName},
+			USER_NICKNAME = #{userNickname},
+			USER_EMAIL = #{userEmail},
+			USER_PHONE = #{userPhone},
+			USER_GENRE = #{userGenre},
+			USER_ENTERDATE = SYSDATE
+		WHERE USER_ID = #{userId}
+	
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="deleteUser">
+		UPDATE USERINFO
+		SET USER_DELETE_STATUS = 'Y'
+		WHERE USER_ID = #{userId} 
+	
+	</update>
+	
+
 </mapper>
