@@ -118,8 +118,7 @@ ul.tabs li.current{
 
             </div>
         <!-- 탭 메뉴 내용 끝 -->
-        </div>
-
+        
         <script>
             $(document).ready(function(){
 	
@@ -135,5 +134,7 @@ ul.tabs li.current{
 
             });
         </script>
+        </div>
+        
 </body>
 </html>
