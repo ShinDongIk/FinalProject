@@ -12,29 +12,14 @@
 <body>
     <div class="outer">
         <br><br>
-        <form action="" id="joinForm">
+        <form action="joinParty.pa" id="partyJoin" method="post">
             <div class="content1">
                 <div class="content2">
                     <span class="subTitle"><b class="font-purple">파티 </b><b>규칙</b></span><br><br>
-                    <textarea class="agreement" readonly>
-- 프로필은 생성(선택) 후 닉네임을 변경하여 사용해 주세요.
-- 반드시 본인의 프로필으로 컨텐츠를 이용해 주세요.
-- 1인 1회선 사용 원칙으로 합니다.
-- 다양한 디바이스에서 접속은 가능하지만 본인이  여러대의 기기에서 동시접속은 불가합니다.
-- 다수가 사용하는 계정인만큼 불쾌감을 줄 수 있는 프로필 이미지나 닉네임은 피해주세요.
-- 계정정보는 본인만 이용하며 절대 타인에게 노출하지 않습니다.
-
-- 이메일로그인 해주세요.
-
-- 들어오는 순서로 프로필 쓰시면 됩니다.
-
-- 5인파티, 최대 4인동시시청 가능입니다. 5명 동시시청 극히 드뭅니다.
-
-- 변심에 의한 환불은 불가하니 잘 생각해주시고 파티 가입해주세요.
-                    </textarea>
+                    <textarea class="agreement" readonly>${ p.partyRule }</textarea>
                     <br>
                     <div class="agreechk">    
-                        <input type="checkbox" id="rule"> <label for="rule"> 파티규칙 동의</label><br>
+                        <input type="checkbox" id="check1"> <label for="check1"> 파티규칙 동의</label><br>
                     </div>
                 </div>
 
@@ -57,7 +42,7 @@
 위 사항에 해당하는 경우 파티장 의사와 상관없이 벗츠에서 환불비용을 부담하여 제공하고 있으며, 포인트 환불로 진행됩니다.
                 </textarea><br>
             <div class="agreechk">
-                <input type="checkbox" id="refund"> <label for="refund">환불정책 동의</label><br>
+                <input type="checkbox" id="check2"> <label for="check2">환불정책 동의</label><br>
             </div>
         </div>
     </div>
@@ -67,21 +52,26 @@
     <span class="subTitle">
         <b class="font-purple">결제 </b><b>정보</b>
     </span><br><br>
+    	<input type="hidden" value="${ p.partyOttEng}" id="ottType">
         <table class="table">
             <thead class="table-active">
                 <tr>
                     <th>서비스명</th>
-                    <th>일수</th>
+                    <th>시작일</th>
+                    <th>종료일</th>
+                    <th>이용일수</th>
                     <th>일일요금</th>
                     <th>합계</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td width="30%">${ p.ottKor }</td>
-                    <td>91일</td>
-                    <td>100원</td>
-                    <td><b style="font-size: large;">9,100원</b></td>
+                    <td>${ p.ottKor }</td>
+                    <td id="startDate"></td>
+                    <td id="endDate">${ p.partyEndDate }</td>
+                    <td><span id="diffDay"></span>일</td>
+                    <td><span id="perOneDayPrice"></span>원</td>
+                    <td><b style="font-size: large;"><span id="totalAmount"></span>원</b></td>
                 </tr>
             </tbody>
         </table>
@@ -113,7 +103,7 @@
                 <b class="font-purple">결제 </b><b>방법</b>
             </span><br><br><br>
             <div width="80%">
-                    <input type="radio" name="" id="creditCard">신용카드
+                    <input type="radio" id="creditCard" checked>신용카드
             </div>
         </div>
     </div>
@@ -128,12 +118,85 @@
         </p>
     </div>
     <br><br><br>
-
+    
+    <input type="hidden" value="${ p.partyNo }" name="joinParty">
+   	<input type="hidden" value="${ loginUser.userId }" name="joinMember">
+   	<input type="hidden" value="${ p.partyEndDate }" name="partyEndDate">
+   	
+    <input type="hidden" value="" name="diffMonth">
+    
     <div class="buttonArea">    
         <button type="button" class="btn button-gray" onclick="history.back(-1);">취소</button>
-        <button type="submit" class="btn button-purple">결제</button>
+        <button type="button" class="btn button-purple" id="btnMoveToPay">결제</button>
     </div>
     </form>
+    
+    <script>
+    	$(document).ready(function(){
+     		//현재 날짜, 시작일에 입력됨
+     		var now = new Date();
+
+     		var sYear = now.getFullYear();
+     		var yyYear = sYear.toString().substr(-2);
+     		var sMonth = ('0' + (now.getMonth() + 1)).slice(-2);
+     		var sDay = now.getDate();
+     		
+     		var sDate = sYear+"-"+sMonth+"-"+sDay;
+     		$("#startDate").html(sDate);
+     		$("input[name='joinEnterDate']").attr('value',sDate);
+     		
+     		//종료일 가져온후 일수 계산
+	 		var chkDate = $("#endDate").text();
+	 		var chkDateArr = chkDate.split("-");
+	 		
+     		var startDate = new Date(sYear, sMonth, sDay);
+     		var endDate = new Date(chkDateArr[0],chkDateArr[1],chkDateArr[2]);
+     		
+     		var diffMs = endDate.getTime() - startDate.getTime() ; //getTime 밀리초로 변환(1000밀리초=1초)
+     		var diffDay = diffMs / (1000*60*60*24) + 1 ; //당일포함
+     		var diffMonth = diffMs / (((1000*60*60*24))*30) ;
+     		
+     		console.log(diffMonth+"개월");
+        	$("#diffDay").html(diffDay);
+     		$("input[name='diffMonth']").attr('value',diffMonth);
+     		
+     		var ottchked = $("#ottType").val();
+
+       		$.ajax({
+    			url : "ottInfo.pa",
+				data : {
+					ottEng : ottchked
+					},
+				success : function(result){
+					//총금액 계산
+					var totalAmount = (diffDay * result.perOneDayPrice).toLocaleString('ko-KR');
+					
+					//일단가, 총금액 출력
+		 			$("#perOneDayPrice").html(result.perOneDayPrice);
+			        $("#totalAmount").html(totalAmount);	
+				},
+				error : function(){
+					console.log("ajax 통신 실패");
+				}
+			})
+    	})
+    	
+   	   	//동의 필수 체크 후 결제 이동
+  		$(document).ready(function(){
+  			$("#btnMoveToPay").click(function(){
+  				if($("#check1").is(":checked")==false){
+  					alert("파티규칙에 동의하셔야 가입 가능합니다.");
+  					$("#check1").focus();
+  				}else if($("#check2").is(":checked")==false){
+  					alert("환불정책에 동의하셔야 가입 가능합니다.");
+  					$("#check2").focus();
+  				}else{
+  					$("#partyJoin").submit();
+  				}
+  			});
+  		});
+    	
+    </script>
 </div>
 <br><br>
 </body>

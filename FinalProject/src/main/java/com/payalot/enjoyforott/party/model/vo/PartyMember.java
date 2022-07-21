@@ -9,4 +9,7 @@ public class PartyMember {
 	private int joinParty;			//	JOIN_PARTY		NUMBER
 	private String joinMember;		//	JOIN_MEMBER		VARCHAR2(100 BYTE)
 	private String joinEnterDate;	//	JOIN_ENTERDATE	DATE
+	
+	private int diffMonth;
+	private int getScore;
 }

@@ -12,5 +12,6 @@ public class OttType {
 	private String concurrentUsers;		//	CONCURRENT_USERS	VARCHAR2(100 BYTE)
 	
 	private int perOneDayPrice;			// 일단가(1인)
+	private int maxMemNum;
 
 }

@@ -8,6 +8,7 @@
 		<result column="USER_NAME" property="userName"/>
 		<result column="USER_NICKNAME" property="userNickname"/>
 		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_PHONE" property="userPhone"/>
 		<result column="USER_ENTERDATE" property="userEnterDate"/>
 		<result column="USER_LEVEL" property="userLevel"/>
 		<result column="USER_SCORE" property="userScore"/>
@@ -85,5 +86,12 @@
 		AND USER_STOP_STATUS = 'N'
         AND USER_DELETE_STATUS = 'N'
 	</select>
+	
+	<!-- 매너점수 업데이트 -->
+	<update id="updateUserScore" parameterType="user">
+		UPDATE USER
+		SET USER_SCORE = USER_SCORE + #{updateScore}
+		WHERE USER_ID = #{userId}
+	</update>
 
 </mapper>

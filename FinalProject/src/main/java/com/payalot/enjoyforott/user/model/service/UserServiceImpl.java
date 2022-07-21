@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.payalot.enjoyforott.common.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.dao.UserDao;
 import com.payalot.enjoyforott.user.model.vo.User;
 
@@ -27,16 +28,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int updateUser(User u) {
-		return 0;
-	}
-
-	@Override
-	public int deleteUser(String userId) {
-		return 0;
-	}
-
-	@Override
 	public int idCheck(String checkId) {
 		return userDao.idCheck(sqlSession, checkId);
 	}
@@ -44,6 +35,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int nicknameCheck(String checkNickname) {
 		return userDao.nicknameCheck(sqlSession, checkNickname);
+	}
+
+	@Override
+	public int updateUserScore(UpdateScore us) {
+		return userDao.updateUserScore(sqlSession, us);
 	}
 
 }

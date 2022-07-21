@@ -128,10 +128,6 @@ select option[value=""][disabled] {
     font-size: medium;
     font-weight: 600;
 }
-.chooseMemNum {
-	
-}
-
 
 /* 버튼영역 */
 .button-gray{

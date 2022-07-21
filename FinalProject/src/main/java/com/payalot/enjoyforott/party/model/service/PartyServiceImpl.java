@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.payalot.enjoyforott.party.model.dao.PartyDao;
 import com.payalot.enjoyforott.party.model.vo.OttType;
 import com.payalot.enjoyforott.party.model.vo.Party;
+import com.payalot.enjoyforott.party.model.vo.PartyMember;
 
 @Service
 public class PartyServiceImpl implements PartyService{
@@ -30,6 +31,11 @@ public class PartyServiceImpl implements PartyService{
 	}
 
 	@Override
+	public ArrayList<Party> findpartylist(Party p) {
+		return partyDao.findpartylist(sqlSession, p);
+	}
+	
+	@Override
 	public ArrayList<Party> selectEndDate() {
 		return partyDao.selectEndDate(sqlSession);
 	}
@@ -43,6 +49,14 @@ public class PartyServiceImpl implements PartyService{
 	public int enrollParty(Party p) {
 		return partyDao.enrollParty(sqlSession, p);
 	}
+
+	@Override
+	public int joinParty(PartyMember pm) {
+		return partyDao.joinParty(sqlSession, pm);
+	}
+
+
+
 
 
 }

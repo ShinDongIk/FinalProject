@@ -11,8 +11,8 @@ public class Party {
 	private String partyMaster;			//	PARTY_MASTER		VARCHAR2(100 BYTE)
 	private int partyCount;				//	PARTY_COUNT			NUMBER
 	private String partyOttEng;			//	PARTY_OTTENG		VARCHAR2(100 BYTE)
-	private String partyStartDate;		//	PARTY_STARTDATE		DATE
-	private String partyEndDate; 		//	PARTY_ENDDATE		DATE
+	private Date partyStartDate;		//	PARTY_STARTDATE		DATE
+	private Date partyEndDate; 			//	PARTY_ENDDATE		DATE
 	private String partyAccountBank;	//	PARTY_ACCOUNTBANK	VARCHAR2(20 BYTE)
 	private int partyAccountNum;		//	PARTY_ACCOUNTNUM	NUMBER
 	private String partyRule;			//	PARTY_RULE			VARCHAR2(2000 BYTE)
@@ -26,5 +26,7 @@ public class Party {
 	
 	private int ableDays;
 	private int ableMemNum;
+	
+	private String findOtt;
 	
 }

@@ -12,13 +12,14 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-
 <link rel="stylesheet" href="./resources/css/partyEnrollFormStyle.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" />
 
 </head>
 <body>
-<jsp:include page="../common/menubar.jsp" />    
+
+<jsp:include page="../common/menubar.jsp" />   
+ 
     <div class="outer">
         <br>
         <span class="subTitle">
@@ -34,7 +35,7 @@
                 * 4K 화질의 계정만 공유 가능합니다.
             </div>
             <br><br>
-            <form action="enrollparty.pa" id="enrollParty">
+            <form action="enrollparty.pa" id="enrollParty" method="post">
                	<input type="hidden" value="${ loginUser.userId }" name="partyMaster">
                 <table class="joinTable table" align="center">
                     <tr>
@@ -140,7 +141,7 @@
                             <p class="etc">　</p>
                             <input type="text" class="form-control harfInput" name="partyAccountNum" id="partyAccountNum" placeholder="계좌번호" required>
                             <p class="etc">　</p>
-                            <input type="text"class="form-control quarterInput" value="${loginUser.userName }" readonly>
+                            <input type="text"class="form-control quarterInput" value="${loginUser.userName }" style="text-align:center;" readonly>
                         </td>
                     </tr>
                     <tr>
@@ -178,9 +179,6 @@
 			document.getElementById("partyStartDate").setAttribute("value", today);
 			document.getElementById("partyEndDate").setAttribute("min", today);
 			
-			         	
-         	//팝오버
-         	
          	//OTT 선택시 일단가 출력
          	$(".logoArea").click(function(){
          		var ottchked = $(this).find('img').attr("id");
@@ -323,7 +321,7 @@
 	   				}
 	   			});
 	   		});
-         	
+         	         	
          </script>
        </div>        
     </div>

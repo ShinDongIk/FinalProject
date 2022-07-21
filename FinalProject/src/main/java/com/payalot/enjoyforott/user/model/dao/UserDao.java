@@ -3,6 +3,7 @@ package com.payalot.enjoyforott.user.model.dao;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.payalot.enjoyforott.common.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.vo.User;
 
 @Repository
@@ -22,6 +23,10 @@ public class UserDao {
 
 	public int nicknameCheck(SqlSessionTemplate sqlSession, String checkNickname) {
 		return sqlSession.selectOne("userMapper.nicknameCheck", checkNickname);
+	}
+
+	public int updateUserScore(SqlSessionTemplate sqlSession, UpdateScore us) {
+		return sqlSession.update("userMapper.updateUserScore", us);
 	}
 
 }
