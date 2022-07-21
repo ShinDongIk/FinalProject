@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="userMapper">
+
+	<resultMap type="user" id="userResultSet">
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_NICKNAME" property="userNickname"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_ENTERDATE" property="userEnterDate"/>
+		<result column="USER_LEVEL" property="userLevel"/>
+		<result column="USER_SCORE" property="userScore"/>
+		<result column="USER_GENRE" property="userGenre"/>
+		<result column="USER_STOP_STATUS" property="userStopStatus"/>
+		<result column="USER_STOP_DATE" property="userStopDate"/>
+		<result column="USER_DELETE_STATUS" property="userDeleteStatus"/>
+		<result column="USER_DELETE_DATE" property="userDeleteDate"/>
+		
+		<result column="LEVEL_NAME" property="levelName"/>		
+	</resultMap>
+	
+	<!-- 로그인 -->
+	<select id="loginUser" resultMap="userResultSet">	
+		SELECT USER_ID
+			  ,USER_PWD
+			  ,USER_NAME
+			  ,USER_NICKNAME
+			  ,USER_EMAIL
+			  ,USER_PHONE
+			  ,USER_ENTERDATE
+			  ,L.LEVEL_NAME
+			  ,USER_SCORE
+			  ,USER_GENRE
+			  ,USER_STOP_STATUS
+			  ,USER_DELETE_STATUS
+		FROM USERINFO I
+		JOIN USERLEVEL L ON (I.USER_LEVEL = L.LEVEL_CODE)
+		WHERE USER_ID = #{userId}
+		AND USER_STOP_STATUS = 'N'
+		AND USER_DELETE_STATUS = 'N'
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="joinUser" parameterType="user">
+		INSERT INTO USERINFO(
+                USER_ID
+               ,USER_PWD
+               ,USER_NAME
+               ,USER_NICKNAME
+               ,USER_EMAIL
+               ,USER_PHONE
+               ,USER_GENRE
+               )
+        VALUES(
+              #{userId}
+             ,#{userPwd}
+             ,#{userName}
+             ,#{userNickname}
+             ,#{userEmail}
+             ,#{userPhone}
+             ,#{userGenre}
+             )
+	
+	</insert>
+	
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*)
+		FROM USERINFO
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	<select id="nicknameCheck" resultType="int">
+		SELECT COUNT(*)
+		FROM USERINFO
+		WHERE USER_NICKNAME = #{userNickname}
+	</select>
+
+</mapper>

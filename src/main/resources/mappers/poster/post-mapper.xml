@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="postermapper">
+
+
+	<resultMap type="poster" id="posterResultSet">
+		<result column="POST_NO" property="postNo"/>
+		<result column="POSTER_NAME" property="postName"/>
+		<result column="POST_DES" property="postDes"/>
+		<result column="POST_KIND" property="postKind"/>
+		<result column="POST_OTT" property="postOtt"/>
+		<result column="LOAD_DATE" property="LoadDate"/>
+		<result column="POST_STATUS" property="PostStatus"/>
+		<result column="POST_IMG" property="PostImg"/>
+	</resultMap>
+	
+
+	<select id="postselect" resultMap="posterResultSet">
+	
+	SELECT POST_NO,
+		POSTER_NAME,
+		POST_DES,
+		POST_KIND,
+		POST_OTT,
+		LOAD_DATE,
+		POST_STATUS,
+		POST_IMG
+		FROM POSTER
+		WHERE POST_KIND = #{postKind}
+		AND POST_STATUS ='Y'
+	
+	</select>
+	
+	<select id="postdetail" resultMap="posterResultSet">
+	
+	SELECT POST_NO,
+		POSTER_NAME,
+		POST_DES,
+		POST_KIND,
+		POST_OTT,
+		LOAD_DATE,
+		POST_STATUS,
+		POST_IMG
+		FROM POSTER
+		WHERE POST_NO = #{postNo}
+		AND POST_STATUS ='Y'
+	
+	</select>
+
+	<insert id="insertPoster" parameterType="poster">
+		INSERT INTO POSTER(
+						POST_NO
+						,POSTER_NAME
+						,POST_DES
+						,POST_KIND
+						,POST_OTT
+						,POST_IMG
+						)
+					VALUES(
+						SEQ_PNO.NEXTVAL
+						,#{postName}
+						,#{postDes}
+						,#{postKind}
+						,#{postOtt}
+						,#{PostImg}
+						)
+	</insert>
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
+
+body{
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 14px;
+    background-color: #efefef;
+}
+.outer {
+    text-align: center;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #3c3b3b;
+    font-family: "Raleway", Helvetica, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    line-height: 1.65;
+    margin: 0 0 1em 0;
+    text-transform: uppercase;
+}
+strong, b {
+    color: #3c3b3b;
+    font-weight: 700;
+}
+
+.subTitle{
+    /* border: 1px solid blueviolet; */
+    width: 40%;
+    display: inline-block;
+    text-align: left;
+    margin: 1%;
+    font-size: large;
+}
+.check{
+    /* border: 1px solid blueviolet; */
+    width: 40%;
+    display: inline-block;
+    text-align: left;
+}
+.buttonArea{
+    /* border: 1px solid blueviolet; */
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+}
+.content{
+    width: 40%;
+    border: 1px solid #a8b0ff;
+    border-radius: 5px;
+    font-size: small;
+    height: 200px;
+    resize: none;
+    background-color: rgb(255, 251, 245);
+}
+
+/* 버튼영역 */
+.button-gray{
+    width: 45%;
+    height: 50px;
+    background-color: gray;
+    color: white;
+    font-weight: 500;
+}
+.button-purple{
+    width: 45%;
+    height: 50px;
+    background-color: #a8b0ff;
+    color: white;
+    font-weight: 500;
+}
+
+/* 글씨관련 */
+.font-purple{
+    color: #a8b0ff;
+}

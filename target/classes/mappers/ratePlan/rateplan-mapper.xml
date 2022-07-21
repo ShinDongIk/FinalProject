@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="rateplanMapper">
+	<resultMap type="ratePlan" id="ratePlanResultSet">
+		<result column="PRICE_INFORMATION_NO" property="priceInfoNo"/>
+		<result column="OTT_NAME" property="ottName"/>
+		<result column="MONTH_PRICE" property="monthPrice"/>
+		<result column="YEAR_PRICE" property="yearPrice"/>
+		<result column="CONCURRENT_USERS" property="concurrentUsers"/>
+		<result column="PROFILES_NUM" property="profilesNum"/>
+		<result column="IMAGE_QUALITY" property="imageQuality"/>
+		<result column="PRICE_INFORMATIONT_STATUS" property="priceInfoStatus"/>
+		<result column="PRICE_INFORMATIONT_ENTER" property="priceInfoEnter"/>
+	</resultMap>
+
+	<insert id="insertRatePlan" parameterType="ratePlan">
+		INSERT INTO OTT_PRICE_LIST(PRICE_INFORMATION_NO
+					,OTT_NAME
+					,MONTH_PRICE
+					,YEAR_PRICE
+					,CONCURRENT_USERS
+					,PROFILES_NUM
+					,IMAGE_QUALITY)
+		VALUES(SEQ_OPNO.NEXTVAL
+				,#{ottName}
+				,#{monthPrice}
+				,#{yearPrice}
+				,#{concurrentUsers}
+				,#{profilesNum}
+				,#{imageQuality})
+	</insert>
+	
+	<select id="searchData" parameterType="string" resultMap="ratePlanResultSet">
+		SELECT PRICE_INFORMATION_NO
+				,OTT_NAME
+				,MONTH_PRICE
+				,YEAR_PRICE
+				,CONCURRENT_USERS
+				,PROFILES_NUM
+				,IMAGE_QUALITY
+				,PRICE_INFORMATIONT_STATUS
+				,PRICE_INFORMATIONT_ENTER
+		FROM OTT_PRICE_LIST
+		WHERE PRICE_INFORMATIONT_STATUS = 'Y'
+		AND OTT_NAME = #{ottName}
+		ORDER BY PRICE_INFORMATION_NO DESC
+	</select>
+	
+	<update id="deleteRatePlan" parameterType="_int">
+		UPDATE OTT_PRICE_LIST
+		SET PRICE_INFORMATIONT_STATUS = 'N'
+		WHERE PRICE_INFORMATION_NO = #{priceInfoNo}
+	</update>
+	
+	<select id="searchRatePlan" parameterType="_int" resultMap="ratePlanResultSet">
+		SELECT PRICE_INFORMATION_NO
+				,OTT_NAME
+				,MONTH_PRICE
+				,YEAR_PRICE
+				,CONCURRENT_USERS
+				,PROFILES_NUM
+				,IMAGE_QUALITY
+				,PRICE_INFORMATIONT_STATUS
+				,PRICE_INFORMATIONT_ENTER
+		FROM OTT_PRICE_LIST
+		WHERE PRICE_INFORMATIONT_STATUS = 'Y'
+		AND PRICE_INFORMATION_NO = #{priceInfoNo}
+		ORDER BY PRICE_INFORMATION_NO DESC 
+	</select>
+	
+	<update id="updateRatePlan" parameterType="ratePlan">
+		UPDATE OTT_PRICE_LIST
+		SET OTT_NAME = #{ottName}
+			,MONTH_PRICE = #{monthPrice}
+			,YEAR_PRICE = #{yearPrice}
+			,CONCURRENT_USERS = #{concurrentUsers}
+			,PROFILES_NUM = #{profilesNum}
+			,IMAGE_QUALITY = #{imageQuality}
+			,PRICE_INFORMATIONT_ENTER = SYSDATE
+		WHERE PRICE_INFORMATION_NO = #{priceInfoNo} 
+	</update>
+</mapper>
