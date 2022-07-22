@@ -74,7 +74,7 @@ public class InquiyController {
 		if(result>0) {
 			mv.setViewName("redirect:inquiryUserList.in");
 		}else {
-			mv.addObject("errorMsg","»èÁ¦ ½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ì‚­ì œ ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		
 		return mv;
@@ -89,12 +89,12 @@ public class InquiyController {
 			int result = inquiryService.insertReply(r);
 			if(result>0) {
 				inquiryService.updateResult(r.getInquiryNo());
-				return "ÀÛ¼º¼º°ø";
+				return "ìž‘ì„±ì„±ê³µ";
 			}else {
-				return "ÀÛ¼º½ÇÆÐ";
+				return "ìž‘ì„±ì‹¤íŒ¨";
 			}
 		}else {
-			return "ÀÌ¹Ì ÀÛ¼ºµÇ¾î ÀÖ½À´Ï´Ù";
+			return "ì´ë¯¸ ìž‘ì„±ë˜ì–´ ìžˆìŠµë‹ˆë‹¤";
 		}
 	}
 	
@@ -110,9 +110,9 @@ public class InquiyController {
 	public String updateReply(Reply r) {
 		int result = inquiryService.updateReply(r);
 		if(result>0) {
-			return "¼öÁ¤¼º°ø";
+			return "ìˆ˜ì •ì„±ê³µ";
 		}else {
-			return "¼öÁ¤½ÇÆÐ";
+			return "ìˆ˜ì •ì‹¤íŒ¨";
 		}
 	}
 	
@@ -121,10 +121,10 @@ public class InquiyController {
 		int result = inquiryService.deleteReply(ino);
 		if(result>0) {
 			inquiryService.updateResultDelete(ino);
-			session.setAttribute("alertMsg", "´ä±Û »èÁ¦ ¼º°ø");
+			session.setAttribute("alertMsg", "ë‹µê¸€ ì‚­ì œ ì„±ê³µ");
 			mv.setViewName("redirect:inquiryAdminList.in");
 		}else {
-			mv.addObject("errorMsg","»èÁ¦ ½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ì‚­ì œ ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}

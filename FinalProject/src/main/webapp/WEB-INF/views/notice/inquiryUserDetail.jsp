@@ -38,7 +38,7 @@
                     <tr>
                         <td></td>
 	                   		<c:forEach var="i" items="${imgList }">
-		                        <c:if test="${i.originName ne ''}">
+		                        <c:if test="${i.originName ne 'null'}">
 				                    <td>
 					                	<a href="${i.changeName }" download>${i.originName }</a>
 				                    </td>

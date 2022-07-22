@@ -55,7 +55,7 @@
                     <tr>
                         <th>기존<br>사진</th>
 		                   		<c:forEach var="i" items="${imgList }">
-			                        <c:if test="${i.originName ne ''}">
+			                        <c:if test="${i.originName ne 'null'}">
 					                    <td id="imageBody">
 						                	<a href="${i.changeName }" download>${i.originName }</a>
 					                    </td>

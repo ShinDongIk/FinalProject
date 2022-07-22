@@ -54,17 +54,17 @@ strong, b {
 
 /* 버튼영역 */
 .button-gray{
-    width: 45%;
-    height: 50px;
-    background-color: gray;
-    color: white;
-    font-weight: 500;
+    width: 45% !important;
+    height: 50px !important;
+    background-color: gray !important;
+    color: white !important;
+    font-weight: 500 !important;
 }
 .button-purple{
     width: 45%;
     height: 50px;
     background-color: #a8b0ff;
-    color: white;
+    color: white !important;
     font-weight: 500;
 }
 

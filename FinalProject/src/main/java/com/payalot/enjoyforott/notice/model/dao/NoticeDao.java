@@ -13,19 +13,19 @@ import com.payalot.enjoyforott.user.model.vo.User;
 @Repository
 public class NoticeDao {
 
-	//°øÁö»çÇ× ÀÛ¼º
+	//ê³µì§€ì‚¬í•­ ìž‘ì„±
 	public int insertNotice(SqlSessionTemplate sqlSession, Board b) {
 		return sqlSession.insert("boardMapper.insertNotice",b);
 	}
 
-	//°øÁö»çÇ× °³¼ö
+	//ê³µì§€ì‚¬í•­ ê°œìˆ˜
 	public int selectNoticeListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("boardMapper.selectNoticeListCount");
 	}
 
 	public ArrayList<Board> selectNoticeList(SqlSessionTemplate sqlSession, PageInfo pi) {
 		
-		//Rowbounds ¼³Á¤
+		//Rowbounds ì„¤ì •
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		int limit = pi.getBoardLimit();
 		

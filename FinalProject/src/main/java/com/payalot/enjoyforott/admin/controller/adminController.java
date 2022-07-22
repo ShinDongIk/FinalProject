@@ -33,7 +33,7 @@ public class adminController {
 		return "common/adminMypage";
 	}
 	
-	//°øÁö»çÇ× ¸®½ºÆ®
+	//ê³µì§€ì‚¬í•­ ë¦¬ìŠ¤íŠ¸
 	@RequestMapping("adminNoticeListView.ad")
 	public ModelAndView adminNoticeListView(
 										@RequestParam(value="cPage",defaultValue = "1") int currentPage,
@@ -53,7 +53,7 @@ public class adminController {
 		return mv;
 	}
 	
-	//°øÁö»çÇ× ÀÛ¼º
+	//ê³µì§€ì‚¬í•­ ìž‘ì„±
 	@RequestMapping("noticeEnrollForm.ad")
 	public String noticeEnrollForm() {
 		return "adminMenu/adminNoticeEnrollForm";
@@ -63,57 +63,57 @@ public class adminController {
 	public ModelAndView insertNotice(Board b,ModelAndView mv,HttpSession session) {
 		int result = noticeService.insertNotice(b);
 		if(result>0) {
-			session.setAttribute("alertMsg","ÀÛ¼º¿Ï·á");
+			session.setAttribute("alertMsg","ìž‘ì„±ì™„ë£Œ");
 			mv.setViewName("redirect:adminNoticeListView.ad");
 		}else {
-			mv.addObject("errorMsg","ÀÛ¼º½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ìž‘ì„±ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}
 	
-	//°øÁö»çÇ× »ó¼¼º¸±â
+	//ê³µì§€ì‚¬í•­ ìƒì„¸ë³´ê¸°
 	@RequestMapping("adminNoticeDetailView.ad")
 	public ModelAndView adminNoticeDetailView(int bno,ModelAndView mv) {
 		
-		//Á¶È¸¼ö Áõ°¡
+		//ì¡°íšŒìˆ˜ ì¦ê°€
 		int result=noticeService.increaseCount(bno);
 		
 		if(result>0) {
 			Board b = noticeService.noticeDetailView(bno);
 			mv.addObject("b",b).setViewName("adminMenu/adminNoticeDetailView");
 		}else {
-			mv.addObject("errorMsg","°Ô½Ã±Û Á¶È¸ ½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ê²Œì‹œê¸€ ì¡°íšŒ ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}
 	
-	//°øÁö»çÇ× ¼öÁ¤
+	//ê³µì§€ì‚¬í•­ ìˆ˜ì •
 	@RequestMapping("updateNotice.ad")
 	public ModelAndView updateNotice(Board b,ModelAndView mv,HttpSession session) {
 		int result = noticeService.updateNotice(b);
 		if(result>0) {
-			session.setAttribute("alertMsg", "¼öÁ¤ ¿Ï·á");
+			session.setAttribute("alertMsg", "ìˆ˜ì • ì™„ë£Œ");
 			mv.setViewName("redirect:adminNoticeListView.ad");
 		}else {
-			mv.addObject("errorMsg","¼öÁ¤ ½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ìˆ˜ì • ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}
 	
-	//°øÁö»çÇ× »èÁ¦
+	//ê³µì§€ì‚¬í•­ ì‚­ì œ
 	@RequestMapping("deleteNotice.ad")
 	public ModelAndView deleteNotice(@RequestParam(value="bno") int[] bno,ModelAndView mv, HttpSession session) {
 		int result = noticeService.deleteNotice(bno);
 		if(result>0) {
-			session.setAttribute("alertMsg", "»èÁ¦ ¿Ï·á");
+			session.setAttribute("alertMsg", "ì‚­ì œ ì™„ë£Œ");
 			mv.setViewName("redirect:adminNoticeListView.ad");
 		}else {
-			mv.addObject("errorMsg","»èÁ¦ ½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ì‚­ì œ ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}
 	
-	//°øÁö»çÇ× Á¦¸ñ °Ë»ö
+	//ê³µì§€ì‚¬í•­ ì œëª© ê²€ìƒ‰
 	@RequestMapping("searchNotice.ad")
 	public ModelAndView searchNotice(int scitem,String search,@RequestParam(value="cPage",defaultValue = "1") int cPage,
 									ModelAndView mv) {
@@ -149,7 +149,7 @@ public class adminController {
 		return mv;
 	}
 	
-	//Faq¸®½ºÆ®
+	//Faqë¦¬ìŠ¤íŠ¸
 	@RequestMapping("faqList.ad")
 	public ModelAndView adminFaqList(
 								@RequestParam(value="cPage",defaultValue = "1") int currentPage,
@@ -173,44 +173,44 @@ public class adminController {
 		return "adminMenu/faqEnrollForm";
 	}
 	
-	//faq ÀÛ¼º
+	//faq ìž‘ì„±
 	@RequestMapping("insertFaq.ad")
 	public ModelAndView insertFaq(Board b,ModelAndView mv,HttpSession session) {
 		
 		int result = noticeService.insertFaq(b);
 		if(result>0) {
-			session.setAttribute("alertMsg","ÀÛ¼º¿Ï·á");
+			session.setAttribute("alertMsg","ìž‘ì„±ì™„ë£Œ");
 			mv.setViewName("redirect:faqList.ad");
 		}else {
-			mv.addObject("errorMsg","ÀÛ¼º½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ìž‘ì„±ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}
 	
-	//faq »ó¼¼º¸±â
+	//faq ìƒì„¸ë³´ê¸°
 	@RequestMapping("faqDetailView.ad")
 	public ModelAndView adminFaqDetailView(int bno,ModelAndView mv) {
-		//Á¶È¸¼ö Áõ°¡
+		//ì¡°íšŒìˆ˜ ì¦ê°€
 		int result=noticeService.increaseCount(bno);
 		
 		if(result>0) {
 			Board b = noticeService.noticeDetailView(bno);
 			mv.addObject("b",b).setViewName("adminMenu/faqDetailView");
 		}else {
-			mv.addObject("errorMsg","°Ô½Ã±Û Á¶È¸ ½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ê²Œì‹œê¸€ ì¡°íšŒ ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}
 	
-	//faq ¼öÁ¤
+	//faq ìˆ˜ì •
 	@RequestMapping("updateFaq.ad")
 	public ModelAndView updateFaq(Board b,ModelAndView mv,HttpSession session) {
 		int result = noticeService.updateNotice(b);
 		if(result>0) {
-			session.setAttribute("alertMsg", "¼öÁ¤ ¿Ï·á");
+			session.setAttribute("alertMsg", "ìˆ˜ì • ì™„ë£Œ");
 			mv.setViewName("redirect:faqList.ad");
 		}else {
-			mv.addObject("errorMsg","¼öÁ¤ ½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ìˆ˜ì • ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}
@@ -219,15 +219,15 @@ public class adminController {
 	public ModelAndView deleteFaq(@RequestParam(value="bno") int[] bno,ModelAndView mv, HttpSession session) {
 		int result = noticeService.deleteNotice(bno);
 		if(result>0) {
-			session.setAttribute("alertMsg", "»èÁ¦ ¿Ï·á");
+			session.setAttribute("alertMsg", "ì‚­ì œ ì™„ë£Œ");
 			mv.setViewName("redirect:faqList.ad");
 		}else {
-			mv.addObject("errorMsg","»èÁ¦ ½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ì‚­ì œ ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}
 	
-	//°øÁö»çÇ× Á¦¸ñ °Ë»ö
+	//ê³µì§€ì‚¬í•­ ì œëª© ê²€ìƒ‰
 	@RequestMapping("searchFaq.ad")
 	public ModelAndView searchFaq(int scitem,String search,@RequestParam(value="cPage",defaultValue = "1") int cPage,
 								ModelAndView mv) {
@@ -294,10 +294,10 @@ public class adminController {
 		int result = noticeService.adminInfoUpdate(u);
 		
 		if(result>0) {
-			session.setAttribute("alertMsg", "¼öÁ¤ ¿Ï·á");
+			session.setAttribute("alertMsg", "ìˆ˜ì • ì™„ë£Œ");
 			mv.setViewName("common/adminMypage");
 		}else {
-			mv.addObject("errorMsg","¼öÁ¤ ½ÇÆÐ").setViewName("common/errorPage");
+			mv.addObject("errorMsg","ìˆ˜ì • ì‹¤íŒ¨").setViewName("common/errorPage");
 		}
 		return mv;
 	}

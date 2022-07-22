@@ -5,10 +5,10 @@ body{
     font-size: 14px;
     background-color: #efefef;
 }
-.outer, form{
+.outer {
     text-align: center;
-    width: 80%;
 }
+
 h1, h2, h3, h4, h5, h6 {
     color: #3c3b3b;
     font-family: "Raleway", Helvetica, sans-serif;
@@ -23,71 +23,66 @@ strong, b {
     font-weight: 700;
 }
 
-.subTitle{
-    /* border: 1px solid blueviolet; */
-    width: 90%;
-    display: inline-block;
-    text-align: left;
-    font-size: large;
+a{
+    color: black;
+    font-size: small;
+    text-decoration: none;
 }
-.buttonArea{
-    /* border: 1px solid blueviolet; */
-    width: 40%;
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.inputArea{
+    /* border: 1px solid red; */
+    width: 60%;
+    height: 150px;
     display: inline-block;
     text-align: center;
 }
-.content1{
-    /* border: 1px solid red; */
+#inputTable {
     width: 100%;
+    text-align: center;
+    height: 100px;
+}
+.subTitle{
+    /* border: 1px solid blueviolet; */
+    width: 50%;
     display: inline-block;
+    text-align: left;
+    margin: 1%;
+    font-size: x-large;
+}
+.contentTitle{
+    /* border: 1px solid blueviolet; */
+    width: 60%;
+    display: inline-block;
+    text-align: left;
+    margin: 1%;
+    font-size: large;
 }
 .content2{
-    width: 50%;  
-    float: left;
+	
 }
-.agreement{
-    width: 90%;
-    border: 1px solid #a8b0ff;
-    border-radius: 5px;
-    font-size: small;
-    height: 200px;
-    resize: none;
-    background-color: rgb(255, 251, 245);
+.content3 {
+    /* border: 1px solid #a8b0ff; */
+    display: inline-block;
+    width: 70%;
+    border-radius: 10px;
+    padding: 1%;
+    
 }
 
 /* 버튼영역 */
-.button-gray{
-    width: 45%;
-    height: 50px;
-    background-color: gray;
-    color: white;
-    font-weight: 500;
-}
 .button-purple{
-    width: 45%;
+    width: 200px;
     height: 50px;
     background-color: #a8b0ff;
-    color: white;
+    color: white !important;
     font-weight: 500;
 }
 
-/* 결제정보 */
-.table{
-    width: 100%;
-}
-
-/* 폰트 스타일 */
+/* 글씨관련 */
 .font-purple{
     color: #a8b0ff;
-}
-
-/* 유의사항 */
-#notice{
-    font-size: 12px;
-    color: gray;
-    margin: 1%;
-    padding: 1%;
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
-    
 }

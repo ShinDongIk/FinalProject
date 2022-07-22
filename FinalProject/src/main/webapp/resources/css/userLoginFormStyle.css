@@ -26,7 +26,7 @@ strong, b {
 a{
     color: black !important;
     font-size: small !important;
-    text-decoration: none !important;
+    border-bottom: none !important;
 }
 a:hover{
     text-decoration: none;
@@ -46,7 +46,7 @@ a:hover{
     height: 100px;
 }
 #inputTable *{
-	background-color: none !important;
+	background-color: #efefef !important;
 	border: none !impertant;
 }
 .subTitle{

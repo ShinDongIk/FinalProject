@@ -11,65 +11,65 @@ import com.payalot.enjoyforott.user.model.vo.User;
 @Service
 public interface NoticeService {
 	
-	//°øÁö»çÇ× ÀÛ¼º
+	//ê³µì§€ì‚¬í•­ ì‘ì„±
 	int insertNotice(Board b);
 
-	//°øÁö»çÇ× °³¼ö
+	//ê³µì§€ì‚¬í•­ ê°œìˆ˜
 	int selectNoticeListCount();
 	
-	//°øÁö»çÇ× ¸®½ºÆ®
+	//ê³µì§€ì‚¬í•­ ë¦¬ìŠ¤íŠ¸
 	ArrayList<Board> selectNoticeList(PageInfo pi);
 	
-	//°øÁö»çÇ× Á¶È¸¼ö Áõ°¡
+	//ê³µì§€ì‚¬í•­ ì¡°íšŒìˆ˜ ì¦ê°€
 	int increaseCount(int boardNo);
 	
-	//°øÁö»çÇ× »ó¼¼º¸±â
+	//ê³µì§€ì‚¬í•­ ìƒì„¸ë³´ê¸°
 	Board noticeDetailView(int boardNo);
 	
-	//°øÁö»çÇ× ¼öÁ¤
+	//ê³µì§€ì‚¬í•­ ìˆ˜ì •
 	int updateNotice(Board b);
 	
-	//°øÁö»çÇ× »èÁ¦
+	//ê³µì§€ì‚¬í•­ ì‚­ì œ
 	int deleteNotice(int[] boardNo);
 	
-	//°øÁö»çÇ× Á¦¸ñ °Ë»ö °³¼ö
+	//ê³µì§€ì‚¬í•­ ì œëª© ê²€ìƒ‰ ê°œìˆ˜
 	int searchNoticeTitleList(String search);
 	
-	//°øÁö»çÇ× ³»¿ë °Ë»ö °³¼ö
+	//ê³µì§€ì‚¬í•­ ë‚´ìš© ê²€ìƒ‰ ê°œìˆ˜
 	int searchNoticeContentList(String search);
 	
-	//°øÁö»çÇ× Á¦¸ñ °Ë»ö
+	//ê³µì§€ì‚¬í•­ ì œëª© ê²€ìƒ‰
 	ArrayList<Board> searchNoticeTitle(String search,PageInfo pi);
 	
-	//°øÁö»çÇ× ³»¿ë °Ë»ö
+	//ê³µì§€ì‚¬í•­ ë‚´ìš© ê²€ìƒ‰
 	ArrayList<Board> searchNoticeContent(String search,PageInfo pi);
 	
 	
-	//faq ÀÛ¼º
+	//faq ì‘ì„±
 	int insertFaq(Board b);
 
-	//faq °³¼ö
+	//faq ê°œìˆ˜
 	int selectFaqListCount();
 	
-	//faq ¸®½ºÆ®
+	//faq ë¦¬ìŠ¤íŠ¸
 	ArrayList<Board> selectFaqList(PageInfo pi);
 	
-	//faq Á¦¸ñ °Ë»ö °³¼ö
+	//faq ì œëª© ê²€ìƒ‰ ê°œìˆ˜
 	int searchFaqTitleList(String search);
 	
-	//faq ³»¿ë °Ë»ö °³¼ö
+	//faq ë‚´ìš© ê²€ìƒ‰ ê°œìˆ˜
 	int searchFaqContentList(String search);
 	
-	//faq Á¦¸ñ °Ë»ö
+	//faq ì œëª© ê²€ìƒ‰
 	ArrayList<Board> searchFaqTitle(String search,PageInfo pi);
 
-	//faq ³»¿ë °Ë»ö
+	//faq ë‚´ìš© ê²€ìƒ‰
 	ArrayList<Board> searchFaqContent(String search,PageInfo pi);
 	
-	//°ü¸®ÀÚ Á¤º¸ ¼öÁ¤ ºñ¹Ğ¹øÈ£ È®ÀÎ
+	//ê´€ë¦¬ì ì •ë³´ ìˆ˜ì • ë¹„ë°€ë²ˆí˜¸ í™•ì¸
 	User selectAdmin(String userId);
 	
-	//°ü¸®ÀÚ Á¤º¸ ºñ¹Ğ¹øÈ£ º¯°æ
+	//ê´€ë¦¬ì ì •ë³´ ë¹„ë°€ë²ˆí˜¸ ë³€ê²½
 	int adminInfoUpdate(User u);
 	
 }

@@ -13,74 +13,74 @@ import com.payalot.enjoyforott.inquiry.model.vo.Type;
 @Service
 public interface InquiryService {
 	
-	//1:1°ü¸®ÀÚ ¹®ÀÇ °³¼ö
+	//1:1ê´€ë¦¬ì ë¬¸ì˜ ê°œìˆ˜
 	int inquiryAdminListCount();
 	
-	//1:1»ç¿ëÀÚ ¹®ÀÇ °³¼ö
+	//1:1ì‚¬ìš©ì ë¬¸ì˜ ê°œìˆ˜
 	int inquiryUserListCount(String userId);
 	
-	//1:1¹®ÀÇ °ü¸®ÀÚ ¸®½ºÆ®
+	//1:1ë¬¸ì˜ ê´€ë¦¬ì ë¦¬ìŠ¤íŠ¸
 	ArrayList<Inquiry> inquiryAdminList(PageInfo pi);
 	
-	//1:1¹®ÀÇ »ç¿ëÀÚ ¸®½ºÆ®
+	//1:1ë¬¸ì˜ ì‚¬ìš©ì ë¦¬ìŠ¤íŠ¸
 	ArrayList<Inquiry> inquiryUserList(PageInfo pi,String userId);
 	
-	//1:1¹®ÀÇ ÀÛ¼º
+	//1:1ë¬¸ì˜ ì‘ì„±
 	int insertInquiry(Inquiry iq);
 	
-	//1:1¹®ÀÇ »ó¼¼º¸±â
+	//1:1ë¬¸ì˜ ìƒì„¸ë³´ê¸°
 	Inquiry inquiryUserDetailView(int inquiryNo);
 	
-	//1:1¹®ÀÇ »èÁ¦
+	//1:1ë¬¸ì˜ ì‚­ì œ
 	int deleteInquiry(int[] inquiryNo);
 
-	//1:1¹®ÀÇ ¼öÁ¤
+	//1:1ë¬¸ì˜ ìˆ˜ì •
 	int updateInquiry(Inquiry i);
 	
-	//Ä«Å×°í¸® ¸®½ºÆ®
+	//ì¹´í…Œê³ ë¦¬ ë¦¬ìŠ¤íŠ¸
 	ArrayList<Type> type();
 	
-	//´ä±Û ÀÛ¼º
+	//ë‹µê¸€ ì‘ì„±
 	int insertReply(Reply r);
 	
-	//´ä±Û ÀÛ¼º ÈÄ 1:1¹®ÀÇ Ã³¸® °á°ú º¯°æ
+	//ë‹µê¸€ ì‘ì„± í›„ 1:1ë¬¸ì˜ ì²˜ë¦¬ ê²°ê³¼ ë³€ê²½
 	int updateResult(int inquiryNo);
 	
 	
-	//´ä±Û ¸®½ºÆ®
+	//ë‹µê¸€ ë¦¬ìŠ¤íŠ¸
 	Reply replyList(int inquiryNo);
 	
-	//´ä±Û ¼öÁ¤
+	//ë‹µê¸€ ìˆ˜ì •
 	int updateReply(Reply r);
 	
-	//´ä±Û »èÁ¦
+	//ë‹µê¸€ ì‚­ì œ
 	int deleteReply(int[] inquiryNo);
 	
-	//´ä±Û »èÁ¦ ÈÄ 1:1¹®ÀÇ Ã³¸® °á°ú º¯°æ
+	//ë‹µê¸€ ì‚­ì œ í›„ 1:1ë¬¸ì˜ ì²˜ë¦¬ ê²°ê³¼ ë³€ê²½
 	int updateResultDelete(int[] inquiryNo);
 	
-	//»ç¿ëÀÚ 1:1¹®ÀÇ Á¦¸ñ °Ë»ö °Ô½Ã±Û ¼ö
+	//ì‚¬ìš©ì 1:1ë¬¸ì˜ ì œëª© ê²€ìƒ‰ ê²Œì‹œê¸€ ìˆ˜
 	int inquiryUserSearchTitleCount(HashMap<String, String> map);
 	
-	//»ç¿ëÀÚ 1:1¹®ÀÇ Á¦¸ñ °Ë»ö
+	//ì‚¬ìš©ì 1:1ë¬¸ì˜ ì œëª© ê²€ìƒ‰
 	ArrayList<Inquiry> inquiryUserSearchTitle(HashMap<String, String> map,PageInfo pi);
 
-	//»ç¿ëÀÚ 1:1¹®ÀÇ ³»¿ë °Ë»ö °Ô½Ã±Û ¼ö
+	//ì‚¬ìš©ì 1:1ë¬¸ì˜ ë‚´ìš© ê²€ìƒ‰ ê²Œì‹œê¸€ ìˆ˜
 	int inquiryUserSearchContentCount(HashMap<String, String> map);
 	
-	//»ç¿ëÀÚ 1:1¹®ÀÇ ³»¿ë °Ë»ö
+	//ì‚¬ìš©ì 1:1ë¬¸ì˜ ë‚´ìš© ê²€ìƒ‰
 	ArrayList<Inquiry> inquiryUserSearchContent(HashMap<String, String> map,PageInfo pi);
 	
-	//°ü¸®ÀÚ 1:1¹®ÀÇ Á¦¸ñ °Ë»ö °Ô½Ã±Û ¼ö
+	//ê´€ë¦¬ì 1:1ë¬¸ì˜ ì œëª© ê²€ìƒ‰ ê²Œì‹œê¸€ ìˆ˜
 	int inquiryAdminSearchTitleCount(String keyword);
 	
-	//°ü¸®ÀÚ 1:1¹®ÀÇ Á¦¸ñ °Ë»ö
+	//ê´€ë¦¬ì 1:1ë¬¸ì˜ ì œëª© ê²€ìƒ‰
 	ArrayList<Inquiry> inquiryAdminSearchTitle(String keyword,PageInfo pi);
 
-	//°ü¸®ÀÚ 1:1¹®ÀÇ ÀÛ¼ºÀÚ °Ë»ö °Ô½Ã±Û ¼ö
+	//ê´€ë¦¬ì 1:1ë¬¸ì˜ ì‘ì„±ì ê²€ìƒ‰ ê²Œì‹œê¸€ ìˆ˜
 	int inquiryAdminSearchWriterCount(String keyword);
 	
-	//»ç¿ëÀÚ 1:1¹®ÀÇ ÀÛ¼ºÀÚ °Ë»ö
+	//ì‚¬ìš©ì 1:1ë¬¸ì˜ ì‘ì„±ì ê²€ìƒ‰
 	ArrayList<Inquiry> inquiryAdminSearchWriter(String keyword,PageInfo pi);
 
 	

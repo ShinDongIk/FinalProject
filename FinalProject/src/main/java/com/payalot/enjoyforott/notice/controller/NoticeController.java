@@ -27,7 +27,7 @@ public class NoticeController {
 	}
 	
 	
-	//°øÁö»çÇ× ¸®½ºÆ®
+	//ê³µì§€ì‚¬í•­ ë¦¬ìŠ¤íŠ¸
 		@RequestMapping("userNoticeListView.us")
 		public ModelAndView adminNoticeListView(
 											@RequestParam(value="cPage",defaultValue = "1") int currentPage,
@@ -47,23 +47,23 @@ public class NoticeController {
 			return mv;
 		}
 		
-		//°øÁö»çÇ× »ó¼¼º¸±â
+		//ê³µì§€ì‚¬í•­ ìƒì„¸ë³´ê¸°
 		@RequestMapping("userNoticeDetailView.us")
 		public ModelAndView adminNoticeDetailView(int bno,ModelAndView mv) {
 			
-			//Á¶È¸¼ö Áõ°¡
+			//ì¡°íšŒìˆ˜ ì¦ê°€
 			int result=noticeService.increaseCount(bno);
 			
 			if(result>0) {
 				Board b = noticeService.noticeDetailView(bno);
 				mv.addObject("b",b).setViewName("notice/userNoticeDetailView");
 			}else {
-				mv.addObject("errorMsg","°Ô½Ã±Û Á¶È¸ ½ÇÆÐ").setViewName("common/errorPage");
+				mv.addObject("errorMsg","ê²Œì‹œê¸€ ì¡°íšŒ ì‹¤íŒ¨").setViewName("common/errorPage");
 			}
 			return mv;
 		}
 		
-		//°øÁö»çÇ× Á¦¸ñ °Ë»ö
+		//ê³µì§€ì‚¬í•­ ì œëª© ê²€ìƒ‰
 		@RequestMapping("userSearchNotice.us")
 		public ModelAndView searchNotice(int scitem,String search,@RequestParam(value="cPage",defaultValue = "1") int cPage,
 										ModelAndView mv) {
@@ -99,7 +99,7 @@ public class NoticeController {
 			return mv;
 		}
 		
-		//Faq¸®½ºÆ®
+		//Faqë¦¬ìŠ¤íŠ¸
 		@RequestMapping("userFaqList.us")
 		public ModelAndView adminFaqList(
 									@RequestParam(value="cPage",defaultValue = "1") int currentPage,
@@ -118,22 +118,22 @@ public class NoticeController {
 			return mv;
 		}
 		
-		//faq »ó¼¼º¸±â
+		//faq ìƒì„¸ë³´ê¸°
 		@RequestMapping("userFaqDetailView.us")
 		public ModelAndView adminFaqDetailView(int bno,ModelAndView mv) {
-			//Á¶È¸¼ö Áõ°¡
+			//ì¡°íšŒìˆ˜ ì¦ê°€
 			int result=noticeService.increaseCount(bno);
 			
 			if(result>0) {
 				Board b = noticeService.noticeDetailView(bno);
 				mv.addObject("b",b).setViewName("notice/userFaqDetailView");
 			}else {
-				mv.addObject("errorMsg","°Ô½Ã±Û Á¶È¸ ½ÇÆÐ").setViewName("common/errorPage");
+				mv.addObject("errorMsg","ê²Œì‹œê¸€ ì¡°íšŒ ì‹¤íŒ¨").setViewName("common/errorPage");
 			}
 			return mv;
 		}
 		
-		//faq Á¦¸ñ °Ë»ö
+		//faq ì œëª© ê²€ìƒ‰
 		@RequestMapping("userSearchFaq.us")
 		public ModelAndView searchFaq(int scitem,String search,@RequestParam(value="cPage",defaultValue = "1") int cPage,
 									ModelAndView mv) {

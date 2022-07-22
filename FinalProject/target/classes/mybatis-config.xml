@@ -16,6 +16,9 @@
 		<typeAlias type="com.payalot.enjoyforott.inquiry.model.vo.Type" alias="type"/>
 		<typeAlias type="com.payalot.enjoyforott.notice.model.vo.Board" alias="board"/>
 		<typeAlias type="com.payalot.enjoyforott.notice.model.vo.Member" alias="member"/>
+		<typeAlias type="com.payalot.enjoyforott.party.model.vo.Party" alias="party"/>
+		<typeAlias type="com.payalot.enjoyforott.party.model.vo.OttType" alias="ottType"/>
+		<typeAlias type="com.payalot.enjoyforott.party.model.vo.PartyMember" alias="partyMember"/>
 	</typeAliases>
 	
 	
@@ -28,5 +31,7 @@
 		<mapper resource="/mappers/inquiry/inquiry-mapper.xml"/>
 		<mapper resource="/mappers/reply/reply-mapper.xml"/>
 		<mapper resource="/mappers/memManage/memManage-mapper.xml"/>
+		<mapper resource="/mappers/party/party-mapper.xml"/>
+		<mapper resource="/mappers/party/ottType-mapper.xml"/>
 	</mappers>
 </configuration>

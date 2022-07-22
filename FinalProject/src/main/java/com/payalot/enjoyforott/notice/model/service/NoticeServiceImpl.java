@@ -20,109 +20,109 @@ public class NoticeServiceImpl implements NoticeService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	//°øÁö»çÇ× ÀÛ¼º
+	//ê³µì§€ì‚¬í•­ ì‘ì„±
 	@Override
 	public int insertNotice(Board b) {
 		return noticeDao.insertNotice(sqlSession,b);
 	}
 
-	//°øÁö»çÇ× °³¼ö
+	//ê³µì§€ì‚¬í•­ ê°œìˆ˜
 	@Override
 	public int selectNoticeListCount() {
 		return noticeDao.selectNoticeListCount(sqlSession);
 	}
 	
-	//°øÁö»çÇ× ¸®½ºÆ®
+	//ê³µì§€ì‚¬í•­ ë¦¬ìŠ¤íŠ¸
 	@Override
 	public ArrayList<Board> selectNoticeList(PageInfo pi) {
 		return noticeDao.selectNoticeList(sqlSession,pi);
 	}
 
-	//Á¶È¸¼ö Áõ°¡
+	//ì¡°íšŒìˆ˜ ì¦ê°€
 	@Override
 	public int increaseCount(int boardNo) {
 		return noticeDao.increaseNoticeCount(sqlSession,boardNo);
 	}
 
-	//°øÁö»çÇ× »ó¼¼º¸±â
+	//ê³µì§€ì‚¬í•­ ìƒì„¸ë³´ê¸°
 	@Override
 	public Board noticeDetailView(int boardNo) {
 		return noticeDao.noticeDetailView(sqlSession,boardNo);
 	}
 
-	//°øÁö»çÇ× ¼öÁ¤
+	//ê³µì§€ì‚¬í•­ ìˆ˜ì •
 	@Override
 	public int updateNotice(Board b) {
 		return noticeDao.updateNotice(sqlSession,b);
 	}
 
-	//°øÁö»çÇ× »èÁ¦
+	//ê³µì§€ì‚¬í•­ ì‚­ì œ
 	@Override
 	public int deleteNotice(int[] boardNo) {
 		return noticeDao.deleteNotice(sqlSession,boardNo);
 	}
 
-	//°øÁö»çÇ× Á¦¸ñ °Ë»ö °³¼ö
+	//ê³µì§€ì‚¬í•­ ì œëª© ê²€ìƒ‰ ê°œìˆ˜
 	@Override
 	public int searchNoticeTitleList(String search) {
 		return noticeDao.searchNoticeTitleList(sqlSession, search);
 	}
 	
-	//°øÁö»çÇ× ³»¿ë °Ë»ö °³¼ö
+	//ê³µì§€ì‚¬í•­ ë‚´ìš© ê²€ìƒ‰ ê°œìˆ˜
 	@Override
 	public int searchNoticeContentList(String search) {
 		return noticeDao.searchNoticeContent(sqlSession,search);
 	}
 
-	//°øÁö»çÇ× Á¦¸ñ °Ë»ö
+	//ê³µì§€ì‚¬í•­ ì œëª© ê²€ìƒ‰
 	@Override
 	public ArrayList<Board> searchNoticeTitle(String search, PageInfo pi) {
 		return noticeDao.searchNoticeTitle(sqlSession,search,pi);
 	}
 	
-	//°øÁö»çÇ× ³»¿ë °Ë»ö
+	//ê³µì§€ì‚¬í•­ ë‚´ìš© ê²€ìƒ‰
 	@Override
 	public ArrayList<Board> searchNoticeContent(String search, PageInfo pi) {
 		return noticeDao.searchNoticeContent(sqlSession,search,pi);
 	}
 
-	//faq °³¼ö
+	//faq ê°œìˆ˜
 	@Override
 	public int selectFaqListCount() {
 		return noticeDao.selectFaqListCount(sqlSession);
 	}
 	
-	//faq ¸®½ºÆ®
+	//faq ë¦¬ìŠ¤íŠ¸
 	@Override
 	public ArrayList<Board> selectFaqList(PageInfo pi) {
 		return noticeDao.selectfaqList(sqlSession,pi);
 	}
 	
-	//faq ÀÛ¼º
+	//faq ì‘ì„±
 	@Override
 	public int insertFaq(Board b) {
 		return noticeDao.insertFaq(sqlSession,b);
 	}
 
-	//faq Á¦¸ñ °Ë»ö °³¼ö
+	//faq ì œëª© ê²€ìƒ‰ ê°œìˆ˜
 	@Override
 	public int searchFaqTitleList(String search) {
 		return noticeDao.searchFaqTitleList(sqlSession,search);
 	}
 
-	//faq ³»¿ë °Ë»ö °³¼ö
+	//faq ë‚´ìš© ê²€ìƒ‰ ê°œìˆ˜
 	@Override
 	public int searchFaqContentList(String search) {
 		return noticeDao.searchFaqContent(sqlSession,search);
 	}
 
-	//faq Á¦¸ñ °Ë»ö
+	//faq ì œëª© ê²€ìƒ‰
 	@Override
 	public ArrayList<Board> searchFaqTitle(String search, PageInfo pi) {
 		return noticeDao.searchFaqTitle(sqlSession,search,pi);
 	}
 
-	//faq ³»¿ë °Ë»ö
+	//faq ë‚´ìš© ê²€ìƒ‰
 	@Override
 	public ArrayList<Board> searchFaqContent(String search, PageInfo pi) {
 		return noticeDao.searchFaqContent(sqlSession,search,pi);

@@ -79,11 +79,11 @@ public class InquiyUserController {
 		int result = inquiryService.insertInquiry(iq);
 		
 		if(result>0) {
-			session.setAttribute("alertMsg","累己 己傍");
+			session.setAttribute("alertMsg","鞛戩劚 靹标车");
 			mv.addObject("userId", iq.getInquiryWriter());
 			mv.setViewName("redirect:/inquiryUserList.in");
 		}else {
-			mv.addObject("errorMsg","累己 角菩");
+			mv.addObject("errorMsg","鞛戩劚 鞁ろ尐");
 			mv.setViewName("common/errorPage");
 		}
 		return mv;
@@ -199,10 +199,10 @@ public class InquiyUserController {
 		
 		int result = inquiryService.updateInquiry(iq);
 		if(result>0) {
-			session.setAttribute("alertMsg", "荐沥 己傍");
+			session.setAttribute("alertMsg", "靾橃爼 靹标车");
 			mv.setViewName("redirect:inquiryUserList.in?userId="+iq.getInquiryWriter());
 		}else {
-			mv.addObject("errorMsg","荐沥 角菩").setViewName("common/errorPage");
+			mv.addObject("errorMsg","靾橃爼 鞁ろ尐").setViewName("common/errorPage");
 		}
 		return mv;
 	}

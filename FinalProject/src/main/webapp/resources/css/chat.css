@@ -183,6 +183,11 @@ html, body {
   float:left;
   width:15%;
 }
+
+.time-area.user{
+	float:left;
+}
+
 .chat-msg.self > .msg-avatar img {
   width:45px;
   height:45px;
@@ -194,12 +199,14 @@ html, body {
   background:white;
   padding:10px 15px 10px 15px;  
   color:#666;
-  max-width:75%;
+  height:50%;
+  max-width:55%;
   float:left;
   margin-left:10px; 
   position:relative;
   margin-bottom:20px;
   border-radius:30px;
+  overflow:hidden;
 }
 .chat-msg {
   clear:both;    
@@ -210,6 +217,11 @@ html, body {
   background: #5A5EB9;
   color:white;
 }
+
+.time-area.self{
+	float:right;
+}
+
 .cm-msg-button>ul>li {
   list-style:none;
   float:left;
@@ -252,4 +264,37 @@ input{
 }
 .tab{
 	margin-bottom:6px;
+}
+
+.main-read-num{
+	display : inline-block;
+	width : 50%;
+	height : 50%;
+	border-radius: 50px;
+	background-color: red;	
+	text-align : center;
+	line-height: 1;
+}
+
+.read-num.area-out{
+	margin-left : 5px;
+	margin-top : 10px;
+	display : inline-block;
+	width : 10%;
+	height : 30%;
+	border-radius: 50px;
+	background-color: red;	
+	text-align : center;
+	line-height: 1;
+}
+.read-num.area-in{
+	margin-left : 5px;
+	margin-top : 10px;
+	display : none;
+	width : 10%;
+	height : 30%;
+	border-radius: 50px;
+	background-color: red;	
+	text-align : center;
+	line-height: 1;
 }
