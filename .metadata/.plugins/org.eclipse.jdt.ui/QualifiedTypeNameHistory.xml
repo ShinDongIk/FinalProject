@@ -5,4 +5,15 @@
 <fullyQualifiedTypeName name="com.payalot.enjoyforott.crawl.crRank"/>
 <fullyQualifiedTypeName name="com.payalot.enjoyforott.poster.model.vo.Poster"/>
 <fullyQualifiedTypeName name="com.payalot.enjoyforott.crawl.crRecom"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="com.payalot.enjoyforott.favor.model.service.favorService"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+<fullyQualifiedTypeName name="com.payalot.enjoyforott.favor.model.dao.favorDao"/>
+<fullyQualifiedTypeName name="com.sun.xml.internal.bind.v2.schemagen.xmlschema.List"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
 </qualifiedTypeNameHistroy>

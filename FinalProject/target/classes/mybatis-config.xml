@@ -12,6 +12,7 @@
 		<typeAlias type="com.payalot.enjoyforott.memberModal.model.vo.MemberModal" alias="memberModal"/>
 		<typeAlias type="com.payalot.enjoyforott.user.model.vo.User" alias="user"/>
 		<typeAlias type="com.payalot.enjoyforott.poster.model.vo.Poster" alias="poster"/>
+		<typeAlias type="com.payalot.enjoyforott.favor.model.vo.Favor" alias="favor"/>
 	</typeAliases>
 	
 	<mappers>
@@ -20,5 +21,6 @@
 		<mapper resource="/mappers/memberModal/memberModal-mapper.xml"/>
 		<mapper resource="/mappers/user/user-mapper.xml"/>
 		<mapper resource="/mappers/poster/post-mapper.xml"/>
+		<mapper resource="/mappers/favor/favor-mapper.xml"/>
 	</mappers>
 </configuration>

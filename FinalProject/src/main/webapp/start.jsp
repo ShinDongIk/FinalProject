@@ -8,5 +8,10 @@
 </head>
 <body>
 	<jsp:forward page="startRedirect"/>
+	
+
+
+
+
 </body>
 </html>

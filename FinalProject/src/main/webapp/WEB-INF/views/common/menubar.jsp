@@ -102,6 +102,16 @@
 			<script src="${pageContext.request.contextPath}/js/breakpoints.min.js"></script>
 			<script src="${pageContext.request.contextPath}/js/util.js"></script>
 			<script src="${pageContext.request.contextPath}/js/main.js"></script>
+			
+<!-- 				<script> 
+// 		$(function(){
+// 			$.ajax({
+// 				url:"auto.do"
+				
+// 			});
+			
+// 		})
+	</script> -->
 
 	</body>
 </html>

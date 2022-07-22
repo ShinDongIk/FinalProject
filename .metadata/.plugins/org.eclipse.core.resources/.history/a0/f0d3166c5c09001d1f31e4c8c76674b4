@@ -1,0 +1,31 @@
+package com.payalot.enjoyforott.favor.model.service;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.payalot.enjoyforott.favor.model.dao.favorDao;
+import com.payalot.enjoyforott.favor.model.vo.Favor;
+
+public class favorServiceImpl implements favorService{
+
+	@Autowired
+	private SqlSessionTemplate sqlSession;
+	
+	@Autowired
+	private favorDao favordao;
+	
+	@Autowired
+	private Favor favor;
+	
+	
+	
+	@Override
+	public int favor(String good, String userId) {
+		
+		int result = favordao.favor(sqlSession,good,userId);
+		
+		
+		return result;
+	}
+
+}

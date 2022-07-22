@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="favormapper">
+
+	<insert id="insertfavor" parameterType="favor">
+		INSERT INTO FAVOR(POST_NO,
+							USER_ID,
+							POST_FAVOR)
+					VALUES(#{postNo},
+							#{userId},
+							'추천'
+							)
+
+	</insert>
+
+
+
+
+</mapper>

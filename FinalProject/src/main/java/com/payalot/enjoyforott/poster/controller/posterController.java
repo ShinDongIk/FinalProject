@@ -3,6 +3,9 @@ package com.payalot.enjoyforott.poster.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.payalot.enjoyforott.crawl.crRecom;
+import com.payalot.enjoyforott.favor.model.service.favorService;
 import com.payalot.enjoyforott.poster.model.service.posterService;
 import com.payalot.enjoyforott.poster.model.vo.Poster;
 import com.payalot.enjoyforott.poster.model.vo.PosterRank;
@@ -28,6 +32,9 @@ public class posterController{
 	
 	@Autowired
 	private posterService posterservice;
+	
+	@Autowired
+	private favorService favorservice;
 	
 	@RequestMapping("rank.ps")
 	public String EnterRank(@RequestParam(value="name",defaultValue="kino") String name,
@@ -93,7 +100,6 @@ public class posterController{
 		mv.addAttribute("pst",pst);
 		
 		
-		
 		return "poster/ListRecomPs";
 	}
 	@RequestMapping("auto.do")
@@ -116,6 +122,31 @@ public class posterController{
 			}
 				
 		}
+	@ResponseBody
+	@RequestMapping("good.do")
+	public int Good(int postNo,String userId,HttpServletResponse response) {
+		
+	
+		HashMap<String,Object> good = new HashMap<String,Object>();
+		good.put("postNo", postNo);
+		good.put("userId", userId);
+		
+		System.out.println(good);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		
+		 int result = favorservice.favor(good);
+		 
+		 if(result>0) {
+			 System.out.println("success");
+		 }else {
+			 System.out.println("failed");
+		 }
+		
+		return result;
+	}
+	
+	
 			
 		
 	}

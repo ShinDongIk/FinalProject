@@ -1,0 +1,15 @@
+package com.payalot.enjoyforott.favor.model.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import org.mybatis.spring.SqlSessionTemplate;
+
+public class favorDao {
+
+	public List<Map> favor(SqlSessionTemplate sqlSession, String good, String userId) {
+		
+		return sqlSession.insert("favormapper.insertfavor",good,userId);
+	}
+
+}
