@@ -17,7 +17,6 @@
 		<result column="USER_STOP_DATE" property="userStopDate"/>
 		<result column="USER_DELETE_STATUS" property="userDeleteStatus"/>
 		<result column="USER_DELETE_DATE" property="userDeleteDate"/>
-		
 		<result column="LEVEL_NAME" property="levelName"/>		
 	</resultMap>
 	

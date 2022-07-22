@@ -9,6 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+		 
 		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 		 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -45,7 +46,14 @@
 										<li><a href="logout.me">로그아웃</a></li>
 										<li><a id="nickName" onClick="memModalOpen('${ loginUser.userNickname }');">${ loginUser.userName }님 !</a><a id="nickNeText">환영합니다!</a></li>
 										<li><a href="#">등급: ${ loginUser.levelName }</a></li>
-										<li><a href="mypage.me">마이페이지</a></li>
+										<c:choose>
+											<c:when test="${loginUser.userId=='admin' }">
+												<li><a href="adminMypage.ad">마이페이지</a></li>
+											</c:when>
+											<c:otherwise>
+												<li><a href="mypage.me">마이페이지</a></li>
+											</c:otherwise>
+										</c:choose>
 									</ul>
 								</c:otherwise>                
                 			</c:choose>
@@ -88,9 +96,18 @@
 										<span class="opener">여기는 고객센터!</span>
 										<br><br>
 										<ul>
-											<li class="list-Style-None"><a href="#">공지 합니다!</a></li>
-											<li class="list-Style-None"><a href="#">자주 묻는 질문들이에요!</a></li>
-											<li class="list-Style-None"><a href="#">문의 하고 싶어요!!</a></li>
+											<c:choose>
+												<c:when test="${loginUser.userId=='admin' }">
+													<li class="list-Style-None"><a href="adminNoticeListView.ad">공지 합니다!</a></li>
+													<li class="list-Style-None"><a href="faqList.ad">자주 묻는 질문들이에요!</a></li>
+													<li class="list-Style-None"><a href="inquiryAdminList.in">문의 하고 싶어요!!</a></li>
+												</c:when>
+												<c:otherwise>
+													<li class="list-Style-None"><a href="userNoticeListView.us">공지 합니다!</a></li>
+													<li class="list-Style-None"><a href="userFaqList.us">자주 묻는 질문들이에요!</a></li>
+													<li class="list-Style-None"><a href="inquiryUserList.in?userId=${loginUser.userId }">문의 하고 싶어요!!</a></li>
+												</c:otherwise>
+											</c:choose>
 										</ul>
 									</li>
 								</ul>
@@ -116,7 +133,6 @@
 				});
 				
 				function connectWs(){
-					console.log("tttttt")
 					var ws = new SockJS("/enjoyforott/alram");
 					socket = ws;
 					
