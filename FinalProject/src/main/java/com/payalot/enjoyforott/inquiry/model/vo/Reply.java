@@ -11,5 +11,4 @@ public class Reply {
 	private String replyContent;
 	private Date createDate;
 	private String status;
-	
 }

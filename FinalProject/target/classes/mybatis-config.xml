@@ -13,6 +13,7 @@
 		<typeAlias type="com.payalot.enjoyforott.user.model.vo.User" alias="user"/>
 		<typeAlias type="com.payalot.enjoyforott.inquiry.model.vo.Inquiry" alias="inquiry"/>
 		<typeAlias type="com.payalot.enjoyforott.inquiry.model.vo.Reply" alias="reply"/>
+		<typeAlias type="com.payalot.enjoyforott.inquiry.model.vo.Type" alias="type"/>
 		<typeAlias type="com.payalot.enjoyforott.notice.model.vo.Board" alias="board"/>
 		<typeAlias type="com.payalot.enjoyforott.notice.model.vo.Member" alias="member"/>
 	</typeAliases>

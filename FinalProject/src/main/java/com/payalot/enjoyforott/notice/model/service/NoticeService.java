@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
 import com.payalot.enjoyforott.notice.model.vo.Board;
+import com.payalot.enjoyforott.user.model.vo.User;
 
 @Service
 public interface NoticeService {
@@ -64,5 +65,11 @@ public interface NoticeService {
 
 	//faq 내용 검색
 	ArrayList<Board> searchFaqContent(String search,PageInfo pi);
+	
+	//관리자 정보 수정 비밀번호 확인
+	User selectAdmin(String userId);
+	
+	//관리자 정보 비밀번호 변경
+	int adminInfoUpdate(User u);
 	
 }

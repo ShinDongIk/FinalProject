@@ -29,6 +29,7 @@
 </head>
 
 <body>
+<c:if test="${loginUser.userId == 'admin' }">
 	<jsp:include page="../common/adminMypage.jsp"/>
     <div id="content" align="center">
         <p>공지사항</p>
@@ -37,7 +38,7 @@
                 <option value="1">제목</option>
                 <option value="2">내용</option>
             </select>
-			<input type="text" style="width: 30%; display: inline;" name="search">&nbsp
+			<input type="text" style="width: 30%; display: inline;" name="search" value="${search }">&nbsp
 			<button type="submmit">검색</button>
 		</form>
         <br>
@@ -65,12 +66,10 @@
             	</c:forEach>
             </tbody>
         </table>
-        <c:if test="${loginUser.userId=='admin' }">
 	        <div style="width: 60%;" align="right">
 				<button onclick="location.href='noticeEnrollForm.ad'">작성</button>
 				<button  type="button" data-toggle="modal" data-target="#myModal" id="openmd">삭제</button>
 	        </div>
-        </c:if>
     </div>
 	<br><br>
     <div id="paging-area" align="center">
@@ -130,7 +129,7 @@
 		      </div>
 		    </div>
 		  </div>
-    
+    </c:if>
     <script>
 
         $("tbody td").not($(".ck")).click(function(){

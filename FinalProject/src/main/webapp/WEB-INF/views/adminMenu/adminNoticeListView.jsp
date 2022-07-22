@@ -27,8 +27,8 @@
     }
 </style>
 </head>
-
 <body>
+<c:if test="${loginUser.userId == 'admin' }">
 	<jsp:include page="../common/adminMypage.jsp"/>
     <div id="content" align="center">
         <p>공지사항</p>
@@ -65,12 +65,10 @@
             	</c:forEach>
             </tbody>
         </table>
-        <c:if test="${loginUser.userId=='admin' }">
 	        <div style="width: 60%;" align="right">
 				<button onclick="location.href='noticeEnrollForm.ad'">작성</button>
 				<button  type="button" data-toggle="modal" data-target="#myModal" id="openmd">삭제</button>
 	        </div>
-        </c:if>
     </div>
 	<br><br>
     <div id="paging-area" align="center">
@@ -130,7 +128,7 @@
 		      </div>
 		    </div>
 		  </div>
-    
+    </c:if>
     <script>
 
         $("tbody td").not($(".ck")).click(function(){

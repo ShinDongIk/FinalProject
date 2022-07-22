@@ -16,5 +16,6 @@ public class Inquiry {
 	private String changeName;
 	private Date createDate;
 	private String status;
+	private int inquiryTypeNum;
 	
 }

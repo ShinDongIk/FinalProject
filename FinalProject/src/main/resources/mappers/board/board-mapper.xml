@@ -14,6 +14,23 @@
 		<result column="VIEW_COUNT" property="count"/>
 		<result column="BOARD_IMP" property="boardImp"/>
 	</resultMap>
+	
+	<resultMap type="user" id="userResultSet">
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="USER_NICKNAME" property="userNickname"/>
+		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_ENTERDATE" property="userEnterDate"/>
+		<result column="USER_LEVEL" property="userLevel"/>
+		<result column="USER_SCORE" property="userScore"/>
+		<result column="USER_GENRE" property="userGenre"/>
+		<result column="USER_STOP_STATUS" property="userStopStatus"/>
+		<result column="USER_STOP_DATE" property="userStopDate"/>
+		<result column="USER_DELETE_STATUS" property="userDeleteStatus"/>
+		<result column="USER_DELETE_DATE" property="userDeleteDate"/>
+		<result column="LEVEL_NAME" property="levelName"/>		
+	</resultMap>
 
 	<insert id="insertNotice">
 		INSERT INTO BOARD
@@ -206,5 +223,16 @@
 	ORDER BY BOARD_NO DESC
 	</select>
 
+	<select id="selectAdmin" resultMap="userResultSet">
+	SELECT USER_ID,USER_PWD 
+	FROM USERINFO
+	WHERE USER_ID=#{userId}
+	</select>
+	
+	<update id="adminInfoUpdate">
+	UPDATE USERINFO
+	SET USER_PWD=#{userPwd}
+	WHERE USER_ID=#{userId}
+	</update>
 
 </mapper>

@@ -14,7 +14,22 @@
 		<result column="CHANGE_NAME" property="changeName"/>
 		<result column="STATUS" property="status"/>
 		<result column="CREATE_DATE" property="createDate"/>
+		<result column="INQUIRY_TYPE" property="inquiryTypeNum"/>
 	</resultMap>
+	
+	<resultMap type="type" id="typeResultSet">
+		<result column="BOARD_TYPE" property="boardType"/>
+		<result column="TYPE_NAME" property="typeName"/>
+	</resultMap>
+	
+	<resultMap type="reply" id="replyResultSet">
+		<result column="REPLY_NO" property="replyNo"/>
+		<result column="INQUIRY_NO" property="inquiryNo"/>
+		<result column="REPLY_CONTENT" property="replyContent"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
+		
 
 	<select id="inquiryAdminListCount" resultType="int">
 	SELECT COUNT(*)
@@ -28,7 +43,7 @@
 	</select>
 	
 	<select id="inquiryAdminList" resultMap="inquiryResultSet">
-	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS
+	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_TITLE,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS,INQUIRY_TYPE
 	FROM INQUIRY 
     JOIN BOARD_TYPE ON(INQUIRY_TYPE = BOARD_TYPE)
 	WHERE MOD(INQUIRY_TYPE,10)=0
@@ -36,11 +51,11 @@
 	</select>
 	
 	<select id="inquiryUserList" resultMap="inquiryResultSet">
-	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS
+	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_TITLE,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS,INQUIRY_TYPE
 	FROM INQUIRY 
     JOIN BOARD_TYPE ON(INQUIRY_TYPE = BOARD_TYPE)
 	WHERE INQUIRY_WRITER=#{userId}
-	
+	ORDER BY CREATE_DATE DESC
 	</select>
 	
 	<insert id="insertInquiry">
@@ -71,7 +86,10 @@
 		   STATUS,
 		   INQUIRY_CONTENT,
 		   ORIGIN_NAME,
-		   CHANGE_NAME
+		   CHANGE_NAME,
+		   INQUIRY_TYPE,
+		   INQUIRY_NO,
+		   INQUIRY_TITLE
 	FROM INQUIRY
 	JOIN BOARD_TYPE ON(BOARD_TYPE=INQUIRY_TYPE)
 	WHERE INQUIRY_NO=#{inquiryNo}
@@ -81,15 +99,123 @@
 	DELETE FROM INQUIRY
 	WHERE INQUIRY_NO=#{inquiryNo}
 	</delete>
+	
+	<select id="type" resultMap="typeResultSet">
+	SELECT *
+	FROM BOARD_TYPE
+	WHERE MOD(BOARD_TYPE,10)=0
+	</select>
 
+	<update id="updateInquiry" parameterType="inquiry">
+	UPDATE INQUIRY
+	SET INQUIRY_TITLE=#{inquiryTitle},
+	    INQUIRY_CONTENT=#{inquiryContent},
+	    INQUIRY_TYPE=#{inquiryType},
+	    ORIGIN_NAME=#{originName},
+	    CHANGE_NAME=#{changeName},
+	    CREATE_DATE=SYSDATE
+	WHERE INQUIRY_NO=#{inquiryNo}
+	</update>
+	
+	<insert id="insertReply" parameterType="reply">
+	INSERT INTO REPLY(REPLY_NO,
+						INQUIRY_NO,
+						REPLY_CONTENT) 
+	VALUES(SEQ_RNO.NEXTVAL,
+			#{inquiryNo},
+			#{replyContent})
+	</insert>
+	
+	<update id="updateResult">
+	UPDATE INQUIRY
+	SET STATUS='Y'
+	WHERE INQUIRY_NO=#{inquiryNo}
+	</update>
 
+	<select id="replyList" resultMap="replyResultSet">
+	SELECT REPLY_CONTENT,CREATE_DATE
+	FROM REPLY
+	WHERE INQUIRY_NO=#{inquiryNo}
+	</select>
 
+	<update id="updateReply">
+	UPDATE REPLY
+	SET REPLY_CONTENT=#{replyContent},
+	CREATE_DATE=SYSDATE
+	WHERE INQUIRY_NO=#{inquiryNo}
+	</update>
+	
+	<delete id="deleteReply">
+	DELETE FROM REPLY
+	WHERE INQUIRY_NO=#{inquiryNo}
+	</delete>
 
-
-
-
-
-
+	<update id="updateResultDelete">
+	UPDATE INQUIRY
+	SET STATUS='N'
+	WHERE INQUIRY_NO=#{inquiryNo}
+	</update>
+	
+	<select id="userSearchTitleCount" resultType="int">
+	SELECT COUNT(*)
+	FROM INQUIRY
+	WHERE INQUIRY_WRITER=#{id}
+	AND INSTR(INQUIRY_TITLE,#{key})>0
+	</select>
+	
+	<select id="userSearchTitle" resultMap="inquiryResultSet">
+	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_TITLE,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS,INQUIRY_TYPE
+	FROM INQUIRY 
+    JOIN BOARD_TYPE ON(INQUIRY_TYPE = BOARD_TYPE)
+	WHERE INQUIRY_WRITER=#{id}
+	AND INSTR(INQUIRY_TITLE,#{key})>0
+	ORDER BY CREATE_DATE DESC
+	</select>	
+	
+	<select id="userSearchContentCount" resultType="int">
+	SELECT COUNT(*)
+	FROM INQUIRY
+	WHERE INQUIRY_WRITER=#{id}
+	AND INSTR(INQUIRY_CONTENT,#{key})>0
+	</select>
+	
+	<select id="userSearchContent" resultMap="inquiryResultSet">
+	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_TITLE,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS,INQUIRY_TYPE
+	FROM INQUIRY 
+    JOIN BOARD_TYPE ON(INQUIRY_TYPE = BOARD_TYPE)
+	WHERE INQUIRY_WRITER=#{id}
+	AND INSTR(INQUIRY_CONTENT,#{key})>0
+	ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="adminSearchTitleCount" resultType="int">
+	SELECT COUNT(*)
+	FROM INQUIRY
+	WHERE INSTR(INQUIRY_TITLE,#{keyword})>0
+	</select>
+	
+	<select id="adminSearchTitle" resultMap="inquiryResultSet">
+	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_TITLE,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS,INQUIRY_TYPE
+	FROM INQUIRY 
+    JOIN BOARD_TYPE ON(INQUIRY_TYPE = BOARD_TYPE)
+	WHERE INSTR(INQUIRY_TITLE,#{keyword})>0
+	ORDER BY STATUS ASC
+	</select>	
+	
+	<select id="adminSearchWriterCount" resultType="int">
+	SELECT COUNT(*)
+	FROM INQUIRY
+	WHERE INSTR(INQUIRY_WRITER,#{keyword})>0
+	</select>
+	
+	<select id="adminSearchWriter" resultMap="inquiryResultSet">
+	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_TITLE,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS,INQUIRY_TYPE
+	FROM INQUIRY 
+    JOIN BOARD_TYPE ON(INQUIRY_TYPE = BOARD_TYPE)
+	WHERE INSTR(INQUIRY_WRITER,#{keyword})>0
+	ORDER BY STATUS ASC
+	</select>
+		
 
 
 </mapper>

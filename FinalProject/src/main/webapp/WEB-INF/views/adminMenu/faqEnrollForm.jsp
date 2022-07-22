@@ -9,6 +9,7 @@
 </style>
 </head>
 <body>
+<c:if test="${loginUser.userId == 'admin' }">
 	<jsp:include page="../common/adminMypage.jsp"/>
     <div id="content" align="center">
         <form action="insertFaq.ad">
@@ -21,20 +22,20 @@
                 </tr>
                 <tr>
                     <th>내용</th>
-                    <td colspan="3"><textarea name="boardContent" id="" cols="30" rows="10" style="height: 600px;" required></textarea></td>
+                    <td colspan="3"><textarea name="boardContent" id="" cols="30" rows="10" style="height: 600px; resize: none;" required></textarea></td>
                 </tr>
-                <tr>
-                    <th>고정 여부</th>
-                    <td colspan="3">
-                        <label for="imp" style="display: inline;">
-                            <input type="radio" name="boardImp" id="imp" value="Y">상단 고정
-                        </label>
-                        &nbsp
-                        <label for="notImp" style="display: inline;">
-                            <input type="radio" name="boardImp" id="notImp" value="N" checked="checked">일반
-                        </label>
-                    </td>
-                </tr>
+<!--                 <tr> -->
+<!--                     <th>고정 여부</th> -->
+<!--                     <td colspan="3"> -->
+<!--                         <label for="imp" style="display: inline;"> -->
+<!--                             <input type="radio" name="boardImp" id="imp" value="Y">상단 고정 -->
+<!--                         </label> -->
+<!--                         &nbsp -->
+<!--                         <label for="notImp" style="display: inline;"> -->
+<!--                             <input type="radio" name="boardImp" id="notImp" value="N" checked="checked">일반 -->
+<!--                         </label> -->
+<!--                     </td> -->
+<!--                 </tr> -->
                 <th>
                     <td colspan="4" align="right">
                         <button type="submit" id="bbb">작성</button>
@@ -44,6 +45,6 @@
             </table>
         </form>
     </div>
-
+</c:if>
 </body>
 </html>

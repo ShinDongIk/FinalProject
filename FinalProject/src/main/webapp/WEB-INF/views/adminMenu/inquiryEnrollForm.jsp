@@ -18,7 +18,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<jsp:include page="../common/menubar.jsp"/>
+<c:if test="${loginUser.userId == 'admin' }">
+	<jsp:include page="../common/adminMypage.jsp"/>
     <div id="content" align="center">
         <form action="insertInquiry.in" method="post" enctype="multipart/form-data">
         	<input type="hidden" name="inquiryWriter" value="${loginUser.userId }">
@@ -62,6 +63,7 @@
             </table>
         </form>
     </div>
+    </c:if>
     <script>
         //추가 버튼 클릭 시 이미지 개수 추가
         var count=0;

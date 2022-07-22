@@ -9,6 +9,7 @@
 </style>
 </head>
 <body>
+<c:if test="${loginUser.userId == 'admin' }">
 	<jsp:include page="../common/adminMypage.jsp"/>
     <div id="content" align="center">
         <form action="insertNotice.ad">
@@ -44,6 +45,6 @@
             </table>
         </form>
     </div>
-
+</c:if>
 </body>
 </html>

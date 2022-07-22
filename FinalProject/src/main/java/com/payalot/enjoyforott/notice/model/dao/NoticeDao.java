@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
 import com.payalot.enjoyforott.notice.model.vo.Board;
+import com.payalot.enjoyforott.user.model.vo.User;
 
 @Repository
 public class NoticeDao {
@@ -122,6 +123,14 @@ public class NoticeDao {
 		
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		return (ArrayList)sqlSession.selectList("boardMapper.selectFaqSearchContent",search,rowBounds);
+	}
+
+	public User selectAdmin(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("boardMapper.selectAdmin",userId);
+	}
+
+	public int adminInfoUpdate(SqlSessionTemplate sqlSession, User u) {
+		return sqlSession.update("boardMapper.adminInfoUpdate",u);
 	}
 
 }

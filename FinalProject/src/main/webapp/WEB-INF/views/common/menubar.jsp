@@ -9,6 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" />
 		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
+		 
 		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	</head>
 	<body class="is-preload">
@@ -44,7 +45,7 @@
 												<li><a href="adminMypage.ad">마이페이지</a></li>
 											</c:when>
 											<c:otherwise>
-												<li><a href="#">마이페이지</a></li>
+												<li><a href="userMypage.us">마이페이지</a></li>
 											</c:otherwise>
 										</c:choose>
 									</ul>
@@ -89,13 +90,15 @@
 										<span class="opener">여기는 고객센터!</span>
 										<br><br>
 										<ul>
-											<li class="list-Style-None"><a href="adminNoticeListView.ad">공지 합니다!</a></li>
-											<li class="list-Style-None"><a href="faqList.ad">자주 묻는 질문들이에요!</a></li>
 											<c:choose>
 												<c:when test="${loginUser.userId=='admin' }">
+													<li class="list-Style-None"><a href="adminNoticeListView.ad">공지 합니다!</a></li>
+													<li class="list-Style-None"><a href="faqList.ad">자주 묻는 질문들이에요!</a></li>
 													<li class="list-Style-None"><a href="inquiryAdminList.in">문의 하고 싶어요!!</a></li>
 												</c:when>
 												<c:otherwise>
+													<li class="list-Style-None"><a href="userNoticeListView.us">공지 합니다!</a></li>
+													<li class="list-Style-None"><a href="userFaqList.us">자주 묻는 질문들이에요!</a></li>
 													<li class="list-Style-None"><a href="inquiryUserList.in?userId=${loginUser.userId }">문의 하고 싶어요!!</a></li>
 												</c:otherwise>
 											</c:choose>

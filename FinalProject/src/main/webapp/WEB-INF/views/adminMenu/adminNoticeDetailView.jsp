@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:if test="${loginUser.userId == 'admin' }">
 	<jsp:include page="../common/adminMypage.jsp"/>
     <div id="content" align="center">
     	<form action="updateNotice.ad" id="form">
@@ -23,7 +24,7 @@
 	            </tr>
 	            <tr>
 	                <th>내용</th>
-	                <td colspan="5"><textarea name="boardContent" id="" cols="30" rows="10" style="height: 600px;" required readonly>${b.boardContent }</textarea></td>
+	                <td colspan="5"><textarea name="boardContent" id="" cols="30" rows="10" style="height: 600px; resize: none;" required readonly>${b.boardContent }</textarea></td>
 	            </tr>
 	            <tr>
 	                <th>상단 고정</th>
@@ -49,17 +50,16 @@
 	                </td>
 	            </tr>
 	                <td colspan="6" align="right">
-	                	<c:if test="${loginUser.userId=='admin' }">
-		                    <button type="button" id="update">수정</button>
-		                    <button type="button" id="complete">완료</button>
-		                    <button type="button" id="cancel" onclick="can();">취소</button>
-	                	</c:if>
+		                <button type="button" id="update">수정</button>
+		                <button type="button" id="complete">완료</button>
+		                <button type="button" id="cancel" onclick="can();">취소</button>
 	                    <button type="button" onclick="history.back();" id="goBack">뒤로 가기</button>
 	                </td>
 	            </tr>
 	        </table>
     	</form>
     </div>
+</c:if>    
 
     <script>
     	//수정 버튼 클릭 시 변화

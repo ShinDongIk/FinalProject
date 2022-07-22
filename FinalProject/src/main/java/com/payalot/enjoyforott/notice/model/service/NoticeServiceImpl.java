@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
 import com.payalot.enjoyforott.notice.model.dao.NoticeDao;
 import com.payalot.enjoyforott.notice.model.vo.Board;
+import com.payalot.enjoyforott.user.model.vo.User;
 
 @Service
 public class NoticeServiceImpl implements NoticeService{
@@ -125,6 +126,16 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public ArrayList<Board> searchFaqContent(String search, PageInfo pi) {
 		return noticeDao.searchFaqContent(sqlSession,search,pi);
+	}
+
+	@Override
+	public User selectAdmin(String userId) {
+		return noticeDao.selectAdmin(sqlSession,userId);
+	}
+
+	@Override
+	public int adminInfoUpdate(User u) {
+		return noticeDao.adminInfoUpdate(sqlSession,u);
 	}
 
 
