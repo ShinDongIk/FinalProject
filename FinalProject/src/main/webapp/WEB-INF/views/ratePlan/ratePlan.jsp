@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +12,14 @@
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
-	<div id="ratePlan-insertBtn-area">
-		<button class="rt-button-color" onClick="location.href='enroll.ra'">요금 등록</button>
-	</div>
+	<script>
+		var loginUserId = "${loginUser.userId}"; 
+	</script>
+	<c:if test="${not empty loginUser && loginUser.userId eq 'admin'}">
+		<div id="ratePlan-insertBtn-area">
+			<button class="rt-button-color" onClick="location.href='enroll.ra'">요금 등록</button>
+		</div>
+	</c:if>
 	<div class="tab-lists">
 		<input id="ratePlan-tab1" type="radio" name="tabs" value="넷플릭스" checked> <!--디폴트 메뉴-->
 		<label class="ratePlan-tab-label" for="ratePlan-tab1">
@@ -67,6 +73,8 @@
 		</table>
 	</div>
 	<script src="${pageContext.request.contextPath}/js/ratePlanTab.js"></script>
-	<jsp:include page="../chat/chat.jsp"/>
+	<c:if test="${not empty loginUser}">
+		<jsp:include page="../chat/chat.jsp"/>
+	</c:if>
 </body>
 </html>

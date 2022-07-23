@@ -3626,3 +3626,52 @@ input::-moz-focus-inner {
 #nickName{
 	cursor: pointer;
 }
+
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes text-blur-out {
+  0% {
+    -webkit-filter: blur(0.01);
+            filter: blur(0.01);
+  }
+  100% {
+    -webkit-filter: blur(12px) opacity(0%);
+            filter: blur(12px) opacity(0%);
+  }
+}
+
+#alrim{
+	display:none;
+	border:1px solid #A8B0FF;
+	width:30%; height:10%;
+	position: fixed;
+	bottom: 0;
+	animation : text-focus-in 1s;
+	border-radius: 10px;
+	background: #A8B0FF;
+	color : white;
+	overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+#alrim>hr{
+	background : #ffffff;
+	margin-top:5px;
+	margin-bottom:7px;
+}
+
+.material-symbols-outlined{
+	margin-left : 2px;
+}
+
