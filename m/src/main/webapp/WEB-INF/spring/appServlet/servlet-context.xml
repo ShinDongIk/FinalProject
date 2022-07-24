@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- @Controller와 같은 어노테이션을 활성화 해주는 설정 -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- 
+	주소 자동 완성 도구 
+	매번 같은 주소(/WEB-INF/views/)를 추가해야하기때문에 자동완성이 등록되어있음
+	-view resolver 라는 도구등록(spring제공)
+	-class : 패키지 경로를 포함한 view resolver의 풀 클래스명 
+	-prefix : 접두어 / suffix : 접미어
+	-return할 파일명 부분에 접두어와 접미어를 붙여서 요청하겠다.
+	-->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	
+	<!-- base-package에 설정된 패키지와 하위 패키지를 감시해서 
+		등록 가능한 도구 (component)를 모두 찾아서 등록시키겠다. -->	
+	<context:component-scan base-package="com.kh.m" />
+	
+	<!-- 
+		사용자가 어떤 url로 요청시 문서가 읽혀지는지
+		
+		HandlerMapping을 통해서 어떤 url로 요청했을때 어떤 controller를 구동시킬것인지 알아내야한다.
+		-해당 controller가 실행되도록
+		
+		1.요청때마다 실행될 controller 클래스들 빈으로 등록
+		<beans:bean class="com.kh.spring.member.LoginController" id="loginController"/>
+		<beans:bean class="com.kh.spring.member.EnrollController" id="enrollController"/>
+		..
+		.
+		
+		2.어떤 url로 요청들어온것을 처리할것인지 매핑시켜줘야한다.
+		 <beans:bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+			<beans:property name="mappings">
+				<beans:props>
+					<beans:prop key="login.me">loginController</beans:prop>
+					<beans:prop key="insert.me">enrollController</beans:prop>
+				</beans:props>
+			</beans:property>
+		</beans:bean>
+	 -->
+	
+<!-- 
+		*위에 작성한 방식이 xml 방식 
+		-장점 : xml문서 내에서 한눈에 볼수있기 때문에 관리의 편의성이 높음
+		-단점 : bean 개수가 많아지면 관리가 더 어려워진다. 또한 여러 개발자가 같은 xml파일을 수정하면
+			    충돌이 발생할 수 있다.
+			    
+		*어노테이션 방식
+		-component-scan 에서 지정한 패키지명(base-package) 하위의 모든 클래스를 스캔하여
+		@Controller과 같은 MVC 어노테이션이 붙은 클래스를 자동으로 bean 등록해주는 방식
+		@Service
+		@Repository
+		@Component
+		
+		단 내가 직접 만든 클래스가 아닐경우 컴파일된 class파일 형태로 배포되어
+		소스코드 내부를 볼 수 없고, 수정도 불가하기때문에 코드상으로 어노테이션을 붙일 수 없다
+		이 경우에는 위에서 했던 xml형식으로 bean등록을 해야한다.
+ -->
+		
+	
+</beans:beans>

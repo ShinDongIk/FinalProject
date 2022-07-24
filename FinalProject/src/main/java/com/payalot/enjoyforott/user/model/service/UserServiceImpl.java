@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.payalot.enjoyforott.common.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.dao.UserDao;
 import com.payalot.enjoyforott.user.model.vo.User;
 
@@ -26,14 +27,22 @@ public class UserServiceImpl implements UserService{
 		return userDao.joinUser(sqlSession, u);
 	}
 
+	//회원정보 수정
 	@Override
 	public int updateUser(User u) {
-		return 0;
+		
+		int result = userDao.updateUser(sqlSession,u);
+		
+		return result;
 	}
 
+	//회원정보 삭제
 	@Override
 	public int deleteUser(String userId) {
-		return 0;
+		
+		int result = userDao.deleteUser(sqlSession,userId);
+		
+		return result;
 	}
 
 	@Override
@@ -44,6 +53,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int nicknameCheck(String checkNickname) {
 		return userDao.nicknameCheck(sqlSession, checkNickname);
+	}
+
+	@Override
+	public int updateUserScore(UpdateScore us) {
+		return userDao.updateUserScore(sqlSession, us);
 	}
 
 }

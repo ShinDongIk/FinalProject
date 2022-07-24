@@ -93,4 +93,100 @@ strong, b {
     border-top: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
     
+=======
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
+
+body{
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 14px;
+    background-color: #efefef;
+}
+.outer{
+    text-align: center;
+}
+#joinForm{
+	display: inline-block;
+    width: 80%;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #3c3b3b;
+    font-family: "Raleway", Helvetica, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    line-height: 1.65;
+    margin: 0 0 1em 0;
+    text-transform: uppercase;
+}
+strong, b {
+    color: #3c3b3b;
+    font-weight: 700;
+}
+
+.subTitle{
+    /* border: 1px solid blueviolet; */
+    width: 90%;
+    display: inline-block;
+    text-align: left;
+    font-size: large;
+}
+.buttonArea{
+    /* border: 1px solid blueviolet; */
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+}
+.content1{
+    /* border: 1px solid red; */
+    width: 100%;
+    display: inline-block;
+}
+.content2{
+    width: 50%;  
+    float: left;
+}
+.agreement{
+    width: 90%;
+    border: 1px solid #a8b0ff;
+    border-radius: 5px;
+    font-size: small;
+    height: 200px;
+    resize: none;
+    background-color: rgb(255, 251, 245);
+}
+
+/* 버튼영역 */
+.button-gray{
+    width: 45%;
+    height: 50px;
+    background-color: gray;
+    color: white;
+    font-weight: 500;
+}
+.button-purple{
+    width: 45%;
+    height: 50px;
+    background-color: #a8b0ff;
+    color: white;
+    font-weight: 500;
+}
+
+/* 결제정보 */
+.table{
+    width: 100%;
+}
+
+/* 폰트 스타일 */
+.font-purple{
+    color: #a8b0ff;
+}
+
+/* 유의사항 */
+#notice{
+    font-size: 12px;
+    color: gray;
+    margin: 1%;
+    padding: 1%;
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    
 }

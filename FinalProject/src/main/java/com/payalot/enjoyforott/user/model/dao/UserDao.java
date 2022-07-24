@@ -3,6 +3,7 @@ package com.payalot.enjoyforott.user.model.dao;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.payalot.enjoyforott.common.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.vo.User;
 
 @Repository
@@ -24,4 +25,19 @@ public class UserDao {
 		return sqlSession.selectOne("userMapper.nicknameCheck", checkNickname);
 	}
 
+	public int updateUserScore(SqlSessionTemplate sqlSession, UpdateScore us) {
+		return sqlSession.update("userMapper.updateUserScore", us);
+	}
+
+	//회원정보 수정
+	public int updateUser(SqlSessionTemplate sqlSession, User u) {
+			
+		return sqlSession.update("userMapper.updateUser",u);
+	}
+
+	//회원정보 삭제
+	public int deleteUser(SqlSessionTemplate sqlSession, String userId) {
+			
+		return sqlSession.update("userMapper.deleteUser",userId);
+	}
 }

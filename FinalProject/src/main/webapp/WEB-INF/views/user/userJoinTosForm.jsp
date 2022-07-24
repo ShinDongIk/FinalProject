@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.security.SecureRandom" %>
+<%@ page import="java.math.BigInteger" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,22 +15,40 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <link rel="stylesheet" href="./resources/css/userJoinTosStyle.css">
-         
+
 </head>
 <body>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 	<jsp:include page="../common/menubar.jsp"/>
     
     <div class="outer">
     
 		<div class="content1">
 			<div class="subTitle">
-		    	<b class="font-purple">SNS </b><b>간편가입</b>
+		    	<b class="font-purple">SNS </b><b>간편로그인</b>
 		    </div>
         	<br>
 		
 		    <div class="buttonArea">
-	            <img src="../resources/images/naver.png" alt="" width="45%">&ensp;
-	            <img src="../resources/images/kakao.png" alt="" width="45%">
+		    	<div id="enrollNaver">
+					<!-- 네이버 로그인 버튼 생성 위치 -->
+					<div id="naverIdLogin"></div>
+					<script type="text/javascript">
+						var naverLogin = new naver.LoginWithNaverId(
+							{
+								clientId: "NCz5WpwISNnKiY_jFa8I",
+								callbackUrl: "http://localhost:8886/enjoyforott/naverenrollcallback.me",
+								isPopup: false,
+								loginButton: {color: "white", type: 1, height: 60}
+							}
+						);
+					naverLogin.init();
+					</script>
+		    	</div>
+	            &ensp;&ensp;
+	            <div>
+	            <img src="./resources/images/naver_enroll.png" alt="" width="50px">&ensp;카카오 간편회원가입
+	            </div>
 	        </div>
        	</div>
         
@@ -320,7 +341,7 @@
 			    </div><br><br>
 
 			    <div class="buttonArea">    
-			        <button type="button" class="btn button-gray">취소</button>
+			        <button type="button" class="btn button-gray" onclick="location.href='./'">취소</button>
 			        <button type="button" class="btn button-purple" id="enrollFormBtn">회원가입</button>
    				</div>
    			</form>

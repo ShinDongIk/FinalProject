@@ -89,4 +89,96 @@ a:hover{
 /* 글씨관련 */
 .font-purple{
     color: #a8b0ff;
+=======
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Raleway:400,800,900");
+
+body{
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 14px;
+    background-color: #efefef;
+}
+.outer {
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #3c3b3b;
+    font-family: "Raleway", Helvetica, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    line-height: 1.65;
+    margin: 0 0 1em 0;
+    text-transform: uppercase;
+}
+strong, b {
+    color: #3c3b3b;
+    font-weight: 700;
+}
+
+a{
+    color: black;
+    font-size: small;
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.inputLogin{
+    /* border: 1px solid red; */
+    width: 60%;
+    height: 150px;
+    display: inline-block;
+    text-align: center;
+}
+#inputTable {
+    width: 100%;
+    text-align: center;
+    height: 100px;
+}
+.subTitle{
+    /* border: 1px solid blueviolet; */
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+    margin: 1%;
+    font-size: x-large;
+}
+.contentTitle{
+    /* border: 1px solid blueviolet; */
+    width: 60%;
+    display: inline-block;
+    text-align: center;
+    margin: 1%;
+    font-size: large;
+}
+.content2 {
+    /* border: 1px solid #a8b0ff; */
+    display: inline-block;
+    width: 70%;
+    border-radius: 10px;
+    padding: 1%;
+    
+}
+
+/* 버튼영역 */
+.button-purple{
+    width: 200px;
+    height: 50px;
+    background-color: #a8b0ff;
+    color: white;
+    font-weight: 500;
+}
+.button-gray{
+    width: 30%;
+    height: 50px;
+    background-color: gray;
+    color: white;
+    font-weight: 500;
+}
+
+/* 글씨관련 */
+.font-purple{
+    color: #a8b0ff;
 }
