@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="partyMapper">
+
+	<resultMap type="party" id="partyResultSet">
+		<result column="PARTY_NO" property="partyNo"/>
+		<result column="PARTY_MASTER" property="partyMaster"/>
+		<result column="PARTY_COUNT" property="partyCount"/>
+		<result column="PARTY_OTTENG" property="partyOttEng"/>
+		<result column="PARTY_STARTDATE" property="partyStartDate"/>
+		<result column="PARTY_ENDDATE" property="partyEndDate"/>
+		<result column="PARTY_ACCOUNTBANK" property="partyAccountBank"/>
+		<result column="PARTY_ACCOUNTNUM" property="partyAccountNum"/>
+		<result column="PARTY_RULE" property="partyRule"/>
+		<result column="PARTY_OTTID" property="partyOttId"/>
+		<result column="PARTY_OTTPWD" property="partyOttPwd"/>
+		<result column="PARTY_STATUS" property="partyStatus"/>
+		
+		<result column="OTT_KOR" property="ottKor"/>
+		<result column="LEVEL_NAME" property="levelName"/>
+		<result column="USER_NICKNAME" property="userNickname"/>
+		
+		<result column="MONTH_PRICE" property="monthPrice"/>		
+		<result column="PROFILES_NUM" property="profilesNum"/>	
+	</resultMap>
+	
+	<resultMap type="partyMember" id="partyMemberResultSet">
+		<result column="JOIN_NO" property="joinNo"/>
+		<result column="JOIN_PARTY" property="joinParty"/>
+		<result column="JOIN_MEMBER" property="joinMember"/>
+		<result column="JOIN_ENTERDATE" property="joinEnterDate"/>
+	</resultMap>
+	
+	<select id="selectList" resultMap="partyResultSet">
+		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE
+		FROM PARTY
+		JOIN OTT_TYPE ON(PARTY_OTTENG=OTT_ENG)
+		JOIN USERINFO ON(PARTY_MASTER=USER_ID)
+		JOIN USERLEVEL ON(USER_LEVEL=LEVEL_CODE)
+		WHERE PARTY_STATUS='Y'
+		ORDER BY PARTY_NO DESC
+	</select>
+	
+	<select id="findpartylist" resultMap="partyResultSet">
+		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE
+		FROM PARTY
+		JOIN OTT_TYPE ON(PARTY_OTTENG=OTT_ENG)
+		JOIN USERINFO ON(PARTY_MASTER=USER_ID)
+		JOIN USERLEVEL ON(USER_LEVEL=LEVEL_CODE)
+		WHERE PARTY_STATUS='Y'
+		<if test="findOtt!=null">
+			AND OTT_ENG=#{findOtt}
+		</if>
+		ORDER BY PARTY_NO DESC
+	</select>
+	
+	<select id="partyListOtt" resultMap="partyResultSet">
+		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE
+		FROM PARTY
+		JOIN OTT_TYPE ON(PARTY_OTTENG=OTT_ENG)
+		JOIN USERINFO ON(PARTY_MASTER=USER_ID)
+		JOIN USERLEVEL ON(USER_LEVEL=LEVEL_CODE)
+		WHERE PARTY_STATUS='Y'
+		ORDER BY PARTY_NO DESC
+	</select>
+	
+	<select id="selectEndDate" resultMap="partyResultSet">
+		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE
+		FROM PARTY
+		JOIN OTT_TYPE ON(PARTY_OTTENG=OTT_ENG)
+		JOIN USERINFO ON(PARTY_MASTER=USER_ID)
+		JOIN USERLEVEL ON(USER_LEVEL=LEVEL_CODE)
+		WHERE PARTY_STATUS='Y'
+		ORDER BY PARTY_NO DESC
+	</select>
+	
+	<select id="selectParty" resultMap="partyResultSet">	
+		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE
+		FROM PARTY
+		JOIN OTT_TYPE ON(PARTY_OTTENG=OTT_ENG)
+		JOIN USERINFO ON(PARTY_MASTER=USER_ID)
+		JOIN USERLEVEL ON(USER_LEVEL=LEVEL_CODE)
+		WHERE PARTY_NO = #{partyNo}
+	</select>
+	
+	<insert id="enrollParty" parameterType="party">
+		INSERT INTO PARTY (
+						PARTY_NO
+					   ,PARTY_MASTER
+					   ,PARTY_COUNT
+					   ,PARTY_OTTENG
+					   ,PARTY_ENDDATE
+					   ,PARTY_ACCOUNTBANK
+					   ,PARTY_ACCOUNTNUM
+					   ,PARTY_RULE
+					   ,PARTY_OTTID
+					   ,PARTY_OTTPWD
+					   ) 
+		VALUES (
+				 SEQ_PNO.NEXTVAL
+				,#{partyMaster}
+				,#{partyCount}
+				,#{partyOttEng}
+				,#{partyEndDate}
+				,#{partyAccountBank}
+				,#{partyAccountNum}
+				,#{partyRule}
+				,#{partyOttId}
+				,#{partyOttPwd}
+				)
+	</insert>
+	
+	<insert id="joinParty" parameterType="partyMember">
+		INSERT INTO PARTY_MEMBER(
+							 JOIN_NO
+							,JOIN_PARTY
+							,JOIN_MEMBER
+							)
+		VALUES(
+				 SEQ_JNO.NEXTVAL
+				,#{joinParty}
+				,#{joinMember}
+				)
+	</insert>
+
+</mapper>

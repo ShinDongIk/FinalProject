@@ -8,6 +8,7 @@
 		<result column="USER_NAME" property="userName"/>
 		<result column="USER_NICKNAME" property="userNickname"/>
 		<result column="USER_EMAIL" property="userEmail"/>
+		<result column="USER_PHONE" property="userPhone"/>
 		<result column="USER_ENTERDATE" property="userEnterDate"/>
 		<result column="USER_LEVEL" property="userLevel"/>
 		<result column="USER_SCORE" property="userScore"/>
@@ -16,7 +17,6 @@
 		<result column="USER_STOP_DATE" property="userStopDate"/>
 		<result column="USER_DELETE_STATUS" property="userDeleteStatus"/>
 		<result column="USER_DELETE_DATE" property="userDeleteDate"/>
-		
 		<result column="LEVEL_NAME" property="levelName"/>		
 	</resultMap>
 	
@@ -29,6 +29,7 @@
 			  ,USER_EMAIL
 			  ,USER_PHONE
 			  ,USER_ENTERDATE
+			  ,USER_LEVEL
 			  ,L.LEVEL_NAME
 			  ,USER_SCORE
 			  ,USER_GENRE
@@ -75,5 +76,44 @@
 		FROM USERINFO
 		WHERE USER_NICKNAME = #{userNickname}
 	</select>
+	
+	<select id="findId" resultMap="userResultSet">
+		SELECT USER_ID
+		FROM USERINFO
+		WHERE USER_NAME = #{userName}
+		AND USER_EMAIL = #{userEmail}
+		AND USER_STOP_STATUS = 'N'
+        AND USER_DELETE_STATUS = 'N'
+	</select>
+	
+	<!-- 매너점수 업데이트 -->
+	<update id="updateUserScore" parameterType="user">
+		UPDATE USER
+		SET USER_SCORE = USER_SCORE + #{updateScore}
+		WHERE USER_ID = #{userId}
+	</update>
+
+	<!-- 회원정보 수정 -->
+	<update id="updateUser" parameterType="user">
+		UPDATE USERINFO
+		SET USER_PWD = #{userPwd},
+			USER_NAME = #{userName},
+			USER_NICKNAME = #{userNickname},
+			USER_EMAIL = #{userEmail},
+			USER_PHONE = #{userPhone},
+			USER_GENRE = #{userGenre},
+			USER_ENTERDATE = SYSDATE
+		WHERE USER_ID = #{userId}
+	
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="deleteUser">
+		UPDATE USERINFO
+		SET USER_DELETE_STATUS = 'Y'
+		WHERE USER_ID = #{userId} 
+	
+	</update>
+	
 
 </mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inquiryMapper">
+
+	<resultMap type="inquiry" id="inquiryResultSet">
+		<result column="INQUIRY_NO" property="inquiryNo"/>
+		<result column="INQUIRY_TITLE" property="inquiryTitle"/>
+		<result column="INQUIRY_WRITER" property="inquiryWriter"/>
+		<result column="INQUIRY_CONTENT" property="inquiryContent"/>
+		<result column="TYPE_NAME" property="inquiryType"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGE_NAME" property="changeName"/>
+		<result column="STATUS" property="status"/>
+		<result column="CREATE_DATE" property="createDate"/>
+	</resultMap>
+
+	<select id="inquiryAdminListCount" resultType="int">
+	SELECT COUNT(*)
+	FROM INQUIRY
+	</select>
+	
+	<select id="inquiryUserListCount" resultType="int">
+	SELECT COUNT(*)
+	FROM INQUIRY
+	WHERE INQUIRY_WRITER=#{userId}
+	</select>
+	
+	<select id="inquiryAdminList" resultMap="inquiryResultSet">
+	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS
+	FROM INQUIRY 
+    JOIN BOARD_TYPE ON(INQUIRY_TYPE = BOARD_TYPE)
+	WHERE MOD(INQUIRY_TYPE,10)=0
+	ORDER BY STATUS ASC
+	</select>
+	
+	<select id="inquiryUserList" resultMap="inquiryResultSet">
+	SELECT INQUIRY_NO,TYPE_NAME,INQUIRY_CONTENT,INQUIRY_WRITER,CREATE_DATE,STATUS
+	FROM INQUIRY 
+    JOIN BOARD_TYPE ON(INQUIRY_TYPE = BOARD_TYPE)
+	WHERE MOD(INQUIRY_TYPE,10)=0
+	AND INQUIRY_WRITER=#{userId}
+	ORDER BY STATUS ASC
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
