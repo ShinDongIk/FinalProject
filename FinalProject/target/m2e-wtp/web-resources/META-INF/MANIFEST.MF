@@ -1,7 +1,5 @@
 Manifest-Version: 1.0
-Built-By: min
-Build-Jdk: 1.8.0_333
-Built-By: X7067T
-Build-Jdk: 1.8.0_322
+Built-By: GAME
+Build-Jdk: 1.8.0_331
 Created-By: Maven Integration for Eclipse
 
