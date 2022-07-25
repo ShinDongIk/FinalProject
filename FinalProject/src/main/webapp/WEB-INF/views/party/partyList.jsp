@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,28 +23,28 @@
     <div class="outer">
         <div class="partyMenuArea">
             <nav class="navbar navbar-expand-sm fixed-top" id="partyMenu">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">통합</a>
+                <ul class="navbar-nav tabs">
+                    <li class="nav-item current" data-tab="tab1">
+                        <a class="nav-link">통합</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">넷플릭스</a>
+                    <li class="nav-item" data-tab="tab2">
+                        <a class="nav-link">넷플릭스</a>
                         <input type="hidden" class="ottTypeName" value="netflix">
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">웨이브</a>
+                    <li class="nav-item" data-tab="tab3">
+                        <a class="nav-link">웨이브</a>
                         <input type="hidden" class="ottTypeName" value="wavve">
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">티빙</a>
+                    <li class="nav-item" data-tab="tab4">
+                        <a class="nav-link">티빙</a>
                         <input type="hidden" class="ottTypeName" value="tving">
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">디즈니+</a>
+                    <li class="nav-item" data-tab="tab5">
+                        <a class="nav-link">디즈니+</a>
                         <input type="hidden" class="ottTypeName" value="disneyplus">
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">왓챠</a>
+                    <li class="nav-item" data-tab="tab6">
+                        <a class="nav-link">왓챠</a>
                         <input type="hidden" class="ottTypeName" value="watcha">
                     </li>
                 </ul>
@@ -54,43 +55,69 @@
         	<a id="btnPartyEnroll" style="float:right">신규파티등록</a>
         </div>
         <div class="items">
-        ${ enrolledParty }
-        	<c:choose>
-        		<c:when test="${empty enrolledParty}">
-        			등록된 파티가 없습니다.
-        		</c:when>
-        		<c:otherwise>
-		            <c:forEach var="ep" items="${enrolledParty}">
-		            	<input type="hidden" value="${ ep.partyOttEng }" class="ottType">
-			            <div class="itemRow">
-			                <div class="itemType">
-			                    ${ ep.ottKor }
-			                </div>
-			                <div class="itemSeller" style="float: right;">
-			                    <span class="userLevel" style="color:rgb(64, 179, 192)">${ ep.levelName }</span><br>
-			                    <span>${ ep.userNickname }</span> 
-			                </div>
-		                    <div class="itemDate">
-		                        <span class="partyEndDate">${ ep.partyEndDate }까지</span>(<b class="diffDay"></b>일)
-		                    </div>
-		                    <div class="itemPrice" style="float: right;">
-		                        <span class="totalAmount"></span>원
-		                    </div>
-			                <div class="itemMembers">
-			                	<c:forEach begin="1" end="${ ep.partyCount }">
-				                    <span class="material-symbols-outlined" style="color: gray;">person</span>
-<!-- 			                    <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span> -->
-
-			                	</c:forEach>
-			                </div>
-			                <div class="itemJoin" style="float: right;">
-       			            	<input type="hidden" value=${ ep.partyNo } id="pno">
-			                    <button type="button" class="button-deepPurple btnJoin" id="btnJoin" onclick="location.href='partyjoin.pa?pno=${ ep.partyNo }'">파티가입</button>
-			                </div>
-			            </div>
-		            </c:forEach>
-        		</c:otherwise>
-            </c:choose> 
+        	<div class="tap-content ">
+	        	<c:choose>
+	        		<c:when test="${empty enrolledParty}">
+	        			등록된 파티가 없습니다.
+	        		</c:when>
+	        		
+	        		<c:when test="${empty enrolledParty}">
+	        			<c:forEach var="ep" items="${enrolledParty}" varStatus="num">
+				            <div class="itemRow ott_${ ep.partyOttEng } current">
+				            	<input type="hidden" value="${ ep.partyOttEng }" class="ottType">
+				                <div class="itemType">
+				                    ${ ep.ottKor }
+				                </div>
+				                <div class="itemSeller" style="float: right;">
+				                    <span class="userLevel" id="ulevel${ num.index }" style="color:rgb(64, 179, 192)">${ ep.levelName }</span><br>
+				                    <span><a id="nickName" onClick="memModalOpen('${ ep.userNickname }');">${ ep.userNickname }</a></span> 
+				                </div>
+			                    <div class="itemDate">
+			                        <span class="partyEndDate"><fmt:formatDate value="${ ep.partyEndDate }" type="both" pattern="yy-MM-dd"/>까지</span>(<b class="diffDay">${ ep.ableDays }</b>일)
+			                    </div>
+			                    <div class="itemPrice" style="float: right;">
+			                        <span class="totalAmount" id="tAmount${ num.index }"></span>원
+			                    </div>
+				                <div class="itemMembers">
+									<span>가입가능인원<span>&ensp;${ ep.ableMemNum }/${ ep.partyCount }</span></span>
+				                </div>
+				                <div class="itemJoin" style="float: right;">
+	       			            	<input type="hidden" value=${ ep.partyNo } id="pno">
+				                    <button type="button" class="button-deepPurple btnJoin" id="btnJoin" onclick="location.href='partyjoin.pa?pno=${ ep.partyNo }'">파티가입</button>
+				                </div>
+				            </div>
+			            </c:forEach>
+	        		</c:when>
+	        		
+	        		<c:otherwise>
+			            <c:forEach var="ep" items="${enrolledParty}" varStatus="num">
+				            <div class="itemRow ott_${ ep.partyOttEng } current">
+				            	<input type="hidden" value="${ ep.partyOttEng }" class="ottType">
+				                <div class="itemType">
+				                    ${ ep.ottKor }
+				                </div>
+				                <div class="itemSeller" style="float: right;">
+				                    <span class="userLevel" id="ulevel${ num.index }" style="color:rgb(64, 179, 192)">${ ep.levelName }</span><br>
+				                    <span><a id="nickName" onClick="memModalOpen('${ ep.userNickname }');">${ ep.userNickname }</a></span> 
+				                </div>
+			                    <div class="itemDate">
+			                        <span class="partyEndDate"><fmt:formatDate value="${ ep.partyEndDate }" type="both" pattern="yy-MM-dd"/>까지</span>(<b class="diffDay">${ ep.ableDays }</b>일)
+			                    </div>
+			                    <div class="itemPrice" style="float: right;">
+			                        <span class="totalAmount" id="tAmount${ num.index }"></span>원
+			                    </div>
+				                <div class="itemMembers">
+									<span>가입가능인원<span>&ensp;${ ep.ableMemNum }/${ ep.partyCount }</span></span>
+				                </div>
+				                <div class="itemJoin" style="float: right;">
+	       			            	<input type="hidden" value=${ ep.partyNo } id="pno">
+				                    <button type="button" class="button-deepPurple btnJoin" id="btnJoin" onclick="location.href='partyjoin.pa?pno=${ ep.partyNo }'">파티가입</button>
+				                </div>
+				            </div>
+			            </c:forEach>
+	        		</c:otherwise>
+	            </c:choose> 
+            </div>
             <br>
             <button id="btnMoreView">더보기</button>
     	</div>   
@@ -118,54 +145,99 @@
 	    		})
 	    	})
 	    	
-	    	//일수, 금액 계산 및 출력
+	    	//등급별 색상 변경
+	    	$(document).ready(function(){
+	    		var list1 = new Array();
+	    		var bronze = "브론즈";
+	    		var silver = "실버";
+	    		var gold = "골드";
+	    		var pla = "플레티넘";
+	    		var dia = "다이아";
+	    		
+	            <c:forEach var="e" items="${enrolledParty}">
+	    			list1.push("${e.levelName}");
+	    		</c:forEach>
+	    		for(var i=0; i<list1.length; i++){
+	    			if(list1[i].match(bronze)){
+	    				$("#ulevel"+[i]).css("color","rgb(195, 120, 0)");
+	    			}else if(list1[i].match(silver)){
+	    				$("#ulevel"+[i]).css("color","rgb(113, 113, 113)");
+	    			}else if(list1[i].match(gold)){
+	    				$("#ulevel"+[i]).css("color","rgb(202, 185, 4)");
+	    			}else if(list1[i].match(pla)){
+	    				$("#ulevel"+[i]).css("color","rgb(64, 179, 192)");
+	    			}else if(list1[i].match(dia)){
+	    				$("#ulevel"+[i]).css("color","rgb(255, 209, 248)");
+	    			}
+	    		}
+	    	})
+	    	
+	    	//금액 계산 및 출력
 			$(document).ready(function(){
-				var now = new Date();
-				var chkDate = $(".partyEndDate").text();
-
-				var chkDateArr1 = chkDate.split("까지");
+	    		var ottchked = new Array();
+	            <c:forEach var="e" items="${enrolledParty}">
+	            	ottchked.push("${e.partyOttEng}");
+    			</c:forEach>
+    			
+	    		var ableDays = new Array();
+	            <c:forEach var="e" items="${enrolledParty}">
+	            	ableDays.push("${e.ableDays}");
+				</c:forEach>
 				
-				for(int i)
-// 				var chkDateArr2 = chkDateArr1.split("-");
-				
-				console.log(chkDate);
-				console.log(chkDateArr1);
-// 				console.log(chkDateArr2);
-				
-// 				var sYear = now.getFullYear();
-// 				var sMonth = now.getMonth()+1;  
-// 				var sDay = now.getDate();
-				
-// 				var startDate = new Date(sYear, sMonth, sDay);
-// 				var endDate = new Date(chkDateArr[0],chkDateArr[1],chkDateArr[2]);
-				
-// 				console.log("s:"+startDate);
-// 				console.log("e:"+endDate);
-				
-// 				var diffMs = endDate.getTime() - startDate.getTime() ; //getTime 밀리초로 변환(1000밀리초=1초)
-// 				var diffDay = diffMs / (1000*60*60*24) + 1 ; //당일포함
-				
-// 				$(".diffDay").html(diffDay);
-				
-// 				var ottchked = $(".ottType").val();
+				$.ajax({
+					url : "ottInfoList.pa",
+					data : {
+						ottEng : ottchked
+						},
+					success : function(result){
+																		
+						for(var i=0; i<ottchked.length; i++){
+							var totalAmount = (ableDays[i] * result[i]).toLocaleString('ko-KR');
+							$("#tAmount"+[i]).html(totalAmount);
+						}
+					},
+					error : function(){
+						console.log("ajax 통신 실패");
+					}
+				})
+			})
 			
+			
+// 			//탭 메뉴
+// 			$(".nav-item").click(function(){
+				
+//                 var tabId = $(this).attr('data-tab');
+//   	    		var clickTab = $(this).find('input').val();
+//   	    		var typeOtt = $('.ott_'+clickTab);
+//   	    		console.log(typeOtt);
+  	    		
+//   	    		console.log(clickTab);
+  	    		
+// 				if(clickTab == null){
+// 	                $('.itemRow').addClass('current');
+// 				}else{
+// 	                $('.itemRow').removeClass('current');
+// 	                $(typeOtt).addClass('current');
+					
+// 				}
+//                 $('.tab-content').removeClass('current');
+
+//                 $("#"+tabId).addClass('current');
+				
 // 				$.ajax({
-// 					url : "ottInfo.pa",
+// 					url : "findpartylist",
+// 					type : "get",
 // 					data : {
-// 						ottEng : ottchked
+// 						ottEng : clickTab
 // 						},
 // 					success : function(result){
-// 						//총금액 계산
-// 						var totalAmount = (diffDay * result.perOneDayPrice).toLocaleString('ko-KR');
-						
-// 						//일단가, 총금액 출력
-// 				        $(".totalAmount").html(totalAmount);	
+// 						console.log(result);
 // 					},
 // 					error : function(){
 // 						console.log("ajax 통신 실패");
 // 					}
 // 				})
-			})
+// 			})
     	</script>
     </div>
 </body>

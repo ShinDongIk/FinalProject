@@ -71,7 +71,7 @@ strong, b {
 .itemDate{
     width: 50%;
     height: 20%;
-    font-size: medium;
+    font-size: 14px;
 }
 .itemPrice{
     width: 30%;
@@ -82,7 +82,7 @@ strong, b {
 .itemMembers{
     width: 50%;
     height: 35px;
-    line-height: 50px;
+    font-size: 14px;
 }
 .itemJoin{
     width: 40%;
@@ -167,7 +167,26 @@ strong, b {
 }
 .nav-item>a:hover{
     color: #2391ab;
+	cursor: pointer !important;
 }
+
+
+/* 탭 관련 css */
+/* .tabs li.current{ */
+/*     background: rgb(154, 222, 226); */
+/*     border: 1px solid rgb(154, 222, 226); */
+/*     color: white; */
+/* } */
+/* .tap-content{ */
+/*     display: none; */
+/*     padding: 15px; */
+/* } */
+
+/* .current{ */
+/*     display: inherit; */
+/* } */
+
+
 /* 신규파티등록 버튼 */
 .newParty>a:hover {
 	cursor: pointer;
