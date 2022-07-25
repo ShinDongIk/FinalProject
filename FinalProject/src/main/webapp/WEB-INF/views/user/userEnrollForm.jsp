@@ -25,7 +25,7 @@
         <hr>
         <div class="joinForm">
             <form action="join.me" method="post" id="joinUser">
-                <table class="joinTable" align="center">
+                <table class="joinTable">
                     <tr>
                         <th width="20%">*아이디</th>
                         <td width="60%">

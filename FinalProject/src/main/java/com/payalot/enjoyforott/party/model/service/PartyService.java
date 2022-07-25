@@ -15,7 +15,7 @@ public interface PartyService {
 	ArrayList<Party> selectList();
 	
 	//ott별 파티목록
-	ArrayList<Party> findpartylist(Party p);
+	ArrayList<Party> findpartylist(String ottEng);
 	
 	//종료일 출력
 	ArrayList<Party> selectEndDate();
@@ -28,6 +28,9 @@ public interface PartyService {
 	
 	//파티 가입
 	int joinParty(PartyMember pm);
+	
+	//종료일 지난 파티 status 'N'
+	int updateEndDateParty();
 
 
 }

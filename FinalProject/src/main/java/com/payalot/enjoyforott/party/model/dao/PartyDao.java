@@ -20,8 +20,8 @@ public class PartyDao {
 		return (ArrayList)sqlSession.selectList("partyMapper.selectList");
 	}
 	
-	public ArrayList<Party> findpartylist(SqlSessionTemplate sqlSession, Party p) {
-		return (ArrayList)sqlSession.selectList("partyMapper.findpartylist",p);
+	public ArrayList<Party> findpartylist(SqlSessionTemplate sqlSession, String ottEng) {
+		return (ArrayList)sqlSession.selectList("partyMapper.findpartylist",ottEng);
 	}
 
 	public ArrayList<Party> selectEndDate(SqlSessionTemplate sqlSession) {
@@ -38,6 +38,10 @@ public class PartyDao {
 
 	public int joinParty(SqlSessionTemplate sqlSession, PartyMember pm) {
 		return sqlSession.insert("partyMapper.joinParty",pm);
+	}
+
+	public int updateEndDateParty(SqlSessionTemplate sqlSession) {
+		return sqlSession.update("partyMapper.updateEndDateParty");
 	}
 
 

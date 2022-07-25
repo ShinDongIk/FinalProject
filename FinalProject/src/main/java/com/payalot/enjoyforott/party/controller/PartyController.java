@@ -1,10 +1,7 @@
 package com.payalot.enjoyforott.party.controller;
 
-import java.text.SimpleDateFormat;
-import java.time.Period;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,7 +20,6 @@ import com.payalot.enjoyforott.party.model.vo.OttType;
 import com.payalot.enjoyforott.party.model.vo.Party;
 import com.payalot.enjoyforott.party.model.vo.PartyMember;
 import com.payalot.enjoyforott.user.model.service.UserService;
-import com.payalot.enjoyforott.user.model.vo.User;
 
 @Controller
 public class PartyController {
@@ -35,49 +32,46 @@ public class PartyController {
 	@RequestMapping("partylist.pa")
 	public String partylist(Model model) {
 		
-		ArrayList<Party> enrolledParty = partyService.selectList();
+		//endDate 지난 파티 status 'N'처리
+		int result = partyService.updateEndDateParty();
 		
-//		String monthPriceOg = ottInfo.getMonthPrice();
-//		String concurrentUsersOg = ottInfo.getConcurrentUsers();
-//		System.out.println(monthPriceOg);
-		
-		model.addAttribute("enrolledParty", enrolledParty);
-		
-		return "party/partyList";
+		if(result>0) {
+			ArrayList<Party> enrolledParty = partyService.selectList();
+			
+			model.addAttribute("enrolledParty", enrolledParty);
+			return "party/partyList";
+		}else {
+			model.addAttribute("errorMsg","페이지를 불러올수 없습니다. 다시 시도해주세요.");
+			return "common/errorPage";
+		}	
 	}
 	
 	//ott별 파티리스트 sort
 	@RequestMapping("findpartylist")
 	@ResponseBody
-	public ArrayList<Party> partylistott(String selectOtt, Party p, Model model) {
+	public String partylistott(String ottEng, Party p, Model model) {
 		
-		System.out.println(selectOtt);
+		System.out.println(ottEng);
+		int result = partyService.updateEndDateParty();
 		
-		p.setFindOtt(selectOtt);
+		if(result>0) {
+			ArrayList<Party> enrolledParty = partyService.findpartylist(ottEng);
+
+			System.out.println(enrolledParty);
 		
-		System.out.println(p);
+			model.addAttribute("enrolledParty", enrolledParty);
 		
-		ArrayList<Party> findOttParty = partyService.findpartylist(p);
-		
-		System.out.println(findOttParty);
-		
-		return findOttParty;
-		
-//		System.out.println(enrolledParty);
-		
-//		model.addAttribute("enrolledParty", enrolledParty);
-		
-//		return "party/partyList";
-		
+			return "party/partyList";
+		}else {
+			model.addAttribute("errorMsg","페이지를 불러올수 없습니다. 다시 시도해주세요.");
+			return "common/errorPage";
+		}	
+
 	}
-	
-	
 	
 	//파티가입 버튼 클릭시 결제화면 이동
 	@RequestMapping("partyjoin.pa")
 	public ModelAndView partyjoin(int pno, ModelAndView mv) {
-		
-		System.out.println(pno);
 		
 		Party p = partyService.selectParty(pno);
 		System.out.println(p);
@@ -85,18 +79,8 @@ public class PartyController {
 		mv.addObject("p",p).setViewName("party/partyJoinForm");
 		
 		return mv;
-		
-//		Calendar today = Calendar.getInstance();
-//		today.setTime(new Date());
-//		
-//		System.out.println(today);
-//		
-//		return "party/partyJoinForm";
-		
 	}
-	
-	/* 신규파티 등록 */
-	
+		
 	//신규파티등록 폼 이동
 	@RequestMapping("partyenrollForm.pa")
 	public String partyenrollForm() {
@@ -104,14 +88,15 @@ public class PartyController {
 		return "party/partyEnrollForm";
 	}
 	
-	//OTT별 일단가, 최대동접인원 정보
+	//OTT별 일단가, 최대동접인원 정보(객체)
 	@RequestMapping(value="ottInfo.pa", produces="application/json; charset=UTF-8")
 	@ResponseBody
 	public String ottInfo(OttType o, Model model) {
 		
+		
 		OttType ottInfo = partyService.ottInfo(o);
 		
-		//금액, 인원 숫자만 추출
+//		//금액, 인원 숫자만 추출
 		ottInfo.setMonthPrice(ottInfo.getMonthPrice().replace(",", ""));
 		ottInfo.setMonthPrice(ottInfo.getMonthPrice().replace("원", ""));
 		ottInfo.setConcurrentUsers(ottInfo.getConcurrentUsers().replace(",", ""));
@@ -127,6 +112,35 @@ public class PartyController {
 		ottInfoList.put("concurrentUsers", newConcurrentUsers);
 		
 		return ottInfoList.toJSONString();
+	}
+	
+	//OTT별 일단가, 최대동접인원 정보(리스트)
+	@RequestMapping(value="ottInfoList.pa", produces="application/json; charset=UTF-8")
+	@ResponseBody
+	public List<Integer> ottInfo(@RequestParam(value="ottEng[]") List<String> ottEng, OttType o, Model model) {
+		
+		List<Integer> ottInfoList = new ArrayList<Integer>();
+		
+		for(int i=0; i<ottEng.size(); i++) {
+			
+			o.setOttEng(ottEng.get(i));
+			
+			OttType ottInfo = partyService.ottInfo(o);
+		
+		//금액, 인원 숫자만 추출
+		ottInfo.setMonthPrice(ottInfo.getMonthPrice().replace(",", ""));
+		ottInfo.setMonthPrice(ottInfo.getMonthPrice().replace("원", ""));
+		ottInfo.setConcurrentUsers(ottInfo.getConcurrentUsers().replace(",", ""));
+		ottInfo.setConcurrentUsers(ottInfo.getConcurrentUsers().replace("명", ""));
+		
+		int newMonthPrice = Integer.parseInt(ottInfo.getMonthPrice());
+		int newConcurrentUsers = Integer.parseInt(ottInfo.getConcurrentUsers());
+		int newPerOneDayPrice = (int)Math.ceil((double)newMonthPrice*12/365/newConcurrentUsers);
+				
+		ottInfoList.add(newPerOneDayPrice);		
+		}
+		
+		return ottInfoList;
 	}
 	
 	@RequestMapping("enrollparty.pa")

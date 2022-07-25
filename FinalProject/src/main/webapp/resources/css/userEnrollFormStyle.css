@@ -7,7 +7,6 @@ body{
 }
 .outer {
     text-align: center;
-    
 }
 h1, h2, h3, h4, h5, h6 {
     color: #3c3b3b;
@@ -23,7 +22,7 @@ strong, b {
     font-weight: 700;
 }
 
-.joimForm {
+.joinForm {
     /* border: 1px solid #a8b0ff; */
     display: inline-block;
     width: 60%;
@@ -115,6 +114,7 @@ input{
 }
 
 /* 글씨관련 */
+
 .font-purple{
     color: #a8b0ff;
 }

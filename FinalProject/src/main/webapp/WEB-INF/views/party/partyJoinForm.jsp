@@ -69,7 +69,7 @@
                     <td>${ p.ottKor }</td>
                     <td id="startDate"></td>
                     <td id="endDate">${ p.partyEndDate }</td>
-                    <td><span id="diffDay"></span>일</td>
+                    <td><span id="diffDays">${ p.ableDays }</span>일</td>
                     <td><span id="perOneDayPrice"></span>원</td>
                     <td><b style="font-size: large;"><span id="totalAmount"></span>원</b></td>
                 </tr>
@@ -133,34 +133,18 @@
     
     <script>
     	$(document).ready(function(){
-     		//현재 날짜, 시작일에 입력됨
+     		//현재 날짜 시작일에 입력
      		var now = new Date();
 
      		var sYear = now.getFullYear();
-     		var yyYear = sYear.toString().substr(-2);
      		var sMonth = ('0' + (now.getMonth() + 1)).slice(-2);
      		var sDay = now.getDate();
      		
      		var sDate = sYear+"-"+sMonth+"-"+sDay;
-     		$("#startDate").html(sDate);
-     		$("input[name='joinEnterDate']").attr('value',sDate);
-     		
-     		//종료일 가져온후 일수 계산
-	 		var chkDate = $("#endDate").text();
-	 		var chkDateArr = chkDate.split("-");
-	 		
-     		var startDate = new Date(sYear, sMonth, sDay);
-     		var endDate = new Date(chkDateArr[0],chkDateArr[1],chkDateArr[2]);
-     		
-     		var diffMs = endDate.getTime() - startDate.getTime() ; //getTime 밀리초로 변환(1000밀리초=1초)
-     		var diffDay = diffMs / (1000*60*60*24) + 1 ; //당일포함
-     		var diffMonth = diffMs / (((1000*60*60*24))*30) ;
-     		
-     		console.log(diffMonth+"개월");
-        	$("#diffDay").html(diffDay);
-     		$("input[name='diffMonth']").attr('value',diffMonth);
+     		$("#startDate").html(sDate);     		
      		
      		var ottchked = $("#ottType").val();
+     		var diffDays = $("#diffDays").text();
 
        		$.ajax({
     			url : "ottInfo.pa",
@@ -169,7 +153,7 @@
 					},
 				success : function(result){
 					//총금액 계산
-					var totalAmount = (diffDay * result.perOneDayPrice).toLocaleString('ko-KR');
+					var totalAmount = (diffDays * result.perOneDayPrice).toLocaleString('ko-KR');
 					
 					//일단가, 총금액 출력
 		 			$("#perOneDayPrice").html(result.perOneDayPrice);

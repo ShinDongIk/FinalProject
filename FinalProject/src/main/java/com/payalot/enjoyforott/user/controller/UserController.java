@@ -30,12 +30,9 @@ public class UserController {
 	
 	@Autowired
 	private JavaMailSender mailSender;
-	
-//	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-//	private static final String String = null;
+
 	
 	//로그인 폼 이동
-
 	@RequestMapping("loginForm.me")
 	public String loginForm() {
 		return "user/userLoginForm";
@@ -52,7 +49,7 @@ public class UserController {
 		session.setAttribute("loginUser", loginUser);
 		mv.setViewName("redirect:/");
 		} else {
-		mv.addObject("errorMsg", "濡쒓렇�씤 �떎�뙣");
+		mv.addObject("errorMsg", "로그인에 실패하였습니다.");
 		mv.setViewName("common/errorPage");
 		}
 		
@@ -92,10 +89,11 @@ public class UserController {
 		int result = userService.joinUser(u);
 		
 		if(result>0) {
-			session.setAttribute("loginUser", u); 
+			User loginUser = userService.loginUser(u);
+			session.setAttribute("loginUser", loginUser); 
 			return "redirect:/joinComplete.me";
 		} else {
-			model.addAttribute("errorMsg","�쉶�썝媛��엯�뿉 �떎�뙣�븯���뒿�땲�떎.");
+			model.addAttribute("errorMsg","회원가입에 실패하였습니다.");
 			return "common/errorPage";
 		}
 	}
@@ -192,6 +190,114 @@ public class UserController {
 
 	}
 	
+	//네이버 로그인, 회원가입 Callback 
+	@RequestMapping("naverlogincallback.me")
+	public String naverLogin() {
+		return "user/userNaverLoginAPICallback";		
+	}
+	
+	@RequestMapping("naverenrollcallback.me")
+	public String naverEnroll() {
+		return "user/userNaverEnrollAPICallback";		
+	}
+	
+	//네이버 회원가입
+	@RequestMapping(value="naverjoin")
+	@ResponseBody
+	public String naverjoin(User u, HttpSession session, Model model) {
+		
+		//닉네임 재설정
+		String newNickname="";
+		if(u.getUserNickname().length()>4) {
+			newNickname = "N_"+u.getUserNickname().substring(0,4);
+		}else {
+			newNickname = "N_"+u.getUserNickname();
+		}
+		
+		u.setUserNickname(newNickname);
+		
+		//아이디 중복체크
+		int idChk = userService.idCheck(u.getUserId());
+		
+		if(idChk>0) {
+			return "joined";
+		} else {
+			//가입진행
+			int result = userService.joinUser(u);
+
+			if(result>0) {
+				User loginUser = userService.loginUser(u);
+				session.setAttribute("loginUser", loginUser); 
+				return "ok";
+			} else {
+				return "no";
+			}
+		}		
+	}
+	
+	//네이버 로그인
+	@RequestMapping(value="naverlogin")
+	@ResponseBody
+	public String naverlogin(User u, HttpSession session, Model model) {
+		
+		User loginUser = userService.loginUser(u);
+				
+		if(loginUser != null) {
+			session.setAttribute("loginUser", loginUser); 
+			return "ok";
+		} else {
+			return "no";
+		}		
+	}
+	
+	//아이디, 비밀번호 찾기
+	@RequestMapping("findUserForm.me")
+	public String findUserForm() {
+		return "user/userFindUserForm";
+	}
+	
+//	@RequestMapping("findId.me")
+//	public String findId(String idUserName, String idUserEmail, User u, Model model, HttpSession session) {
+//		
+//		System.out.println("컨트롤러 호출 됨");
+//		System.out.println(u);
+//		
+//		
+//		System.out.println(idUserName);
+//		System.out.println(idUserEmail);
+//		
+//		u.setUserName(idUserName);
+//		u.setUserEmail(idUserEmail);
+//		
+//		System.out.println(u);
+//		
+//		User u2 = userService.findId(u);
+//		System.out.println(u2);
+//		
+//		if(u2 != null) {
+//			model.addAttribute("userInfo", u); 
+//			return "redirect:/findedId.me";
+//		} else {
+//			session.setAttribute("alertMsg","일치하는 정보가 없습니다.");
+//			return "user/userFindUserForm";
+//		}
+//	}
+	
+	@RequestMapping("findedId.me")
+	public String findedId(User u) {
+		return "user/userFindedId";
+	}
+
+	
+	@RequestMapping("findPwd.me")
+	public String findPwd(String pwdUserId, String pwdUserEmail, Model model) {
+		System.out.println(pwdUserId+pwdUserEmail);
+//		System.out.println(pwdUserEmail);
+		
+		return "user/userFindPwd";
+	}
+
+	
 	//회원정보수정 
 	@RequestMapping("update.me")
 	public String updateUser(User u,Model model,HttpSession session) {
@@ -245,113 +351,5 @@ public class UserController {
 			
 		}
 		
-	}
-	
-	//아이디, 비밀번호 찾기
-	@RequestMapping("findUserForm.me")
-	public String findUserForm() {
-		return "user/userFindUserForm";
-	}
-	
-//	@RequestMapping("findId.me")
-//	public String findId(String idUserName, String idUserEmail, User u, Model model, HttpSession session) {
-//		
-//		System.out.println("컨트롤러 호출 됨");
-//		System.out.println(u);
-//		
-//		
-//		System.out.println(idUserName);
-//		System.out.println(idUserEmail);
-//		
-//		u.setUserName(idUserName);
-//		u.setUserEmail(idUserEmail);
-//		
-//		System.out.println(u);
-//		
-//		User u2 = userService.findId(u);
-//		System.out.println(u2);
-//		
-//		if(u2 != null) {
-//			model.addAttribute("userInfo", u); 
-//			return "redirect:/findedId.me";
-//		} else {
-//			session.setAttribute("alertMsg","일치하는 정보가 없습니다.");
-//			return "user/userFindUserForm";
-//		}
-//	}
-	
-	@RequestMapping("findedId.me")
-	public String findedId(User u) {
-		return "user/userFindedId";
-	}
-
-	
-	@RequestMapping("findPwd.me")
-	public String findPwd(String pwdUserId, String pwdUserEmail, Model model) {
-		System.out.println(pwdUserId+pwdUserEmail);
-//		System.out.println(pwdUserEmail);
-		
-		return "user/userFindPwd";
-	}
-	
-	//네이버
-	
-	@RequestMapping("naverlogincallback.me")
-	public String naverLogin() {
-		return "user/userNaverLoginAPICallback";		
-	}
-	
-	@RequestMapping("naverenrollcallback.me")
-	public String naverEnroll() {
-		return "user/userNaverEnrollAPICallback";		
-	}
-	
-	@RequestMapping(value="naverjoin")
-	@ResponseBody
-	public String naverjoin(User u, HttpSession session, Model model) {
-		
-		//닉네임 재설정
-		String newNickname="";
-		if(u.getUserNickname().length()>4) {
-			newNickname = "N_"+u.getUserNickname().substring(0,4);
-		}else {
-			newNickname = "N_"+u.getUserNickname();
-		}
-		
-		u.setUserNickname(newNickname);
-		
-		//아이디 중복체크
-		int idChk = userService.idCheck(u.getUserId());
-		
-		if(idChk>0) {
-			return "joined";
-		} else {
-			//가입진행
-			int result = userService.joinUser(u);
-			
-			System.out.println(u);
-
-			if(result>0) {
-				session.setAttribute("loginUser", u); 
-				return "ok";
-			} else {
-				return "no";
-			}
-		}		
-	}
-	
-	@RequestMapping(value="naverlogin")
-	@ResponseBody
-	public String naverlogin(User u, HttpSession session, Model model) {
-		
-		System.out.println(u);
-		User loginUser = userService.loginUser(u);
-				
-		if(loginUser != null) {
-			session.setAttribute("loginUser", loginUser); 
-			return "ok";
-		} else {
-			return "no";
-		}		
 	}
 }

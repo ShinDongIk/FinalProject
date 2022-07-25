@@ -31,8 +31,8 @@ public class PartyServiceImpl implements PartyService{
 	}
 
 	@Override
-	public ArrayList<Party> findpartylist(Party p) {
-		return partyDao.findpartylist(sqlSession, p);
+	public ArrayList<Party> findpartylist(String ottEng) {
+		return partyDao.findpartylist(sqlSession, ottEng);
 	}
 	
 	@Override
@@ -53,6 +53,11 @@ public class PartyServiceImpl implements PartyService{
 	@Override
 	public int joinParty(PartyMember pm) {
 		return partyDao.joinParty(sqlSession, pm);
+	}
+
+	@Override
+	public int updateEndDateParty() {
+		return partyDao.updateEndDateParty(sqlSession);
 	}
 
 

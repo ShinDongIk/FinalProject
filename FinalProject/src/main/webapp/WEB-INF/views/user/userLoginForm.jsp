@@ -15,12 +15,10 @@
 
 <link rel="stylesheet" href="./resources/css/userLoginFormStyle.css">
 
-<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-
 </head>
 <body>
-    
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+   
     
     <div class="outer">
         <div class="subTitle">
@@ -64,20 +62,22 @@
             <h6>SNS</h6>
         </div>
         
-        <div>
-        	<!-- 네이버 로그인 버튼 노출 영역 -->
-			<div id="naver_id_login"></div>
 
-			<script type="text/javascript">
-				var naver_id_login = new naver_id_login("NCz5WpwISNnKiY_jFa8I", "http://localhost:8886/enjoyforott/naverlogincallback.me");
-				var state = naver_id_login.getUniqState();
-				naver_id_login.setButton("white", 3, 50);
-				naver_id_login.setDomain("http://localhost:8886/enjoyforott");
-				naver_id_login.setState(state);
-				naver_id_login.setPopup();
-				naver_id_login.init_naver_id_login();
-			</script>
-        </div>
+	      	<div id="enrollNaver">
+				<!-- 네이버 로그인 버튼 생성 위치 -->
+				<div id="naverIdLogin"></div>
+				<script type="text/javascript">
+					var naverLogin = new naver.LoginWithNaverId(
+						{
+							clientId: "NCz5WpwISNnKiY_jFa8I",
+							callbackUrl: "http://localhost:8886/enjoyforott/naverlogincallback.me",
+							isPopup: false,
+							loginButton: {color: "white", type: 1, height: 60}
+						}
+					);
+				naverLogin.init();
+				</script>
+	    	</div>
         
     	<br>
 	</div>

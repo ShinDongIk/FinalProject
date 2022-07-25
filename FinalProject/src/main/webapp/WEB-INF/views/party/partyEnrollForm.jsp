@@ -41,37 +41,37 @@
                     <tr>
                         <th>
                         	<span>OTT 선택</span> <br>
-                        	<span>
-                        		일 <span class="font-purple amountVal" id="perOneDayPriceResult"></span>원/(1인)
+                        	<span id="perOneDayPriceStr">
+
                        		</span>
                         </th>
                         <td>
                             <div class="logoArea">
                             	<div class="logoImgArea">
 	                                <img src="./resources/images/netflix.png" alt="" class="logoImg" id="netflix" ><br>
-                            	    <span>넷플릭스</span>
-                            	    <input type="hidden" class="ottname" value="netflix">
+                            	    <span class="ottNameKor">넷플릭스</span>
+                            	    <input type="hidden" class="ottNameEng" value="netflix">
                             	</div>
                             </div>
                             <div class="logoArea">
                                 <img src="./resources/images/wave.png" alt="" class="logoImg" id="wavve"><br>
-                                <span>웨이브</span>
-                                <input type="hidden" class="ottname" value="wavve">
+                                <span class="ottNameKor">웨이브</span>
+                                <input type="hidden" class="ottNameEng" value="wavve">
                             </div>
                             <div class="logoArea">
                                 <img src="./resources/images/tving.png" alt="" class="logoImg" id="tving"><br>
-                                <span>티빙</span>
-                                <input type="hidden" class="ottname" value="tving">
+                                <span class="ottNameKor">티빙</span>
+                                <input type="hidden" class="ottNameEng" value="tving">
                             </div>
                             <div class="logoArea">
                                 <img src="./resources/images/Disney.png" alt="" class="logoImg" id="disneyplus"><br>
-                                <span>디즈니+</span>
-                                <input type="hidden" class="ottname" value="disneyplus">
+                                <span class="ottNameKor">디즈니+</span>
+                                <input type="hidden" class="ottNameEng" value="disneyplus">
                             </div>
                             <div class="logoArea">
                                 <img src="./resources/images/watcha.png" alt="" class="logoImg" id="watcha"><br>
-                                <span>왓챠</span>
-                                <input type="hidden" class="ottname" value="watcha">
+                                <span class="ottNameKor">왓챠</span>
+                                <input type="hidden" class="ottNameEng" value="watcha">
                             </div>
                         </td>
                     </tr>
@@ -83,13 +83,6 @@
                         </th>
                         <td>
                             <div class="partyMemberNum">
-
-<!--                                 <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span> -->
-<!--                                 <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span> -->
-<!--                                 <span class="material-symbols-outlined" style="color: #a8b0ff;">person</span> -->
-<!--                                 <span class="material-symbols-outlined" style="color: gray;">person</span> -->
-<!--                                 <span class="material-symbols-outlined chooseMemNum" style="color: gray;">person</span> -->
-
                                 &ensp;
                                 <span class="font-medium">
                             		<input type="text" name="partyCount" id="partyCount" min="1" maxlength="2" class="form-control harfInput" required>
@@ -154,7 +147,6 @@
                     </tr>
 
                     <tr>
-                        <!-- 하이픈형식 000-0000-0000 -->
                         <th>파티규칙</th>
                     <td>
                         <textarea class="form-control" id="partyRule" name="partyRule" cols="30" rows="10" style="resize: none;"></textarea>
@@ -185,9 +177,11 @@
         	 
 //            	 	console.log(ottchked); 
            	 	$(".logoImg").removeClass('ottChked');
-           	 	$(".ottname").removeAttr('name');
+           	 	$(".ottNameEng").removeAttr('name');
+           	 	$(".ottNameKor").removeAttr('style');
            	 	$(this).find('img').addClass('ottChked');
            	 	$(this).find('input').attr('name','partyOttEng');
+           	 	$(this).find('span').attr('style','font-weight:bold;');
         	 	
            	 	
 	       		$.ajax({
@@ -198,7 +192,14 @@
 					success : function(result){
 // 			 			console.log(result);
 			 			//일단가 출력
-			 			$("#perOneDayPriceResult").html(result.perOneDayPrice);
+			 			var perOneDayPriceStr =""
+			 			perOneDayPriceStr += "<br><span class='amountVal'>"
+			 								+ ottchked
+			 								+ "</span><br>"
+			 								+ "일 <span class='font-purple amountVal'>"
+			 								+ result.perOneDayPrice
+			 								+ "</span>원/(1인)"
+			 			$("#perOneDayPriceStr").html(perOneDayPriceStr);
 			 			//최대인원 출력
 			 			$("#concurrentUsersResult").html(result.concurrentUsers);
 					},
