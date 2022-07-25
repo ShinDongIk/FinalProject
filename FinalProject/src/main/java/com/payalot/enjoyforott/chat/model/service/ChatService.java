@@ -33,4 +33,7 @@ public interface ChatService {
 	
 	//채팅방 상태 알아오는 메소드
 	public abstract String roomState(int chatNo);
+	
+	//채팅내용 삭제 메소드
+	public abstract int chatContentDelete(int chatNo);
 }

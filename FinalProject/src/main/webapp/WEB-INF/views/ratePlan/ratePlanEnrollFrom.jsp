@@ -12,6 +12,9 @@
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp"/>
+	<script>
+		var loginUserId = "${loginUser.userId}"; 
+	</script>
 	<div id="rp-enroll-area">
 		<h1>요금제 정보 입력</h1>
 		<form action="insert.ra" onsubmit="return checkInfo(event);" method="post" >

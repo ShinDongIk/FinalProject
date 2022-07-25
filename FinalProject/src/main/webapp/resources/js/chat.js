@@ -77,6 +77,7 @@ function chatClick(userNickname){
 					secondUserId : $("#modal-nickName").val() //모달창의 회원 닉네임 넣기
 				},
 				success : function(result){
+				console.log(result);
 					nowChatNo = result[0].chatNo;
 					$("#tab2").trigger("click");
 					chatContentLoad();

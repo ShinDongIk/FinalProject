@@ -47,4 +47,8 @@ public class ChatDao {
 		return sqlSession.selectOne("chatMapper.roomState", chatNo);
 	}
 
+	public int chatContentDelete(SqlSessionTemplate sqlSession, int chatNo) {
+		return sqlSession.update("chatMapper.chatContentDelete", chatNo);
+	}
+
 }

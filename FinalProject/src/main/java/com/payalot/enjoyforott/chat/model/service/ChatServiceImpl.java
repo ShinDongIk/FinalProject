@@ -64,6 +64,11 @@ public class ChatServiceImpl implements ChatService{
 	public String roomState(int chatNo) {
 		return cd.roomState(sqlSession,chatNo);
 	}
+
+	@Override
+	public int chatContentDelete(int chatNo) {
+		return cd.chatContentDelete(sqlSession,chatNo);
+	}
 	
 	
 }

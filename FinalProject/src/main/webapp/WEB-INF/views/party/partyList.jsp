@@ -20,6 +20,9 @@
 </head>
 <body>
 <jsp:include page="../common/menubar.jsp"/>
+	<script>
+		var loginUserId = "${loginUser.userId}"; 
+	</script>
     <div class="outer">
         <div class="partyMenuArea">
             <nav class="navbar navbar-expand-sm fixed-top" id="partyMenu">
@@ -121,6 +124,11 @@
             <br>
             <button id="btnMoreView">더보기</button>
     	</div>   
+    	
+    	<script src="${pageContext.request.contextPath}/js/ratePlanTab.js"></script>
+		<c:if test="${not empty loginUser}">
+			<jsp:include page="../chat/chat.jsp"/>
+		</c:if>
     	
     	<script>
     		//신규파티등록, 파티가입 로그인 필수
