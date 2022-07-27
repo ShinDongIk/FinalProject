@@ -249,55 +249,7 @@ public class UserController {
 			return "no";
 		}		
 	}
-	
-	//아이디, 비밀번호 찾기
-	@RequestMapping("findUserForm.me")
-	public String findUserForm() {
-		return "user/userFindUserForm";
-	}
-	
-//	@RequestMapping("findId.me")
-//	public String findId(String idUserName, String idUserEmail, User u, Model model, HttpSession session) {
-//		
-//		System.out.println("컨트롤러 호출 됨");
-//		System.out.println(u);
-//		
-//		
-//		System.out.println(idUserName);
-//		System.out.println(idUserEmail);
-//		
-//		u.setUserName(idUserName);
-//		u.setUserEmail(idUserEmail);
-//		
-//		System.out.println(u);
-//		
-//		User u2 = userService.findId(u);
-//		System.out.println(u2);
-//		
-//		if(u2 != null) {
-//			model.addAttribute("userInfo", u); 
-//			return "redirect:/findedId.me";
-//		} else {
-//			session.setAttribute("alertMsg","일치하는 정보가 없습니다.");
-//			return "user/userFindUserForm";
-//		}
-//	}
-	
-	@RequestMapping("findedId.me")
-	public String findedId(User u) {
-		return "user/userFindedId";
-	}
 
-	
-	@RequestMapping("findPwd.me")
-	public String findPwd(String pwdUserId, String pwdUserEmail, Model model) {
-		System.out.println(pwdUserId+pwdUserEmail);
-//		System.out.println(pwdUserEmail);
-		
-		return "user/userFindPwd";
-	}
-
-	
 	//회원정보수정 
 	@RequestMapping("update.me")
 	public String updateUser(User u,Model model,HttpSession session) {
