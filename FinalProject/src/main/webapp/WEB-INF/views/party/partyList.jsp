@@ -24,35 +24,6 @@
 		var loginUserId = "${loginUser.userId}"; 
 	</script>
     <div class="outer">
-        <div class="partyMenuArea">
-            <nav class="navbar navbar-expand-sm fixed-top" id="partyMenu">
-                <ul class="navbar-nav tabs">
-                    <li class="nav-item current" data-tab="tab1">
-                        <a class="nav-link">통합</a>
-                    </li>
-                    <li class="nav-item" data-tab="tab2">
-                        <a class="nav-link">넷플릭스</a>
-                        <input type="hidden" class="ottTypeName" value="netflix">
-                    </li>
-                    <li class="nav-item" data-tab="tab3">
-                        <a class="nav-link">웨이브</a>
-                        <input type="hidden" class="ottTypeName" value="wavve">
-                    </li>
-                    <li class="nav-item" data-tab="tab4">
-                        <a class="nav-link">티빙</a>
-                        <input type="hidden" class="ottTypeName" value="tving">
-                    </li>
-                    <li class="nav-item" data-tab="tab5">
-                        <a class="nav-link">디즈니+</a>
-                        <input type="hidden" class="ottTypeName" value="disneyplus">
-                    </li>
-                    <li class="nav-item" data-tab="tab6">
-                        <a class="nav-link">왓챠</a>
-                        <input type="hidden" class="ottTypeName" value="watcha">
-                    </li>
-                </ul>
-            </nav>
-        </div>
         									
         <div class="newParty">
         	<a id="btnPartyEnroll" style="float:right">신규파티등록</a>
@@ -122,7 +93,6 @@
 	            </c:choose> 
             </div>
             <br>
-            <button id="btnMoreView">더보기</button>
     	</div>   
     	
     	<script src="${pageContext.request.contextPath}/js/ratePlanTab.js"></script>
@@ -210,42 +180,6 @@
 				})
 			})
 			
-			
-// 			//탭 메뉴
-// 			$(".nav-item").click(function(){
-				
-//                 var tabId = $(this).attr('data-tab');
-//   	    		var clickTab = $(this).find('input').val();
-//   	    		var typeOtt = $('.ott_'+clickTab);
-//   	    		console.log(typeOtt);
-  	    		
-//   	    		console.log(clickTab);
-  	    		
-// 				if(clickTab == null){
-// 	                $('.itemRow').addClass('current');
-// 				}else{
-// 	                $('.itemRow').removeClass('current');
-// 	                $(typeOtt).addClass('current');
-					
-// 				}
-//                 $('.tab-content').removeClass('current');
-
-//                 $("#"+tabId).addClass('current');
-				
-// 				$.ajax({
-// 					url : "findpartylist",
-// 					type : "get",
-// 					data : {
-// 						ottEng : clickTab
-// 						},
-// 					success : function(result){
-// 						console.log(result);
-// 					},
-// 					error : function(){
-// 						console.log("ajax 통신 실패");
-// 					}
-// 				})
-// 			})
     	</script>
     </div>
 </body>

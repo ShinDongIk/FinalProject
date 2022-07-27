@@ -20,7 +20,7 @@ import com.payalot.enjoyforott.ratePlan.model.vo.RatePlan;
 public class RatePlanController {
 
 	@Autowired
-	RatePlanService ratePlanService;
+	private RatePlanService ratePlanService;
 	
 	//ott 가격정보 페이지 이동 메소드
 	@RequestMapping(value="watch.ra")

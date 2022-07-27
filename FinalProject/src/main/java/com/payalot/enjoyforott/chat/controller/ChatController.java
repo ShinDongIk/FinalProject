@@ -17,7 +17,7 @@ import com.payalot.enjoyforott.chat.model.vo.ChatContent;
 public class ChatController {
 	
 	@Autowired
-	ChatService cs;
+	private ChatService cs;
 	
 	@ResponseBody
 	@RequestMapping(value="mkChat.ch",  produces="application/json; charset=UTF-8")
