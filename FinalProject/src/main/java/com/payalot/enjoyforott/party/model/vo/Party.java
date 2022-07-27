@@ -27,6 +27,6 @@ public class Party {
 	private int ableDays;
 	private int ableMemNum;
 	
-	private String findOtt;
+	private int diffMonth;
 	
 }

@@ -8,18 +8,18 @@
 <jsp:include page="../common/menubar.jsp"/>
 
 <link rel="stylesheet" href="./resources/css/partyJoinFormStyle.css">
+
 </head>
 <body>
     <div class="outer">
-        <br><br>
-        <form action="joinParty.pa" id="partyJoin" method="post">
+        <form action="partyPayForm.pa" id="partyJoin" method="post">
             <div class="content1">
                 <div class="content2">
                     <span class="subTitle"><b class="font-purple">파티 </b><b>규칙</b></span><br><br>
                     <textarea class="agreement" readonly>${ p.partyRule }</textarea>
                     <br>
                     <div class="agreechk">    
-                        <input type="checkbox" id="check1"> <label for="check1"> 파티규칙 동의</label><br>
+                        <input type="checkbox" id="check1"> <label class="chkLabel" for="check1"> 파티규칙 동의</label><br>
                     </div>
                 </div>
 
@@ -42,12 +42,12 @@
 위 사항에 해당하는 경우 파티장 의사와 상관없이 벗츠에서 환불비용을 부담하여 제공하고 있으며, 포인트 환불로 진행됩니다.
                 </textarea><br>
             <div class="agreechk">
-                <input type="checkbox" id="check2"> <label for="check2">환불정책 동의</label><br>
+                <input class="chkInput" type="checkbox" id="check2"> <label class="chkLabel" for="check2">환불정책 동의</label><br>
             </div>
         </div>
     </div>
     <br><br><br>
-
+	${ p }
     <div class="content1">
     <span class="subTitle">
         <b class="font-purple">결제 </b><b>정보</b>
@@ -103,7 +103,7 @@
                 <b class="font-purple">결제 </b><b>방법</b>
             </span><br><br><br>
             <div width="80%">
-                    <input type="radio" id="creditCard" checked>신용카드
+                    <input type="radio" id="creditCard" checked>카드결제
             </div>
         </div>
     </div>
@@ -119,11 +119,22 @@
     </div>
     <br><br><br>
     
-    <input type="hidden" value="${ p.partyNo }" name="joinParty">
-   	<input type="hidden" value="${ loginUser.userId }" name="joinMember">
-   	<input type="hidden" value="${ p.partyEndDate }" name="partyEndDate">
-   	
-    <input type="hidden" value="" name="diffMonth">
+	<input type="hidden" name="partyEndDate" value="${ p.partyEndDate }">
+    
+    <div id="partyJoinData">
+    	<!-- Payment -->
+    	<input type="hidden" name="payName" value="${ p.ottKor }(${ p.ableDays }일)">
+    	<input type="hidden" name="payAmount" id="payAmount">
+    	<input type="hidden" name="buyerEmail" value="${ loginUser.userEmail }">
+    	<input type="hidden" name="buyerName" value="${ loginUser.userName }">
+    	<input type="hidden" name="buyerTel" value="${ loginUser.userPhone }">
+    	<input type="hidden" name="payPartyNo" value="${ p.partyNo }">
+    	<input type="hidden" name="payUserId" value="${ loginUser.userId }">
+    	<!-- PartyMember -->
+   	    <input type="hidden" name="joinParty" value="${ p.partyNo }">
+	   	<input type="hidden" name="joinMember" value="${ loginUser.userId }">
+    	<input type="hidden" name="diffMonth" value="${ p.diffMonth }">
+    </div>
     
     <div class="buttonArea">    
         <button type="button" class="btn button-gray" onclick="history.back(-1);">취소</button>
@@ -141,7 +152,7 @@
      		var sDay = now.getDate();
      		
      		var sDate = sYear+"-"+sMonth+"-"+sDay;
-     		$("#startDate").html(sDate);     		
+     		$("#startDate").html(sDate);
      		
      		var ottchked = $("#ottType").val();
      		var diffDays = $("#diffDays").text();
@@ -154,10 +165,12 @@
 				success : function(result){
 					//총금액 계산
 					var totalAmount = (diffDays * result.perOneDayPrice).toLocaleString('ko-KR');
+					var payAmount = diffDays * result.perOneDayPrice;
 					
 					//일단가, 총금액 출력
 		 			$("#perOneDayPrice").html(result.perOneDayPrice);
 			        $("#totalAmount").html(totalAmount);	
+			        $("#payAmount").val(payAmount);
 				},
 				error : function(){
 					console.log("ajax 통신 실패");
@@ -180,6 +193,7 @@
   			});
   		});
     	
+
     </script>
 </div>
 <br><br>

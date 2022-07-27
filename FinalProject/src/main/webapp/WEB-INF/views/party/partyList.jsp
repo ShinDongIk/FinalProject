@@ -21,35 +21,35 @@
 <body>
 <jsp:include page="../common/menubar.jsp"/>
     <div class="outer">
-        <div class="partyMenuArea">
-            <nav class="navbar navbar-expand-sm fixed-top" id="partyMenu">
-                <ul class="navbar-nav tabs">
-                    <li class="nav-item current" data-tab="tab1">
-                        <a class="nav-link">통합</a>
-                    </li>
-                    <li class="nav-item" data-tab="tab2">
-                        <a class="nav-link">넷플릭스</a>
-                        <input type="hidden" class="ottTypeName" value="netflix">
-                    </li>
-                    <li class="nav-item" data-tab="tab3">
-                        <a class="nav-link">웨이브</a>
-                        <input type="hidden" class="ottTypeName" value="wavve">
-                    </li>
-                    <li class="nav-item" data-tab="tab4">
-                        <a class="nav-link">티빙</a>
-                        <input type="hidden" class="ottTypeName" value="tving">
-                    </li>
-                    <li class="nav-item" data-tab="tab5">
-                        <a class="nav-link">디즈니+</a>
-                        <input type="hidden" class="ottTypeName" value="disneyplus">
-                    </li>
-                    <li class="nav-item" data-tab="tab6">
-                        <a class="nav-link">왓챠</a>
-                        <input type="hidden" class="ottTypeName" value="watcha">
-                    </li>
-                </ul>
-            </nav>
-        </div>
+<!--         <div class="partyMenuArea"> -->
+<!--             <nav class="navbar navbar-expand-sm fixed-top" id="partyMenu"> -->
+<!--                 <ul class="navbar-nav tabs"> -->
+<!--                     <li class="nav-item current" data-tab="tab1"> -->
+<!--                         <a class="nav-link">통합</a> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item" data-tab="tab2"> -->
+<!--                         <a class="nav-link">넷플릭스</a> -->
+<!--                         <input type="hidden" class="ottTypeName" value="netflix"> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item" data-tab="tab3"> -->
+<!--                         <a class="nav-link">웨이브</a> -->
+<!--                         <input type="hidden" class="ottTypeName" value="wavve"> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item" data-tab="tab4"> -->
+<!--                         <a class="nav-link">티빙</a> -->
+<!--                         <input type="hidden" class="ottTypeName" value="tving"> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item" data-tab="tab5"> -->
+<!--                         <a class="nav-link">디즈니+</a> -->
+<!--                         <input type="hidden" class="ottTypeName" value="disneyplus"> -->
+<!--                     </li> -->
+<!--                     <li class="nav-item" data-tab="tab6"> -->
+<!--                         <a class="nav-link">왓챠</a> -->
+<!--                         <input type="hidden" class="ottTypeName" value="watcha"> -->
+<!--                     </li> -->
+<!--                 </ul> -->
+<!--             </nav> -->
+<!--         </div> -->
         									
         <div class="newParty">
         	<a id="btnPartyEnroll" style="float:right">신규파티등록</a>

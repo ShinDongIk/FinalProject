@@ -10,6 +10,7 @@ import com.payalot.enjoyforott.party.model.dao.PartyDao;
 import com.payalot.enjoyforott.party.model.vo.OttType;
 import com.payalot.enjoyforott.party.model.vo.Party;
 import com.payalot.enjoyforott.party.model.vo.PartyMember;
+import com.payalot.enjoyforott.party.model.vo.Payment;
 
 @Service
 public class PartyServiceImpl implements PartyService{
@@ -29,11 +30,6 @@ public class PartyServiceImpl implements PartyService{
 	public ArrayList<Party> selectList() {
 		return partyDao.selectList(sqlSession);
 	}
-
-	@Override
-	public ArrayList<Party> findpartylist(String ottEng) {
-		return partyDao.findpartylist(sqlSession, ottEng);
-	}
 	
 	@Override
 	public ArrayList<Party> selectEndDate() {
@@ -51,14 +47,29 @@ public class PartyServiceImpl implements PartyService{
 	}
 
 	@Override
-	public int joinParty(PartyMember pm) {
-		return partyDao.joinParty(sqlSession, pm);
-	}
-
-	@Override
 	public int updateEndDateParty() {
 		return partyDao.updateEndDateParty(sqlSession);
 	}
+
+	@Override
+	public int insertPayment(Payment payInfo) {
+		return partyDao.insertPayment(sqlSession, payInfo);
+	}
+
+	@Override
+	public int insertPartyMember(PartyMember pm) {
+		return partyDao.insertPartyMember(sqlSession, pm);
+	}
+
+	@Override
+	public int selectPartyMemNum(int pno) {
+		return partyDao.selectPartyMemNum(sqlSession, pno);
+	}
+	@Override
+	public int updateFullParty(int pno) {
+		return partyDao.updateFullParty(sqlSession, pno);
+	}
+
 
 
 

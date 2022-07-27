@@ -25,6 +25,8 @@
 		
 		<result column="ABLEDAYS" property="ableDays"/>
 		<result column="ABLEMEMNUM" property="ableMemNum"/>
+		
+		<result column="DIFFMONTH" property="diffMonth"/>
 	</resultMap>
 	
 	<resultMap type="partyMember" id="partyMemberResultSet">
@@ -60,16 +62,6 @@
 		ORDER BY PARTY_NO DESC
 	</select>
 	
-	<select id="partyListOtt" resultMap="partyResultSet">
-		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE
-		FROM PARTY
-		JOIN OTT_TYPE ON(PARTY_OTTENG=OTT_ENG)
-		JOIN USERINFO ON(PARTY_MASTER=USER_ID)
-		JOIN USERLEVEL ON(USER_LEVEL=LEVEL_CODE)
-		WHERE PARTY_STATUS='Y'
-		ORDER BY PARTY_NO DESC
-	</select>
-	
 	<select id="selectEndDate" resultMap="partyResultSet">
 		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE
 		FROM PARTY
@@ -81,12 +73,21 @@
 	</select>
 	
 	<select id="selectParty" resultMap="partyResultSet">	
-		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE,CEIL(PARTY_ENDDATE-SYSDATE)+1 AS ABLEDAYS
+		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE
+			   ,TRUNC(MONTHS_BETWEEN(PARTY_ENDDATE,SYSDATE)) AS DIFFMONTH,PARTY_RULE,CEIL(PARTY_ENDDATE-SYSDATE)+1 AS ABLEDAYS
 		FROM PARTY
 		JOIN OTT_TYPE ON(PARTY_OTTENG=OTT_ENG)
 		JOIN USERINFO ON(PARTY_MASTER=USER_ID)
 		JOIN USERLEVEL ON(USER_LEVEL=LEVEL_CODE)
 		WHERE PARTY_NO = #{partyNo}
+	</select>
+	
+	<select id="selectPartyMemNum" resultMap="partyResultSet">	
+        SELECT (SELECT COUNT(PARTY_NO) FROM PARTY_MEMBER WHERE PARTY_NO=JOIN_PARTY)
+        FROM PARTY
+        LEFT JOIN PARTY_MEMBER ON(PARTY_NO=JOIN_PARTY)
+        WHERE PARTY_NO = #{partyNo}
+        GROUP BY PARTY_NO, PARTY_MASTER
 	</select>
 	
 	<insert id="enrollParty" parameterType="party">
@@ -116,7 +117,22 @@
 				)
 	</insert>
 	
-	<insert id="joinParty" parameterType="partyMember">
+	<insert id="insertPayment" parameterType="partyMember">
+		INSERT INTO PAYMENT(
+							 PAYMENT_PID
+							,PAY_PARTY_NO
+							,PAY_ID
+							,PAY_NO
+							)
+		VALUES(
+				 SEQ_PMNO.NEXTVAL
+				,#{payPartyNo}
+				,#{payUserId}
+				,#{payConfirmNo}
+				)
+	</insert>
+	
+	<insert id="insertPartyMember" parameterType="partyMember">
 		INSERT INTO PARTY_MEMBER(
 							 JOIN_NO
 							,JOIN_PARTY
@@ -133,6 +149,12 @@
 		UPDATE PARTY
 		SET PARTY_STATUS = 'N'
 		WHERE PARTY_ENDDATE+1 <![CDATA[ < ]]> SYSDATE
+	</update>
+	
+	<update id="updateFullParty" parameterType="int">
+		UPDATE PARTY
+		SET PARTY_STATUS = 'N'
+		WHERE PARTY_NO = #{partyNo}
 	</update>
 
 </mapper>

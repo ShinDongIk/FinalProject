@@ -317,53 +317,7 @@
    			var regExp = /^([0-9a-zA-Z_-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
    			$("#btnJoin").click(function(){
 				//필수입력
-   				if($("#userId").val()==""){
-   					alert("아이디 입력은 필수입니다.");
-   					$("#userId").focus();
-   				}else if($("#userPwd").val()==""){
-   					alert("비밀번호 입력은 필수입니다.");
-   					$("#userPwd").focus();
-   				}else if($("#userPwdChk").val()==""){
-   					alert("비밀번호확인 입력은 필수입니다.");
-   					$("#userPwdChk").focus();
-   				}else if($("#userName").val()==""){
-   					alert("이름 입력은 필수입니다.");
-   					$("#userName").focus();
-   				}else if($("#userNickname").val()==""){
-   					alert("닉네임 입력은 필수입니다.");
-   					$("#userNickname").focus();
-   				}else if($("#userEmail").val()==""){
-   					alert("이메일 입력은 필수입니다.");
-   					$("#userEmail").focus();
-   				}else if($("#userPhone").val()==""){
-   					alert("휴대폰번호 입력은 필수입니다.");
-   					$("#userPhone").focus();
-   				}else if($("input:checkbox[name='userGenre']").is(":checked")==false){
-   					alert("관심있는 장르 적어도 하나를 선택해주세요.");
-   					$("#genre1").focus();
-   				//중복체크
-   				}else if($("#userId").hasClass("chked")==false){
-   					alert("아이디 중복체크 해주세요.");
-   					$("#userId").focus();
-   				}else if($("#userNickname").hasClass("chked")==false){
-   					alert("닉네임 중복체크 해주세요.");
-   					$("#userNickname").focus();
-   				//비밀번호일치
-   				}else if($("#userPwd").hasClass("chked")==false){
-   					alert("비밀번호가 일치하지 않습니다.");
-   					$("#userPwd").focus();
-   	   			//메일인증번호일치
-   				}else if($("#userEmail").hasClass("chked")==false){
-   					alert("메일 인증번호가 일치하지 않습니다.");
-   					$("#userEmail").focus();
-				//이메일 형식 유효성
-   				}else if(!regExp.test($("#userEmail").val())){
-   					alert("이메일 형식을 확인해주세요");
-   					$("#userEmail").focus();
-   				}else{
-   					$("#joinUser").submit();
-   				}
-   			});
+ㅊ
    		});
          
 	     var code = ""; //이메일 인증번호 변수

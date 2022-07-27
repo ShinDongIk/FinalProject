@@ -5,12 +5,8 @@ body{
     font-size: 14px;
     background-color: #efefef;
 }
-.outer{
+.outer {
     text-align: center;
-}
-#partyJoin{
-	display: inline-block;
-    width: 70%;
 }
 h1, h2, h3, h4, h5, h6 {
     color: #3c3b3b;
@@ -28,10 +24,17 @@ strong, b {
 
 .subTitle{
     /* border: 1px solid blueviolet; */
-    width: 90%;
+    width: 40%;
     display: inline-block;
     text-align: left;
+    margin: 1%;
     font-size: large;
+}
+.check{
+    /* border: 1px solid blueviolet; */
+    width: 40%;
+    display: inline-block;
+    text-align: left;
 }
 .buttonArea{
     /* border: 1px solid blueviolet; */
@@ -39,17 +42,8 @@ strong, b {
     display: inline-block;
     text-align: center;
 }
-.content1{
-    /* border: 1px solid red; */
-    width: 100%;
-    display: inline-block;
-}
-.content2{
-    width: 50%;  
-    float: left;
-}
-.agreement{
-    width: 90%;
+.content{
+    width: 40%;
     border: 1px solid #a8b0ff;
     border-radius: 5px;
     font-size: small;
@@ -57,53 +51,24 @@ strong, b {
     resize: none;
     background-color: rgb(255, 251, 245);
 }
-.agreechk{
-    text-align: center;
-}
-.chkLabel {
-    display: inline-block;
-}
-.chkInput {
-    display: inline-block;
-}
 
 /* 버튼영역 */
 .button-gray{
     width: 45%;
     height: 50px;
     background-color: gray;
-    color: white !important;
+    color: white;
     font-weight: 500;
-    font-size: 12px;
-    line-height: 1.65;
 }
 .button-purple{
     width: 45%;
     height: 50px;
     background-color: #a8b0ff;
-    color: white !important;
+    color: white;
     font-weight: 500;
-    font-size: 12px;
-    line-height: 1.65;
 }
 
-/* 결제정보 */
-.table{
-    width: 100%;
-}
-
-/* 폰트 스타일 */
+/* 글씨관련 */
 .font-purple{
     color: #a8b0ff;
-}
-
-/* 유의사항 */
-#notice{
-    font-size: 12px;
-    color: gray;
-    margin: 1%;
-    padding: 1%;
-    border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
-    
 }
