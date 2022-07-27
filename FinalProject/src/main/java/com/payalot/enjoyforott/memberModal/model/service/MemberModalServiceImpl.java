@@ -13,10 +13,10 @@ import com.payalot.enjoyforott.memberModal.model.vo.MemberModal;
 public class MemberModalServiceImpl implements MemberModalService{
 	
 	@Autowired
-	MemberModalDao mmd;
+	private MemberModalDao mmd;
 	
 	@Autowired
-	SqlSessionTemplate sqlSession;
+	private SqlSessionTemplate sqlSession;
 	
 	@Override
 	public MemberModal selectMember(String clickNickName) {

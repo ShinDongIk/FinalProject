@@ -17,14 +17,14 @@ import com.payalot.enjoyforott.chat.model.vo.ChatContent;
 public class ChatController {
 	
 	@Autowired
-	ChatService cs;
+	private ChatService cs;
 	
 	@ResponseBody
 	@RequestMapping(value="mkChat.ch",  produces="application/json; charset=UTF-8")
 	public String makeChatRoom(Chat ch) {
 		ArrayList<Chat> chatRoom = cs.searchChatRoom(ch);
 		
-		if(chatRoom == null) {
+		if(chatRoom.isEmpty()) {
 			int result = cs.makeChatRoom(ch);
 			if(result>0) {
 				chatRoom = cs.searchChatRoom(ch);
@@ -76,6 +76,9 @@ public class ChatController {
 	@RequestMapping(value="chatRoomDelete.ch",  produces="application/json; charset=UTF-8")
 	public String chatRoomDelete(int chatNo,String userNick) {
 		int result = cs.chatRoomDelete(chatNo);
+		if(result>0) {
+			int result2 = cs.chatContentDelete(chatNo);
+		}
 		String userId = cs.findUserId(userNick);
 		
 		String result2[] = new String[2]; 

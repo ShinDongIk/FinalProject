@@ -20,7 +20,11 @@
 </head>
 <body>
 <jsp:include page="../common/menubar.jsp"/>
+	<script>
+		var loginUserId = "${loginUser.userId}"; 
+	</script>
     <div class="outer">
+<<<<<<< HEAD
 <!--         <div class="partyMenuArea"> -->
 <!--             <nav class="navbar navbar-expand-sm fixed-top" id="partyMenu"> -->
 <!--                 <ul class="navbar-nav tabs"> -->
@@ -50,6 +54,8 @@
 <!--                 </ul> -->
 <!--             </nav> -->
 <!--         </div> -->
+=======
+>>>>>>> refs/heads/back
         									
         <div class="newParty">
         	<a id="btnPartyEnroll" style="float:right">신규파티등록</a>
@@ -119,8 +125,12 @@
 	            </c:choose> 
             </div>
             <br>
-            <button id="btnMoreView">더보기</button>
     	</div>   
+    	
+    	<script src="${pageContext.request.contextPath}/js/ratePlanTab.js"></script>
+		<c:if test="${not empty loginUser}">
+			<jsp:include page="../chat/chat.jsp"/>
+		</c:if>
     	
     	<script>
     		//신규파티등록, 파티가입 로그인 필수
@@ -202,42 +212,6 @@
 				})
 			})
 			
-			
-// 			//탭 메뉴
-// 			$(".nav-item").click(function(){
-				
-//                 var tabId = $(this).attr('data-tab');
-//   	    		var clickTab = $(this).find('input').val();
-//   	    		var typeOtt = $('.ott_'+clickTab);
-//   	    		console.log(typeOtt);
-  	    		
-//   	    		console.log(clickTab);
-  	    		
-// 				if(clickTab == null){
-// 	                $('.itemRow').addClass('current');
-// 				}else{
-// 	                $('.itemRow').removeClass('current');
-// 	                $(typeOtt).addClass('current');
-					
-// 				}
-//                 $('.tab-content').removeClass('current');
-
-//                 $("#"+tabId).addClass('current');
-				
-// 				$.ajax({
-// 					url : "findpartylist",
-// 					type : "get",
-// 					data : {
-// 						ottEng : clickTab
-// 						},
-// 					success : function(result){
-// 						console.log(result);
-// 					},
-// 					error : function(){
-// 						console.log("ajax 통신 실패");
-// 					}
-// 				})
-// 			})
     	</script>
     </div>
 </body>

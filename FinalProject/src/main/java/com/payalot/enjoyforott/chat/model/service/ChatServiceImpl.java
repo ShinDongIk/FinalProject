@@ -15,10 +15,10 @@ import com.payalot.enjoyforott.chat.model.vo.ChatContent;
 public class ChatServiceImpl implements ChatService{
 
 	@Autowired
-	ChatDao cd;
+	private ChatDao cd;
 	
 	@Autowired
-	SqlSessionTemplate sqlSession;
+	private SqlSessionTemplate sqlSession;
 	
 	@Override
 	public ArrayList<Chat> searchChatRoom(Chat ch) {
@@ -63,6 +63,11 @@ public class ChatServiceImpl implements ChatService{
 	@Override
 	public String roomState(int chatNo) {
 		return cd.roomState(sqlSession,chatNo);
+	}
+
+	@Override
+	public int chatContentDelete(int chatNo) {
+		return cd.chatContentDelete(sqlSession,chatNo);
 	}
 	
 	

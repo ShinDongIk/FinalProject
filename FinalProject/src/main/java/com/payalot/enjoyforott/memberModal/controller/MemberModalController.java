@@ -13,7 +13,7 @@ import com.payalot.enjoyforott.memberModal.model.vo.MemberModal;
 public class MemberModalController {
 	
 	@Autowired
-	MemberModalService mms;
+	private MemberModalService mms;
 	
 	@ResponseBody
 	@RequestMapping(value="find.mo", produces="application/json; charset=UTF-8")

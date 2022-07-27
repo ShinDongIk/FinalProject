@@ -19,6 +19,9 @@
 <body>
 
 <jsp:include page="../common/menubar.jsp" />   
+	<script>
+		var loginUserId = "${loginUser.userId}"; 
+	</script>
  
     <div class="outer">
         <br>
@@ -157,6 +160,11 @@
             <button type="button" class="btn button-gray">취소</button>
             <button type="button" class="btn button-purple" id="btnEnrollParty">등록</button>
          </form>
+         
+         <script src="${pageContext.request.contextPath}/js/ratePlanTab.js"></script>
+		<c:if test="${not empty loginUser}">
+			<jsp:include page="../chat/chat.jsp"/>
+		</c:if>
          
          <script>
          	//시작일 오늘 고정, 종료일 오늘 이후

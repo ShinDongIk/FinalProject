@@ -11,6 +11,9 @@
 
 </head>
 <body>
+	<script>
+		var loginUserId = "${loginUser.userId}"; 
+	</script>
     <div class="outer">
         <form action="partyPayForm.pa" id="partyJoin" method="post">
             <div class="content1">
@@ -141,6 +144,11 @@
         <button type="button" class="btn button-purple" id="btnMoveToPay">결제</button>
     </div>
     </form>
+    
+    <script src="${pageContext.request.contextPath}/js/ratePlanTab.js"></script>
+	<c:if test="${not empty loginUser}">
+		<jsp:include page="../chat/chat.jsp"/>
+	</c:if>
     
     <script>
     	$(document).ready(function(){

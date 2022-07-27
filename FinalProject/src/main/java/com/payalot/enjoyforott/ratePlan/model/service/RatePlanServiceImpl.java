@@ -13,10 +13,10 @@ import com.payalot.enjoyforott.ratePlan.model.vo.RatePlan;
 public class RatePlanServiceImpl implements RatePlanService{
 	
 	@Autowired
-	RatePlanDao ratePlanDao;
+	private RatePlanDao ratePlanDao;
 	
 	@Autowired
-	SqlSessionTemplate sqlSession;
+	private SqlSessionTemplate sqlSession;
 	
 	@Override
 	public int insertRatePlan(RatePlan rp) {
