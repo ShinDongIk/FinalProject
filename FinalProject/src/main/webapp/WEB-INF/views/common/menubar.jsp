@@ -48,7 +48,7 @@
 										<li><a href="#">등급: ${ loginUser.levelName }</a></li>
 										<c:choose>
 											<c:when test="${loginUser.userId=='admin' }">
-												<li><a href="adminMypage.ad">마이페이지</a></li>
+												<li><a href="adminMypage.ad">관리자페이지</a></li>
 											</c:when>
 											<c:otherwise>
 												<li><a href="mypage.me">마이페이지</a></li>

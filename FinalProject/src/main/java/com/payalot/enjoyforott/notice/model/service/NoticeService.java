@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
+import com.payalot.enjoyforott.admin.model.vo.Report;
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
 import com.payalot.enjoyforott.notice.model.vo.Board;
 import com.payalot.enjoyforott.user.model.vo.User;
@@ -72,4 +73,24 @@ public interface NoticeService {
 	//관리자 정보 비밀번호 변경
 	int adminInfoUpdate(User u);
 	
+	//신고 개수
+	int reportListCount();		
+	
+	//신고 리스트
+	ArrayList<Report> reportList(PageInfo pi);
+	
+	//신고 선택
+	Report selectReport(int num);
+	
+	//신고 접수
+	int reportAccept(int declarationNo);
+	
+	//매너점수 감소
+	int minusPoint(String userId);
+	
+	//신고 접수 취소
+	int reportCan(int declarationNo);
+	
+	//매너점수 증가
+	int plusPoint(String userId);
 }

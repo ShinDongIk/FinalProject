@@ -32,6 +32,14 @@
 		<result column="LEVEL_NAME" property="levelName"/>		
 	</resultMap>
 
+	<resultMap type="report" id="reportResultSet">
+		<result column="DECLARATION_NO" property="declarationNo"/>
+		<result column="REPORTER" property="reporter"/>
+		<result column="REPORTED" property="reported"/>
+		<result column="REPORT_CONTENT" property="reportContent"/>
+		<result column="REPORT_ENTER" property="reportEnter"/>
+		<result column="REPORT_STATUS" property="reportStatus"/>
+	</resultMap>
 	<insert id="insertNotice">
 		INSERT INTO BOARD
 						(BOARD_NO,
@@ -234,5 +242,54 @@
 	SET USER_PWD=#{userPwd}
 	WHERE USER_ID=#{userId}
 	</update>
+	
+	<select id="reportListCount" resultType="int">
+	SELECT COUNT(*)
+	FROM DECLARATION_LIST
+	</select>
+	
+	<select id="reportList" resultMap="reportResultSet">
+	SELECT DECLARATION_NO,
+			REPORTER,
+			REPORTED,
+			REPORT_CONTENT,
+			REPORT_ENTER,
+			REPORT_STATUS
+	FROM DECLARATION_LIST
+	ORDER BY REPORT_ENTER DESC
+	</select>
+	
+	<select id="selectReport" resultMap="reportResultSet">
+	SELECT DECLARATION_NO,REPORTER,REPORTED,REPORT_ENTER,REPORT_CONTENT,REPORT_STATUS
+	FROM DECLARATION_LIST
+	WHERE DECLARATION_NO=#{num}
+	</select>
+	
+	<update id="reportAccept">
+    UPDATE DECLARATION_LIST
+	SET REPORT_STATUS='Y'
+	WHERE DECLARATION_NO=#{declarationNo}
+	</update>
+	
+	<update id="minusPoint">
+	UPDATE USERINFO
+	SET USER_SCORE = USER_SCORE - 3
+	WHERE USER_ID=#{userId}
+	</update>
+	
+	<update id="reportCan">
+    UPDATE DECLARATION_LIST
+	SET REPORT_STATUS='N'
+	WHERE DECLARATION_NO=#{declarationNo}
+	</update>
+	
+	<update id="plusPoint">
+	UPDATE USERINFO
+	SET USER_SCORE = USER_SCORE + 3
+	WHERE USER_ID=#{userId}
+	</update>
+	
+	
+	
 
 </mapper>

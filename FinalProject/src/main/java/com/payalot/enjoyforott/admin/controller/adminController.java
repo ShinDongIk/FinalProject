@@ -7,15 +7,19 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.payalot.enjoyforott.admin.model.vo.Report;
 import com.payalot.enjoyforott.common.model.template.Pagination;
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
 import com.payalot.enjoyforott.notice.model.service.NoticeServiceImpl;
 import com.payalot.enjoyforott.notice.model.vo.Board;
+import com.payalot.enjoyforott.user.model.service.UserService;
 import com.payalot.enjoyforott.user.model.vo.User;
 
 @Controller
@@ -26,6 +30,9 @@ public class adminController {
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@Autowired
+	private UserService userService;
 	
 	
 	@RequestMapping("adminMypage.ad")
@@ -46,7 +53,7 @@ public class adminController {
 		PageInfo pi = Pagination.getPageInfo(listCount, currentPage, pageLimit, boardLimit);
 		
 		ArrayList<Board> list = noticeService.selectNoticeList(pi);
-
+		
 		mv.addObject("list",list);
 		mv.addObject("pi",pi).setViewName("adminMenu/adminNoticeListView");;
 		
@@ -264,11 +271,6 @@ public class adminController {
 		return mv;
 	}
 	
-	@RequestMapping("memberManage.ad")
-	public String memberManage() {
-		return "adminMenu/memberManage";
-	}
-	
 	@RequestMapping("adminUpdate.ad")
 	public String adminUpdate() {
 		return "adminMenu/adminUpdate";
@@ -301,6 +303,99 @@ public class adminController {
 		}
 		return mv;
 	}
+	
+	@RequestMapping("manageList.ad")
+	public ModelAndView memList(ModelAndView mv,
+								@RequestParam(value="cPage",defaultValue = "1") int cPage){
+		
+		int listCount = userService.UserListCount();
+		int pageLimit=10;
+		int boardLimit=10;
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, cPage, pageLimit, boardLimit);
+		
+		ArrayList<User> list = userService.UserList(pi);
+
+		mv.addObject("pi",pi);
+		mv.addObject("list",list).setViewName("adminMenu/manageList");
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="selectUser.ad",produces="application/json; charset=UTF-8")
+	public String selectUser(String userId) {
+		User u = userService.selectUser(userId);
+		return new Gson().toJson(u);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="userStop.ad",produces="text/html; charset=UTF-8")
+	public String userStop(String userId) {
+		int result = userService.userStop(userId);
+		if(result>0) {
+			return "유저 정지 완료";
+		}else {
+			return "유저 정지 실패";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="userStopCan.ad",produces="text/html; charset=UTF-8")
+	public String userStopCan(String userId) {
+		int result = userService.userStopCan(userId);
+		if(result>0) {
+			return "유저 정지 취소 완료";
+		}else {
+			return "유저 정지 취소 실패";
+		}
+	}
+	
+	@RequestMapping("reportList.ad")
+	public ModelAndView reportList(ModelAndView mv,
+							@RequestParam(value="cPage", defaultValue="1") int cPage) {
+		
+		int listCount = noticeService.reportListCount();
+		int pageLimit = 10;
+		int boardLimit = 10;
+		PageInfo pi = Pagination.getPageInfo(listCount, cPage, pageLimit, boardLimit);
+		ArrayList<Report> list = noticeService.reportList(pi);
+		mv.addObject("pi",pi);
+		mv.addObject("list",list).setViewName("adminMenu/reportList");
+		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="selectReport.ad",produces="application/json; charset=UTF-8")
+	public String selectReport(int num) {
+		Report r = noticeService.selectReport(num);
+		return new Gson().toJson(r);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="reportAccept.ad",produces="text/html; charset=UTF-8")
+	public String reportAccept(int dNo, String reported) {
+		int result = noticeService.minusPoint(reported);
+		
+		if(result>0) {
+			noticeService.reportAccept(dNo);
+			return "신고 접수 완료";
+		}else {
+			return "신고 접수 취소";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="reportCan.ad",produces="text/html; charset=UTF-8")
+	public String reportCan(int dNo,String reported) {
+		int result = noticeService.plusPoint(reported);
+		if(result>0) {
+			noticeService.reportCan(dNo);
+			return "신고 취소 완료";
+		}else {
+			return "신고 취소 실패";
+		}
+	}
+	
 	
 	
 }

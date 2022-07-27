@@ -33,8 +33,8 @@
 	<jsp:include page="menubar.jsp"/>
         <div id="navigator" align="center">
             <ul class="navi">
-                <li><a href="memberManage.ad">회원관리</a></li>
-                <li><a href="report.ad">신고 처리</a></li>
+                <li><a href="manageList.ad">회원관리</a></li>
+                <li><a href="reportList.ad">신고 처리</a></li>
                 <li><a href="inquiryAdminList.in">1:1문의</a></li>
                 <li><a href="adminUpdate.ad">관리자 정보 수정</a></li>
             </ul>
@@ -43,5 +43,8 @@
                 <li><a href="faqList.ad">FAQ</a></li>
             </ul>
         </div>
+    <c:if test="${not empty loginUser}">
+		<jsp:include page="../chat/chat.jsp"/>
+	</c:if>
 </body>
 </html>

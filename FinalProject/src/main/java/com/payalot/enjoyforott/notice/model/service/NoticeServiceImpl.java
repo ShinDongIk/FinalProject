@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.payalot.enjoyforott.admin.model.vo.Report;
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
 import com.payalot.enjoyforott.notice.model.dao.NoticeDao;
 import com.payalot.enjoyforott.notice.model.vo.Board;
@@ -137,6 +138,42 @@ public class NoticeServiceImpl implements NoticeService{
 	public int adminInfoUpdate(User u) {
 		return noticeDao.adminInfoUpdate(sqlSession,u);
 	}
+
+	@Override
+	public int reportListCount() {
+		return noticeDao.reportListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Report> reportList(PageInfo pi) {
+		return noticeDao.reportList(sqlSession,pi);
+	}
+
+	@Override
+	public Report selectReport(int num) {
+		return noticeDao.selectReport(sqlSession,num);
+	}
+
+	@Override
+	public int reportAccept(int declarationNo) {
+		return noticeDao.reportAccept(sqlSession,declarationNo);
+	}
+
+	@Override
+	public int minusPoint(String userId) {
+		return noticeDao.minusPoint(sqlSession,userId);
+	}
+
+	@Override
+	public int reportCan(int declarationNo) {
+		return noticeDao.reportCan(sqlSession,declarationNo);
+	}
+
+	@Override
+	public int plusPoint(String userId) {
+		return noticeDao.plusPoint(sqlSession,userId);
+	}
+	
 
 
 }
