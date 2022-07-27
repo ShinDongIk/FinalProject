@@ -1,5 +1,8 @@
 package com.payalot.enjoyforott.user.model.service;
 
+import java.util.ArrayList;
+
+import com.payalot.enjoyforott.common.model.vo.PageInfo;
 import com.payalot.enjoyforott.common.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.vo.User;
 
@@ -25,4 +28,19 @@ public interface UserService {
 	
 	//매너점수 업데이트
 	int updateUserScore (UpdateScore us);
+	
+	//유저 수
+	int UserListCount();
+		
+	//유저 리스트
+	ArrayList<User> UserList(PageInfo pi);
+		
+	//유저 조회
+	User selectUser(String userId);
+		
+	//유저 이용 정지
+	int userStop(String userId);
+		
+	//유저 이용 정지 취소
+	int userStopCan(String userId);
 }

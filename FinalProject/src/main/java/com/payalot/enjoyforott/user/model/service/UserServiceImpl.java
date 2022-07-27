@@ -1,9 +1,12 @@
 package com.payalot.enjoyforott.user.model.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.payalot.enjoyforott.common.model.vo.PageInfo;
 import com.payalot.enjoyforott.common.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.dao.UserDao;
 import com.payalot.enjoyforott.user.model.vo.User;
@@ -58,6 +61,31 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public int updateUserScore(UpdateScore us) {
 		return userDao.updateUserScore(sqlSession, us);
+	}
+	
+	@Override
+	public int UserListCount() {
+		return userDao.userListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<User> UserList(PageInfo pi) {
+		return userDao.UserList(sqlSession,pi);
+	}
+
+	@Override
+	public User selectUser(String userId) {
+		return userDao.selectUser(sqlSession,userId);
+	}
+
+	@Override
+	public int userStop(String userId) {
+		return userDao.userStop(sqlSession,userId);
+	}
+
+	@Override
+	public int userStopCan(String userId) {
+		return userDao.userStopCan(sqlSession,userId);
 	}
 
 }

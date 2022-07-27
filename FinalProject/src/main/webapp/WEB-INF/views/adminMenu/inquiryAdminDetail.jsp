@@ -76,33 +76,33 @@
     <script>
 	  //수정 버튼 클릭 시 변화
         $(function(){
-            $("#complete").hide();
-            $("#cancel").hide();
-            $("#addcom").hide();
-            $("#update").click(function(){
-    			if($("#rContent").text()!=""){
-	            	$("#add").hide();
-	                $("#rContent").removeAttr("readonly");
-	                $(this).hide();
-	                $("#goBack").hide();
+	            $("#complete").hide();
+	            $("#cancel").hide();
+	            $("#addcom").hide();
+	            $("#update").click(function(){
+	    			if($("#rContent").text()!=""){
+		            	$("#add").hide();
+		                $("#rContent").removeAttr("readonly");
+		                $(this).hide();
+		                $("#goBack").hide();
+		                $("#delete").hide();
+		                $("#complete").show();
+		                $("#cancel").show();
+	    			}else{
+	    				alert("답글이 없습니다.");
+	    			}
+	            })
+	            $("#add").click(function(){
+	            	$("#rContent").removeAttr("readonly");
+	            	$(this).hide();
+	            	$("#update").hide();
+	            	$("#goBack").hide();
+	                $("#complete").hide();
 	                $("#delete").hide();
-	                $("#complete").show();
+	                $("#addcom").show();
 	                $("#cancel").show();
-    			}else{
-    				alert("답글이 없습니다.");
-    			}
-            })
-            $("#add").click(function(){
-            	$("#rContent").removeAttr("readonly");
-            	$(this).hide();
-            	$("#update").hide();
-            	$("#goBack").hide();
-                $("#complete").hide();
-                $("#delete").hide();
-                $("#addcom").show();
-                $("#cancel").show();
-            })
-        	replyList();
+	            })
+	        	replyList();
         })
         function can(){
             window.location.reload(true);
@@ -124,14 +124,14 @@
 	    			success : function(result){
 	    				alert(result);
 						replyList();
-						location.href="inquiryAdminList.in";
+						window.location.reload(true);
 	    			},
 	    			error : function(){
 	    				console.log("실패");
 	    			}
 	    		})
     		}else{
-    			alertify.alert("댓글을 입력해주세요");
+    			alert("댓글을 입력해주세요");
     		}
     	})
     		

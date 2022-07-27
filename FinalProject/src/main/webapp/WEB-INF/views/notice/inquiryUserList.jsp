@@ -74,6 +74,9 @@
         <button  type="button" data-toggle="modal" data-target="#myModal" id="openmd">삭제</button>
         </div>
     </div>
+    <c:if test="${not empty loginUser}">
+		<jsp:include page="../chat/chat.jsp"/>
+	</c:if>
 	<br><br>
     <div id="paging-area" align="center">
     	<c:choose>
@@ -114,7 +117,6 @@
 		  
 		        <!-- Modal Header -->
 		        <div class="modal-header" style="height:50px;">
-		          <h4 class="modal-title">신고 내역</h4>
 		          <button type="button" class="close" data-dismiss="modal" style="height:50px;">&times;</button>
 		        </div>
 		  
@@ -126,7 +128,6 @@
 		        <div class="modal-footer" align="center" style="height: 100px;">
 		            <button id="del">삭제</button>
 		            <button data-dismiss="modal">취소</button>
-		            <button data-dismiss="modal" style="display:none;" id="cancel"></button>
 		        </div>
 		  
 		      </div>

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.payalot.enjoyforott.admin.model.vo.Report;
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
 import com.payalot.enjoyforott.notice.model.vo.Board;
 import com.payalot.enjoyforott.user.model.vo.User;
@@ -132,5 +133,37 @@ public class NoticeDao {
 	public int adminInfoUpdate(SqlSessionTemplate sqlSession, User u) {
 		return sqlSession.update("boardMapper.adminInfoUpdate",u);
 	}
+
+	public int reportListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("boardMapper.reportListCount");
+	}
+
+	public ArrayList<Report> reportList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		int limit = pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		return (ArrayList)sqlSession.selectList("boardMapper.reportList",null,rowBounds);
+	}
+
+	public Report selectReport(SqlSessionTemplate sqlSession, int num) {
+		return sqlSession.selectOne("boardMapper.selectReport",num);
+	}
+
+	public int reportAccept(SqlSessionTemplate sqlSession, int declarationNo) {
+		return sqlSession.update("boardMapper.reportAccept",declarationNo);
+	}
+
+	public int minusPoint(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.update("boardMapper.minusPoint",userId);
+	}
+
+	public int reportCan(SqlSessionTemplate sqlSession, int declarationNo) {
+		return sqlSession.update("boardMapper.reportCan",declarationNo);
+	}
+
+	public int plusPoint(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.update("boardMapper.plusPoint",userId);
+	}
+
 
 }

@@ -111,7 +111,6 @@
 		  
 		        <!-- Modal Header -->
 		        <div class="modal-header" style="height:50px;">
-		          <h4 class="modal-title">신고 내역</h4>
 		          <button type="button" class="close" data-dismiss="modal" style="height:50px;">&times;</button>
 		        </div>
 		  

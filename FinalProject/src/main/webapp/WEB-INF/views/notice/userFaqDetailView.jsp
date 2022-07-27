@@ -67,6 +67,9 @@
 	        </table>
     	</form>
     </div>
+    <c:if test="${not empty loginUser}">
+		<jsp:include page="../chat/chat.jsp"/>
+	</c:if>
 
     <script>
     	//수정 버튼 클릭 시 변화

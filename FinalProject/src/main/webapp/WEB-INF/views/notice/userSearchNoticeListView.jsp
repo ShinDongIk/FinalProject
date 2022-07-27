@@ -103,34 +103,10 @@
     		</c:otherwise>
     	</c:choose>
     </div>
-    <br>
-    
-          <!-- The Modal -->
-		  <div class="modal fade" id="myModal">
-		    <div class="modal-dialog modal-dialog-centered">
-		      <div class="modal-content">
-		  
-		        <!-- Modal Header -->
-		        <div class="modal-header" style="height:50px;">
-		          <h4 class="modal-title">신고 내역</h4>
-		          <button type="button" class="close" data-dismiss="modal" style="height:50px;">&times;</button>
-		        </div>
-		  
-		        <!-- Modal body -->
-		        <div class="modal-body">
-		        </div>
-		  
-		        <!-- Modal footer -->
-		        <div class="modal-footer" align="center" style="height: 100px;">
-		            <button id="del">삭제</button>
-		            <button data-dismiss="modal">취소</button>
-		            <button data-dismiss="modal" style="display:none;" id="cancel"></button>
-		        </div>
-		  
-		      </div>
-		    </div>
-		  </div>
-    
+    <c:if test="${not empty loginUser}">
+		<jsp:include page="../chat/chat.jsp"/>
+	</c:if>
+    <br>    
     <script>
 
         $("tbody td").not($(".ck")).click(function(){

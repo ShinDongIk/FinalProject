@@ -38,13 +38,13 @@
                     <th width="10%">날짜</th>
                     <td width="15%"><input type="text" name="createDate" value="${iq.createDate }" readonly></td>
                     <th width="10%">처리 결과</th>
-<%--                     <td width="15%"><input type="text" name="status" value="${iq.status }" readonly></td> --%>
+                    <td width="15%"><input type="text" name="status" value="${iq.status }" readonly></td>
                 </tr>
                 <tr>
                     <th>작성자</th>
                     <td><input type="text" name="inquiryWriter" value="${iq.inquiryWriter }" readonly></td>
                 	<th>제목</th>
-                	<td colspan="5"><input type="text" name="inquiryTitle" value="${iq.inquiryTitle }" readonly></td>
+                	<td colspan="5"><input type="text" name="inquiryTitle" value="${iq.inquiryTitle }"></td>
                 </tr>
             </thead>
                 <tbody id="tbody">
@@ -84,6 +84,9 @@
             </table>
         </form>
     </div>
+    <c:if test="${not empty loginUser}">
+		<jsp:include page="../chat/chat.jsp"/>
+	</c:if>
     
     <script>
         //추가 버튼 클릭 시 이미지 개수 추가
