@@ -20,6 +20,8 @@
 		<typeAlias type="com.payalot.enjoyforott.party.model.vo.OttType" alias="ottType"/>
 		<typeAlias type="com.payalot.enjoyforott.party.model.vo.PartyMember" alias="partyMember"/>
 		<typeAlias type="com.payalot.enjoyforott.admin.model.vo.Report" alias="report"/>
+		<typeAlias type="com.payalot.enjoyforott.poster.model.vo.Poster" alias="poster"/>
+		<typeAlias type="com.payalot.enjoyforott.favor.model.vo.Favor" alias="favor"/>
 	</typeAliases>
 	
 	
@@ -34,5 +36,7 @@
 		<mapper resource="/mappers/memManage/memManage-mapper.xml"/>
 		<mapper resource="/mappers/party/party-mapper.xml"/>
 		<mapper resource="/mappers/party/ottType-mapper.xml"/>
+		<mapper resource="/mappers/poster/post-mapper.xml"/>
+		<mapper resource="/mappers/favor/favor-mapper.xml"/>
 	</mappers>
 </configuration>

@@ -80,7 +80,9 @@ function chatClick(userNickname){
 				console.log(result);
 					nowChatNo = result[0].chatNo;
 					$("#tab2").trigger("click");
-					chatContentLoad();
+					console.log(nowChatNo);
+					//chatContentLoad();
+					interval = setInterval(function(){chatContentLoad();}, 1000);
 				},
 				error : function(){
 					console.log("통신 오류");
@@ -97,6 +99,7 @@ function chatClick(userNickname){
 				success : function(result){
 					nowChatNo = result[0].chatNo;
 					$("#tab2").trigger("click");
+					console.log("방번호 : "+result[0].chatNo);
 					chatContentLoad();
 				},
 				error : function(){
@@ -115,6 +118,7 @@ function chatClick(userNickname){
 }
 
 function chatContentLoad(){
+console.log("chatContentLoad 동작중");
 	var msgType = "";
 	$.ajax({
 		url : "loadChatCont.ch",
