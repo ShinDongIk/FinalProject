@@ -23,7 +23,7 @@ public class ChatController {
 	@RequestMapping(value="mkChat.ch",  produces="application/json; charset=UTF-8")
 	public String makeChatRoom(Chat ch) {
 		ArrayList<Chat> chatRoom = cs.searchChatRoom(ch);
-		
+
 		if(chatRoom.isEmpty()) {
 			int result = cs.makeChatRoom(ch);
 			if(result>0) {
