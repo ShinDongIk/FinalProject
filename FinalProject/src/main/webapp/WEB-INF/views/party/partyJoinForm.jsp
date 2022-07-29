@@ -143,9 +143,6 @@
     </form>
     
     <script src="${pageContext.request.contextPath}/js/ratePlanTab.js"></script>
-	<c:if test="${not empty loginUser}">
-		<jsp:include page="../chat/chat.jsp"/>
-	</c:if>
     
     <script>
     	$(document).ready(function(){
