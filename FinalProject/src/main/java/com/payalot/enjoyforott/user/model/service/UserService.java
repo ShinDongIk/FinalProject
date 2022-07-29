@@ -3,7 +3,7 @@ package com.payalot.enjoyforott.user.model.service;
 import java.util.ArrayList;
 
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
-import com.payalot.enjoyforott.common.model.vo.UpdateScore;
+import com.payalot.enjoyforott.user.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.vo.User;
 
 public interface UserService {
@@ -27,7 +27,7 @@ public interface UserService {
 	int nicknameCheck(String checkNickname);
 	
 	//매너점수 업데이트
-	int updateUserScore (UpdateScore us);
+	int updateUserScore(User us);
 	
 	//유저 수
 	int UserListCount();

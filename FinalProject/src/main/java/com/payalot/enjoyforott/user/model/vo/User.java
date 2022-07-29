@@ -24,4 +24,5 @@ public class User {
 	
 	private String levelName;			//	LEVEL_NAME	VARCHAR2(20 BYTE)
 
+	private int updateScore;
 }

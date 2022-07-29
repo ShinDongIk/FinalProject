@@ -62,7 +62,7 @@ public class PartyServiceImpl implements PartyService{
 	}
 
 	@Override
-	public int selectPartyMemNum(int pno) {
+	public Party selectPartyMemNum(int pno) {
 		return partyDao.selectPartyMemNum(sqlSession, pno);
 	}
 	@Override

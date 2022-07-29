@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
-import com.payalot.enjoyforott.common.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.dao.UserDao;
+import com.payalot.enjoyforott.user.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.vo.User;
 
 @Service
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public int updateUserScore(UpdateScore us) {
+	public int updateUserScore(User us) {
 		return userDao.updateUserScore(sqlSession, us);
 	}
 	

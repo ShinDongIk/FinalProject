@@ -27,6 +27,7 @@
 		<result column="ABLEMEMNUM" property="ableMemNum"/>
 		
 		<result column="DIFFMONTH" property="diffMonth"/>
+		<result column="NOWMEMNUM" property="nowMemNum"/>
 	</resultMap>
 	
 	<resultMap type="partyMember" id="partyMemberResultSet">
@@ -36,8 +37,15 @@
 		<result column="JOIN_ENTERDATE" property="joinEnterDate"/>
 	</resultMap>
 	
+	<resultMap type="payment" id="paymentResultSet">
+		<result column="PAY_PARTY_NO" property="payPartyNo"/>
+		<result column="PAY_DATE" property="payDate"/>
+		<result column="PAY_USER_ID" property="payUserId"/>
+		<result column="PAY_CONFIRM_NO" property="payConfirmNo"/>
+	</resultMap>
+	
 	<select id="selectList" resultMap="partyResultSet">
-		SELECT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE,CEIL(PARTY_ENDDATE-SYSDATE)+1 AS ABLEDAYS, 
+		SELECT DISTINCT PARTY_NO,PARTY_MASTER,USER_NICKNAME,USER_LEVEL,LEVEL_NAME,PARTY_COUNT,PARTY_OTTENG,OTT_KOR,PARTY_STARTDATE,PARTY_ENDDATE,PARTY_RULE,CEIL(PARTY_ENDDATE-SYSDATE)+1 AS ABLEDAYS, 
                 TO_NUMBER((SELECT COUNT(JOIN_PARTY) FROM PARTY_MEMBER WHERE PARTY_NO=JOIN_PARTY(+))) AS JOINEDMEMCTN,
                 TO_NUMBER(PARTY_COUNT-TO_NUMBER((SELECT COUNT(JOIN_PARTY) FROM PARTY_MEMBER WHERE PARTY_NO=JOIN_PARTY(+)))) AS ABLEMEMNUM
 		FROM PARTY
@@ -82,12 +90,12 @@
 		WHERE PARTY_NO = #{partyNo}
 	</select>
 	
-	<select id="selectPartyMemNum" resultMap="partyResultSet">	
-        SELECT (SELECT COUNT(PARTY_NO) FROM PARTY_MEMBER WHERE PARTY_NO=JOIN_PARTY)
+	<select id="selectPartyMemNum" resultMap="partyResultSet" parameterType="int">	
+        SELECT PARTY_COUNT, (SELECT COUNT(PARTY_NO) FROM PARTY_MEMBER WHERE PARTY_NO=JOIN_PARTY) NOWMEMNUM
         FROM PARTY
         LEFT JOIN PARTY_MEMBER ON(PARTY_NO=JOIN_PARTY)
         WHERE PARTY_NO = #{partyNo}
-        GROUP BY PARTY_NO, PARTY_MASTER
+        GROUP BY PARTY_NO, PARTY_MASTER,PARTY_COUNT
 	</select>
 	
 	<insert id="enrollParty" parameterType="party">
@@ -119,10 +127,10 @@
 	
 	<insert id="insertPayment" parameterType="partyMember">
 		INSERT INTO PAYMENT(
-							 PAYMENT_PID
+							 PAYMENT_PMNO
 							,PAY_PARTY_NO
-							,PAY_ID
-							,PAY_NO
+							,PAY_USER_ID
+							,PAY_CONFIRM_NO
 							)
 		VALUES(
 				 SEQ_PMNO.NEXTVAL
