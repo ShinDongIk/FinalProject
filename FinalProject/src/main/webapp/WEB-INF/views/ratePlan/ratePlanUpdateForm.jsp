@@ -80,6 +80,5 @@
 		   $("#quality-id").val("${rp.imageQuality}".substr(0,"${rp.imageQuality}".length-1));
 		});
 	</script>
-	<jsp:include page="../chat/chat.jsp"/>
 </body>
 </html>

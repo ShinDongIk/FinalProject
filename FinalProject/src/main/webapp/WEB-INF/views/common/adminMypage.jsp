@@ -43,8 +43,5 @@
                 <li><a href="faqList.ad">FAQ</a></li>
             </ul>
         </div>
-    <c:if test="${not empty loginUser}">
-		<jsp:include page="../chat/chat.jsp"/>
-	</c:if>
 </body>
 </html>
