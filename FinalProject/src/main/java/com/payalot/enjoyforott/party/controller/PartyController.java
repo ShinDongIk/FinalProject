@@ -1,7 +1,9 @@
 package com.payalot.enjoyforott.party.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,32 +11,35 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.payalot.enjoyforott.common.model.vo.UpdateScore;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.payalot.enjoyforott.party.model.service.PartyService;
 import com.payalot.enjoyforott.party.model.vo.OttType;
 import com.payalot.enjoyforott.party.model.vo.Party;
 import com.payalot.enjoyforott.party.model.vo.PartyMember;
 import com.payalot.enjoyforott.party.model.vo.Payment;
 import com.payalot.enjoyforott.user.model.service.UserService;
+import com.payalot.enjoyforott.user.model.vo.UpdateScore;
+import com.payalot.enjoyforott.user.model.vo.User;
 
 @Controller
 public class PartyController {
 	
 	@Autowired
 	private PartyService partyService;
+	@Autowired
 	private UserService userService;
 	
 	//파티리스트 폼 이동
 	@RequestMapping("partylist.pa")
 	public String partylist(Model model) {
-		
 		//endDate 지난 파티 status 'N'처리
 		int result = partyService.updateEndDateParty();
 		
@@ -150,56 +155,78 @@ public class PartyController {
 	}
 	
 	//결제완료
-	@RequestMapping(value="partyPayComplete.pa", method=RequestMethod.POST)
+	@RequestMapping(value="partyPayComplete.pa", produces="application/json; charset=UTF-8", method= RequestMethod.POST)
 	@ResponseBody
-	public String partyPayComplete(String partyNo, String joinUserId, String payConfirmNo, String payName, String diffMonth
-									,Payment payInfo, PartyMember pm
-									,UpdateScore us, HttpSession session, Model model) {
+	public String partyPayComplete(String dataArr, Payment pay, PartyMember pm, User us, HttpSession session, Model model) 
+			throws IOException {
 		
 		System.out.println("결제완료페이지 이동하는 컨트롤러임다");
-		System.out.println(partyNo);
-		System.out.println(joinUserId);
-		System.out.println(payConfirmNo);
-		System.out.println(payName);
-//		int basicScore = 3; //1개월당 추가 매너점수
-//		int month = pm.getDiffMonth(); //가입개월수
-//		int getScore = basicScore*month;
-//		
-//		us.setUserId(pm.getJoinMember());
-//		us.setUpdateScore(getScore);
-//		
-//		//결제 insert
-//		int resultPayment = partyService.insertPayment(payInfo);
-//		//멤버 insert
-//		int resultPartyMember = partyService.insertPartyMember(pm);
-//		
-//		if(resultPayment>0 && resultPartyMember>0) {
-//			//멤버수 조회 후 status 'N'처리
-//			int pno = pm.getJoinParty();
-//			System.out.println("멤버수 처리할 파티번호"+pno);
-//			
-//			int partyJoinedNum = partyService.selectPartyMemNum(pno);
-//			
-//			if(partyJoinedNum<1) {
-//				int resultFullParty = partyService.updateFullParty(pno);				
-//				System.out.println("풀파티결과"+resultFullParty);
-//			}
-//			
-//			//매너점수 update
-//			int resultScore = userService.updateUserScore(us);
-//				
-//			if(resultScore>0) {
-//				session.setAttribute("joinParty", pm); 
-//				return "party/partyJoinComplete";									
-//			}else {
-//				model.addAttribute("errorMsg","파티가입에 실패하였습니다.");
-//				return "common/errorPage";
-//			}
-//		} else {
-//			model.addAttribute("errorMsg","파티가입에 실패하였습니다.");
-//			return "common/errorPage";
-//		}
-		return null;
+		
+		ObjectMapper mapper = new ObjectMapper();
+		Payment payInfo = mapper.readValue(dataArr, Payment.class);
+		
+		System.out.println(payInfo);
+		
+		int payPartyNo = payInfo.getPayPartyNo(); 			//가입한 파티번호
+		String payUserId = payInfo.getPayUserId(); 			//구매자 아이디
+		String payConfirmNo = payInfo.getPayConfirmNo();	//승인번호
+		String payName = payInfo.getPayName(); 				//상품명
+		int diffMonth = payInfo.getDiffMonth();				//가입개월수
+
+		//결제 insert
+		pay.setPayPartyNo(payPartyNo);
+		pay.setPayUserId(payUserId);
+		pay.setPayConfirmNo(payConfirmNo);
+		int resultPayment = partyService.insertPayment(pay);
+		
+		//멤버 insert
+		pm.setJoinParty(payPartyNo);
+		pm.setJoinMember(payUserId);
+		int resultPartyMember = partyService.insertPartyMember(pm);
+		System.out.println("파티멤버테이블 추가완료");
+		
+		if(resultPayment>0 && resultPartyMember>0) {
+			//멤버수 조회 후 status 'N'처리
+			int pno = pm.getJoinParty();
+			System.out.println("멤버수 처리할 파티번호 : "+pno);
+			
+			Party partyJoinedNum = partyService.selectPartyMemNum(pno);
+			System.out.println("가입후 멤버수 : "+partyJoinedNum.getNowMemNum());
+			
+			if(partyJoinedNum.getNowMemNum()>=partyJoinedNum.getPartyCount()) {
+				int resultFullParty = partyService.updateFullParty(pno);				
+				System.out.println("풀파티결과"+resultFullParty);
+			}
+			
+			System.out.println("개월수"+diffMonth);
+			//매너점수 update
+			int basicScore = 3; //1개월당 추가 매너점수
+			int getScore = basicScore*diffMonth;
+			us.setUserId(payUserId);
+			us.setUpdateScore(getScore);	
+			
+			System.out.println(us);
+			int resultScore = userService.updateUserScore(us);
+			System.out.println(resultScore);
+			if(resultScore>0) { 
+				System.out.println("joinParty에 담길 값은 "+pm);
+				session.setAttribute("joinParty", pm); 
+				return "ok";									
+			}else {
+				model.addAttribute("errorMsg","파티가입에 실패하였습니다.");
+				return "no";
+			}
+		} else {
+			model.addAttribute("errorMsg","파티가입에 실패하였습니다.");
+			return "no";
+		}
+	}
+	
+	//파티완료시 화면
+	@RequestMapping("partyPayCompleteForm.pa")
+	public String partyPayCompleteForm() {
+		
+		return "party/partyJoinComplete";
 	}
 	
 }

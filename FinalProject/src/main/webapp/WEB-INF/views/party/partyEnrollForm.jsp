@@ -199,7 +199,7 @@
 			 			perOneDayPriceStr += "<br><span class='amountVal'>"
 			 								+ ottchked
 			 								+ "</span><br>"
-			 								+ "일 <span class='font-purple amountVal'>"
+			 								+ "일 <span class='font-purple amountVal' id='perOneDayPriceResult'>"
 			 								+ result.perOneDayPrice
 			 								+ "</span>원/(1인)"
 			 			$("#perOneDayPriceStr").html(perOneDayPriceStr);

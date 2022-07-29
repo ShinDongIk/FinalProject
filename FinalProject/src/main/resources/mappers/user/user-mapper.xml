@@ -17,7 +17,7 @@
 		<result column="USER_STOP_DATE" property="userStopDate"/>
 		<result column="USER_DELETE_STATUS" property="userDeleteStatus"/>
 		<result column="USER_DELETE_DATE" property="userDeleteDate"/>
-		<result column="LEVEL_NAME" property="levelName"/>		
+		<result column="LEVEL_NAME" property="levelName"/>
 	</resultMap>
 	
 	<!-- 로그인 -->
@@ -87,9 +87,9 @@
 	</select>
 	
 	<!-- 매너점수 업데이트 -->
-	<update id="updateUserScore" parameterType="user">
-		UPDATE USER
-		SET USER_SCORE = USER_SCORE + #{updateScore}
+	<update id="updateUserScore" parameterType="updateScore">
+		UPDATE USERINFO
+		SET USER_SCORE = USER_SCORE <![CDATA[ + ]]> #{updateScore}
 		WHERE USER_ID = #{userId}
 	</update>
 

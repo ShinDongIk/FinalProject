@@ -34,7 +34,7 @@ public interface PartyService {
 	int insertPartyMember(PartyMember pm);
 
 	//파티멤버 카운트
-	int selectPartyMemNum(int pno);
+	Party selectPartyMemNum(int pno);
 	
 	//풀파티 status 'N'
 	int updateFullParty(int pno);

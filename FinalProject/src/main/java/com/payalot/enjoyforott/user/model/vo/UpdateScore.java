@@ -1,4 +1,4 @@
-package com.payalot.enjoyforott.common.model.vo;
+package com.payalot.enjoyforott.user.model.vo;
 
 import lombok.Data;
 

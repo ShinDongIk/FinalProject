@@ -20,13 +20,13 @@
         <br><br>
         <h3 style="font-size: 26px; letter-spacing: 0.15em">JOIN COMPLETE 👾</h3>
         <p>
-            넷플릭스 파티에 참여 되었습니다! <br><br>
-            아이디, 비밀번호는 마이페이지 참여파티내역에서 확인 가능합니다.
+            파티에 참여 되었습니다! <br><br>
+            아이디, 비밀번호는 마이페이지의 참여파티내역에서 확인 가능합니다.
         </p>
         <br><br>
 
         <div class="buttonArea">    
-            <button type="button" class="btn button-purple" onclick="#">마이페이지 이동</button>
+            <button type="button" class="btn button-purple" onclick="location.href='./mypage.me'">마이페이지 이동</button>
         </div>
     </div>
 </body>

@@ -28,5 +28,6 @@ public class Party {
 	private int ableMemNum;
 	
 	private int diffMonth;
+	private int nowMemNum;
 	
 }

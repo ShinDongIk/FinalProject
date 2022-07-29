@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.payalot.enjoyforott.common.model.vo.PageInfo;
-import com.payalot.enjoyforott.common.model.vo.UpdateScore;
+import com.payalot.enjoyforott.user.model.vo.UpdateScore;
 import com.payalot.enjoyforott.user.model.vo.User;
 
 @Repository
@@ -29,7 +29,7 @@ public class UserDao {
 		return sqlSession.selectOne("userMapper.nicknameCheck", checkNickname);
 	}
 
-	public int updateUserScore(SqlSessionTemplate sqlSession, UpdateScore us) {
+	public int updateUserScore(SqlSessionTemplate sqlSession, User us) {
 		return sqlSession.update("userMapper.updateUserScore", us);
 	}
 
