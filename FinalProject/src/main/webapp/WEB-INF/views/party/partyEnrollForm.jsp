@@ -161,11 +161,6 @@
             <button type="button" class="btn button-purple" id="btnEnrollParty">등록</button>
          </form>
          
-         <script src="${pageContext.request.contextPath}/js/ratePlanTab.js"></script>
-		<c:if test="${not empty loginUser}">
-			<jsp:include page="../chat/chat.jsp"/>
-		</c:if>
-         
          <script>
          	//시작일 오늘 고정, 종료일 오늘 이후
          	let today = new Date();
