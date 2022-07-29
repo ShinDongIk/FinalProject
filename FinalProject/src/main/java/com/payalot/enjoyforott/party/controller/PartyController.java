@@ -222,7 +222,7 @@ public class PartyController {
 		}
 	}
 	
-	//신규파티등록 폼 이동
+	//파티완료시 화면
 	@RequestMapping("partyPayCompleteForm.pa")
 	public String partyPayCompleteForm() {
 		
