@@ -3,6 +3,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
+<jsp:include page="../common/menubar.jsp"/>
 	<head>
 		<title>Future Imperfect by HTML5 UP</title>
 		<meta charset="utf-8" />
@@ -27,7 +28,7 @@
 
 	</head>
 	
-		<jsp:include page="../common/menubar.jsp"/>
+		
 		
 <footer>
 	<!-- About Start -->

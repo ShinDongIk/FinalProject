@@ -164,5 +164,13 @@
 		SET PARTY_STATUS = 'N'
 		WHERE PARTY_NO = #{partyNo}
 	</update>
+	
+	<!--  마이페이지 참여파티  -->
+	<select id="selectPartyJoinList" resultMap="partyMemberResultSet"> SELECT JOIN_NO,JOIN_MEMBER,JOIN_ENTERDATE FROM PARTY_MEMBER WHERE JOIN_MEMBER=#{userId} </select>
+	<!--  마이페이지 생성파티  -->
+	<select id="selectPartyMadeList" resultMap="partyResultSet"> SELECT PARTY_NO,PARTY_MASTER,PARTY_OTTENG,PARTY_ENDDATE,PARTY_OTTID,PARTY_OTTPWD FROM PARTY WHERE PARTY_STATUS = 'Y' AND PARTY_MASTER=#{userId} </select>
+	<!--    -->
+	<select id="selectPartyModal" resultMap="partyResultSet"> SELECT JOIN_PARTY,PARTY_OTTID, PARTY_OTTPWD FROM PARTY_MEMBER M JOIN PARTY P ON (M.JOIN_PARTY = P.PARTY_NO) WHERE JOIN_MEMBER = #{userId} </select>
+	<select id="joinparty" resultMap="partyResultSet"> SELECT PARTY_OTTID, PARTY_OTTPWD FROM PARTY JOIN PARTY_MEMBER ON(PARTY_NO = JOIN_PARTY) WHERE JOIN_NO = #{joinNo} </select>
 
 </mapper>

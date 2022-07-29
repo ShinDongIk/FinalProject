@@ -28,20 +28,20 @@ public class myPageController {
 	@RequestMapping("mypageLike.me")
 	public String mypagelike() {
 		
-		return "myPage/myPagelike";
+		return "myPage/myPageLikeList";
 	}
 	
 	@RequestMapping("mypagePartyEnroll.me")
 	public String mypageParty() {
 		
-		return "myPage/myPageJoinList";
+		return "myPage/myPagejoin";
 	}
 
-//	@RequestMapping("mypageList.me")
-//	public String mypageWrite() {
-//		
-//		return "myPage/myPageList";
-//	}
+	@RequestMapping("mypageList.me")
+	public String mypageWrite() {
+		
+		return "myPage/myPageList";
+	}
 	
 	@RequestMapping("mypageUpdate.me")
 	public String memberUpdate() {

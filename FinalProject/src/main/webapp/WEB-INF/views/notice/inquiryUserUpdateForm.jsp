@@ -84,9 +84,6 @@
             </table>
         </form>
     </div>
-    <c:if test="${not empty loginUser}">
-		<jsp:include page="../chat/chat.jsp"/>
-	</c:if>
     
     <script>
         //추가 버튼 클릭 시 이미지 개수 추가

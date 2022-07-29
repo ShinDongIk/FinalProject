@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +39,7 @@ ul.tabs li.current{
 	display: inherit;
 }
 .container{
-    width: 90%;
+    width: 80%;
 }
 
 
@@ -46,14 +47,16 @@ ul.tabs li.current{
   </style>
 </head>
 <body>
-	
+<jsp:include page="../common/menubar.jsp"/>	
+
+	<jsp:include page="../myPage/myPageMenubar.jsp"/>
 
 	<div><h2>나의 파티</h2></div>
 	
-	<jsp:include page="../myPage/myPageMenubar.jsp"/>
 	<hr>
 	<br>
 
+	<form action="partyMade.my" method="post" id="partyMade">
     <div class="container">
         <!-- 탭 메뉴 상단 시작 -->
             <ul class="tabs">
@@ -63,28 +66,33 @@ ul.tabs li.current{
             </ul>
         <!-- 탭 메뉴 상단 끝 -->
         <!-- 탭 메뉴 내용 시작 -->
-            <div id="tab-1" class="tab-content current">
-            
-            <div class="empty">
-                <p>참여중인 파티가 없습니다.</p>
-            </div>
-
-            <div>
-                
-            </div>
-        
-        
-            </div>
             <div id="tab-2" class="tab-content">
-            <p>생성중인 파티가 없습니다.</p>
-        
-            <div>
-
+            
+            <br>
+            
+            <div class="mouter">
+            <c:choose>
+            <c:when test="${empty list}">
+            	생성중인 파티가 없습니다.
+            </c:when>
+            
+            <c:when test="${not empty list}">
+            	<c:forEach var="mj" items="${list}" varStatus="num">
+                <div class="mparty">
+               
+                    <h3>${mj.joinNo }</h3><br>
+                    <h5>${mj.joinEnterDate }부터</h5><br>
+                    <div><button class="mbtn">ID/PW보기</button></div>
+                </div>
+                </c:forEach>
+            </c:when>
+            </c:choose>
             </div>
-
-            </div>
+            
+           
+        	</div>
+            </form>
         <!-- 탭 메뉴 내용 끝 -->
-        </div>
 
         <script>
             $(document).ready(function(){

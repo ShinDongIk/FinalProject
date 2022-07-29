@@ -40,5 +40,6 @@
 		<mapper resource="/mappers/party/ottType-mapper.xml"/>
 		<mapper resource="/mappers/poster/post-mapper.xml"/>
 		<mapper resource="/mappers/favor/favor-mapper.xml"/>
+		<mapper resource="/mappers/myPage/myPage-mapper.xml"/>
 	</mappers>
 </configuration>

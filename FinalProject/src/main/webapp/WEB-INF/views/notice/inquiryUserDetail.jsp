@@ -62,9 +62,6 @@
                 </tfoot>
             </table>
     </div>
-    <c:if test="${not empty loginUser}">
-		<jsp:include page="../chat/chat.jsp"/>
-	</c:if>
     <script>
     $(function(){
     	replyList();

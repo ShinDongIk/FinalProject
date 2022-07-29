@@ -38,6 +38,17 @@ public interface PartyService {
 	
 	//풀파티 status 'N'
 	int updateFullParty(int pno);
+	
+	//참여파티 내역
+	ArrayList<Party> selectPartyJoinList(String userId);		
+	Party selectPartyJoin(int pno);
+			
+	//생성파티 내역	
+	ArrayList<PartyMember> selectPartyMadeList(String userId);		
+	Party selectPartyMade(int pno);
 
+	//참여파티 모달창
+	ArrayList<Party> selectPartyModal(String userId);		
+	Party joinParty(int joinNo);
 
 }

@@ -45,25 +45,25 @@
                         </td>
                     </tr> -->
                     <tr>
-                        <th>*비밀번호</th>
+                        <th>비밀번호 변경</th>
                         <td>
-                            <input type="password" class="form-control" name="userPwd" id="userPwd">
+                            <input type="password" class="form-control" name="userPwd" id="userPwd" value="${ loginUser.userPwd }">
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th>*비밀번호 확인</th>
                         <td>
                             <input type="password" class="form-control" name="userPwdChk" id="userPwdChk">
                         </td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                     	<th></th>
                         <td colspan="2" class="font-info">
                         	<div id="pwdCheck">
                         		최소 4글자 이상 동일하게 입력해주세요.
                         	</div>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <th>*이름</th>
                         <td><input type="text" class="form-control" name="userName" id="userName" value="${ loginUser.userName }" required></td>
@@ -151,9 +151,18 @@
                                 </div>
                                 
                                 <script>
+                                
+                                var text="${loginUser.userGenre}";
+                                console.log(text);
+                                var arr=text.split(",");
+                                console.log(arr[0]);
+                                
                                 	$(function(){
                                 		if("${loginUser.userGenre}" != ""){ //들어온 값이 있으면 (비어있지 않으면)
-                                			$("input[value=${loginUser.userGenre}]").prop("checked",true);
+                                		for(var i=0; i<arr.length; i++){
+                                			$("input[value="+arr[i]+"]").prop("checked",true);
+                                			
+                                		}
                                 		}
                                 	})
                                 </script>
@@ -185,7 +194,7 @@
                                                             탈퇴 하시겠습니까? <br>
                         </div>
                         <br>
-                            <label for="userPwd" class="mr-sm-2">Password : </label>
+                            <label for="userPwd" class="mr-sm-2">비밀번호 확인 </label>
                             <input type="passward" class="form-control mb-2 mr-sm-2" placeholder="Enter Password" id="userPwd" name="userPwd"> <br>
                     </div>
                     <!-- Modal footer -->
@@ -245,101 +254,101 @@
         	 console.log($nicknamechk.val());
         	 var regExp = /^[가-힣a-zA-Z0-9]{2,6}$/;
         	 
-//            	 console.log($nicknamechk.val());
-//              if(!regExp.test($nicknamechk.val())){
-// 				 $("#nicknamecheck").css("color","red").text("유효하지 않는 닉네임입니다. 영문자, 한글, 숫자 입력가능, 최소 2글자 최대 6글자 입력해주세요");
-// 				 $("#nicknamecheck").focus();
-//                  $("#userNickname").removeClass('chked');
-//                  return false;
-//              }else{
-//         		 $.ajax({
-//         			 url : "nicknameCheck.me",
-// 					 data : {
-// 						 checkNickname : $nicknamechk.val()
-// 						 },
-// 					 success : function(result){
-// 			 			 console.log(result);
-// 						 if(result=='NNNNY'){
-// 							 $("#nicknamecheck").css("color","yellowgreen").text("사용가능한 닉네임입니다.");
-// 			                 $("#userNickname").addClass('chked');
-// 						 }else{
-// 							 $("#nicknamecheck").css("color","red").text("사용할수 없는 닉네임입니다.");
-// 			                 $("#userNickname").removeClass('chked');
-// 						 }
-// 					 },
-// 					 error : function(){
-// 						 console.log("ajax 통신 실패");
-// 						 }
-// 				 })
-//              }
+           	 console.log($nicknamechk.val());
+             if(!regExp.test($nicknamechk.val())){
+				 $("#nicknamecheck").css("color","red").text("유효하지 않는 닉네임입니다. 영문자, 한글, 숫자 입력가능, 최소 2글자 최대 6글자 입력해주세요");
+				 $("#nicknamecheck").focus();
+                 $("#userNickname").removeClass('chked');
+                 return false;
+             }else{
+        		 $.ajax({
+        			 url : "nicknameCheck.me",
+					 data : {
+						 checkNickname : $nicknamechk.val()
+						 },
+					 success : function(result){
+			 			 console.log(result);
+						 if(result=='NNNNY'){
+							 $("#nicknamecheck").css("color","yellowgreen").text("사용가능한 닉네임입니다.");
+			                 $("#userNickname").addClass('chked');
+						 }else{
+							 $("#nicknamecheck").css("color","red").text("사용할수 없는 닉네임입니다.");
+			                 $("#userNickname").removeClass('chked');
+						 }
+					 },
+					 error : function(){
+						 console.log("ajax 통신 실패");
+						 }
+				 })
+             }
          }
          
          
          //비밀번호 일치 및 유효성 검사
-	        $(function(){
-	        	var $userPwd = $("#updateUser input[name=userPwd]");
-	        	var $userPwdChk = $("#updateUser input[name=userPwdChk]");
+// 	        $(function(){
+// 	        	var $userPwd = $("#updateUser input[name=userPwd]");
+// 	        	var $userPwdChk = $("#updateUser input[name=userPwdChk]");
 	        	
-		        	$userPwd.keyup(function(){
-			        	if($userPwd.val().length>=4){
-		        			$.ajax({
-							url : "pwdCheck.me",
-							data : {
-								userPwd : $userPwd.val(),
-								userPwdChk : $userPwdChk.val()
-							},
-							success : function(result){
-								console.log(result);
-								if(result=='NNNNY'){
-									$("#pwdCheck").show();
-									$("#pwdCheck").css("color","yellowgreen").text("비밀번호가 일치합니다.");
-					                $("#userPwd").addClass('chked');
-								}else{
-									$("#pwdCheck").show();
-									$("#pwdCheck").css("color","red").text("비밀번호가 일치하지 않습니다");
-					                $("#userPwd").removeClass('chked');
-								}
-							},
-							error : function(){
-								console.log("ajax 통신 실패");
-							}
-						})
-			        	}else{
-							$("#pwdCheck").css("color","red").text("비밀번호를 4자리 이상 입력해주세요.");
-			                $("#userPwd").removeClass('chked');
-			        	}
-		        	})
+// 		        	$userPwd.keyup(function(){
+// 			        	if($userPwd.val().length>=4){
+// 		        			$.ajax({
+// 							url : "pwdCheck.me",
+// 							data : {
+// 								userPwd : $userPwd.val(),
+// 								userPwdChk : $userPwdChk.val()
+// 							},
+// 							success : function(result){
+// 								console.log(result);
+// 								if(result=='NNNNY'){
+// 									$("#pwdCheck").show();
+// 									$("#pwdCheck").css("color","yellowgreen").text("비밀번호가 일치합니다.");
+// 					                $("#userPwd").addClass('chked');
+// 								}else{
+// 									$("#pwdCheck").show();
+// 									$("#pwdCheck").css("color","red").text("비밀번호가 일치하지 않습니다");
+// 					                $("#userPwd").removeClass('chked');
+// 								}
+// 							},
+// 							error : function(){
+// 								console.log("ajax 통신 실패");
+// 							}
+// 						})
+// 			        	}else{
+// 							$("#pwdCheck").css("color","red").text("비밀번호를 4자리 이상 입력해주세요.");
+// 			                $("#userPwd").removeClass('chked');
+// 			        	}
+// 		        	})
 		        	
-		        	$userPwdChk.keyup(function(){
-			        	if($userPwdChk.val().length>=4){
-		        			$.ajax({
-							url : "pwdCheck.me",
-							data : {
-								userPwd : $userPwd.val(),
-								userPwdChk : $userPwdChk.val()
-							},
-							success : function(result){
-								console.log(result);
-								if(result=='NNNNY'){
-									$("#pwdCheck").show();
-									$("#pwdCheck").css("color","yellowgreen").text("비밀번호가 일치합니다.");
-					                $("#userPwd").addClass('chked');
-								}else{
-									$("#pwdCheck").show();
-									$("#pwdCheck").css("color","red").text("비밀번호가 일치하지 않습니다");
-					                $("#userPwd").removeClass('chked');
-								}
-							},
-							error : function(){
-								console.log("ajax 통신 실패");
-							}
-						})
-			        	}else{
-							$("#pwdCheck").css("color","red").text("비밀번호를 4자리 이상 입력해주세요.");
-			                $("#userPwd").removeClass('chked');
-			        	}
-		        	})
-	        	})
+// 		        	$userPwdChk.keyup(function(){
+// 			        	if($userPwdChk.val().length>=4){
+// 		        			$.ajax({
+// 							url : "pwdCheck.me",
+// 							data : {
+// 								userPwd : $userPwd.val(),
+// 								userPwdChk : $userPwdChk.val()
+// 							},
+// 							success : function(result){
+// 								console.log(result);
+// 								if(result=='NNNNY'){
+// 									$("#pwdCheck").show();
+// 									$("#pwdCheck").css("color","yellowgreen").text("비밀번호가 일치합니다.");
+// 					                $("#userPwd").addClass('chked');
+// 								}else{
+// 									$("#pwdCheck").show();
+// 									$("#pwdCheck").css("color","red").text("비밀번호가 일치하지 않습니다");
+// 					                $("#userPwd").removeClass('chked');
+// 								}
+// 							},
+// 							error : function(){
+// 								console.log("ajax 통신 실패");
+// 							}
+// 						})
+// 			        	}else{
+// 							$("#pwdCheck").css("color","red").text("비밀번호를 4자리 이상 입력해주세요.");
+// 			                $("#userPwd").removeClass('chked');
+// 			        	}
+// 		        	})
+// 	        	})
          
         //회원가입버튼 클릭시 유효성검사(아이디, 비밀번호, 닉네임)
    		$(document).ready(function(){
@@ -353,9 +362,9 @@
    				}else if($("#userPwd").val()==""){
    					alert("비밀번호 입력은 필수입니다.");
    					$("#userPwd").focus();
-   				}else if($("#userPwdChk").val()==""){
-   					alert("비밀번호확인 입력은 필수입니다.");
-   					$("#userPwdChk").focus();
+//    				}else if($("#userPwdChk").val()==""){
+//    					alert("비밀번호확인 입력은 필수입니다.");
+//    					$("#userPwdChk").focus();
    				}else if($("#userName").val()==""){
    					alert("이름 입력은 필수입니다.");
    					$("#userName").focus();
@@ -375,13 +384,13 @@
 //    				}else if($("#userId").hasClass("chked")==false){
 //    					alert("아이디 중복체크 해주세요.");
 //    					$("#userId").focus();
-   				}else if($("#userNickname").hasClass("chked")==false){
-   					alert("닉네임 중복체크 해주세요.");
-   					$("#userNickname").focus();
+//    				}else if($("#userNickname").hasClass("chked")==false){
+//    					alert("닉네임 중복체크 해주세요.");
+//    					$("#userNickname").focus();
    				//비밀번호일치
-   				}else if($("#userPwd").hasClass("chked")==false){
-   					alert("비밀번호가 일치하지 않습니다.");
-   					$("#userPwd").focus();
+//    				}else if($("#userPwd").hasClass("chked")==false){
+//    					alert("비밀번호가 일치하지 않습니다.");
+//    					$("#userPwd").focus();
 				//이메일 형식 유효성 ==> 메일인증 기능추가시 버튼으로 옮기기!!!!!!!!!!
    				}else if(!regExp.test($("#userEmail").val())){
    					alert("이메일 형식을 확인해주세요");

@@ -54,16 +54,16 @@
    #meminfo{
         border: 1px solid black;
         width: 40%;
-        height: 200px; 
-        text-align: left;
+        height: 220px; 
+        text-align: center;
         float: left;
         margin-left: 20px;
     }
     #meminfo2{
         border: 1px solid black;
         width: 40%;
-        height: 200px; 
-        text-align: left;
+        height: 220px; 
+        text-align: center;
         float: right;
         margin-right: 20px;
     }
@@ -108,16 +108,12 @@
     <div class="outer" align="center">
     
         <div class="wrap">
-            <div id="tit"><h1>MYPAGE</h1></div>
+            <div id="tit"><h1>MYPAGE</h1></div><br>
             
             <div class="header">
-                <div id="myPageMem"><h5><span>${ loginUser.userName }님, 환영합니다.</span></h5></div>
+                <div id="myPageMem"><h3><span>${ loginUser.userName }님, 환영합니다.</span></h3></div>
             
-                <div id="myPageLevel"><h3>등급: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${ loginUser.levelName }</h3> <br>
-                    <div class="progress">
-                        <div class="progress-bar bg-secondary" style="width:70%"></div>
-                    </div>
-                </div>
+                <div id="myPageLevel"><h3>등급: &nbsp;&nbsp;${ loginUser.levelName }</h3></div>
             
                 
             </div>
@@ -128,30 +124,26 @@
     <br><br>
 
     <div id="mymain" align="center">
-        <a href="mypageLike.me">
-        <div class="mpmain">
+        <div class="mpmain" onclick="location.href='mypageLike.me'">
             <span class="material-symbols-outlined" id="like">favorite</span><br><br>
             찜한내역
         </div>
-        </a>
-        <a href="mypagePartyEnroll.me">
-        <div class="mpmain" onclick="">
+        
+        <div class="mpmain" onclick="location.href='partyMade.my?userId=${loginUser.userId }'">
             <span class="material-symbols-outlined"  id="partylist">group</span><br><br>
             파티참여내역
         </div>
-        </a>
-        <a href="reviewList.my?userId=${loginUser.userId }">
-        <div class="mpmain" onclick="">
+        
+        <div class="mpmain" onclick="location.href='mypageList.me?userId=${loginUser.userId }'">
             <span class="material-symbols-outlined" id="writechk">edit</span><br><br>
             작성글확인
         </div>
-        </a>
-        <a href="mypageUpdate.me">
-        <div class="mpmain" onclick="">
+        
+        <div class="mpmain" onclick="location.href='mypageUpdate.me'">
             <span class="material-symbols-outlined" id="infomodi">account_circle</span><br><br>
             회원정보수정
         </div>
-        </a>
+        
     </div>
 
     <br><br>
@@ -164,22 +156,21 @@
 
             <hr>
 
-            <div id="meminfo" readonly>
+            <div id="meminfo"><br>
                 <div>아이디: ${ loginUser.userId }</div><br>
                 <div>이름: ${ loginUser.userName }</div><br>
                 <div>닉네임: ${ loginUser.userNickname }</div><br>
 
             </div>
             
-            <div id="meminfo2" readonly>
+            <div id="meminfo2"><br>
 	            <div>이메일: ${ loginUser.userEmail }</div><br>
 	            <div>휴대폰번호: ${ loginUser.userPhone }</div><br>
 	            <div>관심장르: ${loginUser.userGenre }</div><br>
-	            ${loginUser }
             </div>
             
         </div>
-        <br><br>
+        <br><br><br>
 
     </div>
 

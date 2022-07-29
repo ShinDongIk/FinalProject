@@ -30,4 +30,6 @@ public class Party {
 	private int diffMonth;
 	private int nowMemNum;
 	
+	private String findOtt;
+	
 }

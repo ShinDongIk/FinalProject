@@ -54,6 +54,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="../common/menubar.jsp"/>
     <div class=liketitle>
 
     <div class="title"><h1>찜 내역</h1></div>

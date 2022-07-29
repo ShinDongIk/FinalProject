@@ -138,9 +138,6 @@
 		      </div>
 		    </div>
 		  </div>
-	<c:if test="${not empty loginUser}">
-		<jsp:include page="../chat/chat.jsp"/>
-	</c:if>
   
   <script>
   		$("tbody td").not($(".ck")).click(function(){

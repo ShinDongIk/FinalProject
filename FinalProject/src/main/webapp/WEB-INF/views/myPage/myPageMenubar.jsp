@@ -35,7 +35,7 @@
 </style>
 </head>
 <body>
-    
+<jsp:include page="../common/menubar.jsp"/>    
         <div id="navigator" align="center">
             <ul id="navi">
                 <li><a href="">찜 내역</a></li>

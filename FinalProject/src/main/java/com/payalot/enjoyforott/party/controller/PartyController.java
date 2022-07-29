@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.payalot.enjoyforott.party.model.service.PartyService;
 import com.payalot.enjoyforott.party.model.vo.OttType;
 import com.payalot.enjoyforott.party.model.vo.Party;
@@ -228,5 +229,58 @@ public class PartyController {
 		
 		return "party/partyJoinComplete";
 	}
+	
+	//마이페이지 참여파티 내역 
+			@RequestMapping("partyJoin.my")
+			public String partyJoin(Party p,HttpSession session, Model model,String userId) {
+				
+				ArrayList<Party> list = partyService.selectPartyJoinList(userId);
+				
+				model.addAttribute("list",list);
+				
+				
+				return "myPage/myPagejoin";
+			}
+
+			//마이페이지 생성파티 내역
+			@RequestMapping("partyMade.my")
+			public String partyMade(PartyMember pm,HttpSession session, Model model,String userId) {
+				
+				ArrayList<Party> list = partyService.selectPartyJoinList(userId);
+				
+				model.addAttribute("list",list);
+				
+				ArrayList<PartyMember> list2 = partyService.selectPartyMadeList(userId);
+				
+				model.addAttribute("list2",list2);
+				
+				return "myPage/myPagejoin";
+			}
+
+			
+			//참여파티 모달창
+			@RequestMapping("partyModal.me")
+			public String partyIdPw(String userId,Model model) {
+				
+				ArrayList<Party> list = partyService.selectPartyModal(userId);
+				
+				System.out.println(list.size());
+				System.out.println(list);
+
+				model.addAttribute("partyLoginInfo", list);
+				
+				
+				return "myPage/myPagejoin";
+			}
+			
+			@ResponseBody
+			@RequestMapping(value="joinparty", produces="application/json; charset=UTF-8")
+			public String joinparty(int joinNo) {
+				
+				Party joinparty = partyService.joinParty(joinNo);
+				
+				Gson gson = new Gson();
+				return gson.toJson(joinparty);
+			}
 	
 }

@@ -74,9 +74,6 @@
         <button  type="button" data-toggle="modal" data-target="#myModal" id="openmd">삭제</button>
         </div>
     </div>
-    <c:if test="${not empty loginUser}">
-		<jsp:include page="../chat/chat.jsp"/>
-	</c:if>
 	<br><br>
     <div id="paging-area" align="center">
     	<c:choose>

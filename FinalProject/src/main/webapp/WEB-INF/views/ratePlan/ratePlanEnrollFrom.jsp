@@ -71,5 +71,14 @@
 			</div>
 		</form>
 	</div>
+	<script>
+		$(function(){
+		   $("#mp").val("${rp.monthPrice}".substr(0,"${rp.monthPrice}".length-1));
+		   $("#yp").val("${rp.yearPrice}".substr(0,"${rp.yearPrice}".length-1));
+		   $("#cu").val("${rp.concurrentUsers}".substr(0,"${rp.concurrentUsers}".length-1));
+		   $("#pn").val("${rp.profilesNum}".substr(0,"${rp.profilesNum}".length-1));
+		   $("#quality-id").val("${rp.imageQuality}".substr(0,"${rp.imageQuality}".length-1));
+		});
+	</script>
 </body>
 </html>

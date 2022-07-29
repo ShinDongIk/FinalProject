@@ -12,4 +12,6 @@ public class PartyMember {
 	
 	private int diffMonth;
 	private int getScore;
+	
+	private int partyNo;
 }
