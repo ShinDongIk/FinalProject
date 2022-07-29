@@ -71,7 +71,5 @@
 			</div>
 		</form>
 	</div>
-	
-	<jsp:include page="../chat/chat.jsp"/>
 </body>
 </html>
