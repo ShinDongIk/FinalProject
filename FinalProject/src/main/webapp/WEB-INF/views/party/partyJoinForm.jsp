@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ENJOY FOR OTT - 파티 참여</title>
 <jsp:include page="../common/menubar.jsp"/>
 
 <link rel="stylesheet" href="./resources/css/partyJoinFormStyle.css">

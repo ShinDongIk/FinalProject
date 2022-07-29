@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ENJOY FOR OTT - 로그인</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -33,7 +33,9 @@
                 <table id="inputTable">
                     <tr style="height: 20%;">
                         <td width="50%"><a href="joinTosForm.me">회원가입</a></td>
-                        <td width="50%"><a href="findUserForm.me">아이디/비밀번호찾기</a></td>
+                        <td width="50%">
+<!--                         	<a href="findUserForm.me">아이디/비밀번호찾기</a> -->
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2" style="width: 100%;">

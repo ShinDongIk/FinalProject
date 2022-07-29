@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>OTT 가격 등록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ratePlanEnrollForm.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"/>
 <script src="${pageContext.request.contextPath}/js/ratePlanEnUpForm.js"></script>

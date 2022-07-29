@@ -8,7 +8,7 @@ function submitChick(){
 						$("#rp-enroll-table input[type=text]").eq(index).val(match);
 					}
 				}else if(index == '1'){
-					if($("#rp-enroll-table input[type=text]").eq(index).val().length>1 &&
+					if($("#rp-enroll-table input[type=text]").eq(index).val().length>0 &&
 						!$("#rp-enroll-table input[type=text]").eq(index).val().match("원")){
 						match = $("#rp-enroll-table input[type=text]").eq(index).val();
 						match+="원";

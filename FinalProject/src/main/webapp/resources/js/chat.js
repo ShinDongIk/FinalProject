@@ -63,6 +63,7 @@ function contentSubClick(userNickname){
 }
 
 function chatClick(userNickname){
+	toUser = $("#modal-nickName").val();
 	loginUser = userNickname;
 	if($("#modal-nickName").val() != userNickname){
 		if(chatscreen == 'false' && tab2On == 'false'){
@@ -199,6 +200,7 @@ function chatRoomLoad(){
 				str += "<div id='chat-room'>"
 					+ "<span align='center'>채팅중인 채팅방이 존재하지 않습니다!</span><br>"
 					+ "</div>";
+				$(".main-read-num").css('display','none');
 			}else{
 			for(var i in result){
 				if(loginUser==result[i].firstUserId){
@@ -220,9 +222,10 @@ function chatRoomLoad(){
 						+"<button id='exit-chat'><i class='material-icons'>exit_to_app</i></button>"
 	       				+"</div><br>";
 	       		//$("#chat-room").html(str);
-	       		if(readSum>0){
+	       		console.log(readSumIn);
+	       		if(readSumIn>0){
 	       			$(".main-read-num").css('display','inline-block');
-					$(".main-read-num").html(readSum);
+					$(".main-read-num").html(readSumIn);
 				}else{
 					$(".main-read-num").css('display','none');
 				}

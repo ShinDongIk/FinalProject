@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainPageController {
 	@RequestMapping(value="start")
 	public String startPage() {
-		return "common/menubar";
+		return "poster/RankingPs";
 	}
 	
 	@RequestMapping(value="startRedirect")
