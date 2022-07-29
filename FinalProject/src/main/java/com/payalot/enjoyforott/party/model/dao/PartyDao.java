@@ -45,7 +45,7 @@ public class PartyDao {
 		return sqlSession.insert("partyMapper.insertPartyMember",pm);
 	}
 
-	public int selectPartyMemNum(SqlSessionTemplate sqlSession, int partyNo) {
+	public Party selectPartyMemNum(SqlSessionTemplate sqlSession, int partyNo) {
 		return sqlSession.selectOne("partyMapper.selectPartyMemNum",partyNo);
 	}
 	

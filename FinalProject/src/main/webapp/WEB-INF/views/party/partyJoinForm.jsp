@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,9 +12,6 @@
 
 </head>
 <body>
-	<script>
-		var loginUserId = "${loginUser.userId}"; 
-	</script>
     <div class="outer">
         <form action="partyPayForm.pa" id="partyJoin" method="post">
             <div class="content1">
@@ -50,7 +48,6 @@
         </div>
     </div>
     <br><br><br>
-	${ p }
     <div class="content1">
     <span class="subTitle">
         <b class="font-purple">결제 </b><b>정보</b>
@@ -105,8 +102,8 @@
             <span class="subTitle">
                 <b class="font-purple">결제 </b><b>방법</b>
             </span><br><br><br>
-            <div width="80%">
-                    <input type="radio" id="creditCard" checked>카드결제
+            <div>
+            	<input type="radio" id="creditCard" checked>카드결제
             </div>
         </div>
     </div>
@@ -126,17 +123,17 @@
     
     <div id="partyJoinData">
     	<!-- Payment -->
-    	<input type="hidden" name="payName" value="${ p.ottKor }(${ p.ableDays }일)">
-    	<input type="hidden" name="payAmount" id="payAmount">
+    	<input type="hidden" id="payName" name="payName" value="${ p.ottKor }(${ p.ableDays }일)">
+    	<input type="hidden" id="payAmount" name="payAmount">
     	<input type="hidden" name="buyerEmail" value="${ loginUser.userEmail }">
     	<input type="hidden" name="buyerName" value="${ loginUser.userName }">
     	<input type="hidden" name="buyerTel" value="${ loginUser.userPhone }">
     	<input type="hidden" name="payPartyNo" value="${ p.partyNo }">
     	<input type="hidden" name="payUserId" value="${ loginUser.userId }">
     	<!-- PartyMember -->
-   	    <input type="hidden" name="joinParty" value="${ p.partyNo }">
-	   	<input type="hidden" name="joinMember" value="${ loginUser.userId }">
-    	<input type="hidden" name="diffMonth" value="${ p.diffMonth }">
+   	    <input type="hidden" id="joinParty" name="joinParty" value="${ p.partyNo }">
+	   	<input type="hidden" id="joinMember" name="joinMember" value="${ loginUser.userId }">
+    	<input type="hidden" id="diffMonth" name="diffMonth" value="${ p.diffMonth }">
     </div>
     
     <div class="buttonArea">    
@@ -198,11 +195,9 @@
   				}else{
   					$("#partyJoin").submit();
   				}
-  			});
-  		});
-    	
-
-    </script>
+  			})
+  		})
+  		</script>
 </div>
 <br><br>
 </body>

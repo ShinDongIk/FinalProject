@@ -11,6 +11,7 @@
 		<typeAlias type="com.payalot.enjoyforott.ratePlan.model.vo.RatePlan" alias="ratePlan"/>
 		<typeAlias type="com.payalot.enjoyforott.memberModal.model.vo.MemberModal" alias="memberModal"/>
 		<typeAlias type="com.payalot.enjoyforott.user.model.vo.User" alias="user"/>
+		<typeAlias type="com.payalot.enjoyforott.user.model.vo.UpdateScore" alias="updateScore"/>
 		<typeAlias type="com.payalot.enjoyforott.inquiry.model.vo.Inquiry" alias="inquiry"/>
 		<typeAlias type="com.payalot.enjoyforott.inquiry.model.vo.Reply" alias="reply"/>
 		<typeAlias type="com.payalot.enjoyforott.inquiry.model.vo.Type" alias="type"/>
@@ -19,7 +20,8 @@
 		<typeAlias type="com.payalot.enjoyforott.party.model.vo.Party" alias="party"/>
 		<typeAlias type="com.payalot.enjoyforott.party.model.vo.OttType" alias="ottType"/>
 		<typeAlias type="com.payalot.enjoyforott.party.model.vo.PartyMember" alias="partyMember"/>
-		<typeAlias type="com.payalot.enjoyforott.admin.model.vo.Report" alias="report"/>
+		<typeAlias type="com.payalot.enjoyforott.party.model.vo.Payment" alias="payment"/>
+		<typeAlias type="com.payalot.enjoyforott.admin.model.vo.Report" alias="report"/>	
 	</typeAliases>
 	
 	
