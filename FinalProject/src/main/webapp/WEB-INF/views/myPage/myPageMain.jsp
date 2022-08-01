@@ -124,19 +124,19 @@
     <br><br>
 
     <div id="mymain" align="center">
-        <div class="mpmain" onclick="location.href='mypageLike.me'">
-            <span class="material-symbols-outlined" id="like">favorite</span><br><br>
-            찜한내역
-        </div>
+<!--         <div class="mpmain" onclick="location.href='mypageLike.me'"> -->
+<!--             <span class="material-symbols-outlined" id="like">favorite</span><br><br> -->
+<!--             찜한내역 -->
+<!--         </div> -->
         
         <div class="mpmain" onclick="location.href='partyMade.my?userId=${loginUser.userId }'">
             <span class="material-symbols-outlined"  id="partylist">group</span><br><br>
             파티참여내역
         </div>
         
-        <div class="mpmain" onclick="location.href='mypageList.me?userId=${loginUser.userId }'">
+        <div class="mpmain" onclick="location.href='list.pm?userId=${loginUser.userId }'">
             <span class="material-symbols-outlined" id="writechk">edit</span><br><br>
-            작성글확인
+            결제내역
         </div>
         
         <div class="mpmain" onclick="location.href='mypageUpdate.me'">

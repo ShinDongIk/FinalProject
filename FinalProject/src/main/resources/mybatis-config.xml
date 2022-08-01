@@ -20,10 +20,10 @@
 		<typeAlias type="com.payalot.enjoyforott.party.model.vo.Party" alias="party"/>
 		<typeAlias type="com.payalot.enjoyforott.party.model.vo.OttType" alias="ottType"/>
 		<typeAlias type="com.payalot.enjoyforott.party.model.vo.PartyMember" alias="partyMember"/>
-		<typeAlias type="com.payalot.enjoyforott.party.model.vo.Payment" alias="payment"/>
 		<typeAlias type="com.payalot.enjoyforott.admin.model.vo.Report" alias="report"/>
 		<typeAlias type="com.payalot.enjoyforott.poster.model.vo.Poster" alias="poster"/>
 		<typeAlias type="com.payalot.enjoyforott.favor.model.vo.Favor" alias="favor"/>
+		<typeAlias type="com.payalot.enjoyforott.payment.model.vo.payment" alias="payment"/>
 	</typeAliases>
 	
 	
@@ -41,5 +41,6 @@
 		<mapper resource="/mappers/poster/post-mapper.xml"/>
 		<mapper resource="/mappers/favor/favor-mapper.xml"/>
 		<mapper resource="/mappers/myPage/myPage-mapper.xml"/>
+		<mapper resource="/mappers/payment/payment-mapper.xml"/>
 	</mappers>
 </configuration>

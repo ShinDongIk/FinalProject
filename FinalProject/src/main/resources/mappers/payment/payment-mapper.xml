@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="paymentMapper">
+
+	<select id="selectPaymentCount" resultType="int">
+	SELECT COUNT (*)
+	FROM PAYMENT
+	WHERE PAY_USER_ID = #{userId} 
+	
+	</select>
+	
+	<resultMap type="payment" id="paymentResultSet">
+		<result column="PAY_PARTY_NO" property="payPartyNo"/>
+		<result column="PAY_DATE" property="payDate"/>
+		<result column="PAY_CONFIRM_NO" property="payConfirmNo"/>
+	</resultMap>
+	
+	<select id="selectPayment" resultMap="paymentResultSet">
+		SELECT PAY_PARTY_NO,PAY_DATE,PAY_CONFIRM_NO
+		FROM PAYMENT PM
+		JOIN PARTY P ON(PM.PAY_PARTY_NO = P.PARTY_NO)
+		WHERE PAY_USER_ID = #{userId} 
+	</select>
+
+</mapper>
