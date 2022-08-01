@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ENJOY FOR OTT - 신규 파티 등록</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -178,7 +178,6 @@
          	$(".logoArea").click(function(){
          		var ottchked = $(this).find('img').attr("id");
         	 
-//            	 	console.log(ottchked); 
            	 	$(".logoImg").removeClass('ottChked');
            	 	$(".ottNameEng").removeAttr('name');
            	 	$(".ottNameKor").removeAttr('style');
@@ -193,7 +192,6 @@
 						ottEng : ottchked
 						},
 					success : function(result){
-// 			 			console.log(result);
 			 			//일단가 출력
 			 			var perOneDayPriceStr =""
 			 			perOneDayPriceStr += "<br><span class='amountVal'>"
@@ -235,7 +233,6 @@
 	     		
 	     		//금액 계산식
 	     		var totalAmount = (diffDay * perDay * memNum).toLocaleString('ko-KR');
-// 	     		console.log(totalAmount);
 	     		
 	     		//출력
    				if($(".logoImg").hasClass('ottChked')==false){

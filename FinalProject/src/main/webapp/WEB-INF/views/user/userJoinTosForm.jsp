@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ENJOY FOR OTT - 이용약관</title>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
@@ -45,10 +45,10 @@
 					naverLogin.init();
 					</script>
 		    	</div>
-	            &ensp;&ensp;
-	            <div>
-	            <img src="./resources/images/naver_enroll.png" alt="" width="50px">&ensp;카카오 간편회원가입
-	            </div>
+<!-- 	            &ensp;&ensp; -->
+<!-- 	            <div> -->
+<!-- 	            <img src="./resources/images/naver_enroll.png" alt="" width="50px">&ensp;카카오 간편회원가입 -->
+<!-- 	            </div> -->
 	        </div>
        	</div>
         
