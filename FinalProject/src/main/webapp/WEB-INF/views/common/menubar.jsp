@@ -84,7 +84,6 @@
 									<li><a href="recomend.ps">테마별 작품 정보</a></li>
 									<li><a href="watch.ra">OTT별 가격정보</a></li>
 									<li><a href="rank.ps">OTT별 인기순위</a></li>
-									<li><a href="test.do">OTT별 인기순위</a></li>
 									<li>
 										<span class="opener">여기는 고객센터!</span>
 										<br><br>
@@ -156,15 +155,28 @@
 			<script src="${pageContext.request.contextPath}/js/util.js"></script>
 			<script src="${pageContext.request.contextPath}/js/main.js"></script>
 			
-<!-- 				<script> 
-// 		$(function(){
-// 			$.ajax({
-// 				url:"auto.do"
+<!-- 	<script>  
+ 		$(function(){
+			$.ajax({
+			url:"auto.do"
 				
-// 			});
+		});
 			
-// 		})
-	</script> -->
+		})
+ 	</script>  -->
+ 	
+ 	<script>
+ 	$(function(){
+		$.ajax({
+		url:"auto2.do"
+			
+	});
+		
+	})
+ 	
+ 	
+ 	
+ 	</script>
 
 	</body>
 </html>

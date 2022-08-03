@@ -4,8 +4,6 @@ package com.payalot.enjoyforott.poster.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.payalot.enjoyforott.crawl.autoCr;
 import com.payalot.enjoyforott.crawl.crRecom;
 import com.payalot.enjoyforott.favor.model.service.favorService;
 import com.payalot.enjoyforott.poster.model.service.posterService;
@@ -97,6 +96,12 @@ public class posterController{
 		
 		ArrayList<Poster> pst = posterservice.PostAction(list);	
 		
+		try {
+			autoCr.navercrwal(pst);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		mv.addAttribute("pst",pst);
 		
 		
@@ -106,7 +111,7 @@ public class posterController{
 	public void AutoInput() throws InterruptedException {
 		
 		//저장하고 싶은 장르별 작품수
-		int num = 39;
+		int num = 2;
 		
 		for(int i=1;i<6;i++) {
 			ArrayList<Poster> pp = crRecom.OttRecom(i,num);
@@ -122,14 +127,24 @@ public class posterController{
 			}
 				
 		}
+	@RequestMapping("auto2.do")
+	public void Autonaver() throws InterruptedException {
+		
+		
+		
+		
+	}
 	@ResponseBody
 	@RequestMapping("good.do")
 	public int Good(int postNo,String userId,HttpServletResponse response) {
 		
 	
 		HashMap<String,Object> good = new HashMap<String,Object>();
+		
 		good.put("postNo", postNo);
 		good.put("userId", userId);
+		
+		
 		
 		System.out.println(good);
 		
@@ -138,16 +153,37 @@ public class posterController{
 		 int result = favorservice.favor(good);
 		 
 		 if(result>0) {
+			 
 			 System.out.println("success");
+			 
 		 }else {
+			 
 			 System.out.println("failed");
+			 
 		 }
 		
 		return result;
 	}
 	
-	
-			
+	@ResponseBody
+	@RequestMapping("selectUser.do")
+	public int SelectUser(String userId,HttpServletResponse response) {
 		
+		
+		
+		 int result = favorservice.favor2(userId);
+		 
+		 response.setContentType("application/json; charset=UTF-8");
+		 
+		if(result>0) {
+			System.out.println(result);
+			return result;
+		}else {
+			System.out.println(result);
+			return result;
+		}
+		
+	}
+	
 	}
 

@@ -28,6 +28,9 @@
 	</head>
 	
 		<jsp:include page="../common/menubar.jsp"/>
+		<c:if test="${not empty loginUser}">
+        <jsp:include page="../chat/chat.jsp"/>
+    </c:if>
 		
 <footer>
 	<!-- About Start -->

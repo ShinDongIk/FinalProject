@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
+
 @Repository
 public class favorDao {
 
@@ -13,10 +14,14 @@ public class favorDao {
 		return sqlSession.insert("favormapper.insertfavor",good);
 	}
 
-	public int notfavor(SqlSessionTemplate sqlSession, HashMap<String, Object> good) {
 
+
+	public int selectUser(SqlSessionTemplate sqlSession, String userId) {
 		
-		return sqlSession.delete("favormapper.deletefavor",good);
+		return sqlSession.selectOne("favormapper.selectfavor",userId);
 	}
+
+
+
 
 }

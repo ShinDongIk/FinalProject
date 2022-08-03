@@ -24,6 +24,9 @@
 			</style>
 	</head>
 	<jsp:include page="../common/menubar.jsp"/>
+	<c:if test="${not empty loginUser}">
+        <jsp:include page="../chat/chat.jsp"/>
+    </c:if>
 	
 	<script src="./resources/js/recom_main.min.js"></script>
 	

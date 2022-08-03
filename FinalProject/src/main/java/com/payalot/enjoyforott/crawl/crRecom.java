@@ -54,18 +54,22 @@ public class crRecom {
 	  
 	  JavascriptExecutor js = (JavascriptExecutor) driver;
 	  
-	  //팝업창 삭제
-	  try {
-		  
-		  WebElement xButton = driver.findElement(By.xpath("//*[@id=\"contents\"]/div/div[2]/div[2]/div[2]/button/i"));//x버튼
-		  
-		  xButton.click();
-	  }catch(org.openqa.selenium.NoSuchElementException eq)	{
-		  WebElement xButton = driver.findElement(By.xpath("//*[@id=\"contents\"]/div/div[2]/div[2]/div[2]/button/i"));//x버튼
-		  
-		  Thread.sleep(1000);
-		  xButton.click();
-	  }
+//	  //팝업창 삭제
+//	  if(driver.findElement(By.xpath("//*[@id=\"contents\"]/div/div[2]/div[2]/div[2]/button/i")).isDisplayed()) {
+//		  
+//		  try {
+//			  
+//			  WebElement xButton = driver.findElement(By.xpath("//*[@id=\"contents\"]/div/div[2]/div[2]/div[2]/button/i"));//x버튼
+//			  
+//			  xButton.click();
+//		  }catch(org.openqa.selenium.NoSuchElementException eq)	{
+//			  WebElement xButton = driver.findElement(By.xpath("//*[@id=\"contents\"]/div/div[2]/div[2]/div[2]/button/i"));//x버튼
+//			  
+//			  Thread.sleep(1000);
+//			  xButton.click();
+//		  }
+//	  }
+	  
 
 	  	
 	  //*[@id="contents"]/section/div[3]/div/div/div[3]/button

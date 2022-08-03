@@ -2,6 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="favormapper">
 
+	<resultMap type="favor" id="favorResultSet">
+		<result column="FAVOR_NO" property="favorNo"/>
+		<result column="POST_NO" property="postNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="POST_FAVOR" property="postFavor"/>
+
+	</resultMap>
+
+	<select id="selectfavor" resultMap="favorResultSet">
+		SELECT POST_FAVOR
+		FROM FAVOR
+		WHERE USER_ID = #{userId}
+	</select>
+	
+	
 	<insert id="insertfavor" parameterType="favor">
 		INSERT INTO FAVOR(FAVOR_NO,
 							POST_NO,
@@ -12,17 +27,13 @@
 							#{userId},
 							'추천'
 							)
-
 	</insert>
 	
-	<delete id="deletefavor" parameterType="favor">
-		DELETE FROM FAVOR 
-		WHERE USER_ID = #{userId}
-	
-	
-	
-	</delete>
-
-
+	<select id="selectUser" resultMap="favorResultSet">
+		SELECT P.POST_NO,POSTER_NAME, F.FAVOR_NO
+		FROM POSTER P, (SELECT POST_NO, FAVOR_NO FROM FAVOR WHERE USER_ID=#{userId}) F
+		WHERE P.POST_NO = F.POST_NO(+)
+		ORDER BY POST_NO ASC
+	</select>
 
 </mapper>

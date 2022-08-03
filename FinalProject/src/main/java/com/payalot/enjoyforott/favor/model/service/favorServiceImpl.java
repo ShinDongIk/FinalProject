@@ -25,16 +25,32 @@ public class favorServiceImpl implements favorService{
 		return result;
 	}
 
-
 	@Override
-	public int notfavor(HashMap<String, Object> good) {
+	public int selectUser(String userId) {
 		
-		int result = favordao.notfavor(sqlSession,good);
-				
+		
+		int result = favordao.selectUser(sqlSession,userId);
+		
 		return result;
 	}
+
+	@Override
+	public int favor2(String userId) {
+		
+		int result = favordao.selectUser(sqlSession, userId);
+		
+		return result;
+	}
+
+
+
+
+
+	}
+
+
 	
 	
 	
 
-}
+

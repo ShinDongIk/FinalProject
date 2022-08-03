@@ -21,6 +21,9 @@
 	</head>
 	
 	<jsp:include page="../common/menubar.jsp"/>
+	<c:if test="${not empty loginUser}">
+        <jsp:include page="../chat/chat.jsp"/>
+    </c:if>
 	
 	<footer>
 		<!-- Header-->
@@ -53,7 +56,7 @@
                         <c:choose>
                         	<c:when test="${ not empty loginUser }">
 	                            <div class="text-center2" style="position: relative;">
-	                            <a class="btn btn-outline-dark mt-auto" href="javascript:good('${m.postNo}','${loginUser.userId }')">
+	                            <a class="btn btn-outline-dark mt-auto" onclick="good('${m.postNo}','${loginUser.userId }')">
 	                            <span class="material-symbols-outlined" style="border:0px;">
 	                            thumb_up
 	                            </span>
@@ -92,17 +95,10 @@
                 <!-- The Modal -->
 			  <div class="modal fade" id="myModal">
 			    <div class="modal-dialog">
-			      <div class="modal-content">
-			      
-			        <!-- Modal Header -->
-			        <div class="modal-header">
-			          <h4 class="modal-title">Modal Heading</h4>
-			          <button type="button" class="close" data-dismiss="modal">×</button>
-			        </div>
-			        
+			      <div class="modal-content" style="top:300px;">
 			        <!-- Modal body -->
 			        <div class="modal-body">
-			          Modal body..
+			          <h3 class="modal-content" style="text-align:center; font-size:15px">로그인 후 이용해주세요.</h3>
 			        </div>
 			        
 			        <!-- Modal footer -->
@@ -155,8 +151,12 @@
 					    })
 					  }
 					</script>
-					<script type="text/javascript">
-                        		if(("#").css("background-color", "#0dcaf0")){
+					
+					
+				 	<script type="text/javascript">
+                        		
+					
+					
                         			
                         			function good(postNo,userId){
                                 		
@@ -173,24 +173,30 @@
                             				}
                             				})
                             			}
-                        		}else{
                         			
-                        		}
-                        		function good(postNo,userId){
+                        		$(function(){
                         		
                         			$.ajax({
-                        				url:"notgood.do",
-                        				data:{postNo: postNo,
-                        					  userId:userId},
-                        				success: function(){
-                        					$("#good").css("background-color", "#white");
+                        				url:"selectUser.do",
+                        				data:{
+                        					userId:'${loginUser.userId}',
+                        					pst:'${pst}'
+                        					},
+                        				success: function(result){
+                        					if(result>0){
+                        						console.log("success");
+                        					$("#good").css("background-color", "#0dcaf0");
+                        					}else{
+                        						console.log("failed");
+                        						$("#good").css("background-color", "white");
+                        					}
                         				},
                         				error :function(){
                         					console.log("통신 실패");
                         					
                         				}
                         				})
-                        			}
+                        			})
 
                         	</script>
                         	
